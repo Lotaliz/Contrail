@@ -1,0 +1,27 @@
+{
+  "id": "conv-1787563133951-7igky7l92",
+  "providerId": "codex",
+  "title": "构建 LLM Wiki 目录结构",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787563133959,
+  "lastActivityAt": 1787564802859,
+  "sessionId": "01a03310-d4c0-7fa0-8c63-147faaeb6329",
+  "selectedModel": "gpt-5.6-sol",
+  "providerState": {
+    "threadId": "01a03310-d4c0-7fa0-8c63-147faaeb6329",
+    "nativeConversationContextEstablished": true,
+    "sessionFilePath": "C:\\Users\\cryoc\\.codex\\sessions\\2026\\08\\24\\rollout-2026-08-24T17-18-56-01a03310-d4c0-7fa0-8c63-147faaeb6329.jsonl",
+    "transcriptRootPath": "C:\\Users\\cryoc\\.codex\\sessions",
+    "workspaceDependencyToolVersion": 1
+  },
+  "usage": {
+    "inputTokens": 45002,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 43776,
+    "contextWindow": 258400,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 45002,
+    "percentage": 17,
+    "model": "gpt-5.6-sol"
+  }
+}

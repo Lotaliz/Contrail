@@ -1,0 +1,137 @@
+schema_version: 1
+sources:
+  - id: paper-dong-2023-heatvit
+    kind: paper
+    title: "HeatViT: Hardware-Efficient Adaptive Token Pruning for Vision Transformers"
+    authors: ["Peiyan Dong", "Mengshu Sun", "Alec Lu", "Yanyue Xie", "Kenneth Liu", "Zhenglun Kong", "Xin Meng", "Zhengang Li", "Xue Lin", "Zhenman Fang", "Yanzhi Wang"]
+    year: 2023
+    venue: "HPCA 2023"
+    url: "https://zhenman.github.io/files/C29-HPCA2023-HeatViT.pdf"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Top systems conference; hardware/software co-design evidence on Xilinx ZCU102."
+  - id: paper-bolya-2023-tome
+    kind: paper
+    title: "Token Merging: Your ViT But Faster"
+    authors: ["Daniel Bolya", "Cheng-Yang Fu", "Xiaoliang Dai", "Peizhao Zhang", "Christoph Feichtenhofer", "Judy Hoffman"]
+    year: 2023
+    venue: "ICLR 2023"
+    url: "https://openreview.net/forum?id=JroZRaRw7Eu"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Adjacent token-merging baseline."
+  - id: paper-chang-2023-stvit
+    kind: paper
+    title: "Making Vision Transformers Efficient From a Token Sparsification View"
+    authors: ["Shuning Chang", "Pichao Wang", "Ming Lin", "Fan Wang", "David Junhao Zhang", "Rong Jin", "Mike Zheng Shou"]
+    year: 2023
+    venue: "CVPR 2023"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/html/Chang_Making_Vision_Transformers_Efficient_From_a_Token_Sparsification_View_CVPR_2023_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Semantic-token condensation for classification and dense tasks."
+  - id: paper-liu-2023-adaptive-sparse-vit
+    kind: paper
+    title: "Adaptive Sparse ViT: Towards Learnable Adaptive Token Pruning by Fully Exploiting Self-Attention"
+    authors: ["Xiangcheng Liu", "Tianyi Wu", "Guodong Guo"]
+    year: 2023
+    venue: "IJCAI 2023"
+    url: "https://www.ijcai.org/proceedings/2023/136"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Adaptive thresholding with measured throughput and single-image latency."
+  - id: paper-chen-2023-diffrate
+    kind: paper
+    title: "DiffRate: Differentiable Compression Rate for Efficient Vision Transformers"
+    authors: ["Mengzhao Chen", "Wenqi Shao", "Peng Xu", "Mingbao Lin", "Kaipeng Zhang", "Fei Chao", "Rongrong Ji", "Yu Qiao", "Ping Luo"]
+    year: 2023
+    venue: "ICCV 2023"
+    url: "https://openaccess.thecvf.com/content/ICCV2023/html/Chen_DiffRate__Differentiable_Compression_Rate_for_Efficient_Vision_Transformers_ICCV_2023_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Joint pruning/merging with differentiable layer-wise compression rates."
+  - id: paper-wang-2024-zero-tprune
+    kind: paper
+    title: "Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers"
+    authors: ["Hongjie Wang", "Bhishma Dedhia", "Niraj K. Jha"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Wang_Zero-TPrune_Zero-Shot_Token_Pruning_through_Leveraging_of_the_Attention_Graph_CVPR_2024_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Training-free attention-graph pruning on ImageNet."
+  - id: paper-jie-2024-tocom
+    kind: paper
+    title: "Token Compensator: Altering Inference Cost of Vision Transformer Without Re-Tuning"
+    authors: ["Shibo Jie", "Yehui Tang", "Jianyuan Guo", "Zhi-Hong Deng", "Kai Han", "Yunhe Wang"]
+    year: 2024
+    venue: "ECCV 2024"
+    url: "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/2429_ECCV_2024_paper.php"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Budget-mismatch compensation for compressed ViTs."
+  - id: paper-zhan-2024-token-pruning-vssm
+    kind: paper
+    title: "Exploring Token Pruning in Vision State Space Models"
+    authors: ["Zheng Zhan", "Zhenglun Kong", "Yifan Gong", "Yushu Wu", "Zichong Meng", "Hangyu Zheng", "Xuan Shen", "Stratis Ioannidis", "Wei Niu", "Pu Zhao", "Yanzhi Wang"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/5af741d487c5f0b08bfe56e11d1883e4-Abstract-Conference.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Architecture-specific pruning for visual state-space models."
+  - id: paper-wang-2025-tca
+    kind: paper
+    title: "Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation"
+    authors: ["Zixin Wang", "Dong Gong", "Sen Wang", "Zi Huang", "Yadan Luo"]
+    year: 2025
+    venue: "ICCV 2025"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/Wang_Is_Less_More_Exploring_Token_Condensation_as_Training-free_Test-time_Adaptation_ICCV_2025_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Classification under distribution shift; condensation rather than pure dropping."
+  - id: paper-yao-2026-v-pruner
+    kind: paper
+    title: "V-Pruner: A Fast and Globally-informed Token Pruning Framework for Vision Transformer"
+    authors: ["Guangzhen Yao", "Jiayun Zheng", "Zezhou Wang", "Wenxin Zhang", "Renda Han", "Chuangxin Zhao", "Zeyu Zhang", "Runhao Liu"]
+    year: 2026
+    venue: "AAAI 2026"
+    url: "https://ojs.aaai.org/index.php/AAAI/article/view/40737"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Global sequential pruning policy for ImageNet classification."
+
+# 示例（复制后删除注释）：
+# sources:
+#   - id: paper-author-2024-short-title
+#     kind: paper
+#     title: "Paper title"
+#     authors: ["Author A", "Author B"]
+#     year: 2024
+#     url: "https://example.org/paper"
+#     accessed: 2026-08-24
+#     local_path: "papers/2024-author-short-title.pdf"
+#     sha256: ""
+#     license: "unknown"
+#     notes: ""
+

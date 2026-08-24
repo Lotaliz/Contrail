@@ -1,0 +1,34 @@
+schema_version: 2
+document_types:
+  concept:
+    required: [id, type, category, title, tags, status, created, updated]
+    optional: [aliases, related, sources]
+    allowed_categories: [technology, method, engineering, writing, data]
+  index:
+    required: [id, type, title, tags, status]
+  metadata:
+    required: [id, type, title, tags, status]
+  source-note:
+    required: [id, type, title, tags, source_id, status, created, updated]
+  experiment:
+    required: [id, type, title, tags, status, created, updated]
+  research-overview:
+    required: [id, type, title, tags, status, created, updated]
+    optional: [aliases, related, sources]
+  paper-note:
+    required: [id, type, title, tags, source_id, reading_level, verification, status, created, updated]
+    optional: [authors, year, venue, project, relevance, priority, related]
+  synthesis:
+    required: [id, type, title, tags, project_id, sources, status, created, updated]
+    optional: [related, synthesis_kind]
+  change:
+    required: [id, type, title, tags, date, change_type]
+statuses: [seed, draft, active, deprecated, archived]
+paper_reading_levels: [discovered, skimmed, deep-read]
+verification_states: [unverified, source-checked, reproduced]
+concept_filename_pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*\.md$"
+research_project_pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+source_registry: "../raw/sources.yaml"
+link_style: "obsidian-wikilink"
+date_format: "YYYY-MM-DD"
+encoding: "UTF-8"

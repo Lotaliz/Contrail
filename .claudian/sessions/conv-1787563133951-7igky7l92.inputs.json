@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787563133951-7igky7l92",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787563134003-y0kn1aq",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787563133936-zh9ipfn",
+      "timestamp": 1787563133936,
+      "rawDisplayText": "帮我在D:\\SPPPAAACCCEEE\\Contrail目录下构建LLM Wiki格式的目录结构，你可以采用最传统的LLM wiki风格格式，也可以采用你认为更简洁合适的目录结构，但最终结果应当包含如下特征：\n\n1. 保存原始论文或网页资料来源（raw）\n2. 通过多个md或html文档记录不同的概念实体，这些文档之间通过标签索引连接\n3. 保存wiki的修改记录\n4. 概念包括以下主题：技术、方法、工程（工具）、写作、实验数据等\n5. 一个或几个元数据，用于记录和规定文件格式、结构、维护行为等\n\n如果你有任何具体的不确定问题，可以向我提问",
+      "canonicalText": "帮我在D:\\SPPPAAACCCEEE\\Contrail目录下构建LLM Wiki格式的目录结构，你可以采用最传统的LLM wiki风格格式，也可以采用你认为更简洁合适的目录结构，但最终结果应当包含如下特征：\n\n1. 保存原始论文或网页资料来源（raw）\n2. 通过多个md或html文档记录不同的概念实体，这些文档之间通过标签索引连接\n3. 保存wiki的修改记录\n4. 概念包括以下主题：技术、方法、工程（工具）、写作、实验数据等\n5. 一个或几个元数据，用于记录和规定文件格式、结构、维护行为等\n\n如果你有任何具体的不确定问题，可以向我提问",
+      "images": [],
+      "contentDigest": "2014771dc5b4517318fcbbae0cc2e7c3a5e5c475c44df9cad9859a6264365db7",
+      "providerUserMessageId": "01a03310-db58-7243-a131-da04f5cc1661",
+      "providerAssistantMessageId": "msg_0dc5f2df872f8a11016a8c0df3d32087d0965dda131907482f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787564463509-fte9bkn",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787564463502-2bhmk8s",
+      "timestamp": 1787564463502,
+      "rawDisplayText": "你现在做的很好，但还有几处需要修改：\n1. 添加research目录，在这个目录里用不同分区记录我的不同研究方向，用一个md记录研究范围、研究动机、横向对比等基本信息，并在每个分区保存该主题的论文笔记，即research/<项目>/papers/\n2. 删除concepts下所有的文件，只保留空子目录，避免干扰\n3. index/entities.md 的 Markdown 表格已经被 WikiLink 中的 | 分隔符破坏，解决这个错误",
+      "canonicalText": "你现在做的很好，但还有几处需要修改：\n1. 添加research目录，在这个目录里用不同分区记录我的不同研究方向，用一个md记录研究范围、研究动机、横向对比等基本信息，并在每个分区保存该主题的论文笔记，即research/<项目>/papers/\n2. 删除concepts下所有的文件，只保留空子目录，避免干扰\n3. index/entities.md 的 Markdown 表格已经被 WikiLink 中的 | 分隔符破坏，解决这个错误",
+      "images": [],
+      "contentDigest": "05a516f443ca84da3e5c1890982a821130dd391264679d1d8e0b1c78e91e25f6",
+      "providerUserMessageId": "01a03325-162e-73b0-a0bd-347bb6924cd1",
+      "providerAssistantMessageId": "msg_0dc5f2df872f8a11016a8c12fe694487d09f2cbfd9142ec23c"
+    }
+  ]
+}
