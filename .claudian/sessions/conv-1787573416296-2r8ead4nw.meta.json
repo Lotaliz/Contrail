@@ -4,7 +4,7 @@
   "title": "创建视觉模型 Token 剪枝基础概念指南",
   "titleGenerationStatus": "success",
   "createdAt": 1787573416299,
-  "lastActivityAt": 1787626693708,
+  "lastActivityAt": 1787628544741,
   "sessionId": "01a033ad-b893-7f20-b459-f240a42e58b8",
   "selectedModel": "gpt-5.6-sol",
   "providerState": {
@@ -16,13 +16,13 @@
   },
   "linkedContentPath": "LLM-Wiki/research/visual-token-pruning/papers/2023-chang-stvit.md",
   "usage": {
-    "inputTokens": 59255,
+    "inputTokens": 117206,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 58112,
+    "cacheReadInputTokens": 115456,
     "contextWindow": 258400,
     "contextWindowIsAuthoritative": true,
-    "contextTokens": 59255,
-    "percentage": 23,
+    "contextTokens": 117206,
+    "percentage": 45,
     "model": "gpt-5.6-sol"
   }
 }

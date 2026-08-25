@@ -58,3 +58,11 @@ updated: 2026-08-25
 - [[LLM-Wiki/concepts/methods/on-policy-distillation.md|On-policy 蒸馏概念]]
 - [[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md|可生成归因的多模态自回归 Guard Token 剪枝]]
 - [[LLM-Wiki/research/visual-token-pruning/overview.md|邻接项目：视觉 Token 剪枝]]
+
+## 预注册实验设计（未执行）
+
+- [[LLM-Wiki/experiments/20260825-safety-decoder-prune-kd-05b/README.md|实验一：0.5B Decoder-only Guard 校准、结构剪枝与蒸馏恢复]]
+- [[LLM-Wiki/experiments/20260825-safety-cascade-prune-kd-04b/README.md|实验二：0.4B Decoder-only Guard 与 8B 置信度级联]]
+- [[LLM-Wiki/experiments/20260825-safety-encoder-prune-kd-03b/README.md|实验三：0.3B Encoder-only Guard 校准、深度剪枝与蒸馏恢复]]
+
+三项实验各自完整定义数据、训练、校准、对照、指标和停止条件，彼此不共享必须依赖的 checkpoint 或说明文档；为保证可比性，它们预注册同一训练/测试数据、split seed、最大长度、优化器、学习率、batch、epoch、KD loss、三个随机种子和 A100 测速协议。当前没有实验结果，不能用于更新核心结论或 Motivation。

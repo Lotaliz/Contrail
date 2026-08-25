@@ -89,6 +89,20 @@
       "contentDigest": "d90f4d4e6c4a028f4199ae0b1479ee42f1f8f95903afd57dc013a9455b859361",
       "providerUserMessageId": "01a036ce-50d6-71a0-a86b-48938f31f9f7",
       "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d04ba44d887d0beda40b30bfff747"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787627844971-w3h1vf8",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1787627844916-9qp5c55",
+      "timestamp": 1787627844917,
+      "rawDisplayText": "@LLM-Wiki/research/safety-classifier-compression/overview.md \n我需要设计三个实验，均考虑主流/成熟设计而非前沿设计：\n1. 标准校准+剪枝+蒸馏恢复流程实验，使用8B+0.5B模型配置，对目标1~3B模型先进行校准，再做剪枝到0.5B目标规模，然后利用8B模型做蒸馏，不包含样本增广，全部使用开源数据集作为训练/评测数据\n2. 在上述标准下添加大小模型级联的实验，在1的基础上，使用更小的目标模型规模（0.4B），但添加基于置信度的大小模型级联，当小模型的置信度不足时转移到大模型推理\n3. 使用encoder-only模型的标准流程实验，在1的基础上，将目标模型从decoder-only改为encoder-only，使用更小的目标模型规模（0.3B)，进行标准流程实验\n三个实验的数据集、训练超参等变量要保持一致，测试指标包括分类召回率、单样本推理时延和batch推理时延（吞吐率），分开成三个实验设计，彼此在说明文档中无依赖关系，不要编写任何代码",
+      "canonicalText": "@LLM-Wiki/research/safety-classifier-compression/overview.md \n我需要设计三个实验，均考虑主流/成熟设计而非前沿设计：\n1. 标准校准+剪枝+蒸馏恢复流程实验，使用8B+0.5B模型配置，对目标1~3B模型先进行校准，再做剪枝到0.5B目标规模，然后利用8B模型做蒸馏，不包含样本增广，全部使用开源数据集作为训练/评测数据\n2. 在上述标准下添加大小模型级联的实验，在1的基础上，使用更小的目标模型规模（0.4B），但添加基于置信度的大小模型级联，当小模型的置信度不足时转移到大模型推理\n3. 使用encoder-only模型的标准流程实验，在1的基础上，将目标模型从decoder-only改为encoder-only，使用更小的目标模型规模（0.3B)，进行标准流程实验\n三个实验的数据集、训练超参等变量要保持一致，测试指标包括分类召回率、单样本推理时延和batch推理时延（吞吐率），分开成三个实验设计，彼此在说明文档中无依赖关系，不要编写任何代码",
+      "images": [],
+      "contentDigest": "96f2234f80e6b90af96011ac55438341571c19029fb7885b04c4f1511e386fae",
+      "providerUserMessageId": "01a036ec-36e5-7c80-8ff8-7cbeca7db9e1",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d0bf2e0d487d0995b237c02a24201"
     }
   ]
 }

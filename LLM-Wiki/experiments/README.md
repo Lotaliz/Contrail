@@ -13,3 +13,10 @@ YYYYMMDD-short-name/
 ```
 
 所有结果说明应链接到对应研究项目的 `overview.md`；必要时再与相关论文笔记互链。
+
+## 已登记的实验
+
+- [[LLM-Wiki/experiments/20260825-vispco-qwen25vl-small/README.md]]
+- [[LLM-Wiki/experiments/20260825-safety-decoder-prune-kd-05b/README.md]]
+- [[LLM-Wiki/experiments/20260825-safety-cascade-prune-kd-04b/README.md]]
+- [[LLM-Wiki/experiments/20260825-safety-encoder-prune-kd-03b/README.md]]

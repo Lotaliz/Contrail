@@ -10,9 +10,10 @@
 
 ## 2026-08-25
 
+- [Added] [experiments/safety-classifier-compression] 新增三个互相独立且共享统一数据与超参协议的标准压缩实验设计：0.5B decoder、0.4B 置信度级联和 0.3B encoder（[[LLM-Wiki/changes/2026-08-25-design-safety-compression-experiments.md|详情]]）。
 - [Added] [research/safety-classifier-compression] 调研 On-policy 蒸馏并凝练为概念实体，补充安全 Guard 的适用边界、方法路线、候选缺口与假设（[[LLM-Wiki/changes/2026-08-25-survey-on-policy-distillation.md|详情]]）。
 - [Changed] [research/visual-token-pruning] 精读 VisPCO 的 Qwen2.5-VL 实验与官方实现，并新增不含代码的小规模预注册实验方案（[[LLM-Wiki/changes/2026-08-25-deep-read-vispco-qwen-experiment.md|详情]]）。
-- [Changed] [wiki] 将 Wiki 品牌名统一为 Contrail，以云迹意象的冷色轨迹横幅重设 README 首页，并将视觉资产独立存放于仓库根目录 assets。
+- [Changed] [wiki] 将品牌视觉与 Wiki 内容结构分离，在仓库根目录建立主 README 与响应式 HTML 封面，并移除 LLM-Wiki 内部 README。
 
 ## 2026-08-24
 
