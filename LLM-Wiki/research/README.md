@@ -46,3 +46,5 @@ research 以一个一级子目录对应一个研究方向或项目：
 - 一篇论文涉及多个方向时选择主项目存放，其他项目只建立链接，避免复制。
 
 完整流程见 [[LLM-Wiki/metadata/workflows/README.md|研究工作流]]。
+
+| [[LLM-Wiki/research/ai-safety-systems-security-venues/overview.md\|安全四大顶会中的 AI 安全系统工作]] | active | 2023—2026 安全四大顶会；内容安全、对齐、检测、运行时与 agent 架构，排除攻击方法 | 2026-08-25 |

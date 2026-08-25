@@ -558,3 +558,244 @@ sources:
 #     sha256: ""
 #     license: "unknown"
 #     notes: ""
+
+  - id: paper-qu-2023-unsafe-diffusion
+    kind: paper
+    title: "Unsafe Diffusion: On the Generation of Unsafe Images and Hateful Memes From Text-To-Image Models"
+    authors: ["Yiting Qu", "Xinyue Shen", "Xinlei He", "Michael Backes", "Savvas Zannettou", "Yang Zhang"]
+    year: 2023
+    venue: "ACM CCS 2023"
+    url: "https://doi.org/10.1145/3576915.3616679"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Conservative inclusion as unsafe-image measurement and detection baseline; not treated as a system defense."
+  - id: paper-he-2024-yopo
+    kind: paper
+    title: "You Only Prompt Once: On the Capabilities of Prompt Learning on Large Language Models to Tackle Toxic Content"
+    authors: ["Xinlei He", "Savvas Zannettou", "Yun Shen", "Yang Zhang"]
+    year: 2024
+    venue: "IEEE S&P 2024"
+    url: "https://arxiv.org/abs/2308.05596"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Toxicity classification, toxic-span detection, and detoxification via prompt learning."
+  - id: paper-wu-2024-legilimens
+    kind: paper
+    title: "Legilimens: Practical and Unified Content Moderation for Large Language Model Services"
+    authors: ["Jialin Wu", "Jiangyi Deng", "Shengyuan Pang", "Yanjiao Chen", "Jiayang Xu", "Xinfeng Li", "Wenyuan Xu"]
+    year: 2024
+    venue: "ACM CCS 2024"
+    url: "https://doi.org/10.1145/3658644.3690322"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Practical unified moderation for LLM service inputs and outputs."
+  - id: paper-li-2024-safegen
+    kind: paper
+    title: "SafeGen: Mitigating Sexually Explicit Content Generation in Text-to-Image Models"
+    authors: ["Xinfeng Li", "Yuchen Yang", "Jiangyi Deng", "Chen Yan", "Yanjiao Chen", "Xiaoyu Ji", "Wenyuan Xu"]
+    year: 2024
+    venue: "ACM CCS 2024"
+    url: "https://www.sigsac.org/ccs/CCS2024/program/accepted-papers.html"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Model-level mitigation of sexually explicit text-to-image generation."
+  - id: paper-wang-2024-moderator
+    kind: paper
+    title: "Moderator: Moderating Text-to-Image Diffusion Models through Fine-grained Context-based Policies"
+    authors: ["Peiran Wang", "Qiyu Li", "Longxuan Yu", "Ziyao Wang"]
+    year: 2024
+    venue: "ACM CCS 2024"
+    url: "https://www.sigsac.org/ccs/CCS2024/program/accepted-papers.html"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Fine-grained policy-based text-to-image moderation; CCS 2024 distinguished paper."
+  - id: paper-yang-2025-alignment-recovery
+    kind: paper
+    title: "Alleviating the Fear of Losing Alignment in LLM Fine-tuning"
+    authors: ["Kang Yang", "Guanhong Tao", "Xun Chen", "Jun Xu"]
+    year: 2025
+    venue: "IEEE S&P 2025"
+    url: "https://doi.org/10.1109/SP61157.2025.00171"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Gradient-guided partial parameter restoration and rollback after downstream fine-tuning."
+  - id: paper-wang-2025-selfdefend
+    kind: paper
+    title: "SelfDefend: LLMs Can Defend Themselves against Jailbreaking in a Practical Manner"
+    authors: ["Xunguang Wang", "Daoyuan Wu", "Zhenlan Ji", "Zongjie Li", "Pingchuan Ma", "Shuai Wang", "Yingjiu Li", "Yang Liu", "Ning Liu", "Juergen Rahmel"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/wang-xunguang"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Concurrent shadow LLM and checkpoint-based access control; defense-focused inclusion."
+  - id: paper-zhang-2025-jbshield
+    kind: paper
+    title: "JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation"
+    authors: ["Shenyi Zhang", "Yuchen Zhai", "Keyan Guo", "Hongxin Hu", "Shengnan Guo", "Zheng Fang", "Lingchen Zhao", "Chao Shen", "Cong Wang", "Qian Wang"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-shenyi"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Defense paper using activated concept analysis for detection and hidden-state mitigation."
+  - id: paper-qu-2025-vlm-unsafe-concepts
+    kind: paper
+    title: "Bridging the Gap in Vision Language Models in Identifying Unsafe Concepts Across Modalities"
+    authors: ["Yiting Qu", "Michael Backes", "Yang Zhang"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/qu-yiting"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "UnsafeConcepts dataset, perception/alignment decomposition, and PPO-based visual safety alignment."
+  - id: paper-zhang-2025-activation-approximations
+    kind: paper
+    title: "Activation Approximations Can Incur Safety Vulnerabilities in Aligned LLMs: Comprehensive Analysis and Defense"
+    authors: ["Jiawen Zhang", "Kejia Chen", "Lipeng He", "Jian Lou", "Dan Li", "Zunlei Feng", "Mingli Song", "Jian Liu", "Kui Ren", "Xiaohu Yang"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-jiawen"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Safety evaluation of polynomial, sparse, and quantized activation approximations plus QuadA."
+  - id: paper-gao-2025-content-moderation-products
+    kind: paper
+    title: "I Cannot Write This Because It Violates Our Content Policy: Understanding Content Moderation Policies and User Experiences in Generative AI Products"
+    authors: ["Lan Gao", "Oscar Chen", "Rachel Lee", "Nick Feamster", "Chenhao Tan", "Marshini Chetty"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/gao-lan"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Socio-technical study of policies for 14 GAI tools and user-reported moderation experiences."
+  - id: paper-zhuang-2025-hmguard
+    kind: paper
+    title: "I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models"
+    authors: ["Yong Zhuang", "Keyan Guo", "Juan Wang", "Yiheng Jing", "Xiaoyang Xu", "Wenzhe Yi", "Mengda Yang", "Bo Zhao", "Hongxin Hu"]
+    year: 2025
+    venue: "NDSS 2025"
+    url: "https://www.ndss-symposium.org/ndss-paper/i-know-what-you-meme-understanding-and-detecting-harmful-memes-with-multimodal-large-language-models/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "HMGUARD uses adaptive prompting and structured multimodal reasoning for harmful meme detection."
+  - id: paper-qi-2025-safeguider
+    kind: paper
+    title: "SafeGuider: Robust and Practical Content Safety Control for Text-to-Image Models"
+    authors: ["Peigui Qi", "Kunsheng Tang", "Wenbo Zhou", "Weiming Zhang", "Nenghai Yu", "Tianwei Zhang", "Qing Guo", "Jie Zhang"]
+    year: 2025
+    venue: "ACM CCS 2025"
+    url: "https://academic-page.github.io/SafeGuider/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered-level evidence for practical text-to-image safety scoring and prompt rewriting."
+  - id: paper-wu-2026-enchtable
+    kind: paper
+    title: "EnchTable: Unified Safety Alignment Transfer in Fine-tuned Large Language Models"
+    authors: ["Jialin Wu", "Kecen Li", "Zhicong Huang", "Xinfeng Li", "Xiaofeng Wang", "Cheng Hong"]
+    year: 2026
+    venue: "IEEE S&P 2026"
+    url: "https://doi.org/10.1109/SP63933.2026.00072"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "NTK-based safety vector distillation and interference-aware model merging."
+  - id: paper-li-2026-ace
+    kind: paper
+    title: "ACE: A Security Architecture for LLM-Integrated App Systems"
+    authors: ["Evan Li", "Tushin Mallick", "Evan Rose", "William Robertson", "Alina Oprea", "Cristina Nita-Rotaru"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/ace-a-security-architecture-for-llm-integrated-app-systems/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Abstract-Concrete-Execute architecture with static information-flow checks and capability barriers."
+  - id: paper-syros-2026-saga
+    kind: paper
+    title: "SAGA: A Security Architecture for Governing AI Agentic Systems"
+    authors: ["Georgios Syros", "Anshuman Suri", "Jacob Ginesin", "Cristina Nita-Rotaru", "Alina Oprea"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/saga-a-security-architecture-for-governing-ai-agentic-systems/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Provider-centered lifecycle governance, user policy, and cryptographic access tokens for agents."
+  - id: paper-zhong-2026-rennervate
+    kind: paper
+    title: "Attention is All You Need to Defend Against Indirect Prompt Injection Attacks in LLMs"
+    authors: ["Yinan Zhong", "Qianhao Miao", "Yanjiao Chen", "Jiangyi Deng", "Yushi Cheng", "Wenyuan Xu"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/attention-is-all-you-need-to-defend-against-indirect-prompt-injection-attacks-in-llms/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Rennervate detects and sanitizes indirect prompt injection at token granularity; defense-only synthesis."
+  - id: paper-zhang-2026-bleeding-pathways
+    kind: paper
+    title: "Bleeding Pathways: Vanishing Discriminability in LLM Hidden States Fuels Jailbreak Attacks"
+    authors: ["Yingjie Zhang", "Tong Liu", "Zhe Zhao", "Guozhu Meng", "Kai Chen"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/bleeding-pathways-vanishing-discriminability-in-llm-hidden-states-fuels-jailbreak-attacks/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "DEEPALIGN applies mid-generation contrastive hidden-state steering and continuous toxicity detection."
+  - id: paper-wei-2026-character-platforms
+    kind: paper
+    title: "Benchmarking and Understanding Safety Risks in AI Character Platforms"
+    authors: ["Yiluo Wei", "Peixian Zhang", "Gareth Tyson"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/benchmarking-and-understanding-safety-risks-in-ai-character-platforms/"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Large-scale audit of 16 AI character platforms and a character safety predictor."
+  - id: paper-liu-2026-sentinel
+    kind: paper
+    title: "Quantifying Large Language Model Attacks Through the Lens of Model Cognition"
+    authors: ["Xiuming Liu", "Chaoxiang He", "Xuanran Yu", "Jichen Chai", "Feiyue Xu", "Sheng Hang", "Hanqing Hu", "Bin Benjamin Zhu", "Hongsheng Hu", "Shi-Feng Sun", "Dawu Gu", "Shuo Wang"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/liu-xiuming"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Sentinel is a sub-5M-parameter multi-layer hidden-state toxicity detector; no attack construction is synthesized."

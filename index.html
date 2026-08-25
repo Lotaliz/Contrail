@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a1017">
+  <meta name="theme-color" content="#12091f">
   <meta name="description" content="Contrail — 面向 LLM 与 AI 研究的证据导向知识系统。">
   <title>Contrail — LLM Research Wiki</title>
   <style>
     :root {
-      --ink: #091017;
-      --panel: rgba(18, 29, 40, 0.72);
-      --panel-solid: #121d28;
-      --line: rgba(191, 226, 229, 0.14);
-      --line-strong: rgba(191, 226, 229, 0.28);
-      --text: #eff7f5;
-      --muted: #8ea5b0;
-      --cyan: #7ad7dd;
-      --cyan-soft: #bfe2e5;
-      --violet: #9a8bd1;
-      --gold: #e7bd72;
+      --ink: #10091b;
+      --panel: rgba(31, 19, 46, 0.74);
+      --panel-solid: #21142f;
+      --line: rgba(224, 205, 255, 0.13);
+      --line-strong: rgba(224, 205, 255, 0.3);
+      --text: #fff9ff;
+      --muted: #b5a8c7;
+      --cyan: #c8a6ff;
+      --cyan-soft: #eadcff;
+      --violet: #8d64d7;
+      --gold: #f0acd3;
       --radius: 24px;
     }
 
@@ -33,9 +33,10 @@
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(circle at 78% 14%, rgba(122, 215, 221, 0.13), transparent 28rem),
-        radial-gradient(circle at 12% 64%, rgba(154, 139, 209, 0.11), transparent 34rem),
-        linear-gradient(150deg, #091017 0%, #0d151e 50%, #101823 100%);
+        radial-gradient(circle at 78% 14%, rgba(179, 128, 255, 0.2), transparent 30rem),
+        radial-gradient(circle at 13% 68%, rgba(240, 172, 211, 0.12), transparent 36rem),
+        radial-gradient(circle at 56% 44%, rgba(117, 73, 169, 0.08), transparent 28rem),
+        linear-gradient(150deg, #0c0714 0%, #130b20 48%, #1a0f28 100%);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
@@ -46,7 +47,7 @@
       position: fixed;
       inset: 0;
       z-index: -2;
-      opacity: 0.32;
+      opacity: 0.2;
       background-image:
         linear-gradient(var(--line) 1px, transparent 1px),
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
@@ -96,24 +97,29 @@
       display: grid;
       place-items: center;
       position: relative;
-      background: rgba(122, 215, 221, 0.04);
+      background: rgba(200, 166, 255, 0.08);
     }
 
     .brand-mark::before,
     .brand-mark::after {
       content: "";
       position: absolute;
-      width: 19px;
-      height: 6px;
-      border-top: 2px solid var(--cyan);
+      width: 9px;
+      height: 8px;
+      border: 1.5px solid var(--cyan);
       border-radius: 50%;
-      transform: rotate(-17deg);
+      box-shadow: 13px 0 0 -1.5px var(--ink), 13px 0 0 0 var(--cyan);
+      transform: translateX(-6px) rotate(-8deg);
     }
 
     .brand-mark::after {
-      width: 12px;
-      transform: translate(4px, 6px) rotate(-17deg);
-      border-color: var(--violet);
+      width: 6px;
+      height: 1px;
+      border: 0;
+      border-top: 1.5px solid var(--gold);
+      border-radius: 0;
+      box-shadow: none;
+      transform: translate(0, 0) rotate(-8deg);
     }
 
     .nav-links {
@@ -226,9 +232,10 @@
       border: 1px solid var(--line);
       border-radius: 50%;
       background:
-        radial-gradient(circle, rgba(122, 215, 221, 0.13) 0 1px, transparent 2px) center / 23px 23px,
-        radial-gradient(circle at center, rgba(122, 215, 221, 0.08), transparent 54%);
-      box-shadow: inset 0 0 80px rgba(122, 215, 221, 0.035), 0 40px 100px rgba(0,0,0,0.24);
+        radial-gradient(circle, rgba(230, 210, 255, 0.12) 0 1px, transparent 2px) center / 23px 23px,
+        radial-gradient(circle at 54% 44%, rgba(200, 166, 255, 0.18), transparent 46%),
+        linear-gradient(145deg, rgba(255, 247, 255, 0.04), rgba(85, 45, 120, 0.08));
+      box-shadow: inset 0 0 90px rgba(188, 141, 255, 0.07), 0 40px 110px rgba(3,0,8,0.34);
       animation: map-float 7s ease-in-out infinite;
     }
 
@@ -265,7 +272,7 @@
       border-top: 3px solid var(--cyan);
       border-radius: 50%;
       transform: rotate(-17deg);
-      filter: drop-shadow(0 0 10px rgba(122, 215, 221, 0.4));
+      filter: drop-shadow(0 0 12px rgba(200, 166, 255, 0.48));
     }
 
     .trail::after {
@@ -291,7 +298,7 @@
       background: rgba(9, 16, 23, 0.82);
       -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
-      box-shadow: 0 0 44px rgba(122, 215, 221, 0.15);
+      box-shadow: 0 0 44px rgba(200, 166, 255, 0.2);
       z-index: 2;
     }
 
@@ -309,13 +316,145 @@
       border: 2px solid var(--ink);
       border-radius: 50%;
       background: var(--gold);
-      box-shadow: 0 0 0 1px var(--gold), 0 0 24px rgba(231, 189, 114, 0.5);
+      box-shadow: 0 0 0 1px var(--gold), 0 0 24px rgba(240, 172, 211, 0.5);
       z-index: 3;
     }
 
     .node.one { left: 17%; top: 32%; }
-    .node.two { right: 15%; top: 27%; background: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), 0 0 24px rgba(122, 215, 221, 0.5); }
-    .node.three { right: 24%; bottom: 17%; background: var(--violet); box-shadow: 0 0 0 1px var(--violet), 0 0 24px rgba(154, 139, 209, 0.5); }
+    .node.two { right: 15%; top: 27%; background: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), 0 0 24px rgba(200, 166, 255, 0.55); }
+    .node.three { right: 24%; bottom: 17%; background: var(--violet); box-shadow: 0 0 0 1px var(--violet), 0 0 24px rgba(141, 100, 215, 0.58); }
+
+    .glasses {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      width: 220px;
+      height: 82px;
+      transform: translateX(-50%) rotate(-8deg);
+      z-index: 3;
+      filter: drop-shadow(0 8px 20px rgba(5, 0, 12, 0.35));
+    }
+
+    .lens {
+      position: absolute;
+      top: 0;
+      width: 84px;
+      height: 68px;
+      border: 4px solid rgba(255, 249, 255, 0.84);
+      border-radius: 46% 54% 50% 50%;
+      background: linear-gradient(145deg, rgba(233, 217, 255, 0.16), rgba(147, 91, 218, 0.04));
+      box-shadow: inset 12px 10px 20px rgba(255,255,255,0.04);
+    }
+
+    .lens.left { left: 13px; }
+    .lens.right { right: 13px; transform: scaleX(-1); }
+
+    .glasses::before {
+      content: "";
+      position: absolute;
+      left: 91px;
+      top: 28px;
+      width: 38px;
+      height: 12px;
+      border-top: 4px solid rgba(255, 249, 255, 0.84);
+      border-radius: 50%;
+    }
+
+    .glasses::after {
+      content: "";
+      position: absolute;
+      left: -9px;
+      right: -9px;
+      top: 21px;
+      border-top: 3px solid rgba(255, 249, 255, 0.5);
+      z-index: -1;
+    }
+
+    .ribbon {
+      position: absolute;
+      border: 2px solid rgba(200, 166, 255, 0.5);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .ribbon.one { width: 82%; height: 38%; left: -8%; top: 12%; transform: rotate(13deg); }
+    .ribbon.two { width: 58%; height: 27%; right: -5%; bottom: 12%; transform: rotate(-22deg); border-color: rgba(240, 172, 211, 0.35) rgba(240, 172, 211, 0.35) transparent transparent; }
+
+    .paper {
+      position: absolute;
+      width: 34px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 4px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(222,205,241,0.72));
+      box-shadow: 0 10px 24px rgba(4,0,9,0.24);
+      z-index: 2;
+    }
+
+    .paper::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      right: 7px;
+      top: 11px;
+      height: 12px;
+      border-top: 2px solid rgba(102, 65, 135, 0.3);
+      border-bottom: 2px solid rgba(102, 65, 135, 0.2);
+    }
+
+    .paper.one { left: 8%; top: 48%; transform: rotate(-16deg); }
+    .paper.two { right: 7%; top: 54%; transform: rotate(19deg) scale(0.78); }
+
+    .patch {
+      position: absolute;
+      right: 17%;
+      top: 12%;
+      width: 48px;
+      height: 20px;
+      border-radius: 8px;
+      background: #f7eaf5;
+      transform: rotate(24deg);
+      box-shadow: 0 8px 18px rgba(5,0,10,0.26);
+      z-index: 4;
+    }
+
+    .patch::before {
+      content: "···";
+      position: absolute;
+      inset: -4px 0 0;
+      color: rgba(124, 75, 145, 0.45);
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    .feather {
+      position: absolute;
+      left: 17%;
+      bottom: 11%;
+      width: 28px;
+      height: 76px;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(165deg, #f8eaff, #a77bd8 70%);
+      transform: rotate(35deg);
+      opacity: 0.9;
+      box-shadow: 0 9px 28px rgba(154, 99, 216, 0.35);
+      z-index: 2;
+    }
+
+    .feather::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 9px;
+      width: 1px;
+      height: 72px;
+      background: rgba(75, 41, 102, 0.55);
+      transform: rotate(-8deg);
+      transform-origin: top;
+    }
 
     .map-label {
       position: absolute;
@@ -387,6 +526,18 @@
       transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
     }
 
+    .track::before {
+      content: "";
+      position: absolute;
+      width: 74px;
+      height: 18px;
+      left: 26px;
+      top: -7px;
+      background: rgba(227, 204, 255, 0.2);
+      border: 1px solid rgba(246, 233, 255, 0.12);
+      transform: rotate(-3deg);
+    }
+
     .track::after {
       content: "";
       position: absolute;
@@ -396,14 +547,14 @@
       bottom: -95px;
       border: 1px solid var(--line-strong);
       border-radius: 50%;
-      box-shadow: 0 0 0 34px rgba(122, 215, 221, 0.025), 0 0 0 68px rgba(122, 215, 221, 0.018);
+      box-shadow: 0 0 0 34px rgba(200, 166, 255, 0.032), 0 0 0 68px rgba(200, 166, 255, 0.02);
     }
 
     .track:hover,
     .track:focus-visible {
       transform: translateY(-5px);
-      border-color: rgba(122, 215, 221, 0.46);
-      background: rgba(20, 33, 45, 0.92);
+      border-color: rgba(200, 166, 255, 0.5);
+      background: rgba(39, 23, 57, 0.94);
     }
 
     .track-index {
@@ -462,12 +613,12 @@
       margin-bottom: 48px;
       border-radius: 50%;
       background: var(--cyan);
-      box-shadow: 0 0 18px rgba(122, 215, 221, 0.6);
+      box-shadow: 0 0 18px rgba(200, 166, 255, 0.62);
     }
 
-    .stage:nth-child(3)::before { background: var(--gold); box-shadow: 0 0 18px rgba(231, 189, 114, 0.6); }
+    .stage:nth-child(3)::before { background: var(--gold); box-shadow: 0 0 18px rgba(240, 172, 211, 0.62); }
     .stage:nth-child(4)::before,
-    .stage:nth-child(5)::before { background: var(--violet); box-shadow: 0 0 18px rgba(154, 139, 209, 0.6); }
+    .stage:nth-child(5)::before { background: var(--violet); box-shadow: 0 0 18px rgba(141, 100, 215, 0.62); }
 
     .stage-code {
       color: var(--muted);
@@ -494,8 +645,8 @@
       overflow: hidden;
       position: relative;
       background:
-        linear-gradient(120deg, rgba(122, 215, 221, 0.09), transparent 38%),
-        linear-gradient(300deg, rgba(154, 139, 209, 0.08), transparent 45%),
+        linear-gradient(120deg, rgba(200, 166, 255, 0.12), transparent 38%),
+        linear-gradient(300deg, rgba(240, 172, 211, 0.09), transparent 45%),
         var(--panel);
     }
 
@@ -506,7 +657,7 @@
       height: 170px;
       right: -120px;
       top: 40px;
-      border-top: 2px solid rgba(122, 215, 221, 0.42);
+      border-top: 2px solid rgba(200, 166, 255, 0.46);
       border-radius: 50%;
       transform: rotate(-12deg);
     }
@@ -595,7 +746,14 @@
       <div class="flight-map" aria-label="从来源到实验的研究轨迹示意图">
         <span class="axis" aria-hidden="true"></span>
         <span class="axis vertical" aria-hidden="true"></span>
+        <span class="ribbon one" aria-hidden="true"></span>
+        <span class="ribbon two" aria-hidden="true"></span>
         <span class="trail" aria-hidden="true"></span>
+        <span class="glasses" aria-hidden="true"><span class="lens left"></span><span class="lens right"></span></span>
+        <span class="paper one" aria-hidden="true"></span>
+        <span class="paper two" aria-hidden="true"></span>
+        <span class="patch" aria-hidden="true"></span>
+        <span class="feather" aria-hidden="true"></span>
         <span class="core" aria-hidden="true"></span>
         <span class="node one" aria-hidden="true"></span>
         <span class="node two" aria-hidden="true"></span>

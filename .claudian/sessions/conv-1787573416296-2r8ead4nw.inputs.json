@@ -103,6 +103,74 @@
       "contentDigest": "96f2234f80e6b90af96011ac55438341571c19029fb7885b04c4f1511e386fae",
       "providerUserMessageId": "01a036ec-36e5-7c80-8ff8-7cbeca7db9e1",
       "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d0bf2e0d487d0995b237c02a24201"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787639462809-ov41eio",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1787639462770-7eigght",
+      "timestamp": 1787639462770,
+      "rawDisplayText": "当前实验设计是否包含安全判别任务？不要修改，只回答即可",
+      "canonicalText": "当前实验设计是否包含安全判别任务？不要修改，只回答即可",
+      "images": [],
+      "contentDigest": "a796ad069c90fbf97fff81e55e084c41fc39794146d28577cbae234ca261ac9f",
+      "providerUserMessageId": "01a0379d-7f7e-7943-9ad6-80fbc89a100b",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d36acfd4c87d0ba2d32e5ae85a65c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787639721881-dos1j92",
+      "userTurnOrdinal": 8,
+      "state": "accepted",
+      "localMessageId": "msg-1787639721844-bv0gasf",
+      "timestamp": 1787639721844,
+      "rawDisplayText": "token剪枝的vispco实验又如何？",
+      "canonicalText": "token剪枝的vispco实验又如何？",
+      "images": [],
+      "contentDigest": "dc3e8361c5763fa45378a038d3c43738c470b6ecbded55fc4d0d7620f4f0a5d5",
+      "providerUserMessageId": "01a037a1-8463-7702-8041-69bc477e662f",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d37c094d887d0986cae4af77fdc8b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787641216002-det93we",
+      "userTurnOrdinal": 9,
+      "state": "accepted",
+      "localMessageId": "msg-1787641215989-v0zqmwj",
+      "timestamp": 1787641215989,
+      "rawDisplayText": "调研安全顶会中的AI安全系统级工作（包含降级为纯模型的工作），范围为四年内的安全四大顶会，必须包含AI安全，包括内容安全、安全对齐、安全检测及其系统级工作，但不包含攻击方法。这部分论文可能比较少，如果没有不要强求。",
+      "canonicalText": "调研安全顶会中的AI安全系统级工作（包含降级为纯模型的工作），范围为四年内的安全四大顶会，必须包含AI安全，包括内容安全、安全对齐、安全检测及其系统级工作，但不包含攻击方法。这部分论文可能比较少，如果没有不要强求。",
+      "images": [],
+      "contentDigest": "9360e0113939a3c22b89f3ee85d5fa48dda76697aa529f9496a65a59e866a80d",
+      "providerUserMessageId": "01a037b8-41fd-7c93-8283-811d3c34ee2e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787642634478-54mnntv",
+      "userTurnOrdinal": 10,
+      "state": "accepted",
+      "localMessageId": "msg-1787642634466-9c3cmue",
+      "timestamp": 1787642634466,
+      "rawDisplayText": "删上一个任务不明原因卡住了，请检查并确保任务顺利完成",
+      "canonicalText": "删上一个任务不明原因卡住了，请检查并确保任务顺利完成",
+      "images": [],
+      "contentDigest": "dcc1ca404030bdd1377b08b7726bda795673a1c6f595b4230803e0a77182371d",
+      "providerUserMessageId": "01a037cd-ee3f-7663-ba71-19f5d706b0c0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787642642029-q2v1358",
+      "userTurnOrdinal": 11,
+      "state": "accepted",
+      "localMessageId": "msg-1787642642018-kvfblrm",
+      "timestamp": 1787642642018,
+      "rawDisplayText": "上一个任务不明原因卡住了，请检查并确保任务顺利完成",
+      "canonicalText": "上一个任务不明原因卡住了，请检查并确保任务顺利完成",
+      "images": [],
+      "contentDigest": "0165e5c03be916e714e7c9a0a9741b0d92e93ba28b1f35e64bbf5c7b6a355970",
+      "providerUserMessageId": "01a037ce-074e-70c0-98f2-1c72c3999746",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8d4468ef4087d0ae26525356da3e6a"
     }
   ]
 }
