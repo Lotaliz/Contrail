@@ -4,7 +4,7 @@ type: synthesis
 title: 视觉 Token 剪枝统一比较
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
 status: active
 created: 2026-08-24
 updated: 2026-08-24
@@ -35,3 +35,11 @@ updated: 2026-08-24
 - FPGA/固定边缘设备：HeatViT 式 latency LUT 与算子共设计最有证据。
 - 视觉 SSM：不可直接套用 ViT selector，优先 ToP-ViM 式位置对齐。
 - 分布偏移分类：TCA 提示“压缩可兼作适应”，但要独立验证 IID 精度与真实 latency。
+
+## 图文多模态比较入口
+
+多模态方法还必须比较压缩位置（vision encoder/projector/LLM layer/cache）、是否使用文本、是否支持 multi-turn，以及 TTFT/decode/KV 指标。完整统一表见：
+
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md#统一比较|图文多模态 Token 剪枝统一比较]]。
+
+快速选型：encoder-style VLM 用 TRIPS/PuMer；decoder-only training-free 基线用 FastV；重 multi-turn/prefill 用 VisionZip；高压缩覆盖基线用 DivPrune；需要 prompt-aware progressive pruning 用 SparseVLM；任何复杂方法都必须同时对比 Random/Pooling，并单独搜索层预算。

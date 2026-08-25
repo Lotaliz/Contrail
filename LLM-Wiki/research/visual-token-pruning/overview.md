@@ -5,8 +5,8 @@ title: 视觉模型 Token 剪枝：精度保持与推理时延优化
 aliases: [视觉 Token 剪枝, 视觉 Token 压缩]
 tags: [research, method]
 status: active
-related: []
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner]
+related: [multimodal-token-pruning]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
 created: 2026-08-24
 updated: 2026-08-24
 ---
@@ -15,18 +15,18 @@ updated: 2026-08-24
 
 ## 一句话概述
 
-近三年顶会进展已从“按固定比例丢弃低分 patch”转向四类更可部署的设计：样本/层自适应预算、剪枝与合并协同、架构感知的信息保真，以及硬件时延驱动的选择策略；但跨硬件、batch=1 的端到端时延证据仍明显不足。
+视觉 Token 剪枝已从纯 ViT 的固定比例删除，扩展到视觉 SSM 与图文多模态模型中的查询条件化选择、剪枝—合并协同、生成时 KV/cache 优化和层级预算搜索；但空间覆盖、multi-turn 复用与跨硬件端到端时延证据仍不足。
 
 ## 研究问题
 
-在图像分类、检测、姿态估计及视觉语言判别任务中，如何在将精度下降约束在可接受范围内的同时，获得可复现的端到端推理时延下降，而非仅减少理论 FLOPs？
+在纯视觉分类/密集预测以及图文分类、检索和自回归生成任务中，如何在保留任务证据的同时减少 token，并获得可复现的端到端时延、KV cache 与显存收益，而非仅降低理论 FLOPs？
 
 ## 范围与时间截点
 
-- 时间窗：按会议年份纳入 2023-01-01 至 2026-08-24 已正式发表论文。
+- 时间窗：主体为 2023-01-01 至 2026-08-24 已正式发表论文；多模态路线追溯一篇 EMNLP 2022 早期代表。
 - 会议白名单：AI/CV/NLP 顶会 ICLR、NeurIPS、ICML、CVPR、ICCV、ECCV、AAAI、IJCAI、ACL；系统/体系结构顶会 HPCA、ISCA、MICRO、ASPLOS、MLSys、OSDI、SOSP、USENIX ATC。
-- 包含：在视觉编码器或视觉序列模型内部减少、跳过、合并或压缩 token，并报告判别任务质量；核心结论优先要求吞吐或真实时延。
-- 不包含：仅权重/通道/注意力头剪枝；只做生成质量的 DiT/VAR；期刊、workshop、未录用或仅 arXiv 论文；没有判别任务结果的纯多模态生成加速。
+- 包含：视觉编码器、视觉序列模型、跨模态 encoder 或 decoder-only VLM 内部减少、跳过、合并或压缩视觉/文本 token，并报告分类、检索、VQA、captioning 或开放式生成质量；核心结论优先要求真实时延/吞吐/TTFT/KV 证据。
+- 不包含：仅权重/通道/注意力头剪枝；只做图像生成的 DiT/VAR；纯文本 KV pruning；期刊、workshop、未录用或仅 arXiv 论文。
 - 邻接方法：ToMe、STViT、TCA 属于 token 合并/凝聚而非严格“丢弃”，只用于说明信息保真和可部署边界。
 
 ## 核心结论
@@ -36,13 +36,23 @@ updated: 2026-08-24
 3. 剪枝规则不可无条件跨架构迁移。ViT 的注意力分数直接迁移到视觉 SSM 会破坏扫描邻接，NeurIPS 2024 的结果显示即使充分微调仍可能有显著精度缺口。
 4. FLOPs 只是筛选指标。HeatViT 将目标硬件的 latency-sparsity 表直接纳入训练，证明软硬协同可把 token 稀疏转成实际加速；多数 AI 论文仍以 GPU 吞吐为主，batch=1、预处理、选择器与数据搬运的端到端时延报告不足。
 5. 2025–2026 的趋势是从局部贪心走向全局效应和分布鲁棒性：TCA 在分布偏移下把凝聚用于测试时适应，V-Pruner 把逐层剪枝建模为全局序列决策。
+6. 多模态选择具有 query dependence：TRIPS、PuMer、SparseVLM 证明文本可指导视觉选择；但 Wen et al. 的统一复核显示普通 benchmark 上 random/pooling 可胜部分 attention selector，语言信号与 attention 分数都不是普适真值。
+7. 生成任务新增 prefill、decode 与 KV cache 三阶段。VisionZip 的 prefill 约 7.8× 改善只对应约 3× 总时间，DivPrune 的 prefill 约快 55%只对应 E2E 约快 22%，必须分项测量。
+8. 该方向属于 2024–2026 的明显热点，但尚未成熟：研究已扩展到 multi-turn、视频、多样性与 Pareto 配置；联合图文 token 剪枝、未来生成相关性和跨硬件 P95 仍是空白。
 
 ## 面向判别任务的建议路线
 
 优先复现 `Zero-TPrune / AS-ViT → DiffRate/ToMe 信息保真 → 硬件感知预算搜索` 三段式基线。统一在同一模型、输入分辨率、batch=1 与目标设备上报告 Top-1/mAP、P50/P95 端到端时延、吞吐、峰值显存、选择器开销与能耗。若主干是视觉 SSM，必须使用保持扫描位置的架构专用机制。
 
+## 面向图文多模态的建议路线
+
+以 `Random/Pooling → FastV → VisionZip/DivPrune → SparseVLM → layer-budget search` 建立基线，任务至少覆盖普通 VQA、TextVQA/OCR、RefCOCO、POPE、multi-turn 与视频；分开报告 vision encode、TTFT/prefill、decode tokens/s、KV memory 和 E2E P50/P95。
+
 ## 项目文档
 
+- [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|基础入门：ViT、patch token 与 Token 剪枝]]
+- [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|概念：多模态 Token 剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|专题调研：图文分类与生成中的 Token 剪枝]]
 - [[LLM-Wiki/research/visual-token-pruning/reading-log.md|检索与阅读日志]]
 - [[LLM-Wiki/research/visual-token-pruning/landscape.md|技术路线图]]
 - [[LLM-Wiki/research/visual-token-pruning/comparison.md|统一维度比较]]

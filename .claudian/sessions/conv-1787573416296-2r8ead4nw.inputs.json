@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787573416296-2r8ead4nw",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787573416341-nusqp6m",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787573416293-6js4e39",
+      "timestamp": 1787573416293,
+      "rawDisplayText": "精度这篇文章，基于当前llmwiki工作流程要求，创建视觉模型token剪枝的基础概念，包括ViT的结构、任务类型、训练推理流程、patch token的含义等，作为当前视觉模型token剪枝的基础入门阅读。",
+      "canonicalText": "精度这篇文章，基于当前llmwiki工作流程要求，创建视觉模型token剪枝的基础概念，包括ViT的结构、任务类型、训练推理流程、patch token的含义等，作为当前视觉模型token剪枝的基础入门阅读。",
+      "context": {
+        "linkedContent": {
+          "path": "LLM-Wiki/research/visual-token-pruning/papers/2023-chang-stvit.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "ca4bc9f67acaa4c18b3d5225fbfc0e6c7bc838e51d879f5bbf1d4f08ddf1aa2d",
+      "providerUserMessageId": "01a033ad-baa3-7280-a95f-c783ca9b829e",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8c36dccac487d09236cbdc5f9b11b5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787574794303-6qonezg",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787574794297-9zlkvkb",
+      "timestamp": 1787574794297,
+      "rawDisplayText": "多模态模型（图+文）在分类和生成任务中的token剪枝，相比纯视觉模型会有哪些新挑战？多模态模型的token剪枝是否是一个热门研究点？进行调研，并对应地更新当前课题知识库。",
+      "canonicalText": "多模态模型（图+文）在分类和生成任务中的token剪枝，相比纯视觉模型会有哪些新挑战？多模态模型的token剪枝是否是一个热门研究点？进行调研，并对应地更新当前课题知识库。",
+      "images": [],
+      "contentDigest": "a64a45b776e15a390c733b60b53ddad753cd199d1feb47bbb8be88c199a02497",
+      "providerUserMessageId": "01a033c2-b847-72f3-b440-4f0eae7fef2e",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8c3dedb9a487d08ddcca58023095c0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787576044542-cgcqix1",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1787576044536-sy9agj9",
+      "timestamp": 1787576044536,
+      "rawDisplayText": "/compact",
+      "canonicalText": "/compact",
+      "images": [],
+      "contentDigest": "b40aa6741d41c28d69d2bf1392435b01260452b9c7fc3a6621c5d71dab084b1a",
+      "providerAssistantMessageId": "01a033d5-cc07-7340-a950-88051fdfab70"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787576184977-7y91eju",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1787576184971-5zhnsxw",
+      "timestamp": 1787576184971,
+      "rawDisplayText": "在多模态安全判别领域，是否能通过token pruning加速推理过程，尤其是针对能够生成归因的多模态自回归guard？",
+      "canonicalText": "在多模态安全判别领域，是否能通过token pruning加速推理过程，尤其是针对能够生成归因的多模态自回归guard？",
+      "images": [],
+      "contentDigest": "def5c947f76a7af9d6403454af1e682beee432217ce288abbdf47197c589cb00",
+      "providerUserMessageId": "01a033d7-f171-7881-af45-6eead5e4c7d0",
+      "providerAssistantMessageId": "msg_0c6bf858f936df36016a8c4182dc1887d0b714b5ec8a3b39aa"
+    }
+  ]
+}

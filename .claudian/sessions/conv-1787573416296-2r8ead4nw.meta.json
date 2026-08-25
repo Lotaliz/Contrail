@@ -1,0 +1,28 @@
+{
+  "id": "conv-1787573416296-2r8ead4nw",
+  "providerId": "codex",
+  "title": "创建视觉模型 Token 剪枝基础概念指南",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787573416299,
+  "lastActivityAt": 1787576726049,
+  "sessionId": "01a033ad-b893-7f20-b459-f240a42e58b8",
+  "selectedModel": "gpt-5.6-sol",
+  "providerState": {
+    "threadId": "01a033ad-b893-7f20-b459-f240a42e58b8",
+    "nativeConversationContextEstablished": true,
+    "sessionFilePath": "C:\\Users\\cryoc\\.codex\\sessions\\2026\\08\\24\\rollout-2026-08-24T20-10-18-01a033ad-b893-7f20-b459-f240a42e58b8.jsonl",
+    "transcriptRootPath": "C:\\Users\\cryoc\\.codex\\sessions",
+    "workspaceDependencyToolVersion": 1
+  },
+  "linkedContentPath": "LLM-Wiki/research/visual-token-pruning/papers/2023-chang-stvit.md",
+  "usage": {
+    "inputTokens": 91017,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 89856,
+    "contextWindow": 258400,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 91017,
+    "percentage": 35,
+    "model": "gpt-5.6-sol"
+  }
+}

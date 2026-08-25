@@ -1,0 +1,529 @@
+      Making Vision Transformers Efficient from A Token Sparsification View
+                           Supplementary Materials
+
+           Shuning Chang1 * Pichao Wang2†‡ Ming Lin2‡ Fan Wang2 David Junhao Zhang1
+                                    Rong Jin2 Mike Zheng Shou1†
+                    1
+                      Show Lab, National University of Singapore 2 Alibaba Group
+
+
+A.1. Detailed Architectures                                                 our STViT-DeiT are:
+   The detailed architectures of our STViT-DeiT and                                     Ω(DeiT ) = 144N C 2 + 24N 2 C,
+STViT-Swin are shown in Table 1 and Table 2, where an                             Ω(ST V iT ) = 52N C 2 + 12M 2 C + 76M C 2         (4)
+input image size 224 × 224 is assumed for all the networks                                          2
+                                                                                               +8N C + 4M N C.
+and the default numbers of semantic tokens are 16 and 36
+separately. “Tr(ST)” denotes the transformers processing
+semantic tokens.                                                            Local vision transformer (Swin). We define that the
+                                                                            number of image tokens (IT) is N, the number of image
+                                                                            tokens in each window is W, the number of semantic to-
+A.2. Computational complexity analysis                                      kens (ST) in each window is M, and their dimension is
+Global vision transformer (DeiT). We define that the                        C. We only compute the computational complexity in each
+number of image tokens is N, the number of semantic to-                     transformer. The computational complexity of a local trans-
+kens is M, and their dimension is C. The patch embed-                       former processing image tokens (IT) is:
+ding layer is neglected. The computational complexity of
+                                                                                      Ω(M HA(IT )) = 4N C 2 + 2W 2 N C,
+a global transformer processing image tokens (IT) is:                                                                               (5)
+                                                                                            Ω(F F N (IT )) = 8N C 2 .
+            Ω(M HA(IT )) = 4N C 2 + 2N 2 C,
+                                                                  (1)       The computational complexity of a local transformer pro-
+                   Ω(F F N (IT )) = 8N C 2 .                                cessing image tokens (ST) is:
+
+The computational complexity of a global transformer pro-                    Ω(M HA(ST )) = 4(N/W )M C 2 + 2M 2 (N/W )C,
+cessing semantic tokens (ST) is:                                                                                                    (6)
+                                                                                          Ω(F F N (ST )) = 8M C 2 .
+            Ω(M HA(ST )) = 4M C 2 + 2M 2 C,                                 Swin makes the computational complexity linear to token
+                                                2
+                                                                  (2)       number, while our method further reduces the computa-
+                  Ω(F F N (ST )) = 8M C .
+                                                                            tional complexity. The computational complexity of STGM
+The relationships between computational complexity and                      is:
+token number in attention and FFN are quadratic and linear,
+                                                                            Ω(ST GM ) = 2(N/W )M C 2 + 2N C 2 + 2(N/W )M 2 C.
+respectively. Due to the N ≪ M , our method significantly
+                                                                                                                           (7)
+reduces the cost of transformers, especially the attention.
+The computational complexity of STGM is:                                    A.3. The results on LV-ViT
+        Ω(ST GM ) = 2M C 2 + 2N C 2 + 2M N C.                     (3)       Setting. In LV-ViT [18], by default, the STGM employs
+                                                                            the 6th and 7th transformer layers of LV-ViT-S (with 16
+In global vision transformers, our STGM is also an efficient                layers in total). We downsample the token labels to match
+module. The computational complexity of whole DeiT and                      the size of our semantic tokens.
+  * Work done during an internship at Alibaba Group.
+  † Equal corresponding authors.
+  ‡ Work done at Alibaba Group, and now affiliated with Amazon.
+
+
+
+
+                                                                        1
+                            Output size        STViT-DeiT-T               STViT-DeiT-S                STViT-DeiT-B
+
+                 Base         14×14         Patch Embedding
+                                                                       Patch Embedding
+                                                                                               Patch Embedding 
+                                            dim 192, head 3 ×4          dim 384, head 6 ×4       dim 768, head 12 ×4
+                                                                                                            
+                 STGM          4×4          dim 192, head 3 ×2          dim 384, head 6 ×2       dim 768, head 12 ×2
+                                                                                                            
+                 Tr(ST)        4×4          dim 192, head 3 ×6          dim 384, head 6 ×6       dim 768, head 12 ×6
+
+
+                                               Table 1. Detailed architecture of STViT-DeiT.
+
+                             Output size          STViT-Swin-T                 STViT-Swin-S                 STViT-Swin-B
+
+                                               Patch Embedding             Patch Embedding           Patch Embedding  
+                  Stage 1         56×56         win. sz. 7 × 7,               win. sz. 7 × 7,              win. sz. 7 × 7,
+                                                                  ×2                            ×2                           ×2
+                                                dim 96, head 3               dim 96, head 3               dim 192, head 6
+                                              Patch Merging               Patch Merging              Patch Merging
+         Base     Stage 2         28×28         win. sz. 7 × 7,               win. sz. 7 × 7,              win. sz. 7 × 7,
+                                                                  ×2                            ×2                           ×2
+                                               dim 192, head 6               dim 192, head 6              dim 256, head 8
+                                                 Patch Merging               Patch Merging              Patch Merging
+                  Stage 3         14×14         win. sz. 7 × 7,              win. sz. 7 × 7,              win. sz. 7 × 7,
+                                                                   ×2                           ×10                          ×10
+                                               dim 384, head 12            dim 384, head 12              dim 512, head 16
+                                                                                                                      
+                                                win. sz. 3 × 3,               win. sz. 3 × 3,              win. sz. 3 × 3,
+        STGM      Stage 3         6×6                              ×2                            ×2                          ×2
+                                               dim 384, head 12             dim 384, head 12             dim 512, head 16
+                                                                                                                      
+                                                win. sz. 3 × 3,               win. sz. 3 × 3,              win. sz. 3 × 3,
+                  Stage 3         6×6                              ×2                            ×6                          ×6
+                                               dim 384, head 12             dim 384, head 12             dim 512, head 16
+        Tr(ST)
+                                                  Linear Layer                Linear Layer               Linear Layer 
+                  Stage 4         6×6           win. sz. 3 × 3,               win. sz. 3 × 3,              win. sz. 3 × 3,
+                                                                   ×2                            ×2                           ×2
+                                               dim 768, head 24             dim 768, head 24             dim 1025, head 32
+
+
+                                              Table 2. Detailed architecture of STViT-Swin.
+
+                                                                                   No. of semantic tokens
+                          Model                Metrics          Base
+                                                                             36              49             100
+                                             Top-1 Acc(%)       83.3      82.7(-0.6)     82.8(-0.5)     83.1(-0.2%)
+                    STViT-LV-ViT-S             FLOPs(G)          6.6     3.69(-44%)     3.91(-41%)      4.62(-30%)
+                                           Throughput(img/s)    1159     2073(+78%)     1933(+72%)      1592(+37%)
+
+
+                                                 Table 3. Results of STViT on LV-ViT-S.
+
+
+Results. The main results are shown in Table 3. Token                    A.4. Applications in semantic segmentation
+labelling in LV-ViT is not friendly for our method. Token
+labelling emphasizes the importance of all the output tokens             Settings. ADE20K is a widely-used semantic segmen-
+and advocates that each output token should be associated                tation dataset, including a broad range of 150 semantic
+with an individual location-specific label [18], while our se-           classes. It has 25K images in total, with 20K for training,
+mantic tokens generated by clustering emphasize high-level               2K for validation, and 3K for testing. UperNet in mmseg is
+semantic information. However, we still achieve good per-                utilized as our base framework. The ws is set to 3. Models
+formance. In Table 4, we compare our STViT with the                      are trained for 240K iterations. All the other settings follow
+state-of-the-art token sparsification method EViT [22] on                the Swin Transformer [24].
+LV-ViT-S. Results indicate that our method outperforms it.
+                                                                         Comparison to Swin Transformers. Table 5 presents the
+                                                                         results of STViT-R-Swin on semantic segmentation. With
+                                                                         similar FLOPs reduction, the drop on mIoU is larger com-
+pared with those in object detection tasks, which shows that                      Method       Top-1 Acc       FLOPs(G)
+our method still has a gap on dense prediction compared to
+                                                                                EViT [22]       82.5(-0.8)      3.9(-41%)
+the full-token network.                                                         EViT [22]       83.0(-0.3)      4.7(-29%)
+                                                                               STViT(Ours)      82.7(-0.6)      3.7(-44%)
+    We analyze the relatively poor performance from two
+                                                                               STViT(Ours)      83.1(-0.2)      4.6(-30%)
+views. First, the STGM strictly prunes more than 80% to-
+kens by attention, which remains the high-level semantic
+information but loses nearly all the detailed information.        Table 4. Comparisons with the state-of-the-art token sparsification
+Semantic segmentation is a dense pixel-level classification       method EViT on LV-ViT-S.
+task, and the semantic tokens are difficult to enhance the
+pixel-level representation. Second, our spatial pooling layer
+with large kernel size in STGM and self-attention layers can
+                                                                  A.6. Additional ablation study
+be regarded as low-frequency filters. STGM filters most               All the following experiments of STViT and STViT-R
+high-frequency information, which is necessary for seman-         are conducted on DeiT-S and Swin-S unless otherwise spec-
+tic segmentation.                                                 ified, respectively.
+
+                                                                  The position of STGM. The effects of different position
+                                                                  of STGM are shown in Table 6. Two transformer layers
+A.5. Additional visualization                                     are employed in STGM in all the experiments. We can see
+                                                                  that the performance achieves improvement with appropri-
+    We visualize the attention map of the second attention        ately moving the STGM towards deep layers due to better
+layer in STGM in Figure 1a. The shape of attention map            features of image tokens.
+is Ns × (Ns + Ni ), where Ns = 16, and Ni = 196. The
+results of the attention computation between semantic to-         Positional encoding. We try to apply positional encod-
+kens S 1 (queries) and semantic tokens S 1 (keys) are shown       ing to our semantic tokens. Table 7 shows comparisons
+in the most left 16 columns, and the rest columns show the        of different positional encoding methods, including learned
+computation between semantic tokens S 1 and image tokens          positional encoding, conditional positional encoding, and
+X. The figure shows that the second semantic token high-          relative positional encoding [24]. All the positional en-
+lights the region of semantic tokens, while other semantic        coding methods do not work on DeiT-S and Swin-T, even
+tokens highlight the image tokens. Figure 1c visualizes the       though relative positional encoding improves Swin-T by
+attention maps in the self-attention layers after STGM. The       1.2%. These experiments demonstrate that the interaction
+second semantic token is incorporated by the majority of se-      between our semantic tokens depends on high-level seman-
+mantic tokens. These phenomenons illustrate that the sec-         tic information and nearly does not use position relation-
+ond semantic token focuses on more global semantic infor-         ships.
+mation, which further verifies our global cluster center ini-
+tialization can guide the semantic tokens to extract global              Method         Backbone            mIoU      FLOPs(G)
+semantic information. The phenomenons in Figure 1a and
+                                                                        UperNet          Swin-S              49.3        49
+Figure 1c nearly emerge in all the images.                              UperNet      STViT-R-Swin-S          48.3     34(-31%)
+   Neglecting the most left 16 columns of Figure 1a, we re-             UperNet         Swin-B               49.7        87
+shape it into 16 14 × 14 attention maps like Figure 3 and               UperNet     STViT-R-Swin-B           48.9     60(-31%)
+show them in Figure 1b. Thanks to the clustering of second
+attention and global initialization G, we can see that the se-    Table 5.          Results of semantic segmentation on the
+mantic information is more accurate and meaningful.               ADE20K val set. A multi-scale inference with resolution
+                                                                  [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]× is applied. FLOPs and latency
+    We visualize the attention maps of semantic tokens with       are measured in backbones with resolution 512 × 512.
+single global initialization in Figure 1d. Without spatial ini-
+tialization, the response regions are more global and similar.
+In contrast, our semantics of each semantic token are asso-             Pos.          3-5     4-6     5-7      7-9     8-10   10-12
+ciated with the specific spatial location, which is the basis      Top-1 Acc(%)      79.3    79.8    79.8      80.3    80.3      79.8
+to allow our method to be applied in local self-attention and       FLOPs(G)         1.56    1.91    2.25      2.95    3.30      4.00
+downstream tasks. Additionally, our attention maps contain
+more recognized and diverse semantic information, reflect-
+ing the effectiveness of our spatial initialization.              Table 6. Performance evaluation on the different positions of our
+                                                                  STGM.
+                                     (a) The attention map (16 × 216) of the second attention layer in STGM.
+
+
+
+
+                          (b) The attention maps (14 × 14) of 16 semantic tokens in the second attention layer of STGM.
+
+
+
+
+                              (c) Some examples of attention maps (16 × 16) of the self-attention layers after STGM.
+
+
+
+
+                          (d) The attention maps (14 × 14) of 16 semantic tokens generated by single global initialization.
+
+                                            Figure 1. Additional visualization of attention maps.
+
+
+                   STViT-DeiT-S Acc         STViT-Swin-T Acc                  more spatial pooling schemes, including: (i) spatial pooling
+                                                                              with large-size kernel and overlap, (ii) multi-scale spatial
+     Learned               79.6                     81.5
+    Conditional            79.7                     81.4                      pooling, and (iii) adaptive spatial pooling. We adopt 25 se-
+     Relative              79.8                     81.3                      mantic tokens in these experiments. In (i), the kernel size
+     No pos.               79.8                     81.5                      and overlap are set to 6 and 4, respectively. In (ii), we use
+                                                                              two adaptive pooling layers which produce 9 and 16 tokens
+Table 7. Performance evaluation on different positional encod-                separately. The results are presented in Table 8 on DeiT-T.
+ing methods. Learned, Conditional, and Relative indicate learned              We can see that overlap and multiple scales cannot boost the
+positional encoding, conditional positional encoding, and relative            performance, which also demonstrates that discrete seman-
+positional encoding, respectively.                                            tic tokens with high-level semantic information benefit our
+                                                                              method.
+Alternative schemes of spatial pooling. We use an in-
+tra and inter-window spatial pooling in STGM to gener-                                          Scheme i    Scheme ii   Adaptive spatial pooling   Ours
+
+ate initial cluster centers, which adaptively save meaning-                     Top-1 Acc(%)      71.6         71.7              71.9              72.2
+ful semantic information and avoids overlap between adja-
+cent windows as much as possible. Furthermore, we explore                               Table 8. Alternative schemes of spatial pooling.
+A.7. Cluster center recovery by self attention
+    We present an analysis showing how cluster centers are recovered through the attention mechanism. Let K be the number
+of clusters. Let N (µi , σ 2 I/d), i = 1, . . . , K be the K Gaussian distributions, with center µi ∈ Rd and covariance matrix
+σ 2 I/d. Let xi,j ∈ Rd , j = 1, . . . , n, be the n data points independently sampled from N (µi , σ 2 I/d). Given data points D =
+{xi,j , i ∈ [K], j ∈ [n]}, of course without knowing the association of each data point to its underlying Gaussian distribution,
+our goal is to recover the underlying cluster centers µi , i ∈ [K]. We assume that all the center vectors of Gaussian distributions
+are well separated, i.e. ⟨µj , µk ⟩ ≤ γ if j ̸= k. For the convenience of study, we assume |µi | = 1, i ∈ [K].
+    Let µbi ∈ Rd , i ∈ [K] the initialized cluster centers, with all the cluster centers being well normalized. Define ∆ as the
+gap for any initialized µbi to the target cluster centers µi than to other clusters µj , i.e.
+
+                                                                    µi , µi − µj ⟩
+                                                        ∆ = min min⟨b
+                                                                i∈[K] j̸=i
+
+The new cluster centers are estimated through the self-attention mechanism, i.e.
+                                                                K     n
+                                                         1 XX
+                                              b′k =
+                                              µ                            µk , xi,j ⟩) xi,j
+                                                                    exp (λ⟨b
+                                                         Zk i=1 j=1
+
+where λ > 0 is a scaling factor and Zi is defined as
+                                                                  n
+                                                                K X
+                                                                X
+                                                       Zk =                        µk , xi,j ⟩)
+                                                                            exp (λ⟨b
+                                                                i=1 j=1
+
+
+Theorem 1. With sufficiently large d and n ≫ d, with a probability 1 − O(K/n2 ), we have
+
+                                                b′k ⟩
+                                                                           
+                                          ⟨µk , µ             log K + log d
+                                                      ≥1−O
+                                             µ′k |
+                                            |b                      d∆
+
+Proof. Define ui,j = xi,j − µi . We have
+                                                                                                           
+                            K                       n                             n
+                        1  X                     X                              X                            
+                  b′k =
+                  µ                        bk ⟩) 
+                               exp (λ⟨µi , µ                  µk , ui,j ⟩) µi +
+                                                       exp (λ⟨b                             µk , ui,j ⟩) ui,j
+                                                                                     exp (λ⟨b
+                        Zk i=1                  
+                                                   j=1                           j=1
+                                                                                                              
+
+               Pn
+We first bound j=1 exp (λ⟨b  µk , ui,j ⟩). Since ui,j ∼ N (0, σ 2 I/d) and |b                       µk , ui,j ⟩ ∼ N (0, σ 2 /d).
+                                                                            µk | = 1, we know that ⟨b
+Hence, with a probability 1 − 2δ, we have
+
+    n                                                                                     r             !        r
+    X                                                                                         2     n                                                   2
+                 µk , ui,j ⟩) − nEx∼N (0,σ2 /d) [exp(λx)] ≤ 3 exp λσ
+          exp (λ⟨b                                                                              log         +2   nEx∼N (0,σ2 /d) [exp(2λx)] log
+    j=1
+                                                                                              d     δ                                                   δ
+
+Since                                                     r           Z +∞
+                                                                                  x2 d                                       λ2 σ 2
+                                                                                                                                   
+                                                                 d
+                        Ex∼N (0,σ2 /d) [exp(λx)] =                        exp λx − 2                        dx = exp
+                                                                2πσ    −∞         2σ                                          2d
+we have, with a probability 1 − 2δ,
+                                                                                                        !        s
+               n                                                                          r
+                                                       λ2 σ 2                                                                 2λ2 σ 2
+                                                                                                                                       
+               X                                                                              2     n                                               2
+                            µk , ui,j ⟩) − n exp
+                     exp (λ⟨b                                        ≤ 3 exp λσ                 log         +2   n exp                        log
+               j=1
+                                                        2d                                    d     δ                           d                   δ
+
+With large enough n, we have
+                                      r             !           s
+                                                                                2λ2 σ 2                  √               λ2 σ 2
+                                                                                                                               
+                                          2     n                                                   2
+                           3 exp λσ         log         +2          n exp                     log     ≤ C n exp
+                                          d     δ                                 d                 δ                     2d
+and therefore
+                                                                   n
+                                                  λ2 σ 2                                                           λ2 σ 2
+                                                                 X                                                       
+                            (1 − τ )n exp                      ≤                µk , ui,j ⟩) ≤ (1 + τ )n exp
+                                                                         exp (λ⟨b
+                                                   2d              j=1
+                                                                                                                    2d
+where
+                                                                             C
+                                                                           τ≤√
+                                                                               n
+Here C > 0 is a universal
+                    Pn constant.                                                         ∥          ∥
+   We second bound j=1 exp (λ⟨b    µk , ui,j ⟩) ui,j . We write each ui,j = u⊥  i,j + ui,j , where ui,j = ⟨ui,j , µ   µk and u⊥
+                                                                                                                  bk ⟩b       i,j is a
+d − 1 dimensional Gaussian vector. We have
+                                                                                          
+                   X n                                 Xn                                         Xn
+                              µk , ui,j ⟩) ui,j =
+                       exp (λ⟨b                          exp (λ⟨bµk , ui,j ⟩) ⟨b
+                                                                                µk , ui,j ⟩ µ
+                                                                                            bk +      u⊥
+                                                                                                        i,j
+                      j=1                                          j=1                                         j=1
+                                      Pn
+Since u⊥                                    ⊥
+                     2
+                                                        2
+                                                                                               2
+       i,j ∼ N 0, σ Id−1 /d , we have  j=1 ui,j ∼ N 0, nσ Id−1 /d . Using the concentration of χd−1 distribution, we
+have, with a probability 1 − δ
+                                 2                                                            !                                      !
+                    n                                          r                                                   r
+                    X                  nσ 2                                   1        1                               log(1/δ)
+                          u⊥
+                           i,j       ≤        d−1+2                (d − 1) log + 2 log            ≤ nσ   2
+                                                                                                             1+3
+                    j=1
+                                        d                                     δ        δ                                   d
+           Pn
+To bound                              µk , ui,j ⟩, following the same procedure, we have, with a probability 1 − 2δ
+                        µk , ui,j ⟩) ⟨b
+             j=1 exp (λ⟨b
+
+                          n
+                          X
+                                                      µk , ui,j ⟩ − nEx∼N (0,σ2 /d) [exp(λx)x]
+                                        µk , ui,j ⟩) ⟨b
+                                 exp (λ⟨b
+                          j=1
+                                              r                ! r                    r
+                                                    2     n                2    n                                               2
+                            ≤ 3 exp λσ                log           σ        log +        nEx∼N (0,σ2 /d) [exp(2λx)x2 ]
+                                                    d     δ                d    δ                                               δ
+
+Since                                                          r
+                                                                                       x2 d               λσ 2              λ2 σ 2
+                                                                           Z                                                      
+                                                                     d
+                    Ex∼N (0,σ2 /d) [exp(λx)x] =                                exp λx − 2           xdx =      exp
+                                                                   2πσ 2               2σ                  d                 2d
+and
+        Ex∼N (0,σ2 /d) exp(2λx)x2
+                                  
+              r
+                                        x2 d
+                         Z                  
+                    d
+          =                exp  2λx   −        x2 dx
+                 2πσ 2                  2σ 2
+              r               2 2Z                             2 !           2                            !
+                                                           λσ 2             λσ 2       λσ 2     λσ 2    λ2 σ 4
+                                                                                                   
+                    d         2λ σ                d
+          =              exp              exp          x−               x−          +2       x−        + 2       dx
+                 2πσ 2          d                2σ 2        d               d          d        d       d
+                    2 2                 2 3/2                    !
+                      2λ σ      λ2 σ 4     2σ                     2
+          = exp                        +              Ex∼N (0,1) x
+                         d       d2          d
+                    2 2                   2 3/2 !
+                                λ2 σ 4                      2λ2 σ 4
+                                                                         2 2
+                      2λ σ                   2σ                          2λ σ
+          = exp                    2
+                                       + 2               ≤      2
+                                                                    exp
+                         d       d             d              d            d
+
+We thus have, with a probability 1 − 2δ,
+                           n
+                                                                  nλσ 2
+                                                                             2 2
+                           X                                                 λ σ
+                                                    µk , ui,j ⟩ −
+                                      µk , ui,j ⟩) ⟨b
+                               exp (λ⟨b                                 exp
+                           j=1
+                                                                     d         2d
+                                            r             ! r               s
+                                                                              4nλ2 σ 4
+                                                                                            2 2
+                                                 2      n         2     n                   2λ σ      2
+                            ≤ 3 exp λσ             log       σ      log +              exp        log
+                                                d       δ         d     δ        d2           d       δ
+When n is sufficiently large, we have, with a probability 1 − 2δ
+                                                  n
+                       nλσ 2
+                                   2 2 X
+                                                                                                  nλσ 2
+                                                                                                             2 2
+                                    λ σ                                                                      λ σ
+              (1 − τ )        exp            ≤                             µk , ui,j ⟩ ≤ (1 + τ )
+                                                             µk , ui,j ⟩) ⟨b
+                                                      exp (λ⟨b                                          exp
+                          d          2d         j=1
+                                                                                                   d          2d
+              √
+where τ ≤ C/ n. By putting them together, with a probability 1 − 4δ, we have
+                              n
+                                                                        nλσ 2
+                                                                                      2 2
+                            X                                                          λ σ
+                                exp (λ⟨bµk , ui,j ⟩) ui,j = n(1 + β)           exp            µbk + nνi
+                            j=1
+                                                                          d             2d
+
+with β ∈ [1 − τ, 1 + τ ] and
+                                                                      2σ
+                                                              |νi | ≤ √
+                                                                        n
+Finally, we have, with a probability 1 − 4Kδ
+                         K                                   2 2
+                                                                                   λσ 2
+                                                                                            2 2        
+                    n X                                      λ σ                             λ σ
+             µ′k =                      bk ⟩) (1 + αi ) exp
+                            exp (λ⟨µi , µ                          µi + (1 + β i )      exp        µk + ν
+                                                              2d2
+                                                                                                   b
+                   Zk i=1                                                           d         2d
+Using the same analysis, we have, with a probability 1 − 4Kδ,
+                                                2 2X    K
+                                    Zk            λ σ
+                                         = exp                          bk ⟩) (1 + αi )
+                                                            exp (λ⟨µi , µ
+                                     n             2d2 i=1
+
+                   µ′k − µk |. We have
+Now, we can bound |b
+                  b′k |
+            |µk − µ
+                                          λ2 σ 2                                          λ2 σ 2
+                                                                                              
+                     n                                             n X
+              ≤                    bk ⟩ +
+                        exp λ⟨µk , µ               (1 + αk ) − 1 +     exp  λ⟨µi , µk ⟩ +          (1 + αi )
+                                           2d2                                             2d2
+                                                                                   b
+                    Zk                                             Zk
+                                                                                 i̸=k
+                                           K                                             K
+                        nλσ 2 |µk − µ                          λ2 σ 2
+                                                                     
+                                    bk |   X                                         n X
+                      +                                 bk ⟩ +
+                                             exp λ⟨µi , µ               (1 + β i ) +                    bk ⟩) νi
+                                                                                            exp (λ⟨µi , µ
+                              Zk d       i=1
+                                                                2d2                  Zk i=1
+
+                                       b′k |, we have
+To further develop the bound for |µk − µ
+                                                    2 2                        
+                                                      λ σ                     C
+                                      Zk ≥ n exp           + λ⟨µk , µk ⟩  1 − √
+                                                       2d2
+                                                                    b
+                                                                                n
+and
+                                               λ2 σ 2
+                                                                         
+                                                                        C
+                              Zk ≤ n exp                       bk ⟩
+                                                      + λ⟨µk , µ     1+ √     (1 + (K − 1) exp (−λ∆))
+                                                2d2                       n
+We thus have
+                      b′k |
+                |µk − µ
+                                                     2             2
+                                                                                   λσ 2
+                                                                                               
+                             exp (λ∆)           2C              2C      K −1
+                  ≤                          1− √       −1 + 1+ √               1+            bk |
+                                                                                        |µk − µ
+                        exp (λ∆) + K − 1           n              n    exp(λ∆)      d
+                         λσ 2
+                                                  
+                                               2C     σ
+                       +            bk | + 1 + √
+                              |µk − µ                 √
+                          d                      n      n
+By choosing λ = (log d + log K)/∆, and by assuming n is significantly larger than d, we have
+                                                                         
+                                                           log d + log K
+                                               b′k | ≤ O
+                                         |µk − µ
+                                                                 d∆
+implying that
+                                                         b′k ⟩
+                                                                                         
+                                                   ⟨µk , µ                log d + log K
+                                                        ′      ≥1−O
+                                                      µk |
+                                                     |b                         d∆
+

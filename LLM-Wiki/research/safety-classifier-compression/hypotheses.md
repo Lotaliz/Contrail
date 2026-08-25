@@ -1,0 +1,56 @@
+---
+id: safety-classifier-compression-hypotheses
+type: synthesis
+title: 安全判别剪枝与蒸馏待验证假设
+tags: [research, method]
+project_id: safety-classifier-compression
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch]
+status: draft
+created: 2026-08-24
+updated: 2026-08-24
+---
+
+# 待验证假设
+
+## H1：安全梯度比通用激活更适合结构剪枝
+
+假设：在相同 FLOPs 预算下，用危害类别、边界样本和固定 FPR 下的损失评估 head/FFN/layer 重要性，比通用语料上的激活幅值更能保持 rare-category recall。
+
+验证：比较通用激活排序、任务输入聚类、Fisher/gradient 与安全验证集性能下降四类重要性；报告每类召回、ECE 与真实时延。
+
+## H2：学生错误驱动的数据蒸馏优于一次性教师标注
+
+假设：HarmAug 的有害多样性与 PGKD 的 hard-negative feedback 可组合；在相同教师 token 预算下，按学生高置信错误采样比均匀生成更高效。
+
+验证：固定教师调用量，对比随机合成、HarmAug、PGKD、二者组合，绘制 teacher cost—AUPRC—worst-group recall 曲线。
+
+## H3：双阈值路由可减少大 Guard 使用率
+
+假设：以“学生风险置信度 + OOD/校准置信度”共同触发回退，比只用 entropy 或单一危害概率更能降低漏报，并把大 Guard 使用率控制在 5%–15%。
+
+验证：在跨攻击族和时间外测试集上评估 risk-coverage、回退率、总时延和大 Guard 成本。
+
+## H4：多模态安全需要保护型 Token 预算
+
+假设：通用 attention/token saliency 会漏掉低显著度但高风险的 OCR、小目标或跨模态否定线索；加入 OCR region、目标区域和文本条件的最低保留配额，可在相同平均 Token 数下提高安全召回。
+
+验证：在多模态安全集上对比随机、attention、VisionZip/SmartTrim 类选择与保护型选择，并按 OCR、小目标、组合危害切片。
+
+## H5：先剪后调适合频繁 policy 更新
+
+假设：当 taxonomy 每月或每季度更新时，先从基础模型得到结构化小子网再做策略微调，比“全量大模型 SFT → 后剪枝 → 恢复”具有更低累计成本，且精度差距可由 Logit 蒸馏弥补。
+
+验证：模拟多轮 taxonomy 增量，记录每轮 GPU 时、教师调用、数据重放、遗忘和最终端到端时延。
+
+## H6：判定与归因需要不同视觉预算
+
+假设：safe/unsafe 与 category 可用较小 token 集稳定判定，但忠实解释、帧/区域引用和复杂组合危害需要更高覆盖；“先判定、按风险扩容归因”比所有请求固定同一预算有更好的风险—时延 Pareto 前沿。
+
+验证：共享同一 full-token teacher，对 label-only、固定短解释和证据定位解释分别扫描 pruning ratio，测 time-to-verdict、完整 E2E、fixed-FPR recall 与归因 sufficiency/comprehensiveness。
+
+## H7：policy relevance + coverage 保护优于纯 Top-k attention
+
+假设：在相同平均 token 数下，为每帧/事件及 OCR、小目标区域设置最低预算，再按 policy relevance 分配剩余 token，可提高 worst-group recall 和归因忠实度；对普通样本的平均准确率不显著下降。
+
+验证：对比 random、uniform pooling、policy attention Top-k、coverage-protected Top-k 与可逆回退，按 OCR、小目标、短事件和跨模态组合危害切片。
+

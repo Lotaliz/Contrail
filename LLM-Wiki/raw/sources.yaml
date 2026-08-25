@@ -1,5 +1,101 @@
 schema_version: 1
 sources:
+  - id: paper-jiang-2022-trips
+    kind: paper
+    title: "TRIPS: Efficient Vision-and-Language Pre-training with Text-Relevant Image Patch Selection"
+    authors: ["Chaoya Jiang", "Haiyang Xu", "Chenliang Li", "Ming Yan", "Wei Ye", "Shikun Zhang", "Bin Bi", "Songfang Huang"]
+    year: 2022
+    venue: "EMNLP 2022"
+    url: "https://aclanthology.org/2022.emnlp-main.273/"
+    accessed: 2026-08-24
+    local_path: "papers/2022-jiang-trips.pdf"
+    sha256: "c793962302d88f12b58a58fe2737bae11a3df5ed1bfd3c9b3ec4a57e27958eb0"
+    license: "unknown"
+    notes: "Early text-guided progressive image-patch selection for discriminative and VQA-oriented vision-language pretraining."
+  - id: paper-cao-2023-pumer
+    kind: paper
+    title: "PuMer: Pruning and Merging Tokens for Efficient Vision Language Models"
+    authors: ["Qingqing Cao", "Bhargavi Paranjape", "Hannaneh Hajishirzi"]
+    year: 2023
+    venue: "ACL 2023"
+    url: "https://aclanthology.org/2023.acl-long.721/"
+    accessed: 2026-08-24
+    local_path: "papers/2023-cao-pumer.pdf"
+    sha256: "27b7cfeb1927624da4ef67804aedb3fcd6bb862cb92b592fb58020f79fdf3e1e"
+    license: "unknown"
+    notes: "Text-informed image pruning plus modality-aware image/text merging in cross-modal encoders."
+  - id: paper-chen-2024-fastv
+    kind: paper
+    title: "An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models"
+    authors: ["Liang Chen", "Haozhe Zhao", "Tianyu Liu", "Shuai Bai", "Junyang Lin", "Chang Zhou", "Baobao Chang"]
+    year: 2024
+    venue: "ECCV 2024"
+    url: "https://eccv.ecva.net/virtual/2024/poster/2009"
+    accessed: 2026-08-24
+    local_path: "papers/2024-chen-fastv.pdf"
+    sha256: "ec315d529c51ba2053795b46dab9b71459268d10ac78156d3714f5f6656dfb58"
+    license: "unknown"
+    notes: "Training-free attention-based pruning of visual tokens inside decoder-only LVLMs."
+  - id: paper-yang-2025-visionzip
+    kind: paper
+    title: "VisionZip: Longer is Better but Not Necessary in Vision Language Models"
+    authors: ["Senqiao Yang", "Yukang Chen", "Zhuotao Tian", "Chengyao Wang", "Jingyao Li", "Bei Yu", "Jiaya Jia"]
+    year: 2025
+    venue: "CVPR 2025"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_VisionZip_Longer_is_Better_but_Not_Necessary_in_Vision_Language_CVPR_2025_paper.html"
+    accessed: 2026-08-24
+    local_path: "papers/2025-yang-visionzip.pdf"
+    sha256: "d4e22f2136ba1b7e95a971d99f008a53141b9dbe1b2dfae5bdfbf8c06778e13d"
+    license: "unknown"
+    notes: "Text-agnostic dominant-token selection and contextual merging before the LLM, with multi-turn and TTFT evidence."
+  - id: paper-alvar-2025-divprune
+    kind: paper
+    title: "DivPrune: Diversity-based Visual Token Pruning for Large Multimodal Models"
+    authors: ["Saeed Ranjbar Alvar", "Gursimran Singh", "Mohammad Akbari", "Yong Zhang"]
+    year: 2025
+    venue: "CVPR 2025"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Alvar_DivPrune_Diversity-based_Visual_Token_Pruning_for_Large_Multimodal_Models_CVPR_2025_paper.html"
+    accessed: 2026-08-24
+    local_path: "papers/2025-alvar-divprune.pdf"
+    sha256: "771cae9c882b26b98cc40ffee9d8e6e5decb17e74f26105c2d2e5e42783d3999"
+    license: "unknown"
+    notes: "Training-free max-min diversity selection before the LLM, evaluated on image and video generation/understanding benchmarks."
+  - id: paper-zhang-2025-sparsevlm
+    kind: paper
+    title: "SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference"
+    authors: ["Yuan Zhang", "Chun-Kai Fan", "Junpeng Ma", "Wenzhao Zheng", "Tao Huang", "Kuan Cheng", "Denis A. Gudovskiy", "Tomoyuki Okuno", "Yohei Nakata", "Kurt Keutzer", "Shanghang Zhang"]
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://proceedings.mlr.press/v267/zhang25s.html"
+    accessed: 2026-08-24
+    local_path: "papers/2025-zhang-sparsevlm.pdf"
+    sha256: "35366576b714a5da9c8a75f167b4c04d70420d0fb949ae3cba4efcd78083a219"
+    license: "unknown"
+    notes: "Training-free text-rater-guided progressive visual pruning with adaptive ratios and token recycling."
+  - id: paper-wen-2025-token-pruning-right-problem
+    kind: paper
+    title: "Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?"
+    authors: ["Zichen Wen", "Yifeng Gao", "Weijia Li", "Conghui He", "Linfeng Zhang"]
+    year: 2025
+    venue: "Findings of ACL 2025"
+    url: "https://aclanthology.org/2025.findings-acl.802/"
+    accessed: 2026-08-24
+    local_path: "papers/2025-wen-right-problem.pdf"
+    sha256: "a171af3af3893b2c2930baa3de397407f3fac724872153f2ffec97e97f90f5fe"
+    license: "unknown"
+    notes: "Critical benchmark showing random/pooling baselines, spatial-uniformity effects, task-dependent language guidance, and latency/FLOPs mismatch."
+  - id: paper-ji-2026-vispco
+    kind: paper
+    title: "VisPCO: Visual Token Pruning Configuration Optimization via Budget-Aware Pareto-Frontier Learning for Vision-Language Models"
+    authors: ["Huawei Ji", "Yuanhao Sun", "Yuan Jin", "Cheng Deng", "Jiaxin Ding", "Luoyi Fu", "Xinbing Wang"]
+    year: 2026
+    venue: "ACL 2026"
+    url: "https://aclanthology.org/2026.acl-long.420/"
+    accessed: 2026-08-24
+    local_path: "papers/2026-ji-vispco.pdf"
+    sha256: "5695d65e93756c99c6cc41ffbceb1c55ae87c2b0264a4947e30fcb44416268b7"
+    license: "unknown"
+    notes: "Budget-aware differentiable Pareto search over layer-wise visual-token retention configurations."
   - id: paper-dong-2023-heatvit
     kind: paper
     title: "HeatViT: Hardware-Efficient Adaptive Token Pruning for Vision Transformers"
@@ -32,10 +128,46 @@ sources:
     venue: "CVPR 2023"
     url: "https://openaccess.thecvf.com/content/CVPR2023/html/Chang_Making_Vision_Transformers_Efficient_From_a_Token_Sparsification_View_CVPR_2023_paper.html"
     accessed: 2026-08-24
-    local_path: ""
-    sha256: ""
+    local_path: "papers/2023-chang-stvit.pdf"
+    sha256: "a9a7c7d9ac8765223aa84319c036df01d0eb246522892bb653b6a34aa563a3e8"
     license: "unknown"
-    notes: "Semantic-token condensation for classification and dense tasks."
+    notes: "CVF open-access accepted-version PDF. Semantic-token condensation for classification and dense tasks."
+  - id: attachment-chang-2023-stvit-supplement
+    kind: supplement
+    title: "Making Vision Transformers Efficient From a Token Sparsification View — Supplementary Materials"
+    authors: ["Shuning Chang", "Pichao Wang", "Ming Lin", "Fan Wang", "David Junhao Zhang", "Rong Jin", "Mike Zheng Shou"]
+    year: 2023
+    venue: "CVPR 2023 Supplementary Materials"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/supplemental/Chang_Making_Vision_Transformers_CVPR_2023_supplemental.pdf"
+    accessed: 2026-08-24
+    local_path: "papers/2023-chang-stvit-supplement.pdf"
+    sha256: "fa40d2f4b5bd78266e56df465f23c9fbfda037d903c347e818e7b71db3ddeddc"
+    license: "unknown"
+    notes: "Supplement to paper-chang-2023-stvit; includes detailed architectures, complexity analysis, semantic-segmentation failure analysis, ablations, visualizations, and cluster-center recovery theory."
+  - id: derivative-chang-2023-stvit-text
+    kind: extracted-text
+    title: "Making Vision Transformers Efficient From a Token Sparsification View — pdftotext derivative"
+    authors: ["Shuning Chang", "Pichao Wang", "Ming Lin", "Fan Wang", "David Junhao Zhang", "Rong Jin", "Mike Zheng Shou"]
+    year: 2023
+    venue: "Local text derivative"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/papers/Chang_Making_Vision_Transformers_Efficient_From_a_Token_Sparsification_View_CVPR_2023_paper.pdf"
+    accessed: 2026-08-24
+    local_path: "papers/2023-chang-stvit.txt"
+    sha256: "6165fe27d2d84bc950516e43983d005d68780a0dba29ce4e09559545637bbc32"
+    license: "inherits-source"
+    notes: "Layout-preserving pdftotext derivative of paper-chang-2023-stvit; created for source localization, not an independent source."
+  - id: derivative-chang-2023-stvit-supplement-text
+    kind: extracted-text
+    title: "STViT Supplementary Materials — pdftotext derivative"
+    authors: ["Shuning Chang", "Pichao Wang", "Ming Lin", "Fan Wang", "David Junhao Zhang", "Rong Jin", "Mike Zheng Shou"]
+    year: 2023
+    venue: "Local text derivative"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/supplemental/Chang_Making_Vision_Transformers_CVPR_2023_supplemental.pdf"
+    accessed: 2026-08-24
+    local_path: "papers/2023-chang-stvit-supplement.txt"
+    sha256: "a594e9234dfda8f67954f596c256b2790ecd5a8da580447ddd575098f7228804"
+    license: "inherits-source"
+    notes: "Layout-preserving pdftotext derivative of attachment-chang-2023-stvit-supplement; created for source localization, not an independent source."
   - id: paper-liu-2023-adaptive-sparse-vit
     kind: paper
     title: "Adaptive Sparse ViT: Towards Learnable Adaptive Token Pruning by Fully Exploiting Self-Attention"
@@ -121,6 +253,200 @@ sources:
     license: "unknown"
     notes: "Global sequential pruning policy for ImageNet classification."
 
+  - id: paper-fedorov-2024-llama-guard-int4
+    kind: paper
+    title: "Llama Guard 3-1B-INT4: Compact and Efficient Safeguard for Human-AI Conversations"
+    authors: ["Igor Fedorov", "Kate Plawiak", "Lemeng Wu", "Tarek Elgamal", "Naveen Suda", "Eric Smith", "Hongyuan Zhan", "Jianfeng Chi", "Yuriy Hulovatyy", "Kimish Patel", "Zechun Liu", "Changsheng Zhao", "Yangyang Shi", "Tijmen Blankevoort", "Mahesh Pasupuleti", "Bilge Soran", "Zacharie Delpierre Coudert", "Rachad Alao", "Raghuraman Krishnamoorthi", "Vikas Chandra"]
+    year: 2024
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2411.17713"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Direct safety-classifier compression evidence; structured pruning, logit distillation and INT4 QAT with mobile measurements."
+  - id: paper-lee-2025-harmaug
+    kind: paper
+    title: "HarmAug: Effective Data Augmentation for Knowledge Distillation of Safety Guard Models"
+    authors: ["Seanie Lee", "Haebin Seong", "Dong Bok Lee", "Minki Kang", "Xiaoyin Chen", "Dominik Wagner", "Yoshua Bengio", "Juho Lee", "Sung Ju Hwang"]
+    year: 2025
+    venue: "ICLR 2025"
+    url: "https://openreview.net/forum?id=y3zswp3gek"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Direct safety-guard distillation evidence with public benchmarks and measured A100 costs."
+  - id: paper-lee-2025-saferoute
+    kind: paper
+    title: "SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models"
+    authors: ["Seanie Lee", "Dong Bok Lee", "Dominik Wagner", "Minki Kang", "Haebin Seong", "Tobias Bocklet", "Juho Lee", "Sung Ju Hwang"]
+    year: 2025
+    venue: "Findings of ACL 2025"
+    url: "https://aclanthology.org/2025.findings-acl.105/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Adjacent deployment evidence: routes easy cases to a small guard and hard cases to a large guard."
+  - id: paper-verma-2025-multiguard
+    kind: paper
+    title: "MULTIGUARD: An Efficient Approach for AI Safety Moderation Across Languages and Modalities"
+    authors: ["Sahil Verma", "Keegan Hines", "Jeff Bilmes", "Charlotte Siska", "Luke Zettlemoyer", "Hila Gonen", "Chandan Singh"]
+    year: 2025
+    venue: "EMNLP 2025"
+    url: "https://aclanthology.org/2025.emnlp-main.819/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Direct multilingual and multimodal safety-classification evidence using shared internal representations."
+  - id: paper-chi-2024-llama-guard-vision
+    kind: paper
+    title: "Llama Guard 3 Vision: Safeguarding Human-AI Image Understanding Conversations"
+    authors: ["Jianfeng Chi", "Ujjwal Karn", "Hongyuan Zhan", "Eric Smith", "Javier Rando", "Yiming Zhang", "Kate Plawiak", "Zacharie Delpierre Coudert", "Kartikeya Upasani", "Mahesh Pasupuleti"]
+    year: 2024
+    venue: "arXiv"
+    url: "https://ai.meta.com/research/publications/llama-guard-3-vision-safeguarding-human-ai-image-understanding-conversations/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Multimodal safety-classification baseline; no dedicated compression study in this paper."
+
+  - id: paper-palo-2024-pgkd
+    kind: paper
+    title: "Performance-Guided LLM Knowledge Distillation for Efficient Text Classification at Scale"
+    authors: ["Flavio Di Palo", "Prateek Singhi", "Bilal H Fadlallah"]
+    year: 2024
+    venue: "EMNLP 2024"
+    url: "https://aclanthology.org/2024.emnlp-main.215/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Production text-classification distillation with feedback-guided synthetic data and cost/latency measurements."
+  - id: paper-wang-2024-p-pruning
+    kind: paper
+    title: "Pruning before Fine-tuning: A Retraining-free Compression Framework for Pre-trained Language Models"
+    authors: ["Pingjie Wang", "Hongcheng Liu", "Yanfeng Wang", "Yu Wang"]
+    year: 2024
+    venue: "LREC-COLING 2024"
+    url: "https://aclanthology.org/2024.lrec-main.1162/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Task-specific structured pruning before fine-tuning, with GLUE and training-time evidence."
+  - id: paper-muralidharan-2024-minitron
+    kind: paper
+    title: "Compact Language Models via Pruning and Knowledge Distillation"
+    authors: ["Saurav Muralidharan", "Sharath Turuvekere Sreenivas", "Raviraj Joshi", "Marcin Chochowski", "Mostofa Patwary", "Mohammad Shoeybi", "Bryan Catanzaro", "Jan Kautz", "Pavlo Molchanov"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/4822991365c962105b1b95b1107d30e5-Abstract-Conference.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Broad LLM evidence for iterative structured pruning plus distillation and reduced family-training cost."
+  - id: paper-sun-2024-wanda
+    kind: paper
+    title: "A Simple and Effective Pruning Approach for Large Language Models"
+    authors: ["Mingjie Sun", "Zhuang Liu", "Anna Bair", "J. Zico Kolter"]
+    year: 2024
+    venue: "ICLR 2024"
+    url: "https://openreview.net/forum?id=PxoFut3dWW"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Training-free unstructured/semi-structured weight-pruning baseline."
+  - id: paper-xia-2024-sheared-llama
+    kind: paper
+    title: "Sheared LLaMA: Accelerating Language Model Pre-training via Structured Pruning"
+    authors: ["Mengzhou Xia", "Tianyu Gao", "Zhiyuan Zeng", "Danqi Chen"]
+    year: 2024
+    venue: "ICLR 2024"
+    url: "https://openreview.net/forum?id=09iOdaeOzp"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Structured depth/head/width pruning and dynamic batch loading for lower small-model pretraining cost."
+
+  - id: paper-wang-2024-smarttrim
+    kind: paper
+    title: "SmartTrim: Adaptive Tokens and Attention Pruning for Efficient Vision-Language Models"
+    authors: ["Zekun Wang", "Jingchang Chen", "Wangchunshu Zhou", "Haichao Zhu", "Jiafeng Liang", "Liping Shan", "Ming Liu", "Dongliang Xu", "Qing Yang", "Bing Qin"]
+    year: 2024
+    venue: "LREC-COLING 2024"
+    url: "https://aclanthology.org/2024.lrec-main.1300/"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Adaptive token/head pruning with self-distillation on vision-language tasks."
+  - id: paper-lin-2024-mope-clip
+    kind: paper
+    title: "MoPE-CLIP: Structured Pruning for Efficient Vision-Language Models with Module-wise Pruning Error Metric"
+    authors: ["Haokun Lin", "Haoli Bai", "Zhili Liu", "Lu Hou", "Muyi Sun", "Linqi Song", "Ying Wei", "Zhenan Sun"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Lin_MoPE-CLIP_Structured_Pruning_for_Efficient_Vision-Language_Models_with_Module-wise_Pruning_CVPR_2024_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Cross-modal importance metric with width/depth pruning and feature distillation."
+  - id: paper-wu-2023-tinyclip
+    kind: paper
+    title: "TinyCLIP: CLIP Distillation via Affinity Mimicking and Weight Inheritance"
+    authors: ["Kan Wu", "Houwen Peng", "Zhenghong Zhou", "Bin Xiao", "Mengchen Liu", "Lu Yuan", "Hong Xuan", "Michael Valenzuela", "Xi Chen", "Xinggang Wang", "Hongyang Chao", "Han Hu"]
+    year: 2023
+    venue: "ICCV 2023"
+    url: "https://openaccess.thecvf.com/content/ICCV2023/html/Wu_TinyCLIP_CLIP_Distillation_via_Affinity_Mimicking_and_Weight_Inheritance_ICCV_2023_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Cross-modal affinity distillation plus inherited/pruned weights; zero-shot classification and training-efficiency evidence."
+  - id: paper-yang-2024-clip-kd
+    kind: paper
+    title: "CLIP-KD: An Empirical Study of CLIP Model Distillation"
+    authors: ["Chuanguang Yang", "Zhulin An", "Libo Huang", "Junyu Bi", "Xinqiang Yu", "Han Yang", "Boyu Diao", "Yongjun Xu"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Yang_CLIP-KD_An_Empirical_Study_of_CLIP_Model_Distillation_CVPR_2024_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Controlled comparison of CLIP distillation signals; feature mimicry is a strong simple baseline."
+  - id: paper-vasu-2024-mobileclip
+    kind: paper
+    title: "MobileCLIP: Fast Image-Text Models through Multi-Modal Reinforced Training"
+    authors: ["Pavan Kumar Anasosalu Vasu", "Hadi Pouransari", "Fartash Faghri", "Raviteja Vemulapalli", "Oncel Tuzel"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Vasu_MobileCLIP_Fast_Image-Text_Models_through_Multi-Modal_Reinforced_Training_CVPR_2024_paper.html"
+    accessed: 2026-08-24
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Offline teacher reinforcement of the dataset plus mobile-oriented architecture and batch-1 iPhone latency."
+  - id: paper-chen-2025-safewatch
+    kind: paper
+    title: "SafeWatch: An Efficient Safety-Policy Following Video Guardrail Model with Transparent Explanations"
+    authors: ["Zhaorun Chen", "Francesco Pinto", "Minzhou Pan", "Bo Li"]
+    year: 2025
+    venue: "ICLR 2025"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2025/file/beac6bfb7eac3d651307c16ac747df01-Paper-Conference.pdf"
+    accessed: 2026-08-24
+    local_path: "papers/2025-chen-safewatch.pdf"
+    sha256: "b5e46321f7aba8eeaf12aa7870489d4579ab0763e5aab30dbb3f8512732a41d5"
+    license: "unknown"
+    notes: "Direct safety-domain evidence for policy-aware visual-token pruning in an autoregressive video guard that emits multi-label decisions and natural-language explanations."
 # 示例（复制后删除注释）：
 # sources:
 #   - id: paper-author-2024-short-title
@@ -134,4 +460,3 @@ sources:
 #     sha256: ""
 #     license: "unknown"
 #     notes: ""
-

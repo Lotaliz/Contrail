@@ -12,7 +12,10 @@ status: active
 
 - [[LLM-Wiki/research/README.md|研究方向与项目分区]]
 - [[LLM-Wiki/metadata/workflows/README.md|标准研究工作流]]
-- concepts 暂时只保留技术、方法、工程、写作和数据五个空分类目录。
+- [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]
+- [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]
+- concepts 按技术、方法、工程、写作和数据五类组织；现已建立首个技术基础概念。
 
 ## 管理入口
 

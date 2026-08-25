@@ -1,0 +1,672 @@
+                            This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
+                                         Except for this watermark, it is identical to the accepted version;
+                                   the final published version of the proceedings is available on IEEE Xplore.
+
+
+
+
+      Making Vision Transformers Efficient from A Token Sparsification View
+
+           Shuning Chang1 * Pichao Wang2†‡ Ming Lin2‡ Fan Wang2 David Junhao Zhang1
+                                    Rong Jin2 Mike Zheng Shou1†
+                    1
+                      Show Lab, National University of Singapore 2 Alibaba Group
+
+
+                           Abstract                                 Vision Transformers (ViTs) [15, 26, 35, 36, 43] treat an im-
+                                                                    age as a sequence of patch/image tokens, and have shown
+    The quadratic computational complexity to the number            promising performance in prevalent visual recognition sce-
+of tokens limits the practical applications of Vision Trans-        narios. However, these superior performances do not come
+formers (ViTs). Several works propose to prune redundant            for free: the quadratic computational complexity to the
+tokens to achieve efficient ViTs. However, these methods            number of image tokens limits their application in practice.
+generally suffer from (i) dramatic accuracy drops, (ii) ap-         Previous works [33, 56] have illustrated the large amount
+plication difficulty in the local vision transformer, and (iii)     of redundancy in the image tokens and also shown the ef-
+non-general-purpose networks for downstream tasks. In               fect of filtering out unimportant tokens normally according
+this work, we propose a novel Semantic Token ViT (STViT),           to predefined scoring mechanism. However, these meth-
+for efficient global and local vision transformers, which can       ods face the following challenges. Firstly, the predefined
+also be revised to serve as backbone for downstream tasks.          scoring mechanisms for filtering are generally imprecise.
+The semantic tokens represent cluster centers, and they are         In Figure 1, on the left we visualize the class token val-
+initialized by pooling image tokens in space and recovered          ues in different layers which are commonly used to score
+by attention, which can adaptively represent global or local        the token importance [16, 24, 45]. Different layers have dif-
+semantic information. Due to the cluster properties, a few          ferent value distributions, thus using these imprecise scores
+semantic tokens can attain the same effect as vast image to-        for filtering would lead to unsatisfactory performance. For
+kens, for both global and local vision transformers. For in-        example, EViT [24] has an accuracy drop of 1.3% when
+stance, only 16 semantic tokens on DeiT-(Tiny,Small,Base)           saving 50% FLOPs on DeiT-S [35]. Secondly, the remain-
+can achieve the same accuracy with more than 100% in-               ing tokens do not distribute evenly in space any more, mak-
+ference speed improvement and nearly 60% FLOPs reduc-               ing them hard to work in local vision transformers1 . Finally,
+tion; on Swin-(Tiny,Small,Base), we can employ 16 seman-            large-scale token pruning tremendously damages the spatial
+tic tokens in each window to further speed it up by around          structure and positional information, and causes difficulties
+20% with slight accuracy increase. Besides great success            when applied to downstream tasks, which they do not pro-
+in image classification, we also extend our method to video         pose a solution to deal with.
+recognition. In addition, we design a STViT-R(ecovery) net-            To solve these problems, we propose Semantic Token
+work to restore the detailed spatial information based on           ViT (STViT), for efficient global and local vision trans-
+the STViT, making it work for downstream tasks, which is            formers, which also can be revised to serve as backbone for
+powerless for previous token sparsification methods. Ex-            downstream tasks. The proposed approach is based on the
+periments demonstrate that our method can achieve com-              following observations: (i) unlike local CNNs which learn
+petitive results compared to the original networks in object        spatial structure of images, vision transformer discretizes
+detection and instance segmentation, with over 30% FLOPs            feature map as tokens for global feature exploration, re-
+reduction for backbone.                                             lieving the requirements for maintaining the whole image
+                                                                    structure and information; (ii) discrete tokens are more ben-
+                                                                    eficial for optimization [38]; (iii) in Figure 1, on the right
+1. Introduction                                                     shows the attention maps in different transformer layers,
+                                                                    and there are only several vertical lines in the deep lay-
+  In contrast to standard Convolutional Neural Networks
+                                                                    ers, which means that only a few tokens with global se-
+(CNNs) approaches which process images pixel-by-pixel,
+  * Work done during an internship at Alibaba Group.                    1 In this paper, we define the vision transformer with global self-
+  † Equal corresponding authors.
+                                                                    attention (like DeiT) as global vision transformer and the vision trans-
+  ‡ Work done at Alibaba Group, and now affiliated with Amazon.     former with local self-attention (like Swin) as local vision transformer.
+
+
+
+
+                                                                  6195
+Figure 1. Left: the attention values of class tokens (normalized and reshaped in image shape) in different self-attention layers. Right: the
+attention maps in different self-attention layers. Zoom-in for better visibility.
+
+mantic information matter. Thus, we argue that it is not                 on STViT where a recovery module and dumbbell unit are
+necessary to maintain massive structured tokens for ViTs,                adopted to periodically restore the full resolution feature
+especially in the deep layers. Employing a few discrete to-              map while the intermediate transformer layers continue to
+kens with high-level semantic information can potentially                use semantic tokens to save computation cost, making our
+achieve both high performance and efficiency.                            method work in downstream task.
+    In STViT, the semantic tokens represent the cluster cen-                 The effectiveness of the proposed method is validated via
+ters, and the number of them is far less than the original im-           a comprehensive empirical study on image and video ViT
+age tokens, significantly reducing the computational cost.               models. Only 16 semantic tokens on DeiT-(Tiny, Small,
+Inspired by the fact that multi-head attention can conduct               Base) achieve nearly 50% inference time reduction without
+the cluster center recovery (Supplementary A.7), we only                 any accuracy degradation; on Swin-(Tiny, Small, Base), we
+employ the off-the-shelf self-attention to generate the se-              also improve the inference throughput by nearly 20% with
+mantic tokens. Specifically, the first few transformer layers            slight accuracy increase. Moreover, the proposed STViT-R
+are kept unchanged to obtain the image tokens with low-                  achieves promising results on object detection and instance
+level features. The image tokens are then fed into our se-               segmentation. To the best of our knowledge, this is one of
+mantic token generation module (STGM) consisting of at                   first works to apply the token sparsification algorithm in lo-
+least two transformer layers to generate semantic tokens.                cal vision transformers, and use the ViTs as backbones in
+In each self-attention layer, the semantic tokens are input              downstream tasks after large-scale token pruning. Our find-
+as queries, and the image tokens are fed as keys and val-                ings in ViTs uncover that maintaining the full-size feature
+ues. The semantic tokens dynamically aggregate image to-                 map is unnecessary, and a few tokens with high-level se-
+kens through the attention layers to recover cluster centers.            mantic representations can achieve both high performance
+In the first attention layer, the semantic tokens are initial-           and efficiency. Thanks to its simplicity and general-purpose
+ized by an intra and inter-window spatial pooling which                  ability, our method can also serve as a new efficient ViT
+takes into account incorporating semantic information in                 baseline architecture and a starting point for further research
+each window and maximizing distance between adjacent                     from the token sparsification perspective.
+windows. Thanks to this spatial initialization, the semantic
+tokens mainly incorporate local semantic information and
+                                                                         2. Related work
+achieve discrete and uniform distribution in space. In the
+following attention layer, besides further clustering, the se-           Vision transformers. Vision Transformer (ViT) [15] first
+mantic tokens are equipped with global cluster centers, and              introduces a pure Transformer backbone for image classifi-
+the network can adaptively select partial semantic tokens                cation. ViT variants further inspire the applications of trans-
+to focus on global semantic information. After the STGM,                 former to various vision tasks beyond image/video classi-
+the original image tokens are discarded, and only seman-                 fication [1, 3, 20, 35, 36, 39, 43, 44, 49, 50], such as object
+tic tokens are kept for the subsequent transformer layers.               detection [5, 12, 52, 55], semantic segmentation [37, 42, 53],
+Because the generation of semantic tokens is flexible and                and self-supervised learning [6, 9, 22]. Vanilla transform-
+space-aware, our method can be plugged into both global                  ers have high computational and memory costs because the
+and local vision transformers. The semantic tokens can be                multi-head self-attention has quadratic computational com-
+produced in each window for the local vision transformer.                plexity to the number of image tokens. Recently, vari-
+    Another property of STViT is its capability to serve as              ous efficient ViTs have been proposed to alleviate this is-
+a backbone for downstream tasks, such as object detection                sue. The existing methods mainly focus on reducing the
+and instance segmentation. Discussions have been miss-                   complexity of self-attention or reducing the number of to-
+ing in previous methods [16, 24, 32, 45, 56] about how to                kens. Swin Transformer [26] adopts local self-attention,
+use them in downstream task under the massive loss of                    i.e., attending neighboring tokens within a constant win-
+spatial information during the token sparsification process,             dow size, achieving a linear computational complexity in
+which actually seriously impedes the application of their                the self-attention with high performance. Many subse-
+method. Instead, we design a novel STViT-R network based                 quent works [11, 14, 18, 40, 46, 48, 54] follow the local
+
+
+
+                                                                     6196
+self-attention design to develop variants. Token sparsifica-           where Ni is the number of image tokens and C is the num-
+tion [8, 16, 21, 24, 29–34, 41, 45, 47, 56] also attracts increas-     ber of channels. The image tokens are fed into the semantic
+ing attention.                                                         token generation module (STGM) to generate Ns semantic
+                                                                       tokens S ∈ RNs ×C . After the STGM, the image tokens
+                                                                       X can be discarded, and only semantic tokens S with high-
+Token sparsification. Token sparsification methods can                 level semantic information are used in all the subsequent
+be mainly categorized into hard pruning [8,16,21,24,29–31,             transformers. Due to Ns ≪ Ni , our method can signifi-
+33,34,45,47] and soft pruning [32,56]. Hard pruning meth-              cantly reduce the computational cost.
+ods filter out some unimportant tokens according to a pre-
+defined scoring mechanism. DynamicViT [31], SPViT [21],
+and AdaViT [29] introduce additional prediction networks               Semantic token generation module (STGM). The
+to score the tokens. Evo-ViT [45], ATS [16], and EViT [24]             whole image is represented by a few tokens with high-
+utilize the values of class tokens to evaluate the importance          level semantic information through clustering. Inspired by
+of tokens. However, it is difficult to achieve precise scor-           the fact that self-attention can conduct cluster center recov-
+ing as shown in the left of Figure 1. Therefore, they usu-             ery (Supplementary A.7), we adopt the off-the-shelf self-
+ally suffer from a significant accuracy drop. For instance,            attention layers to produce the semantic tokens. The STGM
+EViT [24] has an accuracy drop of 1.3% when saving 50%                 consists of at least two transformer layers.
+FLOPs on DeiT-S. Soft pruning methods generate new to-                     The initial cluster centers P ∈ RNs ×C are generated by
+kens from image tokens by importing additional attention               an spatial pooling which pools the image tokens into fixed
+networks. TokenLearner [32] also argue for a few tokens to             ws ×ws tokens, with Ns = ws ×ws . ws is generally set as 4.
+replace image tokens. However, its price is a 1.8% accuracy            The spatial pooling can be achieved by a non-parameterized
+drop when reducing 44% FLOPs, which is far inferior to                 adaptive spatial pooling or a super lightweight network with
+concurrent works. Besides performance degradation, previ-              higher performance, intra and inter-window spatial pool-
+ous methods also have the following disadvantages. First,              ing. The intentions of spatial pooling initialization are
+whether or how to extend the methods to local vision trans-            three folds. First, the initial cluster centers can distribute
+formers remains unexplored. Second, it has not been dis-               uniformly in space, making the generated semantic tokens
+cussed about how to serve the downstream tasks like ob-                more discrete and preventing the semantic tokens from col-
+ject detection and instance segmentation after the tokens are          lapsing to one point in the following layers. Second, the
+pruned.                                                                semantic tokens can be forced to represent more local and
+    In our method, we apply the off-the-shelf transformer              distinguished features. Finally, the representation of seman-
+layers to reduce token number. [2, 10, 19, 23, 28, 51] adopt           tic tokens is associated with the specific spatial locations,
+similar approaches to achieve efficient non-local relation-            which is the basis to allow our method to be applied in lo-
+ships. Our method is different from them as below: (i) our             cal self-attention and downstream tasks. The initial cluster
+method extracts local semantic information instead of non-             centers P then dynamically integrate the image tokens X
+local relationships; (ii) the semantic tokens are a few clus-          according to semantic information by attention mechanism.
+ter centers, which can replace the massive image tokens to             In the first transformer layer, the processing of the genera-
+achieve image classification; (iii) our method specializes in          tion of semantic tokens can be written as
+pruning tokens.                                                                                                                   (1)
+                                                                       where M HA and F F N are short for multi-head attention
+3. Method                                                              layer and feed-forward network, respectively, and the triplet
+    The proposed STViT is presented in this section, which             input of M HA are queries, keys, and values in turn. All the
+aims to construct an efficient and high-performance ViT.               norm layers are omitted in all the equations for brevity. The
+STViT is first introduced in Section 3.1, followed by how to           initial cluster centers are produced in a window by an adap-
+apply STViT in the local vision transformer in Section 3.2.            tive spatial pooling layer or an intra and inter-window spa-
+Based on STViT, STViT-R is developed to restore the spa-               tial pooling, while the semantic tokens are generated from a
+tial resolution for downstream tasks in Section 3.3.                   global receptive field by a dynamic attention layer to ensure
+                                                                       that they can extract high-level semantic representation. In
+3.1. STViT                                                             order to further strengthen the clustering effect, we use the
+                                                                       second transformer layer to repeat the clustering operation
+Overall architecture. An overview of STViT architec-
+                                                                       and guide the semantic tokens to extract global information.
+ture is presented in Figure 2a. The patch embedding layer
+                                                                       In this transformer, the semantic tokens are updated as:
+and shallow transformer layers are kept unchanged as a base
+                                                                              \setlength {\abovedisplayskip }{3pt} \setlength {\belowdisplayskip }{3pt} \begin {gathered} \label {eq2} \resizebox {0.87\hsize }{!}{ $\hat {S^2} = MHA(S^1+G, Concat(S^1, X), Concat(S^1, X)) + S^1$,}\\ \resizebox {0.35\hsize }{!}{$S^2 = FFN(\hat {S^2}) + \hat {S^2}$}, \end {gathered} 
+module in our method. The base module copes with all the
+                                                                                                                                                                                                                                                                                                                                                                            (2)
+image tokens X ∈ RNi ×C to extract low-level features,
+
+
+
+                                                                     6197
+                                                        (a) STViT                                                                                                                (b) STViT-R
+                                                                     Figure 2. The architectures of our STViT and STViT-R.
+
+where G ∈ RNs ×C is the global cluster centers initialized                                                               Then, we compute each integrated token P̂i                =
+by Gaussian noise and Concat(·) is a concatenation opera-                                                                Sof tmax(Mi )·Xwi from each window, and arrange [P̂i ]N    s
+                                                                                                                                                                                  i=1
+tion. The global cluster centers G are responsible for global                                                                                                              ws ×ws ×C
+                                                                                                                         by spatial structure to form the 2D tensor P̂ ∈ R            .
+semantic information extraction like the class token. Al-                                                                We adopt an inter-window function finter to compute
+though S 1 and G are summed together as the queries, they                                                                the inter-window relations and generate the offset, O =
+can be decoupled in the attention computation as:                                                                        finter (P̂ ),to revise the mask M . The implementation of
+                                                                                                                         finter is similar to Eq. 4, except the mapping input from
+                                                                                                         (3)                                                  ws ×ws × HW
+                                                                                                                         Rws ×ws ×C → R           2
+                                                                                                                                                 ws
+                                                                                                                                                    , where HW
+                                                                                                                                                            ws2 is the number of
+where Wq and Wk are the linear projection weights of                                                                     tokens in each window. For each window, the correspond-
+                                                                                                                                                  HW                                                                                    H        W
+queries and keys. We can see that S 1 and G integrate the                                                                ing Oi ∈ R ws2 is sliced from O and reshaped to R ws × ws .
+keys to generate As and Ag independently and just share                                                                  The Oi is used to revise Mi . The final initial cluster center
+a Softmax operation to produce the final attention map A.                                                                Pi is computed by
+Therefore, besides spatial semantic information, the seman-
+                                                                                                                                       \setlength {\abovedisplayskip }{3pt} \setlength {\belowdisplayskip }{3pt} P_i = Softmax(M_i + O_i)\cdot X_w.  (5)
+tic tokens also incorporate global semantic information with
+a negligible additional overhead. Though very similar, the                                                               Our fintra and fintra are super lightweight and the intro-
+global cluster centers are actually different from the learned                                                           ducing parameters can be negligible. For example, on DeiT-
+positional encoding. We do not add the global cluster cen-                                                               T, the parameters only increase by 0.05%.
+ters to keys. Moreover, it will be shown in the experiments
+that inserting the actual learned positional encoding will                                                               3.2. STViT in local vision transformers.
+cause an accuracy drop. The number of transformer lay-                                                                                                         Local self-attention has been widely used in current ViT
+ers in STGM is flexible. More transformer layers can be                                                                                                models to balance efficiency and accuracy. As the genera-
+associated for clustering. Two transformer layers are em-                                                                                              tion of semantic tokens in STViT is flexible in space, it can
+ployed by default, i.e., S 2 is the output of the STGM. Note                                                                                           be naturally applied in local self-attention. Suppose each
+that the image tokens are not updated in the STGM.                                                                                                     local self-attention layer contains Nw windows with size
+                                                                                                                                                       w × w, we initialize ws × ws cluster centers in each win-
+                                                                                                                                                       dow by our intra and inter-window spatial pooling. The to-
+Intra and inter-window spatial pooling. Give H × W                                                                                                     tal number of semantic tokens Ns would be ws × ws × Nw .
+feature map X, we generate Ns (ws × ws ) initial cluster                                                                                               w and ws are set as 7 and 3 by default separately. As a re-
+centers. We uniformly split the X into ws × ws win-                                                                                                    sult, our method compresses more than 80% image tokens
+dows [Xwi ]N  s                             H
+            i=1 with size ws × ws and each window gen-
+                                                              W
+                                                                                                                                                       in local self-attention. In the STGM, although initial cluster
+erates one initial cluster center. To represent abundant se-                                                                                           centers are from w × w windows, we use larger windows
+mantic information, we take into account intra and inter-                                                                                              with size wk × wk to obtain keys and values in Eq. 1 and
+window relations, i.e., integrating important tokens in the                                                                                            Eq. 2 to mitigate the effect of limited window size. Other
+window and maximizing the distance among initial clus-                                                                                                 operations in STGM are kept the same as Section 3.1.
+                   \setlength {\abovedisplayskip }{3pt} \setlength {\belowdisplayskip }{3pt} \label {intra} \resizebox {0.9\hsize }{!}{ $M_i = Conv(GeLU(LayerNorm(DepthwiseConv(X_w^i))))$.} 
+ter centers in different              windows. Specifically, we formu-
+                                                                                                                                                               In the local ViT models, each local transformer layer
+late an intra-window function fintra to produce a mask,
+                  i                                                                                                                                    is     normally                   followed by a cross-window connection layer,
+Mi = fintra (Xw       ), which projects the input window from
+   H   W                     H          W                                                                                                              such          as      a    shift        window transformer layer following a local
+R ws × ws ×C → R ws × ws . The idea is to let the intra-                                                                                               transformer layer on Swin Transformer [26]. In our method,
+window function fintra adaptively select a combination of                                                                                              the attention is computed within ws × ws window in the
+informative tokens in Xwi , which is implemented by                                                                                                    local self-attention layer, and the cross-window connection
+                                                                                                                               (4)                     can be achieved by computing self-attention in a larger-size
+
+
+
+                                                                                                                    6198
+(e.g., 4 × ws ) sliding window because of the rare number                                                                                                                                 4. Experiments
+of tokens in each window. For the low-resolution input,
+our cross-window connection layer is equal to a global self-                                                                                                                                 STViT will first be applied in two representative ViT
+attention layer.                                                                                                                                                                          models, DeiT [35] and Swin [26] for image classification
+                                                                                                                                                                                          and video recognition. To validate that our method is ef-
+3.3. STViT for downstream tasks                                                                                                                                                           fective in downstream tasks, STViT-R is then performed on
+                                                                                                                                                                                          object detection and instance segmentation tasks.
+    Our method significantly reduces the computation cost
+by using a small number of semantic tokens, while its side                                                                                                                                4.1. Image classification
+effect is losing nearly all the detailed position information.                                                                                                                            Settings. For image classification, all the models are
+High-level vision tasks, such as object detection and in-                                                                                                                                 trained on the ImageNet [13] with 1.28M training images
+stance segmentation, are difficult to be executed on this ex-                                                                                                                             and 50K validation images from 1,000 classes. By default,
+tremely incomplete feature map. This issue also exists in                                                                                                                                 the semantic token generation module (STGM) employs the
+previous works, which hinders the application of token spar-                                                                                                                              5th and 6th transformer layers of DeiT (with 12 layers in to-
+sification methods. To solve this issue, we design a STViT-                                                                                                                               tal), employs the 3th and 4th transformer layers of Stage 3
+R network based on STViT to restore the original spatial                                                                                                                                  of Swin-T (with 12 layers in total), and employs the 11th
+resolution from the semantic tokens.                                                                                                                                                      and 12th transformer layers of Stage 3 of Swin-S and Swin-
+    Our STViT-R shown in Figure 2b has two modifications                                                                                                                                  B (with 24 layers in total). The image resolution in train-
+compared with STViT. First, we adopt a recovery module to                                                                                                                                 ing and inference is 224 × 224 unless otherwise specified.
+restore the spatial resolution from semantic tokens; second,                                                                                                                              The batch size is 1,024. All the models are trained from
+we regroup the transformer layers and construct dumbbell                                                                                                                                  scratch for 300 epochs, and the augmentation and regular-
+units composed of our STViT-R.                                                                                                                                                            ization strategies follow the original papers of DeiT and
+                                                                                                                                                                                          Swin. No knowledge distillation algorithms are used in our
+Recovery module. In the recovery module, only the self-                                                                                                                                   experiments. The classification is performed by applying a
+attention layer is employed to restore the spatial resolution                                                                                                                             global average pooling layer on the output tokens of the last
+without any additional networks. The image tokens X and                                                                                                                                   transformer layer, followed by a linear classifier. In eval-
+semantic tokens S are partitioned as Nwr windows of size                                                                                                                                  uation, the top-1 accuracy using a single crop is reported.
+wr × wr and wsr × wsr , respectively. The image tokens in                                                                                                                                 The FLOPs computations of this paper are measured by Fv-
+each window aggregate the semantic tokens in the corre-                                                                                                                                   core2 . Throughput is measured with the batch size of 128
+sponding window, which is represented as:                                                                                                                                                 on a V100 GPU.
+     \setlength {\abovedisplayskip }{3pt} \setlength {\belowdisplayskip }{3pt} \begin {gathered} \hat {X} = MHA(X, S, S) + X,\quad X = FFN(\hat {X}) + \hat {X}. \end {gathered}  (6)         On Swin [26], the semantic tokens are generated in Stage
+                                                                                                                                                                                          3, and they are not downsampled in Stage 4 due to rare se-
+This is a reverse operation of the generation of semantic
+                                                                                                                                                                                          mantic tokens. The patch merging layer between Stage 3
+tokens, using high-level semantic information to boost the
+                                                                                                                                                                                          and Stage 4 is replaced with a simple linear layer to dou-
+image tokens.
+                                                                                                                                                                                          ble the number of channels. wk is set as 10 and 14 for two
+                                                                                                                                                                                          transformer layers of STGM.
+Dumbbell unit. The transformer layers are regrouped
+into multiple dumbbell units in our STViT-R. Each dumb-                                                                                                                                   Results. One of the advantages of our method is that it can
+bell unit consists of four parts. The transformers in the first                                                                                                                           be applied to both global and local vision transformers to re-
+part are responsible for coping with image tokens; the sec-                                                                                                                               duce computational complexity. Our main results on DeiT
+ond part is the semantic token generation module; the trans-                                                                                                                              and Swin are summarized in Table 1 and Table 2, respec-
+former layers in the third part deal with semantic tokens;                                                                                                                                tively. The results of LV-ViT [20] are illustrated in Supple-
+the last part is the recovery module. Take the application on                                                                                                                             mentary A.3 due to limited space. We report the top-1 ac-
+Swin-S (STViT-R-Swin-S) as an example. One, two, two                                                                                                                                      curacy, FLOPs, and the throughput under different numbers
+and one transformer layers are allocated for these four parts,                                                                                                                            of semantic tokens. On DeiT, the models with 16 semantic
+respectively. In total, each dumbbell unit is composed of 6                                                                                                                               tokens achieve the same accuracy as the DeiT models with
+transformer layers. We concatenate three dumbbell units in                                                                                                                                196 tokens and save nearly 60% FLOPs on DeiT-T, DeiT-
+Stage 3 of Swin-S. In each dumbbell unit, the intermedi-                                                                                                                                  S, and DeiT-B. With more semantic tokens, the accuracy
+ate transformer layers process semantic tokens with high-                                                                                                                                 can consistently outperform the base models. For instance,
+level semantic information to save computational cost, and                                                                                                                                STViT-DeiT-B with 36 semantic tokens surpasses DeiT-B
+the complete spatial resolution is recovered at the end. By                                                                                                                               by 0.4% accuracy with 52% FLOPs reduction.
+repeating multiple dumbbell units, the detailed spatial in-                                                                                                                                   The local vision transformer like Swin is already an
+formation will be preserved by the network, which can not                                                                                                                                 efficient architecture compared to the global vision trans-
+only enhance the classification but also serve downstream                                                                                                                                      2 https://github.com/facebookresearch/fvcore
+tasks.
+
+
+
+                                                                                                                                                                                        6199
+                                                                              No. of semantic tokens
+              Model              Metrics         Base
+                                                                16              36              64             100
+                              Top-1 Acc(%)       72.2     72.2(+0.0%)        72.7(+0.5)     73.0(+0.8)      73.2(+1.0)
+            STViT-DeiT-T        FLOPs(G)         1.26     0.53(-58%)        0.60(-52%)     0.71(-44%)      0.86(-32%)
+                            Throughput(img/s)    2752    5511(+101%)        4769(+74%)     4214(+53%)      3551(+29%)
+                              Top-1 Acc(%)       79.8     79.8(+0.0)         80.1(+0.3)     80.5(+0.7)      80.6(+0.8)
+            STViT-DeiT-S        FLOPs(G)         4.58     1.91(-58%)        2.20(-52%)     2.62(-43%)      3.16(-31%)
+                            Throughput(img/s)    1408    2891(+105%)        2542(+80%)     2229(+58%)      1837(+30%)
+                              Top-1 Acc(%)        81.8    81.8(+0.0)         82.2(+0.4)     82.6(+0.8)      82.7(+0.9)
+            STViT-DeiT-B        FLOPs(G)         17.58    7.31(-58%)        8.44(-52%)     10.04(-43%)     12.13(-31%)
+                            Throughput(img/s)     626    1308(+110%)        1150(+85%)     1087(+61%)       826(+33%)
+
+Table 1. Applying STViT to DeiT-T, DeiT-S, and DeiT-B. The top-1 accuracy, complexity in FLOPs, and throughput are reported for
+different numbers of semantic tokens.
+
+                                                               Move                  No. of semantic tokens
+               Model              Metrics         Base
+                                                               STGM              4             9               16
+                               Top-1 Acc(%)       81.3    81.0(-0.3%)       80.8(-0.5)      81.5(+0.2)    81.8(+0.5%)
+             STViT-Swin-T        FLOPs(G)         4.5     3.14(-30%)       2.99(-34%)      3.43(-24%)     4.06(-10%)
+                             Throughput(img/s)    878     1124(+29%)       1128(+29%)      1061(+22%)     1008(+15%)
+                               Top-1 Acc(%)       83.0    82.8(-0.2%)      82.4(-0.6%)      83.0(-0.0)    83.1(+0.1%)
+             STViT-Swin-S        FLOPs(G)         8.7     5.95(-32%)       5.95(-32%)      6.53(-25%)     7.36(-15%)
+                             Throughput(img/s)    551     739(+35%)        732(+34%)       691(+26%)       657(+20%)
+                               Top-1 Acc(%)       83.5    83.2(-0.3%)        83.0(-0.5)      83.4(-0.1)   83.7(+0.2%)
+            STViT-Swin-B         FLOPs(G)         15.4    10.48(-32%)      10.48(-32%)     11.51(-25%)    12.97(-16%)
+                             Throughput(img/s)    415      558(+35%)        551(+33%)       521(+26%)      489(+19%)
+
+Table 2. Applying STViT to Swin-T, Swin-S, and Swin-B. The top-1 accuracy, complexity in FLOPs, and throughput are reported for
+different numbers of semantic tokens in each window. Base indicates the corresponding original Swin model. Move STGM indicates
+changing the default position of STGM.
+
+former, so the reduction of FLOPs on Swin models are                       Model          Top-1 Acc(%)    FLOPs(G)       Throughput
+smaller than on DeiT models. When 9 semantic tokens are                STViT-R-Swin-S      82.7(-0.3)     5.83(-33%)     717(+30%)
+used in each window, STViT-Swin models can reduce 25%                  STViT-R-Swin-B      83.2(-0.3)     10.26(-33%)    539(+30%)
+FLOPs with negligible accuracy loss on all the model sizes.
+If the number of tokens is reduced to 4 in each window (16           Table 3. STViT-R is evaluated on Swin-S and Swin-B on Ima-
+in total), a significant accuracy drop will occur, which in-         geNet. The top-1 accuracy, complexity in FLOPs, and throughput
+dicates that local vision transformers need more semantic            are reported.
+tokens than global vision transformers. We can move the
+                                                                     effectiveness and efficiency by employing a few semantic
+STGM towards shallow layers to attain a better complex-
+                                                                     tokens to replace original image tokens. Our method re-
+ity/accuracy trade-off. In Table 2, STGM is moved by one
+                                                                     veals that constructing the tokens with high-level seman-
+transformer layer on STViT-Swin-T and by two layers on
+                                                                     tic representation is more important than maintaining struc-
+STViT-Swin-S and STViT-Swin-B to save over 30% FLOPs
+                                                                     tured tokens in ViTs. As reflected by the throughput, our
+with only about 0.3% accuracy drops (column of “Move
+                                                                     method does not have overhead of memory or deployment.
+STGM”).
+                                                                     Compared to the total parameters, the additional parame-
+    STViT-R equipped with recovery modules is designed               ters introduced by intra and inter-window spatial pooling is
+for downstream tasks, while it also can perform image clas-          negligible(less than 0.05%), so we do not show them.
+sification. The corresponding results are reported in Ta-
+ble 3. On both Swin-S and Swin-B, STViT-R can save 33%               Comparisons with existing token sparsification meth-
+FLOPs with 0.3% accuracy drop. The hyper-parameters we               ods. In Table 4, we compare STViT with the state-of-
+used in STGM are as same as STViT-Swin.                              the-art token sparsification methods on DeiT-S and DeiT-B.
+    These results demonstrate that our method achieves both          Due to different base models used by different methods, we
+
+
+
+                                                                6200
+           Model            Top-1 Acc      FLOPs(G)       △
+                             DeiT-S
+     DynamicViT [31]           79.3        2.9(-37%)      -0.5
+      IA-RED2 [30]             79.1        3.2(-30%)      -0.7
+       PS-ViT [34]             79.4        2.6(-43%)      -0.4          Figure 3. Visualization example of attention maps in the first at-
+    TokenLearner∗ [32]         76.1        1.9(-44%)      -1.8          tention layer of STGM.
+        DGE∗ [33]              79.7       3.1 (-49%)      -0.6
+       A-ViT∗ [47]             78.6       3.6 (-39%)      -0.3
+                                                                        Comparison to Swin Transformer. The performance of
+       Evo-ViT [45]            79.4        3.0(-35%)      -0.4          STViT-R-Swin using the Cascade Mask R-CNN framework
+        EViT [24]              78.5        2.3(-50%)      -1.3          with 3× schedule is shown in Table 5. Our method achieves
+      STViT(Ours)              79.8       1.91(-58%)      -0.0          better performance with more than 30% FLOPs reduction
+                             DeiT-B                                     for backbone on bath object detection and instance segmen-
+                2
+                                                                        tation. This validates that the recovery module and dumb-
+      IA-RED [30]              80.3       11.8(-33%)      -1.5          bell unit can restore detailed spatial information, and the
+     DynamicViT [31]           81.3       11.2(-36%)      -0.5
+                                                                        global context information integrated from the semantic to-
+       PS-ViT [34]             81.5        9.8(-44%)      -0.3
+    TokenLearner∗ [32]         83.7       28.7(-48%)      -1.1
+                                                                        kens significantly benefits object detection. Ignoring spatial
+       Evo-ViT [45]            81.3       10.2(-33%)      -0.5          structure in the intermediate layers does not affect the ob-
+        EViT [24]              80.0        8.7(-51%)      -1.8          ject detection task, which is a meaningful fact to help design
+      STViT(Ours)              81.8       7.31(-58%)      -0.0          efficient object detection frameworks. Another interesting
+                                                                        finding is that our method has a remarkable improvement
+Table 4. Comparisons with the state-of-the-art token sparsification     for small object detection which is a challenging problem
+methods on DeiT-S and DeiT-B. △ shows the accuracy difference           in the detection community. For instance, our STViT-R-
+between each model and its base model. ∗: their base models are         Swin-S outperforms Swin-S by 1.5% on APsb .
+not standard DeiT models.
+                                                                        4.4. Ablation study
+adopt accuracy difference between each model and its base
+model ∆ to evaluate them for fair. Results indicate that our               All the following ablation study of STViT and STViT-R
+method achieves the lowest accuracy drop ∆ with the high-               are conducted on the DeiT-S and Swin-S, respectively.
+est FLOPs reduction, outperforming all the state-of-the-art             Initialization analysis. The semantic tokens are the clus-
+methods in both accuracy and efficiency significantly.                  ter centers recovered by attention layers. The initialization
+                                                                        of cluster centers induces the representation of semantic to-
+4.2. Video recognition                                                  kens. Spatial and global initialization are adopted in Sec-
+                                                                        tion 3.1 to guide the semantic tokens to integrate local and
+Setting. For video recognition, we apply our STViT to                   global semantic information separately. We compare differ-
+Video Swin [27]. All the models are pre-trained on                      ent initialization components in Table 7. When performing
+ImageNet-1K and trained on Kinetics-400 [7]. We generate                single global initialization(3rd row), we replace the spatial
+semantic tokens from each frame as illustrated in Section               initial cluster centers with global initial cluster centers in the
+3.2. The initialization from pre-trained models and other               first transformer layer. The accuracy of using a single ini-
+implementation details are as same as Video Swin [27].                  tialization method is far lower than using both, which shows
+                                                                        the effectiveness of our initialization strategy. Our global
+Results. The results are presented in Table 6. On Swin-T                initial cluster centers look similar to learned positional en-
+and Swin-S, STViT-Swin can save about 27% FLOPs with                    coding since both use random initialization. To verify their
+0.3% accuracy drop, which shows that our method works                   distinction, we experiment with a real learned positional en-
+on video recognition.                                                   coding by additionally adding the global initial cluster cen-
+                                                                        ters to keys, which causes 0.1% accuracy drop (the last row
+4.3. Applications in object detection and instance                      of Table 7). Therefore, our global initialization is different
+      segmentation                                                      from learned positional encoding.
+                                                                            We visualize the attention maps of the first attention
+Settings. Experiments of object detection and instance
+                                                                        layer in the STGM in Figure 3. Because the queries of
+segmentation are conducted on COCO 2017 [25]. We eval-
+                                                                        this layer are spatial initial cluster centers, these attention
+uate STViT-R with Swin in Cascade Mask R-CNN [4, 17]
+                                                                        maps visualize the local semantic information integration
+detection frameworks. The ws is set to 3. The backbone
+                                                                        by attention. The attention layer groups the semantic infor-
+models are pre-trained on ImageNet-1K and the pre-trained
+                                                                        mation according to the position of initial cluster centers,
+results are shown in Table 3. All the other settings follow
+                                                                        which ensures to extract fine-grained semantic information
+Swin [26].
+
+
+                                                                      6201
+                                               APb      APb50       APb75   APbs    APm    APm
+                                                                                             50    APm
+                                                                                                     75     APm
+                                                                                                              s    FLOPs(G)
+                          Swin-S               51.8       70.4       56.3   35.2    44.7    67.9    48.5    28.8      194
+                      STViT-R-Swin-S           51.8       70.6       56.1   36.7    44.7    67.8    48.6    29.0   134(-31%)
+                          Swin-B               51.9       70.9       56.5   35.4    45.0    68.4    48.7    28.9      343
+                      STViT-R-Swin-B           52.2       70.8       56.8   36.5    45.2    68.3    49.1    29.5   233(-32%)
+
+Table 5. Results on COCO object detection and instance segmentation under Cascade Mask R-CNN with 3× schedule. The FLOPs are
+measured for backbones.
+
+       Model          Top-1 Acc(%)           FLOPs(G)             Speed
+                                                                                   fects of employing different numbers of transformer layers
+     Swin-T               78.8               88                  779               are shown in Table 8. The extra layers are from the ones be-
+   STViT-Swin-T         78.5(-0.3)       64.4(-27%)           975(+25%)
+                                                                                   hind STGM to keep the total number of layers unchanged.
+     Swin-S               80.6               166                 456               More transformer layers do not bring improvement.
+   STViT-Swin-S         80.3(-0.3)       120.5(-27%)          572(+25%)
+
+Table 6. Applying STViT to Video Swin (Swin-T and Swin-S)                          The effectiveness of the dumbbell unit. To verify the ef-
+on Kinetics-400. All the models are pre-trained on ImageNet-1K.                    fectiveness of our dumbbell unit, we experiment STViT-R
+The views are 4×3. The top-1 accuracy and complexity in FLOPs                      without dumbbell units, i.e., STViT equipped with only the
+are reported. Speed is evaluated by FPS.                                           recovery module. We employ 6th and 7th transformer lay-
+                                                                                   ers to construct STGM and the last transformer layers to
+            Spatial    Global   Learned        Top-1 Acc(%)
+                                                                                   construct the recovery module in Stage 3. The FLOPs is the
+               ✓                                   79.4
+                                                                                   same as the full-model STViT-R for fair comparison. The
+                         ✓                         78.7                            results on the COCO are reported in Table 9. Inferior results
+               ✓         ✓                         79.8                            demonstrate the effectiveness of the dumbbell unit.
+               ✓                     ✓             79.7
+                                                                                   Reusing semantic tokens in dumbbell units. Semantic
+Table 7. Accuracy with different initialization of STViT. Spatial,                 tokens are generated in each dumbbell unit. If they are pro-
+Global, and Learned indicate spatial initialization, global initial-               duced only once in the first dumbbell unit and reused as
+ization, and learned positional encoding methods, respectively.
+                                                                                   initial cluster centers in the subsequent dumbbell units, the
+                                                                                   result is shown in Table 9 with a slight performance drop.
+           No. of transformers           2        3           4
+               Top-1 Acc(%)          79.8       79.5      79.6                     5. Conclusion
+                FLOPs(G)             1.91       1.97      2.03
+                                                                                      In this paper, we propose a simple and effective token
+Table 8. Performance evaluation on different numbers of trans-                     sparsification method, semantic token vision transformer
+former layers in STGM. Keeping the base module containing four                     (STViT). Our method utilizes the clustering property of
+transformer layers unchanged.                                                      self-attention to generate a few semantic tokens with high-
+                                                                                   level information representation to replace the redundant
+                      STViT-R    w/o DU          Reusing ST                        image/video tokens, which can be applied in both global
+          AP   b
+                       51.8          51.4              51.6                        and local vision transformers. By simply configuring the
+          APm          44.7          44.4              44.5                        recovery module, our method can be successfully applied
+                                                                                   to downstream tasks. Extensive experiments demonstrate
+Table 9. Ablation study on STViT-R w/o dumbbell units (w/o DU)                     that our method achieves better accuracy along with less
+and reusing semantic tokens (Reusing ST).                                          inference time in most cases. The success in downstream
+and keep the difference among semantic tokens. The at-                             tasks significantly boosts the development of token sparsi-
+tention map in the second attention layer is visualized in                         fication methods. We hope that this work can inspire more
+Supplementary A.5, which reveals that the network fixedly                          future research to pay much attention to high-level semantic
+selects particle semantic tokens to represent global semantic                      representation in ViTs.
+information. We also show the semantic representation of                           Acknowledgement
+image tokens in the same transformer layer on DeiT in Sup-                            This project is supported by the National Research Foun-
+plementary A.5. Compared to original image tokens, our                             dation, Singapore under its NRFF Award NRF-NRFF13-
+semantic tokens in Figure 3 show more high-level semantic                          2021-0008, and Mike Zheng Shou’s Start-Up Grant from
+information.                                                                       NUS. Computation was partially performed on resources of
+Number of transformer layers in STGM. Two trans-                                   the National Supercomputing Centre, Singapore. Shuning
+former layers are adopted in the STGM by default. The ef-                          was supported by Alibaba Research Intern Program.
+
+
+
+                                                                               6202
+References                                                                  ing Guo. Cswin transformer: A general vision trans-
+                                                                            former backbone with cross-shaped windows. arXiv preprint
+ [1] Anurag Arnab, Mostafa Dehghani, Georg Heigold, Chen                    arXiv:2107.00652, 2021. 2
+     Sun, Mario Luvcić, and Cordelia Schmid. Vivit: A video           [15] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov,
+     vision transformer. In Proceedings of the IEEE/CVF inter-              Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner,
+     national conference on computer vision, pages 6836–6846,               Mostafa Dehghani, Matthias Minderer, Georg Heigold, Syl-
+     2021. 2                                                                vain Gelly, Jakob Uszkoreit, and Neil Houlsby. An image is
+ [2] Song Bai, Philip Torr, et al. Visual parser: Representing              worth 16x16 words: Transformers for image recognition at
+     part-whole hierarchies with transformers. arXiv preprint               scale. ICLR, 2021. 1, 2
+     arXiv:2107.05790, 2021. 3                                         [16] Mohsen Fayyaz,          Soroush Abbasi Koohpayegani,
+ [3] Gedas Bertasius, Heng Wang, and Lorenzo Torresani. Is                  Farnoush Rezaei Jafari, Sunando Sengupta, Hamid
+     space-time attention all you need for video understanding?             Reza Vaezi Joze, Eric Sommerlade, Hamed Pirsiavash, and
+     In ICML, volume 2, page 4, 2021. 2                                     Juergen Gall. Adaptive token sampling for efficient vision
+ [4] Zhaowei Cai and Nuno Vasconcelos. Cascade r-cnn: Delv-                 transformers. In European Conference on Computer Vision
+     ing into high quality object detection. In Proceedings of the          (ECCV), 2022. 1, 2, 3
+     IEEE conference on computer vision and pattern recogni-           [17] Kaiming He, Georgia Gkioxari, Piotr Dollár, and Ross Gir-
+     tion, pages 6154–6162, 2018. 7                                         shick. Mask r-cnn. In Proceedings of the IEEE international
+ [5] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas             conference on computer vision, pages 2961–2969, 2017. 7
+     Usunier, Alexander Kirillov, and Sergey Zagoruyko. End-to-        [18] Zilong Huang, Youcheng Ben, Guozhong Luo, Pei Cheng,
+     end object detection with transformers. In European confer-            Gang Yu, and Bin Fu. Shuffle transformer: Rethink-
+     ence on computer vision, pages 213–229. Springer, 2020. 2              ing spatial shuffle for vision transformer. arXiv preprint
+ [6] Mathilde Caron, Hugo Touvron, Ishan Misra, Hervé Jégou,              arXiv:2106.03650, 2021. 2
+     Julien Mairal, Piotr Bojanowski, and Armand Joulin. Emerg-        [19] Andrew Jaegle, Felix Gimeno, Andy Brock, Oriol Vinyals,
+     ing properties in self-supervised vision transformers. In              Andrew Zisserman, and Joao Carreira. Perceiver: General
+     Proceedings of the IEEE/CVF International Conference on                perception with iterative attention. In International confer-
+     Computer Vision, pages 9650–9660, 2021. 2                              ence on machine learning, pages 4651–4664. PMLR, 2021.
+ [7] Joao Carreira and Andrew Zisserman. Quo vadis, action                  3
+     recognition? a new model and the kinetics dataset. In pro-        [20] Zi-Hang Jiang, Qibin Hou, Li Yuan, Daquan Zhou, Yujun
+     ceedings of the IEEE Conference on Computer Vision and                 Shi, Xiaojie Jin, Anran Wang, and Jiashi Feng. All tokens
+     Pattern Recognition, pages 6299–6308, 2017. 7                          matter: Token labeling for training better vision transform-
+ [8] Tianlong Chen, Yu Cheng, Zhe Gan, Lu Yuan, Lei Zhang,                  ers. Advances in Neural Information Processing Systems, 34,
+     and Zhangyang Wang. Chasing sparsity in vision transform-              2021. 2, 5
+     ers: An end-to-end exploration. Advances in Neural Infor-         [21] Zhenglun Kong, Peiyan Dong, Xiaolong Ma, Xin Meng, Wei
+     mation Processing Systems, 34, 2021. 3                                 Niu, Mengshu Sun, Bin Ren, Minghai Qin, Hao Tang, and
+ [9] Xinlei Chen*, Saining Xie*, and Kaiming He. An empirical               Yanzhi Wang. Spvit: Enabling faster vision transformers via
+     study of training self-supervised vision transformers. arXiv           soft token pruning. arXiv preprint arXiv:2112.13890, 2021.
+     preprint arXiv:2104.02057, 2021. 2                                     3
+[10] Yunpeng Chen, Marcus Rohrbach, Zhicheng Yan, Yan                  [22] Chunyuan Li, Jianwei Yang, Pengchuan Zhang, Mei Gao,
+     Shuicheng, Jiashi Feng, and Yannis Kalantidis. Graph-based             Bin Xiao, Xiyang Dai, Lu Yuan, and Jianfeng Gao. Efficient
+     global reasoning networks. In Proceedings of the IEEE/CVF              self-supervised vision transformers for representation learn-
+     Conference on Computer Vision and Pattern Recognition,                 ing. arXiv preprint arXiv:2106.09785, 2021. 2
+     pages 433–442, 2019. 3                                            [23] Xia Li, Zhisheng Zhong, Jianlong Wu, Yibo Yang, Zhouchen
+[11] Xiangxiang Chu, Zhi Tian, Yuqing Wang, Bo Zhang, Haib-                 Lin, and Hong Liu. Expectation-maximization attention net-
+     ing Ren, Xiaolin Wei, Huaxia Xia, and Chunhua Shen.                    works for semantic segmentation. In Proceedings of the
+     Twins: Revisiting the design of spatial attention in vision            IEEE/CVF International Conference on Computer Vision,
+     transformers. Advances in Neural Information Processing                pages 9167–9176, 2019. 3
+     Systems, 34, 2021. 2                                              [24] Youwei Liang, Chongjian Ge, Zhan Tong, Yibing Song,
+[12] Zhigang Dai, Bolun Cai, Yugeng Lin, and Junying Chen.                  Jue Wang, and Pengtao Xie. Not all patches are what you
+     Up-detr: Unsupervised pre-training for object detection with           need: Expediting vision transformers via token reorganiza-
+     transformers. In Proceedings of the IEEE/CVF Conference                tions. In International Conference on Learning Representa-
+     on Computer Vision and Pattern Recognition, pages 1601–                tions, 2022. 1, 2, 3, 7
+     1610, 2021. 2                                                     [25] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays,
+[13] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li,                 Pietro Perona, Deva Ramanan, Piotr Dollár, and C Lawrence
+     and Li Fei-Fei. Imagenet: A large-scale hierarchical image             Zitnick. Microsoft coco: Common objects in context. In
+     database. In 2009 IEEE conference on computer vision and               European conference on computer vision, pages 740–755.
+     pattern recognition, pages 248–255. Ieee, 2009. 5                      Springer, 2014. 7
+[14] Xiaoyi Dong, Jianmin Bao, Dongdong Chen, Weiming                  [26] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng
+     Zhang, Nenghai Yu, Lu Yuan, Dong Chen, and Bain-                       Zhang, Stephen Lin, and Baining Guo. Swin transformer:
+
+
+
+
+                                                                     6203
+     Hierarchical vision transformer using shifted windows. In              Pyramid vision transformer: A versatile backbone for dense
+     Proceedings of the IEEE/CVF International Conference on                prediction without convolutions. In Proceedings of the
+     Computer Vision, pages 10012–10022, 2021. 1, 2, 4, 5, 7                IEEE/CVF International Conference on Computer Vision,
+[27] Ze Liu, Jia Ning, Yue Cao, Yixuan Wei, Zheng Zhang,                    pages 568–578, 2021. 2
+     Stephen Lin, and Han Hu. Video swin transformer. In Pro-          [40] Wenxiao Wang, Lu Yao, Long Chen, Binbin Lin, Deng Cai,
+     ceedings of the IEEE/CVF Conference on Computer Vision                 Xiaofei He, and Wei Liu. Crossformer: A versatile vision
+     and Pattern Recognition, pages 3202–3211, 2022. 7                      transformer hinging on cross-scale attention. arXiv preprint
+[28] Xuezhe Ma, Xiang Kong, Sinong Wang, Chunting Zhou,                     arXiv:2108.00154, 2021. 2
+     Jonathan May, Hao Ma, and Luke Zettlemoyer. Luna: Lin-            [41] Yulin Wang, Rui Huang, Shiji Song, Zeyi Huang, and Gao
+     ear unified nested attention. Advances in Neural Information           Huang. Not all images are worth 16x16 words: Dynamic
+     Processing Systems, 34:2441–2453, 2021. 3                              transformers for efficient image recognition. Advances in
+[29] Lingchen Meng, Hengduo Li, Bor-Chun Chen, Shiyi Lan,                   Neural Information Processing Systems, 34, 2021. 3
+     Zuxuan Wu, Yu-Gang Jiang, and Ser-Nam Lim. Adavit:                [42] Yuqing Wang, Zhaoliang Xu, Xinlong Wang, Chunhua Shen,
+     Adaptive vision transformers for efficient image recognition.          Baoshan Cheng, Hao Shen, and Huaxia Xia. End-to-end
+     arXiv preprint arXiv:2111.15668, 2021. 3                               video instance segmentation with transformers. In Proceed-
+[30] Bowen Pan, Rameswar Panda, Yifan Jiang, Zhangyang                      ings of the IEEE/CVF Conference on Computer Vision and
+     Wang, Rogerio Feris, and Aude Oliva.               Ia-red ˆ2:          Pattern Recognition, pages 8741–8750, 2021. 2
+     Interpretability-aware redundancy reduction for vision trans-     [43] Haiping Wu, Bin Xiao, Noel Codella, Mengchen Liu,
+     formers. Advances in Neural Information Processing Sys-                Xiyang Dai, Lu Yuan, and Lei Zhang. Cvt: Introducing
+     tems, 34, 2021. 3, 7                                                   convolutions to vision transformers. In Proceedings of the
+[31] Yongming Rao, Wenliang Zhao, Benlin Liu, Jiwen Lu, Jie                 IEEE/CVF International Conference on Computer Vision,
+     Zhou, and Cho-Jui Hsieh. Dynamicvit: Efficient vision                  pages 22–31, 2021. 1, 2
+     transformers with dynamic token sparsification. Advances
+                                                                       [44] Weijian Xu, Yifan Xu, Tyler Chang, and Zhuowen Tu. Co-
+     in neural information processing systems, 34, 2021. 3, 7
+                                                                            scale conv-attentional image transformers. In Proceedings of
+[32] Michael S. Ryoo, AJ Piergiovanni, Anurag Arnab, Mostafa                the IEEE/CVF International Conference on Computer Vision
+     Dehghani, and Anelia Angelova. Tokenlearner: Adaptive                  (ICCV), pages 9981–9990, October 2021. 2
+     space-time tokenization for videos. In Advances in Neural
+                                                                       [45] Yifan Xu, Zhijie Zhang, Mengdan Zhang, Kekai Sheng, Ke
+     Information Processing Systems (NeurIPS), 2021. 2, 3, 7
+                                                                            Li, Weiming Dong, Liqing Zhang, Changsheng Xu, and
+[33] Lin Song, Songyang Zhang, Songtao Liu, Zeming Li, Xum-
+                                                                            Xing Sun. Evo-vit: Slow-fast token evolution for dynamic
+     ing He, Hongbin Sun, Jian Sun, and Nanning Zheng. Dy-
+                                                                            vision transformer. In Proceedings of the AAAI Conference
+     namic grained encoder for vision transformers. In Thirty-
+                                                                            on Artificial Intelligence, 2022. 1, 2, 3, 7
+     Fifth Conference on Neural Information Processing Systems,
+     2021. 1, 3, 7                                                     [46] Jianwei Yang, Chunyuan Li, Pengchuan Zhang, Xiyang Dai,
+                                                                            Bin Xiao, Lu Yuan, and Jianfeng Gao. Focal self-attention
+[34] Yehui Tang, Kai Han, Yunhe Wang, Chang Xu, Jianyuan
+                                                                            for local-global interactions in vision transformers, 2021. 2
+     Guo, Chao Xu, and Dacheng Tao. Patch slimming for effi-
+     cient vision transformers. arXiv preprint arXiv:2106.02852,       [47] Hongxu Yin, Arash Vahdat, Jose M Alvarez, Arun Mallya,
+     2021. 3, 7                                                             Jan Kautz, and Pavlo Molchanov. A-vit: Adaptive tokens for
+[35] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco                 efficient vision transformer. In Proceedings of the IEEE/CVF
+     Massa, Alexandre Sablayrolles, and Hervé Jégou. Training             Conference on Computer Vision and Pattern Recognition,
+     data-efficient image transformers & distillation through at-           pages 10809–10818, 2022. 3, 7
+     tention. In International Conference on Machine Learning,         [48] Tan Yu, Gangming Zhao, Ping Li, and Yizhou Yu. Boat:
+     pages 10347–10357. PMLR, 2021. 1, 2, 5                                 Bilateral local attention vision transformer. arXiv preprint
+[36] Hugo Touvron, Matthieu Cord, Alexandre Sablayrolles,                   arXiv:2201.13027, 2022. 2
+     Gabriel Synnaeve, and Hervé Jégou. Going deeper with im-        [49] Li Yuan, Yunpeng Chen, Tao Wang, Weihao Yu, Yujun Shi,
+     age transformers. In Proceedings of the IEEE/CVF Interna-              Zi-Hang Jiang, Francis E.H. Tay, Jiashi Feng, and Shuicheng
+     tional Conference on Computer Vision, pages 32–42, 2021.               Yan. Tokens-to-token vit: Training vision transformers from
+     1, 2                                                                   scratch on imagenet. In Proceedings of the IEEE/CVF In-
+[37] Huiyu Wang, Yukun Zhu, Hartwig Adam, Alan Yuille, and                  ternational Conference on Computer Vision (ICCV), pages
+     Liang-Chieh Chen. Max-deeplab: End-to-end panoptic                     558–567, October 2021. 2
+     segmentation with mask transformers. In Proceedings of            [50] David Junhao Zhang, Kunchang Li, Yali Wang, Yun-
+     the IEEE/CVF Conference on Computer Vision and Pattern                 peng Chen, Shashwat Chandra, Yu Qiao, Luoqi Liu, and
+     Recognition, pages 5463–5474, 2021. 2                                  Mike Zheng Shou. Morphmlp: An efficient mlp-like back-
+[38] Pichao Wang, Xue Wang, Hao Luo, Jingkai Zhou, Zhipeng                  bone for spatial-temporal representation learning. In Com-
+     Zhou, Fan Wang, Hao Li, and Rong Jin. Scaled relu matters              puter Vision–ECCV 2022: 17th European Conference, Tel
+     for training vision transformers. In Proceedings of the AAAI           Aviv, Israel, October 23–27, 2022, Proceedings, Part XXXV,
+     Conference on Artificial Intelligence (AAAI), 2022. 1                  pages 230–248. Springer, 2022. 2
+[39] Wenhai Wang, Enze Xie, Xiang Li, Deng-Ping Fan, Kaitao            [51] Songyang Zhang, Xuming He, and Shipeng Yan. Latent-
+     Song, Ding Liang, Tong Lu, Ping Luo, and Ling Shao.                    gnn: Learning efficient non-local relations for visual recog-
+
+
+
+
+                                                                     6204
+     nition. In International Conference on Machine Learning,
+     pages 7374–7383. PMLR, 2019. 3
+[52] Minghang Zheng, Peng Gao, Renrui Zhang, Kunchang Li,
+     Xiaogang Wang, Hongsheng Li, and Hao Dong. End-to-end
+     object detection with adaptive clustering transformer. arXiv
+     preprint arXiv:2011.09315, 2020. 2
+[53] Sixiao Zheng, Jiachen Lu, Hengshuang Zhao, Xiatian Zhu,
+     Zekun Luo, Yabiao Wang, Yanwei Fu, Jianfeng Feng, Tao
+     Xiang, Philip HS Torr, et al. Rethinking semantic segmen-
+     tation from a sequence-to-sequence perspective with trans-
+     formers. In Proceedings of the IEEE/CVF conference on
+     computer vision and pattern recognition, pages 6881–6890,
+     2021. 2
+[54] Jingkai Zhou, Pichao Wang, Fan Wang, Qiong Liu, Hao Li,
+     and Rong Jin. Elsa: Enhanced local self-attention for vision
+     transformer. arXiv preprint arXiv:2112.12786, 2021. 2
+[55] Xizhou Zhu, Weijie Su, Lewei Lu, Bin Li, Xiaogang Wang,
+     and Jifeng Dai. Deformable detr: Deformable transformers
+     for end-to-end object detection. In International Conference
+     on Learning Representations, 2020. 2
+[56] Zhuofan Zong, Kunchang Li, Guanglu Song, Yali Wang, Yu
+     Qiao, Biao Leng, and Yu Liu. Self-slimmed vision trans-
+     former. In Computer Vision–ECCV 2022: 17th European
+     Conference, Tel Aviv, Israel, October 23–27, 2022, Proceed-
+     ings, Part XI, pages 432–448. Springer, 2022. 1, 2, 3
+
+
+
+
+                                                                    6205
+

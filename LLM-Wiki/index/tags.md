@@ -14,8 +14,8 @@ status: active
 
 | 标签 | 含义 | 当前实体 |
 |---|---|---|
-| `#technology` | 模型、架构、核心技术 | — |
-| `#method` | 算法、研究或应用方法 | — |
+| `#technology` | 模型、架构、核心技术 | [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md]], [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]] |
+| `#method` | 算法、研究或应用方法 | [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md]], [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]] |
 | `#engineering` | 系统工程、基础设施 | — |
 | `#tool` | 可直接使用的软件或工具类别 | — |
 | `#writing` | 写作、表达和知识组织 | — |
