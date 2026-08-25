@@ -1,4 +1,4 @@
-﻿---
+---
 id: ai-safety-systems-security-venues
 type: research-overview
 title: 安全四大顶会中的 AI 安全系统工作（2023—2026）

@@ -11,6 +11,7 @@
 ## 2026-08-25
 
 - [Added] [research/ai-safety-systems-security-venues] 完成 2023—2026 安全四大顶会中内容安全、对齐、检测与系统治理工作的保守调研，纳入20篇核心论文并明确排除攻击方法（[[LLM-Wiki/changes/2026-08-25-survey-ai-safety-systems-security-venues.md|详情]]）。
+- [Changed] [research/ai-safety-systems-security-venues] 重新泛读核对14篇现有论文，并将英文阅读记录统一改写为中文结构化笔记（[[LLM-Wiki/changes/2026-08-25-survey-ai-safety-systems-security-venues.md|详情]]）。
 
 - [Added] [experiments/safety-classifier-compression] 新增三个互相独立且共享统一数据与超参协议的标准压缩实验设计：0.5B decoder、0.4B 置信度级联和 0.3B encoder（[[LLM-Wiki/changes/2026-08-25-design-safety-compression-experiments.md|详情]]）。
 - [Added] [research/safety-classifier-compression] 调研 On-policy 蒸馏并凝练为概念实体，补充安全 Guard 的适用边界、方法路线、候选缺口与假设（[[LLM-Wiki/changes/2026-08-25-survey-on-policy-distillation.md|详情]]）。

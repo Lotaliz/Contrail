@@ -1,4 +1,4 @@
-﻿---
+---
 id: ai-safety-systems-security-venues-comparison
 type: synthesis
 title: AI 安全系统顶会调研：统一比较

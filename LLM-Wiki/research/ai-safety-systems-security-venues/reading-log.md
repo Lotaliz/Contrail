@@ -21,19 +21,19 @@ updated: 2026-08-25
 |---|---|---|---|---|
 | 2023 | CCS | Unsafe Diffusion | 文生图风险测量/检测 | skimmed |
 | 2024 | S&P | You Only Prompt Once | 毒性分类、span、detox | skimmed |
-| 2024 | CCS | Legilimens / SafeGen / Moderator | LLM 与 T2I 内容审核 | deep/skimmed |
-| 2025 | S&P | Alignment Recovery | 微调后参数恢复 | deep-read |
-| 2025 | USENIX | SelfDefend / JBShield | 运行时与隐状态 guard | deep/skimmed |
-| 2025 | USENIX | VLM Unsafe Concepts | 跨模态安全对齐 | deep-read |
-| 2025 | USENIX | Activation Approximations | 近似后的安全退化 | deep-read |
-| 2025 | USENIX | I Cannot Write This | 产品政策/体验 | deep-read |
-| 2025 | NDSS | HMGUARD | 有害 meme 检测 | deep-read |
+| 2024 | CCS | Legilimens / SafeGen / Moderator | LLM 与 T2I 内容审核 | Legilimens：skimmed；其余沿用原级别 |
+| 2025 | S&P | Alignment Recovery | 微调后参数恢复 | skimmed |
+| 2025 | USENIX | SelfDefend / JBShield | 运行时与隐状态 guard | skimmed |
+| 2025 | USENIX | VLM Unsafe Concepts | 跨模态安全对齐 | skimmed |
+| 2025 | USENIX | Activation Approximations | 近似后的安全退化 | skimmed |
+| 2025 | USENIX | I Cannot Write This | 产品政策/体验 | skimmed |
+| 2025 | NDSS | HMGUARD | 有害 meme 检测 | skimmed |
 | 2025 | CCS | SafeGuider | T2I 安全控制 | discovered |
 | 2026 | S&P | EnchTable | 安全迁移/合并 | skimmed |
-| 2026 | NDSS | ACE / SAGA | app 与 agent 架构 | deep-read |
+| 2026 | NDSS | ACE / SAGA | app 与 agent 架构 | skimmed |
 | 2026 | NDSS | Rennervate / DEEPALIGN | token/生成中干预 | skimmed |
-| 2026 | NDSS | AI Character Platforms | 平台安全审核 | deep-read |
-| 2026 | USENIX | Sentinel | 小于5M隐藏状态检测器 | deep-read |
+| 2026 | NDSS | AI Character Platforms | 平台安全审核 | skimmed |
+| 2026 | USENIX | Sentinel | 小于5M隐藏状态检测器 | skimmed |
 
 ## 覆盖计数
 
@@ -45,3 +45,10 @@ updated: 2026-08-25
 | NDSS | 0 | 0 | 1 | 5 | 6 |
 
 “0”表示严格口径未找到，不表示没有 AI/ML security 论文。CCS 2026 的两个仅官方接收候选未计入核心集合。
+
+## 2026-08-25 中文泛读复核
+
+- 对 `papers/` 下现有 14 篇独立论文笔记重新核对摘要、引言、方法概览、主要实验与结论。
+- 14 篇笔记统一标记为 `reading_level: skimmed`，正文改写为中文，并补齐研究问题、方法、主要结果、局限、项目关联和是否值得精读的判断。
+- 未为核心集合中尚无独立笔记的 6 篇论文新增笔记；其既有阅读级别保持不变。
+- 本轮未复现实验；论文数字仅记录在原文设定下可核验的结果，不做跨论文时延或准确率拼接。
