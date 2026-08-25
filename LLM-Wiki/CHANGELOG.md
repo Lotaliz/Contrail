@@ -8,6 +8,12 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-08-25
+
+- [Added] [research/safety-classifier-compression] 调研 On-policy 蒸馏并凝练为概念实体，补充安全 Guard 的适用边界、方法路线、候选缺口与假设（[[LLM-Wiki/changes/2026-08-25-survey-on-policy-distillation.md|详情]]）。
+- [Changed] [research/visual-token-pruning] 精读 VisPCO 的 Qwen2.5-VL 实验与官方实现，并新增不含代码的小规模预注册实验方案（[[LLM-Wiki/changes/2026-08-25-deep-read-vispco-qwen-experiment.md|详情]]）。
+- [Changed] [wiki] 将 Wiki 品牌名统一为 Contrail，以云迹意象的冷色轨迹横幅重设 README 首页，并将视觉资产独立存放于仓库根目录 assets。
+
 ## 2026-08-24
 
 - [Added] [research/safety-classifier-compression] 深读 SafeWatch 并建立可生成归因的多模态自回归 Guard Token 剪枝证据、边界与实验路线（[[LLM-Wiki/changes/2026-08-24-safewatch-attribution-guard-token-pruning.md|详情]]）。

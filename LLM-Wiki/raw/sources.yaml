@@ -95,7 +95,7 @@ sources:
     local_path: "papers/2026-ji-vispco.pdf"
     sha256: "5695d65e93756c99c6cc41ffbceb1c55ae87c2b0264a4947e30fcb44416268b7"
     license: "unknown"
-    notes: "Budget-aware differentiable Pareto search over layer-wise visual-token retention configurations."
+    notes: "Budget-aware differentiable Pareto search over layer-wise visual-token retention configurations. Official code: https://github.com/JHW5981/VisPCO (inspected 2026-08-25); the current code snapshot differs from the paper in data size, area balancing and several hyperparameters."
   - id: paper-dong-2023-heatvit
     kind: paper
     title: "HeatViT: Hardware-Efficient Adaptive Token Pruning for Vision Transformers"
@@ -447,6 +447,104 @@ sources:
     sha256: "b5e46321f7aba8eeaf12aa7870489d4579ab0763e5aab30dbb3f8512732a41d5"
     license: "unknown"
     notes: "Direct safety-domain evidence for policy-aware visual-token pruning in an autoregressive video guard that emits multi-label decisions and natural-language explanations."
+
+  - id: paper-lin-2020-autoregressive-kd
+    kind: paper
+    title: "Autoregressive Knowledge Distillation through Imitation Learning"
+    authors: ["Alexander Lin", "Jeremy Wohlwend", "Howard Chen", "Tao Lei"]
+    year: 2020
+    venue: "EMNLP 2020"
+    url: "https://aclanthology.org/2020.emnlp-main.494/"
+    accessed: 2026-08-25
+    local_path: "papers/2020-lin-autoregressive-kd.pdf"
+    sha256: "15d6d485818b88f5652a12270ad2bc8a9ea3c99249b9182c2d39569c1b72e162"
+    license: "unknown"
+    notes: "Imitation-learning formulation of autoregressive KD on student-visited states; historical lineage evidence."
+  - id: paper-agarwal-2024-gkd
+    kind: paper
+    title: "On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes"
+    authors: ["Rishabh Agarwal", "Nino Vieillard", "Yongchao Zhou", "Piotr Stanczyk", "Sabela Ramos", "Matthieu Geist", "Olivier Bachem"]
+    year: 2024
+    venue: "ICLR 2024"
+    url: "https://openreview.net/forum?id=3zKtaqxLhW"
+    accessed: 2026-08-25
+    local_path: "papers/2024-agarwal-gkd.pdf"
+    sha256: "a81c71fa0cd15506642092790d854347f030c29ee1d6aa643b55aa51348e6869"
+    license: "unknown"
+    notes: "Generalized KD objective mixing fixed data and current student rollouts with configurable divergence."
+  - id: paper-gu-2024-minillm
+    kind: paper
+    title: "MiniLLM: Knowledge Distillation of Large Language Models"
+    authors: ["Yuxian Gu", "Li Dong", "Furu Wei", "Minlie Huang"]
+    year: 2024
+    venue: "ICLR 2024"
+    url: "https://openreview.net/forum?id=5h0qf7IBZZ"
+    accessed: 2026-08-25
+    local_path: "papers/2024-gu-minillm.pdf"
+    sha256: "a96fbfb8fcb935aead8dd04d8e375bc12e149a48d5dd26c06e6f9e561c579fc6"
+    license: "unknown"
+    notes: "Reverse-KL on-policy LLM distillation with variance, sampling, and length-bias stabilization."
+  - id: paper-ko-2024-distillm
+    kind: paper
+    title: "DistiLLM: Towards Streamlined Distillation for Large Language Models"
+    authors: ["Jongwoo Ko", "Sungnyun Kim", "Tianyi Chen", "Se-Young Yun"]
+    year: 2024
+    venue: "ICML 2024"
+    url: "https://proceedings.mlr.press/v235/ko24c.html"
+    accessed: 2026-08-25
+    local_path: "papers/2024-ko-distillm.pdf"
+    sha256: "468a9faa0fc1521fe84e21b6b9b01844e58d1090aeb5ebedf32047e7d1135370"
+    license: "unknown"
+    notes: "Skew-KL and adaptive reuse/refresh of student-generated data for efficient LLM distillation."
+  - id: paper-ko-2025-distillm2
+    kind: paper
+    title: "DistiLLM-2: A Contrastive Approach Boosts the Distillation of LLMs"
+    authors: ["Jongwoo Ko", "Tianyi Chen", "Sungnyun Kim", "Tianyu Ding", "Luming Liang", "Ilya Zharkov", "Se-Young Yun"]
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://proceedings.mlr.press/v267/ko25a.html"
+    accessed: 2026-08-25
+    local_path: "papers/2025-ko-distillm2.pdf"
+    sha256: "2cfede7f41dc6552034240f31fae6f8e558dbab148b70a15dbcfaae7a90dea0d"
+    license: "unknown"
+    notes: "Contrastive treatment of teacher-positive and student-negative sequences with data curriculum."
+  - id: paper-zhang-2026-prefix-opd
+    kind: paper
+    title: "Fast and Effective On-Policy Distillation from Reasoning Prefixes"
+    authors: ["Dongxu Zhang", "Zhichao Yang", "Sepehr Janghorbani", "Jun Han", "Andrew Ressler II", "Qian Qian", "Gregory D Lyng", "Sanjit Singh Batra", "Robert E. Tillman"]
+    year: 2026
+    venue: "Findings of ACL 2026"
+    url: "https://aclanthology.org/2026.findings-acl.1276/"
+    accessed: 2026-08-25
+    local_path: "papers/2026-zhang-prefix-opd.pdf"
+    sha256: "0676f58b1976bff93d2fe931ca2ce3b19131c416a7e3fa2e3359e8e3dba050f0"
+    license: "unknown"
+    notes: "Prefix-only OPD for reducing long-reasoning rollout and teacher-forward cost."
+  - id: paper-jang-2026-veto-opd
+    kind: paper
+    title: "Stable On-Policy Distillation through Adaptive Target Reformulation"
+    authors: ["Ijun Jang", "Jewon Yeom", "Juan Yeo", "Hyunggyu Lim", "Taesup Kim"]
+    year: 2026
+    venue: "Findings of ACL 2026"
+    url: "https://aclanthology.org/2026.findings-acl.2094/"
+    accessed: 2026-08-25
+    local_path: "papers/2026-jang-veto-opd.pdf"
+    sha256: "b28dba5bcc09ebb38d23af53da069374a11ed6d26ecd040454ebee7daf5f3e4b"
+    license: "unknown"
+    notes: "Adaptive geometric target distribution addressing forward-KL instability and reverse-KL collapse."
+  - id: paper-fu-2026-opsa-safety
+    kind: paper
+    title: "Reducing the Safety Tax in LLM Safety Alignment with On-Policy Self-Distillation"
+    authors: ["Yu Fu", "Longxuan Yu", "Haz Sameen Shahgir", "Zhipeng Wei", "Hui Liu", "N. Benjamin Erichson", "Yue Dong"]
+    year: 2026
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2605.15239"
+    accessed: 2026-08-25
+    local_path: "papers/2026-fu-opsa-safety.pdf"
+    sha256: "62ff3b0a89351e7123d88860edb1547b7b37b3ce7bd77bcddcf7df1d3a06a461"
+    license: "unknown"
+    notes: "Direct but non-peer-reviewed safety evidence: privileged-context on-policy self-distillation for reasoning models."
+
 # 示例（复制后删除注释）：
 # sources:
 #   - id: paper-author-2024-short-title

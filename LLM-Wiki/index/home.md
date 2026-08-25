@@ -1,12 +1,14 @@
 ---
 id: wiki-home
 type: index
-title: LLM Wiki 首页
+title: Contrail 首页
 tags: [index]
 status: active
 ---
 
-# LLM Wiki 首页
+# Contrail
+
+> 让散落的研究留下可循之迹。
 
 ## 研究入口
 

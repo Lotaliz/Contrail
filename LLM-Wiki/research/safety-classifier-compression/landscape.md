@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏技术路线图
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-25
 ---
 
 # 技术路线图
@@ -44,6 +44,10 @@ SafeWatch 将每条安全政策作为 visual-token selector 的查询，在视�
 
 MULTIGUARD 从正在运行的 LLM/MLLM 隐层提取跨语言/模态共有表征，再训练轻量分类器；只有当主模型 forward 本来就会发生时，其约 120× 的分类器速度优势才可视为增量开销。SafeRoute 则把大 Guard 保留为困难样本后备。二者代表部署侧的主流：复用已有计算、避免所有请求都走最强 Guard。
 
+## 9. 学生 rollout 上的 On-policy 蒸馏
+
+GKD 将固定序列与当前学生 rollout 混合；MiniLLM、DistiLLM 和 Veto 分别围绕 reverse KL、skew KL 与目标重构处理训练稳定性；Prefix OPD 只蒸馏长推理前缀以降低成本。对会输出 verdict/category/rationale 的自回归 Guard，这条路线可在学生真实错误前缀上施教；对一次前向的 encoder Guard，学生错误驱动的困难样本采集只是相邻范式，不是严格 on-policy。OPSA 提供安全对齐直接证据，但仍为预印本且未验证独立多模态 Guard。
+
 ## 综合判断
 
-当前最可信的组合不是单点算法，而是“任务专用学生 + 结构化目标形状 + 尾部数据蒸馏 + 真实硬件编译 + 困难样本级联”。安全精度需要按类别召回、FPR、校准和攻击变体评估；效率需要把教师调用、数据生成、恢复训练、路由器和大模型回退全部计入。
+当前最可信的组合不是单点算法，而是“任务专用学生 + 结构化目标形状 + 尾部数据蒸馏 + 真实硬件编译 + 困难样本级联”。On-policy 蒸馏可作为自回归 Guard 的增量候选，而非默认替代静态 KD。安全精度需要按类别召回、FPR、校准和攻击变体评估；效率需要把学生 rollout、教师调用、数据生成、恢复训练、路由器和大模型回退全部计入。

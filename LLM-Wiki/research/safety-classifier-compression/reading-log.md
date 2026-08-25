@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏检索日志
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-25
 ---
 
 # 检索与阅读日志
@@ -50,3 +50,21 @@ updated: 2026-08-24
 - 2026 年会议覆盖截至 8 月 24 日，未声称穷尽所有预印本。
 - 没有本地复现实验，verification 均不使用 reproduced。
 - SafeWatch 是本轮唯一直接把视觉 Token 剪枝用于可生成解释的安全 Guard 的正式论文；本轮结论不声称该方向已有大量独立复现。
+
+## 2026-08-25：On-policy 蒸馏增量检索
+
+- 时间截点：2026-08-25。检索站点：OpenReview、PMLR、ACL Anthology、arXiv；关键词：`on-policy distillation`、`student generated rollout knowledge distillation`、`reverse KL LLM distillation`、`reasoning prefix distillation`、`on-policy safety self-distillation`。
+- 纳入：能明确区分 student rollout 与固定/teacher sequence，或直接处理 rollout 成本、散度稳定和安全应用的一次论文；排除只有离线教师标签、仅在标题中泛称 online、无法核验一次来源的工作。
+
+| 论文 | 层级 | 核验 | 角色 |
+|---|---|---|---|
+| Lin et al. 2020 Autoregressive KD | skimmed | source-checked | imitation-learning 谱系与 student-visited states |
+| GKD | deep-read | source-checked | 固定数据/学生 rollout 混合与散度统一框架 |
+| MiniLLM | skimmed | source-checked | reverse-KL、低方差与混合采样 |
+| DistiLLM | skimmed | source-checked | skew-KL 与 rollout 复用/刷新降本 |
+| DistiLLM-2 | skimmed | source-checked | 教师正样本—学生负样本的对比蒸馏 |
+| Prefix OPD | skimmed | source-checked | 长推理前缀截断，降低 rollout/教师成本 |
+| Veto | skimmed | source-checked | forward/reverse KL 病态与目标重构 |
+| OPSA | deep-read | source-checked | 直接但未同行评审的安全自蒸馏证据 |
+
+覆盖限制：核心方法证据集中于通用文本生成与推理；仅 OPSA 直接涉及安全，且不是 Guard 分类器。没有发现截至截点在“多模态自回归 Guard 分类 + 归因生成”上系统比较 OPD 与静态 KD 的正式论文；该表述是本轮检索覆盖下的结论，不是穷尽性证明。

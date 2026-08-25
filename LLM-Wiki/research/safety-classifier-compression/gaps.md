@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏研究缺口
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-25
 ---
 
 # 研究缺口
@@ -46,3 +46,11 @@ updated: 2026-08-24
 - 反证：AUPRC 和 F1 对类不平衡仍比 accuracy 更合适，已有论文并非只报 accuracy。
 - 边界：阈值需求依具体政策和人审资源而定。
 - 待验证：压缩是否改变校准、rare-class recall 和选择性风险；能否以 risk-coverage curve 联合选择学生阈值与回退阈值？
+
+## G6：On-policy 蒸馏尚未在可生成归因的多模态 Guard 上建立安全—成本闭环（候选缺口）
+
+- 支持：GKD、MiniLLM、DistiLLM、Prefix OPD 与 Veto 分别覆盖学生 rollout、散度稳定和长轨迹成本；OPSA 直接进入安全对齐，但研究对象不是独立 Guard；SafeWatch 是可生成解释的多模态 Guard，却没有比较 on-policy 与静态蒸馏。
+- 反证：OPSA 已说明安全场景可以利用特权安全上下文进行学生 rollout 自蒸馏；因此不能声称“安全 OPD 完全空白”。
+- 边界：本轮检索不能证明不存在未收录预印本；通用生成和安全对齐证据不能直接外推到固定 FPR 的判别器。
+- 待验证：在相同 teacher-token 预算下，风险条件 OPD 是否优于静态 KD 和学生错误驱动造数，并同时改善 fixed-FPR/worst-group recall、校准、解释忠实度与 time-to-verdict？
+- 状态：只有一条直接安全预印本证据且没有本地基线，暂不升级到 Motivation。

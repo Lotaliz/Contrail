@@ -60,7 +60,7 @@ updated: 2026-08-24
 | DivPrune | CVPR 2025 | skimmed | source-checked | 多样性/覆盖与 image-video E2E 证据 |
 | SparseVLM | ICML 2025 | skimmed | source-checked | text raters、自适应比例与 token recycling |
 | Are We Solving the Right Problem? | Findings ACL 2025 | deep-read | source-checked | random/pooling 反例、空间偏置与 latency 复核 |
-| VisPCO | ACL 2026 | skimmed | source-checked | layer-wise Pareto configuration optimization |
+| VisPCO | ACL 2026 | deep-read | source-checked | Qwen2.5-VL 实验、逐层 Pareto 配置、数据预处理与官方实现核对 |
 
 详细结果见 [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]。
 

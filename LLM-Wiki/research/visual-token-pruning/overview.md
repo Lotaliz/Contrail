@@ -59,3 +59,4 @@ updated: 2026-08-24
 - [[LLM-Wiki/research/visual-token-pruning/gaps.md|证据缺口]]
 - [[LLM-Wiki/research/visual-token-pruning/motivation.md|研究动机]]
 - [[LLM-Wiki/research/visual-token-pruning/hypotheses.md|待验证假设]]
+- [[LLM-Wiki/experiments/20260825-vispco-qwen25vl-small/README.md|计划实验：Qwen2.5-VL-3B 上的 VisPCO 小规模测试]]
