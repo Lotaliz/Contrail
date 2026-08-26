@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, prompt-injection-defense, runtime-monitoring, activation-steering]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Attention is All You Need to Defend Against Indirect Prompt Injection Attacks in LLMs

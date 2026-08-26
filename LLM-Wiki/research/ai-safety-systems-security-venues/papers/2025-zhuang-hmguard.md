@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, safety-guardrail, multimodal-safety, content-moderation]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models

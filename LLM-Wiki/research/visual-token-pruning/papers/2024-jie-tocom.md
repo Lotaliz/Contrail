@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, token-merging, training-free, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Token Compensator: Altering Inference Cost of Vision Transformer Without Re-Tuning
@@ -39,4 +39,3 @@ Fig. 2（源/目标压缩率不匹配）；Table 1（模型差跨任务迁移）
 ## 局限
 
 需要先训练并存储补偿插件；不能替代目标硬件上的 budget profiling，也没有提出新的 selector。
-

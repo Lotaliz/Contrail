@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, structured-pruning, knowledge-distillation, model-compression]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Minitron

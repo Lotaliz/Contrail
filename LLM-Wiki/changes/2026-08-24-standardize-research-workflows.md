@@ -1,8 +1,8 @@
 ---
 id: change-2026-08-24-standardize-research-workflows
 type: change
-title: 固化研究工作流
 tags: [metadata, workflow]
+title: "固化研究工作流"
 date: 2026-08-24
 change_type: added
 ---

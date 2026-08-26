@@ -1,8 +1,8 @@
 ---
 id: workflow-common-contract
 type: metadata
-title: 研究工作流共同契约
 tags: [metadata, workflow]
+title: "研究工作流共同契约"
 status: active
 ---
 

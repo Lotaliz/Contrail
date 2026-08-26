@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, ai-agent-security, prompt-injection-defense, policy-enforcement, access-control, information-flow-control]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # ACE: A Security Architecture for LLM-Integrated App Systems

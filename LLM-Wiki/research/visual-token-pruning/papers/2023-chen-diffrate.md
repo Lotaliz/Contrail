@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, token-merging, budget-optimization]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # DiffRate: Differentiable Compression Rate for Efficient Vision Transformers
@@ -39,4 +39,3 @@ updated: 2026-08-24
 ## 局限与启发
 
 优化的是计算预算而不是特定设备的真实 latency，搜索出的层配置可能受 kernel、动态 shape 和内存访问反转。适合作为“精度优先预算搜索”基线，再加硬件成本模型。
-

@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, hardware-aware-optimization, dynamic-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # HeatViT: Hardware-Efficient Adaptive Token Pruning for Vision Transformers
@@ -44,4 +44,3 @@ updated: 2026-08-24
 ## 局限与启发
 
 硬件结果依赖专用 FPGA 设计，不能外推到通用 GPU/NPU；多阶段训练成本约为从头训练主干的 90%。最重要启发是直接优化目标硬件时延并拆分选择器、剪枝和量化贡献。
-

@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, safety-guardrail, multimodal-safety, visual-token-pruning, policy-enforcement, efficient-inference]
 status: active
 related: [visual-token-pruning]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # SafeWatch
@@ -53,4 +53,3 @@ updated: 2026-08-24
 
 - 正式论文：ICLR 2025 proceedings。
 - 官方项目页提供模型、代码、数据与 demo 链接；本库保存正式论文 PDF，未在本次任务中复现实验。
-

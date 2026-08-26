@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, platform-safety, safety-evaluation, content-moderation, human-centered-security]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Benchmarking and Understanding Safety Risks in AI Character Platforms

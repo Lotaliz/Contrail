@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, dynamic-inference, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Adaptive Sparse ViT: Towards Learnable Adaptive Token Pruning by Fully Exploiting Self-Attention
@@ -39,4 +39,3 @@ ImageNet-1K 上评测 DeiT-S、LV-ViT-S/M。作者报告 DeiT-S throughput 提�
 ## 局限与启发
 
 依赖 class token 与自注意力中间量，不直接适用于无 attention 的视觉 SSM；动态 token 数对 GPU kernel 和尾时延的影响未展开。它是少数同时明确吞吐与单图时延协议的论文。
-

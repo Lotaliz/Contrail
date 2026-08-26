@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # DistiLLM
@@ -29,4 +29,3 @@ updated: 2026-08-25
 - 作者在通用 LLM 蒸馏任务中报告相对近期 KD 约 2.5–4.3× 训练提速并保持性能。
 - 证据位置：§3 方法；§4 实验；消融表验证散度与数据更新机制。
 - 速度来自论文自身设置，不能外推到 Guard；历史 rollout 复用也意味着算法不是每一步严格 on-policy。
-

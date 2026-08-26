@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, jailbreak-defense, representation-probing, activation-steering]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation

@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, budget-optimization, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # V-Pruner: A Fast and Globally-informed Token Pruning Framework for Vision Transformer
@@ -39,4 +39,3 @@ updated: 2026-08-24
 ## 局限
 
 RL 搜索依赖校准集、reward 标定和具体硬件；2026 结果尚无本地独立复现，不能仅据作者表格认定跨设备通用。
-

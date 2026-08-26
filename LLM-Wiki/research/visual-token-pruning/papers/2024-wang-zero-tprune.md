@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, training-free, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers
@@ -39,4 +39,3 @@ updated: 2026-08-24
 ## 局限
 
 WPR、相似性计算和排序有固定成本；当前主证据集中于 ImageNet 分类，端侧 batch=1 与 P95 latency 未形成统一报告。
-

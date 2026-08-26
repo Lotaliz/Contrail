@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method, data]
+tags: [paper-note, research, method, data, multimodal-safety, safety-alignment, safety-evaluation]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Bridging the Gap in Vision Language Models in Identifying Unsafe Concepts Across Modalities

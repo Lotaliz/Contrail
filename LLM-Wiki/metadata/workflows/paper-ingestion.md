@@ -1,8 +1,8 @@
 ---
 id: workflow-paper-ingestion
 type: metadata
-title: 论文阅读与收录流程
 tags: [metadata, workflow, source]
+title: "论文阅读与收录流程"
 status: active
 ---
 

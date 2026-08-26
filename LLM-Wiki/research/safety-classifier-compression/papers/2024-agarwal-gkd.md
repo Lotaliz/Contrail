@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # GKD
@@ -33,4 +33,3 @@ Generalized Knowledge Distillation 用 $\lambda$ 混合固定数据序列和学�
 ## 对安全压缩的边界
 
 该文支持“让自回归 Guard 在自己的 verdict/rationale 前缀上受教”，但没有安全判别、固定 FPR、多模态或归因忠实度实验。其“学生已能生成适当序列”的前提意味着弱 Guard 需要 SFT/静态数据预热。
-

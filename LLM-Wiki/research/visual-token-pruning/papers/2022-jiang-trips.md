@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, vision-language-model, multimodal-pretraining]
 status: active
 related: [multimodal-token-pruning]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # TRIPS: Efficient Vision-and-Language Pre-training with Text-Relevant Image Patch Selection

@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: medium
 priority: low
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Autoregressive Knowledge Distillation through Imitation Learning
@@ -33,4 +33,3 @@ updated: 2026-08-25
 ## 边界
 
 实验模型和任务早于当前指令 LLM；没有安全分类、校准、teacher-query 成本或长推理证据。
-

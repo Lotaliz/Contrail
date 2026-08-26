@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: medium
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # DistiLLM-2
@@ -27,4 +27,3 @@ updated: 2026-08-25
 ## 证据与边界
 
 论文覆盖 instruction following、代码、preference alignment 和 vision-language 任务，为 OPD 的对比式数据配对与多模态扩展提供证据。证据位置：§3 方法、§4 实验与附录数据细节。它没有专门验证安全判别或多模态 Guard。
-

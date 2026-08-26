@@ -1,8 +1,8 @@
 ---
 id: raw-sources-readme
 type: metadata
-title: 原始资料库说明
 tags: [source, metadata]
+title: "原始资料库说明"
 status: active
 ---
 
@@ -29,4 +29,3 @@ status: active
 3. 每个来源必须在 `sources.yaml` 中有唯一 `id`。
 4. 概念页的 `sources` 字段引用该 `id`。
 5. 尊重版权、许可协议和敏感数据要求。
-

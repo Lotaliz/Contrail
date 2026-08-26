@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, structured-pruning, vision-language-model, dynamic-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # SmartTrim

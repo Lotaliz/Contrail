@@ -8,6 +8,10 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-08-26
+
+- [Changed] [metadata/tags] 修复 7 个 frontmatter 分隔符错误，为 56 篇论文补充受控技术标签并重构分类标签索引（[[LLM-Wiki/changes/2026-08-26-normalize-technical-tags.md|详情]]）。
+
 ## 2026-08-25
 
 - [Changed] [research/safety-classifier-compression] 以安全顶会审稿视角重构 Guard 轻量化动机，新增计算不对称、自适应攻击与多模态证据完整性的研究缺口和投稿定位。

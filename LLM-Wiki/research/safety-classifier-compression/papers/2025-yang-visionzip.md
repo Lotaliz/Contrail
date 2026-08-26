@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: medium
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, vision-language-model, training-free, efficient-inference]
 status: active
 related: [multimodal-token-pruning, visual-token-pruning]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # VisionZip: Longer is Better but Not Necessary in Vision Language Models

@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, safety-alignment, knowledge-distillation, on-policy-distillation]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Reducing the Safety Tax in LLM Safety Alignment with On-Policy Self-Distillation
@@ -35,4 +35,3 @@ OPSA 让当前模型生成 rollout；冻结的教师副本在额外“特权安�
 - 方法依赖基础模型已有可被 prompt 激活的潜在安全能力，教师仍是冻结的同源模型；不能创造教师缺失的能力。
 - 有害数据过滤和部分评估使用 Llama-Guard，继承其误差。
 - 这是生成式安全对齐而非独立 Guard 分类压缩。它支持在“会生成归因的自回归 Guard”中做直接实验，但不能替代固定 FPR、每类召回、校准和归因忠实度验证。
-

@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, vision-language-model, budget-optimization, efficient-inference]
 status: active
 related: [multimodal-token-pruning]
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # VisPCO: Visual Token Pruning Configuration Optimization

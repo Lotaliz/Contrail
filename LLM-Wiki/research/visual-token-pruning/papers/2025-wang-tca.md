@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, test-time-adaptation, training-free]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation
@@ -39,4 +39,3 @@ updated: 2026-08-24
 ## 局限
 
 性能提升含测试时适应贡献，不能与 IID ImageNet 剪枝数字直接比较；主要效率证据是 GFLOPs，真实 latency 仍需复核。
-

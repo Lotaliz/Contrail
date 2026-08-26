@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: medium
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, unstructured-pruning, model-compression, training-free]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Wanda

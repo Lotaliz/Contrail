@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research]
+tags: [paper-note, research, content-moderation, platform-safety, human-centered-security]
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # I Cannot Write This Because It Violates Our Content Policy: Understanding Content Moderation Policies and User Experiences in Generative AI Products

@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, vision-language-model, efficiency-evaluation]
 status: active
 related: [multimodal-token-pruning]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?

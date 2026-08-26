@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Stable On-Policy Distillation through Adaptive Target Reformulation
@@ -27,4 +27,3 @@ Veto 在教师与学生 logits 之间构造几何目标分布，以参数控制�
 ## 证据边界
 
 证据位置：§2 分析、§3 方法、§4 实验与消融。作者限制包括依赖教师质量、超参数敏感和数据规模有限。本项目将其视为安全 OPD 的稳定化候选，不视为 Guard 上已成立的安全收益。
-

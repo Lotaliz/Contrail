@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, vision-language-model, training-free, efficient-inference]
 status: active
 related: [multimodal-token-pruning]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference

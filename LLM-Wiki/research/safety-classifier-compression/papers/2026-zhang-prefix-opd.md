@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # Fast and Effective On-Policy Distillation from Reasoning Prefixes
@@ -27,4 +27,3 @@ updated: 2026-08-25
 ## 证据边界
 
 证据位置：§3 方法、§4 结果及 prefix-length 消融。结果针对长推理；短 `safe/unsafe` 标签可能本就没有可截断冗余。对 Guard 的启发是假设“判定 token 优先”，而非已验证结论。
-

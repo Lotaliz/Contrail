@@ -1,8 +1,8 @@
 ---
 id: research-workflows
 type: metadata
-title: 研究工作流
 tags: [metadata, workflow]
+title: "研究工作流"
 status: active
 ---
 

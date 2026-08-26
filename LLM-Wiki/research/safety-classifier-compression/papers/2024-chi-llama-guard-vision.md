@@ -11,11 +11,11 @@ reading_level: discovered
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, safety-guardrail, multimodal-safety, vision-language-model]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Llama Guard 3 Vision

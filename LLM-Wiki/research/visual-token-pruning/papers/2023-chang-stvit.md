@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, dynamic-inference, efficient-inference]
 status: active
 related: [vision-transformer-token-pruning-basics]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Making Vision Transformers Efficient From a Token Sparsification View

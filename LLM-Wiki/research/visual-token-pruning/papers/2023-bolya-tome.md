@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, token-merging, training-free, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Token Merging: Your ViT But Faster
@@ -39,4 +39,3 @@ updated: 2026-08-24
 ## 局限
 
 属于 token merging 而非严格剪枝；速度依赖 matching kernel、分辨率和 batch，固定每层合并数未针对目标硬件优化。
-

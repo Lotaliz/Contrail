@@ -11,11 +11,11 @@ reading_level: skimmed
 verification: source-checked
 relevance: high
 priority: medium
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, knowledge-distillation, on-policy-distillation, model-compression]
 status: active
 related: [on-policy-distillation]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 
 # MiniLLM
@@ -29,4 +29,3 @@ updated: 2026-08-25
 - 在 120M–13B 模型族和 instruction-following 任务中验证；证据位置为 §2–4 与实验表格。
 - Reverse KL 更集中于教师高概率模式，但可能降低多样性。方法需要教师 logits，且学生/教师 vocabulary 兼容性影响实现。
 - 未做安全 Guard 或校准实验；在本项目中主要作为散度与稳定化路线证据。
-

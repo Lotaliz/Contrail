@@ -11,11 +11,11 @@ reading_level: deep-read
 verification: source-checked
 relevance: high
 priority: high
-tags: [paper-note, research, method]
+tags: [paper-note, research, method, visual-token-pruning, dynamic-inference, efficient-inference]
 status: active
 related: []
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # Exploring Token Pruning in Vision State Space Models
@@ -41,4 +41,3 @@ Fig. 1–2 与 §3.2（传统剪枝失败和邻接破坏）；Eq. 5–6 与 §4.
 ## 局限与启发
 
 论文强调实际加速但核心主表仍以 GFLOPs 为主，缺少跨设备端到端 latency。关键反例是：token 的“位置”属于算子语义，不能只保留内容重要性。
-
