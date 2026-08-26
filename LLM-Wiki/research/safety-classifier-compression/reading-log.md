@@ -1,10 +1,10 @@
 ---
 id: safety-classifier-compression-reading-log
 type: synthesis
-title: 安全判别剪枝与蒸馏检索日志
+title: "安全判别剪枝与蒸馏检索日志"
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe]
 status: active
 created: 2026-08-24
 updated: 2026-08-25
@@ -68,3 +68,18 @@ updated: 2026-08-25
 | OPSA | deep-read | source-checked | 直接但未同行评审的安全自蒸馏证据 |
 
 覆盖限制：核心方法证据集中于通用文本生成与推理；仅 OPSA 直接涉及安全，且不是 Guard 分类器。没有发现截至截点在“多模态自回归 Guard 分类 + 归因生成”上系统比较 OPD 与静态 KD 的正式论文；该表述是本轮检索覆盖下的结论，不是穷尽性证明。
+
+## 2026-08-25：安全顶会审稿视角增量检索
+
+- 范围：2024–2026 USENIX Security、ACM CCS、NDSS、IEEE S&P 中与 Guard、内容审核、越狱检测、部署近似和多模态长尾直接相关的论文；辅以 ICLR/ACL 的 Guard 压缩直接证据。
+- 关键词：`prompt guard efficiency adaptive attack`、`content moderation latency`、`compression safety vulnerability`、`multimodal guard token pruning`、`cross-frame unsafe content`。
+- 核心观察：安全顶会接受的工作通常不是“把模型做小”，而是揭示新的攻击面/失败机制、定义安全属性或构建可验证的系统防线；效率是实践约束和评测维度。
+
+| 论文 | 层级 | 核验 | 对本问题的作用 |
+|---|---|---|---|
+| Controlled-Release Prompting | skimmed | source-checked | 轻量 Guard 与强目标模型之间存在可被攻击利用的计算不对称 |
+| The Attacker Moves Second | skimmed | source-checked | 静态攻击集会显著高估防御；压缩 Guard 必须接受自适应攻击 |
+| Manifold Trajectory Kinetics | skimmed | source-checked | 说明顶会更关注伪恶意输入、固定 FPR 与动态安全信号，而非平均准确率 |
+| VSG-Safe | skimmed | source-checked | 跨帧分布式危害是视频审核的安全语义；激进 token/frame 削减可能破坏证据完整性 |
+
+覆盖限制：本轮不宣称穷尽全部 2026 论文；四篇增量论文基于官方论文页、摘要和方法/结果概览完成 `skimmed`，未达到复现层级。

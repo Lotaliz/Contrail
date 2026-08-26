@@ -4,7 +4,7 @@ type: synthesis
 title: 面向高吞吐与低总成本的安全判别研究动机
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-vasu-2024-mobileclip, paper-chen-2025-safewatch]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-vasu-2024-mobileclip, paper-chen-2025-safewatch, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-liu-2026-sentinel, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe]
 status: active
 created: 2026-08-24
 updated: 2026-08-24
@@ -27,6 +27,18 @@ Llama Guard 3-1B-INT4 给出 Android CPU 的吞吐与 TTFT，P-pruning 给出实
 ## M4：在固定漏报风险和归因忠实度下优化多模态证据预算
 
 SafeWatch 提供了安全任务直接基线：policy-aware visual-token pruning 可与自回归多标签判定和自然语言解释共存，并带来有限但真实的端到端时延收益；VisionZip/SparseVLM 及独立复核则说明视觉 token 冗余普遍存在，但注意力重要性、空间定位和真实时延并不稳定。结合“安全 Guard 必须控制漏报且归因要可审计”的场景约束，研究应优化 policy-aware relevance、时空 coverage、风险自适应预算和可逆回退，而不是最大化平均 token 删除率。
+
+## M5：把轻量化重新定义为有对手条件下的预算分配问题
+
+Controlled-Release Prompting 表明，攻击者可以利用 Guard 与目标模型之间的计算能力差；The Attacker Moves Second 又说明静态、非自适应测试会系统性高估防御。由此，安全顶会语境下的核心问题不应是“能否把 Guard 从 8B 压到 300M”，而应是：在攻击者可查询或了解防线时，如何把有限计算预算分配给小 Guard、困难样本回退、宿主内部信号和人工复核，使固定漏报风险、自适应 ASR、误拒、P95 与吞吐同时满足约束。剪枝、蒸馏和 token pruning 是实现手段，而不是研究贡献本身。
+
+多模态版本还必须保护证据完整性。VLM Unsafe Concepts 已显示感知与安全对齐可脱节，VSG-Safe 显示危害语义可能分布在非连续帧和实体关系中。因此，token/frame pruning 的安全问题应表述为“攻击者能否把关键危害证据推入被丢弃预算，以及系统能否检测证据不足并回退”，而不是平均删除多少视觉 token。
+
+## 安全顶会投稿定位
+
+- **弱定位**：首次把某通用剪枝/KD/token-pruning 方法用于 Guard，并在静态 benchmark 上保持平均 F1。该版本主要是效率工程，容易被认为缺少 Security of ML 新问题。
+- **可竞争定位**：揭示压缩导致的新攻击面或安全不变量失效，提出风险感知的联合压缩—路由—回退系统，并在自适应攻击、跨 taxonomy/时间漂移、固定 FPR、尾部类别和真实硬件上验证。
+- **最强定位**：刻画 Guard 容量与可判别攻击复杂度的经验/理论边界，给出可验证的预算控制策略；多模态场景进一步证明并修复 pruning-induced evidence evasion。
 
 ## 建议研究问题
 

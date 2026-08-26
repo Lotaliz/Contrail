@@ -663,8 +663,8 @@ sources:
     venue: "USENIX Security 2025"
     url: "https://www.usenix.org/conference/usenixsecurity25/presentation/qu-yiting"
     accessed: 2026-08-25
-    local_path: ""
-    sha256: ""
+    local_path: "papers/2025-qu-vlm-unsafe-concepts.pdf"
+    sha256: "44d538cf28431dbd0f10990962609e076d8c8f15bd3a30f1e9780f2a281f2a1d"
     license: "unknown"
     notes: "UnsafeConcepts dataset, perception/alignment decomposition, and PPO-based visual safety alignment."
   - id: paper-zhang-2025-activation-approximations
@@ -795,7 +795,55 @@ sources:
     venue: "USENIX Security 2026"
     url: "https://www.usenix.org/conference/usenixsecurity26/presentation/liu-xiuming"
     accessed: 2026-08-25
+    local_path: "papers/2026-liu-quantifying-llm-attacks-model-cognition.pdf"
+    sha256: "b3a78532909e6c89fa46faf9fd9fde014b7fedf415e5c70a40b8e014692038e2"
+    license: "unknown"
+    notes: "Sentinel is a sub-5M-parameter multi-layer hidden-state toxicity detector; no attack construction is synthesized."
+  - id: paper-fairoze-2026-controlled-release
+    kind: paper
+    title: "Bypassing Prompt Guards in Production with Controlled-Release Prompting"
+    authors: ["Jaiden Fairoze", "Sanjam Garg", "Keewoo Lee", "Mingyuan Wang"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/fairoze"
+    accessed: 2026-08-25
     local_path: ""
     sha256: ""
     license: "unknown"
-    notes: "Sentinel is a sub-5M-parameter multi-layer hidden-state toxicity detector; no attack construction is synthesized."
+    notes: "Practical attack exploiting the resource asymmetry between lightweight prompt guards and protected LLMs; evaluates 14 open-weight guard models."
+  - id: paper-nasr-2026-attacker-moves-second
+    kind: paper
+    title: "The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections"
+    authors: ["Milad Nasr", "Nicholas Carlini", "Chawin Sitawarin", "Sander V. Schulhoff", "Jamie Hayes", "Michael Ilie", "Juliette Pluto", "Shuang Song", "Harsh Chaudhari", "Ilia Shumailov", "Abhradeep Guha Thakurta", "Kai Yuanqing Xiao", "Andreas Terzis", "Florian Tramèr"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/nasr"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Shows that weak or non-adaptive evaluation substantially overestimates LLM defense robustness; adaptive attacks bypass twelve defenses."
+  - id: paper-zhang-2026-mtk
+    kind: paper
+    title: "Defending Jailbreak Attacks on Large Language Models via Manifold Trajectory Kinetics"
+    authors: ["Hangtao Zhang", "Yucheng Zhao", "Sishun Liu", "Ziqi Zhou", "Zeyu Ye", "Wei Wan", "Minghui Li", "Shengshan Hu", "Yanjun Zhang", "Yi Liu", "Leo Yu Zhang"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-hangtao"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Tracks layer-wise manifold trajectories to address pseudo-malicious prompts and adaptive attacks, illustrating the move from static accuracy to dynamic security signals."
+  - id: paper-zhang-2026-vsg-safe
+    kind: paper
+    title: "VSG-Safe: Spotting NSFW Video through Cross-Frame Evidence"
+    authors: ["Yuyang Zhang", "Xudong Jiang", "Yuxuan Song", "Yuxiang Sun", "Yihao Huang", "Run Wang", "Shundi Xiao", "Lina Wang"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-yuyang"
+    accessed: 2026-08-25
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Video moderation based on cross-frame scene-graph evidence; provides direct evidence that sparse, distributed safety semantics can be lost by frame/token reduction."

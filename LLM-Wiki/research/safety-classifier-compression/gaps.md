@@ -4,7 +4,7 @@ type: synthesis
 title: 安全判别剪枝与蒸馏研究缺口
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe]
 status: active
 created: 2026-08-24
 updated: 2026-08-25
@@ -54,3 +54,11 @@ updated: 2026-08-25
 - 边界：本轮检索不能证明不存在未收录预印本；通用生成和安全对齐证据不能直接外推到固定 FPR 的判别器。
 - 待验证：在相同 teacher-token 预算下，风险条件 OPD 是否优于静态 KD 和学生错误驱动造数，并同时改善 fixed-FPR/worst-group recall、校准、解释忠实度与 time-to-verdict？
 - 状态：只有一条直接安全预印本证据且没有本地基线，暂不升级到 Motivation。
+
+## G7：压缩 Guard 的“计算预算—可判别攻击”边界尚未被系统刻画（满足 Motivation 门槛）
+
+- 支持：Controlled-Release Prompting 直接利用轻量输入过滤器与目标 LLM 的计算不对称，并在 14 个开放 Guard 上验证；The Attacker Moves Second 独立表明，12 个近期防御在强自适应评估下多数可被以超过 90% ASR 绕过。两者共同否定“平均基准精度保持即可证明安全保持”。
+- 补充证据：Sentinel/MTK 表明多层动态信号能提高自适应鲁棒性，但依赖宿主白盒状态；HarmAug/Llama Guard 1B-INT4 表明小 Guard 可以很强，却未消除资源受限对手专门构造难例的风险。
+- 反证：不存在“小模型必然不安全”的结论；任务专用 encoder、级联和宿主表征复用可在部分数据上达到或超过大 Guard。
+- 边界：该缺口针对对手知道或可查询 Guard、且目标模型能力显著高于 Guard 的部署；普通非对抗内容审核不受理论式最坏情况完全支配。
+- 待验证：在固定总算力、固定 FPR 和固定回退率下，Guard 容量、输入复杂度、攻击计算预算、time-to-verdict 与自适应 ASR 的 Pareto 前沿是什么？何时应升级到大 Guard、宿主内部信号或人工复核？

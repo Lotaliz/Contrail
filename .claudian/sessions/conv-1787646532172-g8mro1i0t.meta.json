@@ -1,0 +1,28 @@
+{
+  "id": "conv-1787646532172-g8mro1i0t",
+  "providerId": "codex",
+  "title": "精读两篇多模态安全论文并更新笔记标签",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787646532209,
+  "lastActivityAt": 1787659248176,
+  "sessionId": "01a03809-6270-76b1-82bc-0ea5a75018a5",
+  "selectedModel": "gpt-5.6-sol",
+  "providerState": {
+    "threadId": "01a03809-6270-76b1-82bc-0ea5a75018a5",
+    "nativeConversationContextEstablished": true,
+    "sessionFilePath": "C:\\Users\\cryoc\\.codex\\sessions\\2026\\08\\25\\rollout-2026-08-25T16-28-54-01a03809-6270-76b1-82bc-0ea5a75018a5.jsonl",
+    "transcriptRootPath": "C:\\Users\\cryoc\\.codex\\sessions",
+    "workspaceDependencyToolVersion": 1
+  },
+  "linkedContentPath": "LLM-Wiki/research/ai-safety-systems-security-venues/papers/2024-wu-legilimens.md",
+  "usage": {
+    "inputTokens": 201711,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 200448,
+    "contextWindow": 258400,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 201711,
+    "percentage": 78,
+    "model": "gpt-5.6-sol"
+  }
+}

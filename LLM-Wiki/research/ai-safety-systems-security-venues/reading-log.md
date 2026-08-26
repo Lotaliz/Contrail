@@ -24,7 +24,7 @@ updated: 2026-08-25
 | 2024 | CCS | Legilimens / SafeGen / Moderator | LLM 与 T2I 内容审核 | Legilimens：skimmed；其余沿用原级别 |
 | 2025 | S&P | Alignment Recovery | 微调后参数恢复 | skimmed |
 | 2025 | USENIX | SelfDefend / JBShield | 运行时与隐状态 guard | skimmed |
-| 2025 | USENIX | VLM Unsafe Concepts | 跨模态安全对齐 | skimmed |
+| 2025 | USENIX | VLM Unsafe Concepts | 跨模态安全对齐 | deep-read |
 | 2025 | USENIX | Activation Approximations | 近似后的安全退化 | skimmed |
 | 2025 | USENIX | I Cannot Write This | 产品政策/体验 | skimmed |
 | 2025 | NDSS | HMGUARD | 有害 meme 检测 | skimmed |
@@ -33,7 +33,7 @@ updated: 2026-08-25
 | 2026 | NDSS | ACE / SAGA | app 与 agent 架构 | skimmed |
 | 2026 | NDSS | Rennervate / DEEPALIGN | token/生成中干预 | skimmed |
 | 2026 | NDSS | AI Character Platforms | 平台安全审核 | skimmed |
-| 2026 | USENIX | Sentinel | 小于5M隐藏状态检测器 | skimmed |
+| 2026 | USENIX | Sentinel | 小于5M隐藏状态检测器 | deep-read |
 
 ## 覆盖计数
 
@@ -52,3 +52,9 @@ updated: 2026-08-25
 - 14 篇笔记统一标记为 `reading_level: skimmed`，正文改写为中文，并补齐研究问题、方法、主要结果、局限、项目关联和是否值得精读的判断。
 - 未为核心集合中尚无独立笔记的 6 篇论文新增笔记；其既有阅读级别保持不变。
 - 本轮未复现实验；论文数字仅记录在原文设定下可核验的结果，不做跨论文时延或准确率拼接。
+
+## 2026-08-25 两篇论文精读
+
+- 将 [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-liu-sentinel.md|Sentinel]] 升级为 `deep-read`：重点核对逐层探针、ACI、多层去冗余融合、自适应白盒攻击和效率计时边界，并明确 probe 可分性不等于因果认知。
+- 将 [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-qu-vlm-unsafe-concepts.md|VLM Unsafe Concepts]] 升级为 `deep-read`：重点核对 UnsafeConcepts 构建、感知—对齐分解、跨模态差距、情境分析、简化 PPO 及 SFT/DPO 比较边界。
+- 两篇论文的共同结构是“输入信息已被部分识别，但安全策略未稳定执行”：一篇沿模型深度研究识别—执行缺口，另一篇沿输入模态研究感知—对齐缺口。

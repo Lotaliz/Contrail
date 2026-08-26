@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787646532172-g8mro1i0t",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787646532263-9qjd5c2",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787646532169-wfmfjvm",
+      "timestamp": 1787646532169,
+      "rawDisplayText": "精读这两篇论文：Quantifying Large Language Model Attacks Through the Lens of Model Cognition；\nBridging the Gap in Vision Language Models in Identifying Unsafe Concepts Across Modalities\n重点关注它们的主要创新点和贡献，以及研究问题的场景，对应更新论文笔记和tag",
+      "canonicalText": "精读这两篇论文：Quantifying Large Language Model Attacks Through the Lens of Model Cognition；\nBridging the Gap in Vision Language Models in Identifying Unsafe Concepts Across Modalities\n重点关注它们的主要创新点和贡献，以及研究问题的场景，对应更新论文笔记和tag",
+      "context": {
+        "linkedContent": {
+          "path": "LLM-Wiki/research/ai-safety-systems-security-venues/papers/2024-wu-legilimens.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "d91491883e54e40dd270799f5f791c16cbeb39cad08b9aa92c4486e5de95a9e1",
+      "providerUserMessageId": "01a03809-a689-7082-aa0f-fe40cdca83ce",
+      "providerAssistantMessageId": "msg_022250a328d01b64016a8d55e5d16887d08df63c57fc7c0ce5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787658865231-g45e9dd",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787658865219-pb2wr06",
+      "timestamp": 1787658865219,
+      "rawDisplayText": "请以安全顶会审稿人的视角，结合近几年安全顶会AI相关文章的发展趋势，分析以下问题是否存在并值得被安全顶会接收相关研究：\n安全围栏模型（Guard模型）是一种应对AI系统安全问题的防御手段，它们的优点在于功能强大，无需依赖目标模型的结构。然而，现有guard模型虽然相比大模型已经比较小，但仍然有较大的参数规模（>1B），部署流程仍然很高，推理时延长，影响系统整体吞吐。因此，我们可以：\n1. 设计一种针对guard模型的模型轻量化部署系统，让guard模型真正具备低时延特点，通过针对性剪枝+蒸馏技术缩小模型规模，同时保持强分类能力\n2. 针对多模态guard模型，还可以应用token剪枝来进一步加快安全审查\n我认为上述表述并不能直接作为motivation，因为它更像是现有技术的堆砌，但在安全场景下可能还会面临其他特有的问题，请你以安全顶会的视角，进行分析、评价和思路优化。",
+      "canonicalText": "请以安全顶会审稿人的视角，结合近几年安全顶会AI相关文章的发展趋势，分析以下问题是否存在并值得被安全顶会接收相关研究：\n安全围栏模型（Guard模型）是一种应对AI系统安全问题的防御手段，它们的优点在于功能强大，无需依赖目标模型的结构。然而，现有guard模型虽然相比大模型已经比较小，但仍然有较大的参数规模（>1B），部署流程仍然很高，推理时延长，影响系统整体吞吐。因此，我们可以：\n1. 设计一种针对guard模型的模型轻量化部署系统，让guard模型真正具备低时延特点，通过针对性剪枝+蒸馏技术缩小模型规模，同时保持强分类能力\n2. 针对多模态guard模型，还可以应用token剪枝来进一步加快安全审查\n我认为上述表述并不能直接作为motivation，因为它更像是现有技术的堆砌，但在安全场景下可能还会面临其他特有的问题，请你以安全顶会的视角，进行分析、评价和思路优化。",
+      "images": [],
+      "contentDigest": "fc7fe34e353d4df4938f604fe08e0bc345ff63c47e11c50735b1c009d7f8208c",
+      "providerUserMessageId": "01a038c5-8e3a-7911-874c-3475252b0c57",
+      "providerAssistantMessageId": "msg_022250a328d01b64016a8d838b025087d087f6c5c2e57fabc0"
+    }
+  ]
+}
