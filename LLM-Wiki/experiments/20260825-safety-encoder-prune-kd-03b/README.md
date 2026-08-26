@@ -2,9 +2,9 @@
 id: 20260825-safety-encoder-prune-kd-03b
 type: experiment
 tags: [experiment, data, research, method]
-status: draft
+status: active
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 title: 0.3B Encoder-only Guard 的校准、深度剪枝与蒸馏恢复
 project_id: safety-classifier-compression
 sources: [paper-lee-2025-harmaug, paper-palo-2024-pgkd, paper-muralidharan-2024-minitron]
@@ -12,7 +12,7 @@ sources: [paper-lee-2025-harmaug, paper-palo-2024-pgkd, paper-muralidharan-2024-
 
 # 实验三：0.3B Encoder-only Guard 的标准校准、剪枝与蒸馏恢复
 
-> 本文是独立实验说明，不使用其他实验的模型或结果。它完整定义自己的数据、教师缓存、校准、剪枝、蒸馏和评测，不包含代码，尚未执行。
+> 本文是独立实验说明，不使用其他实验的模型或结果。它完整定义自己的数据、教师缓存、校准、剪枝、蒸馏和评测，不包含代码。实验已执行（seed 42），结果见第 10 节。
 
 ## 1. 目的与假设
 
@@ -152,9 +152,69 @@ DeBERTa-v3-large 官方说明 backbone 约 304M，128K embedding 约 131M。保�
 
 ## 10. 原始结果与限制
 
-尚未执行。未来需保存数据清单、模型和 tokenizer 哈希、参数统计、被删层列表、校准重要性、教师缓存、逐样本概率、训练日志、原始计时和失败状态。
+### 执行环境
 
-限制：只做 prompt 二分类；跨架构 KD 只迁移两类决策分布而非内部表征；DeBERTa 的大词表 embedding 限制进一步压缩；ToxicChat 非商业许可证；模型时延仍依赖 tokenizer、长度分布和具体 kernel。
+- 种子：42（预注册 13、42、2026，实际仅执行 seed 42）
+- GPU：NVIDIA H20-3e（144 GB），非预注册 A100 80GB
+- 软件：transformers 4.57.6、PyTorch 2.10.0+cu128、CUDA 12.8、BF16
+- 代码位置：`/home/ljm534318/safety-exp/`（Contrail 目录外）
+- 结果文件：`results/exp3_seed42.json`
+
+### 剪枝信息
+
+| 参数 | 值 |
+|---|---|
+| 原始层数 | 24 |
+| 保留层数 | 14 |
+| 删除层 | [6, 7, 8, 9, 10, 14, 15, 18, 19, 21] |
+| 原始参数量 | 435.1M |
+| 剪枝后参数量 | 309.1M |
+| MLP 剪枝 | 否（14 层已在目标范围内） |
+
+### 分类结果（seed 42，修复后）
+
+| 模型 | WildGuardTest macro | ToxicChat macro | XSTest macro | 等权 macro |
+|---|---|---|---|---|
+| B0 (T8) | 0.8070 | 0.7363 | 0.8990 | 0.8141 |
+| B1 (E0435-adapted) | 0.8713 | 0.8591 | 0.8915 | 0.8740 |
+| B2 (pruned-zero) | 0.5000 | 0.5000 | 0.5000 | 0.5000 |
+| B3 (hard) | 0.8317 | 0.8278 | 0.7240 | 0.7945 |
+| M1 (KD) | 0.8219 | 0.8242 | 0.7530 | 0.7997 |
+
+Encoder 适配后 B1 表现优秀（macro=0.8740），与修复后的 decoder B1（0.9000）相当，均高于 T8（0.8141）。剪枝后未恢复即坍缩为全 unsafe（B2=0.5000）。Hard 恢复后质量大幅回升（B3=0.7945），KD 恢复略优于 hard（M1=0.7997），但仍未达到预注册的 +1.0 pp KD 增益（实际 +0.5 pp）。XSTest 是主要弱点：B1 unsafe_recall=0.815，M1 降至 0.570，下降 24.5 pp。
+
+> 本实验教师缓存与 T8 评测直接受益于实验一/二修复后的 Llama Guard 输入构造与判定位置逻辑；原始运行中 T8 被错误实现为 token 级分类器，导致教师信号失真。
+
+### 时延与吞吐（seed 42，修复后）
+
+| 模型 | batch=1 P50 (ms) | batch=32 P50 (ms) | samples/s | 峰值显存 (GB) |
+|---|---|---|---|---|
+| B0 (T8) | 37.0 | 1,859.5 | 17.6 | 32.7 |
+| M1 (KD) | 13.2 | 59.9 | 547.7 | 32.7 |
+
+### 成功标准评估（修复后）
+
+| 标准 | 阈值 | 实际 | 结果 |
+|---|---|---|---|
+| macro recall 下降 | ≤2.0 pp | -7.4 pp（B1=0.8740→M1=0.7997） | 失败 |
+| unsafe recall 下降 | ≤3.0 pp | XSTest -24.5 pp（0.815→0.570） | 失败 |
+| KD vs hard macro | ≥+1.0 pp | +0.5 pp（M1=0.7997 vs B3=0.7945） | 失败 |
+| batch=1 时延降低 | ≥60% | 64.4% | 达标 |
+| batch=32 吞吐提升 | ≥2.0× | 31.2× | 达标 |
+
+### 结论（修复后）
+
+部分结果。修复 T8 实现错误后，encoder 学生仍保持高质量：B1=0.8740，M1=0.7997，相对同规模 decoder M1（0.6106）优势明显，说明 encoder 架构对深度剪枝更鲁棒。时延目标全部达标（batch=1 降低 64.4%，batch=32 提升 31.2×）。但深度剪枝后质量下降仍超过预注册阈值（macro -7.4 pp），KD 相对 hard 仅 +0.5 pp、未达 +1.0 pp 目标，且 XSTest unsafe_recall 下降 24.5 pp。质量未达标，不能宣称压缩成功。
+
+### 偏差
+
+- 仅执行 seed 42，未完成预注册的 13 和 2026 seeds。
+- GPU 为 H20-3e（144 GB），非预注册 A100 80GB；时延数值不可直接与 A100 结果比较。
+- 未执行 paired bootstrap CI（需多 seed）。
+
+### 限制
+
+只做 prompt 二分类；跨架构 KD 只迁移两类决策分布而非内部表征；DeBERTa 的大词表 embedding 限制进一步压缩；ToxicChat 非商业许可证；模型时延仍依赖 tokenizer、长度分布和具体 kernel。
 
 ## 11. 关联实体与一次来源
 

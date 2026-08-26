@@ -2,9 +2,9 @@
 id: 20260825-safety-decoder-prune-kd-05b
 type: experiment
 tags: [experiment, data, research, method]
-status: draft
+status: active
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 title: 0.5B Decoder-only Guard 的校准、结构剪枝与蒸馏恢复
 project_id: safety-classifier-compression
 sources: [paper-fedorov-2024-llama-guard-int4, paper-muralidharan-2024-minitron]
@@ -12,7 +12,7 @@ sources: [paper-fedorov-2024-llama-guard-int4, paper-muralidharan-2024-minitron]
 
 # 实验一：0.5B Decoder-only Guard 的标准校准、剪枝与蒸馏恢复
 
-> 本文是独立、可执行的预注册实验说明，不依赖另外两个实验文档，不包含代码，也没有运行结果。执行前必须冻结模型、数据、软件和硬件的不可变版本。
+> 本文是独立、可执行的预注册实验说明，不依赖另外两个实验文档，不包含代码。实验已执行（seed 42），结果见第 10 节。
 
 ## 1. 目的与假设
 
@@ -174,7 +174,80 @@ sources: [paper-fedorov-2024-llama-guard-int4, paper-muralidharan-2024-minitron]
 
 ## 10. 原始结果与证据状态
 
-尚未执行。未来每个 seed 必须保存不可覆盖的实际配置、模型参数统计、校准排序、教师缓存清单、逐样本预测、计时原始值、训练日志和失败记录。当前所有数字均为预注册阈值，不是实验结果。
+### 执行环境
+
+- 种子：42（预注册 13、42、2026，实际仅执行 seed 42）
+- GPU：NVIDIA H20-3e（144 GB），非预注册 A100 80GB
+- 软件：transformers 4.57.6、PyTorch 2.10.0+cu128、CUDA 12.8、BF16
+- 代码位置：`/home/ljm534318/safety-exp/`（Contrail 目录外）
+- 结果文件：`results/exp1_seed42.json`
+
+### 数据统计
+
+| 项目 | 数量 |
+|---|---|
+| 原始样本 | 86,745 |
+| 去重后 | 47,836 |
+| train-kd | 43,052 |
+| dev-threshold | 2,392 |
+| prune-calibration | 2,392 |
+| 标签冲突剔除 | 15 |
+
+### 目标形状
+
+| 参数 | 值 |
+|---|---|
+| 层数 | 12 |
+| Hidden width | 1,536 |
+| MLP width | 4,096 |
+| KV heads | 8 |
+| Q heads | 24 |
+| Head dim | 64 |
+| 实际参数量 | 0.4990B |
+
+保留层：[1, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15]。
+
+### 分类结果（seed 42，修复后）
+
+| 模型 | WildGuardTest macro | ToxicChat macro | XSTest macro | 等权 macro |
+|---|---|---|---|---|
+| B0 (T8) | 0.8070 | 0.7363 | 0.8990 | 0.8141 |
+| B1 (S1-adapted) | 0.8941 | 0.8749 | 0.9310 | 0.9000 |
+| B2 (pruned-zero) | 0.5000 | 0.5000 | 0.5000 | 0.5000 |
+| B3 (hard) | 0.7252 | 0.6204 | 0.5125 | 0.6193 |
+| M1 (KD) | 0.7051 | 0.6191 | 0.5075 | 0.6106 |
+
+修复实现错误后，decoder 学生模型不再坍缩：S1 适配后 B1 达到 macro=0.9000，接近 T8 的 0.8141 并在部分测试集上超过 T8。剪枝后未恢复即严重损伤（B2=0.5000，全 unsafe）。Hard 恢复（B3=0.6193）与 KD 恢复（M1=0.6106）质量仍显著低于 B1，且 KD 未带来预期的 1.0 pp 增益（实际 -0.9 pp）。XSTest 上 unsafe recall 几乎归零，是主要质量缺口。
+
+> 首次运行曾因 Llama Guard 输入构造与判定位置实现错误导致所有模型坍缩：1B tokenizer 的 chat template 要求 content 为 `[{"type":"text","text":...}]` 块而非纯字符串；且正确判定信号位于 `\n\n`（token 271）之后，而非 prompt 末位。修复后重跑得到本表结果，原始错误记录保留在 `results/exp1_seed42.json` 的历史运行中。
+
+### 时延与吞吐（seed 42，修复后）
+
+| 模型 | batch=1 P50 (ms) | batch=32 P50 (ms) | samples/s | 峰值显存 (GB) |
+|---|---|---|---|---|
+| B0 (T8) | 36.9 | 1,860.5 | 17.6 | 34.0 |
+| B3 (hard) | 8.4 | 107.0 | 305.1 | 40.7 |
+| M1 (KD) | 8.4 | 107.2 | 304.7 | 40.7 |
+
+### 成功标准评估（修复后）
+
+| 标准 | 阈值 | 实际 | 结果 |
+|---|---|---|---|
+| macro recall 下降 | ≤2.0 pp | -28.9 pp（B1=0.9000→M1=0.6106） | 失败 |
+| unsafe recall 下降 | ≤3.0 pp | XSTest -87.5 pp（0.89→0.015） | 失败 |
+| KD vs hard macro | ≥+1.0 pp | -0.9 pp（M1=0.6106 vs B3=0.6193） | 失败 |
+| batch=1 时延降低 | ≥25% | 77.2% | 达标 |
+| batch=32 吞吐提升 | ≥1.30× | 17.3× | 达标 |
+
+### 结论（修复后）
+
+部分结果。修复输入构造与判定位置错误后，decoder-only Guard 学生不再坍缩：S1 适配后 B1 达到 macro=0.9000，甚至高于 T8（0.8141），说明 Llama Guard 的生成式判定机制可以被提取为二类 head。但一次性剪枝到 0.5B 后，hard 与 KD 恢复均未能守住质量：相对 B1，M1 macro recall 下降 28.9 pp，XSTest unsafe recall 从 0.89 跌至 0.015。KD 相对 hard 无正收益（-0.9 pp）。时延与吞吐目标均显著达标（batch=1 降低 77.2%，batch=32 提升 17.3×）。因此，0.5B 参数压缩在系统加速上成立，但分类召回目标未达成。
+
+### 偏差
+
+- 仅执行 seed 42，未完成预注册的 13 和 2026 seeds。
+- GPU 为 H20-3e（144 GB），非预注册 A100 80GB；时延数值不可直接与 A100 结果比较。
+- 未执行 paired bootstrap CI（需多 seed）。
 
 ## 11. 限制
 

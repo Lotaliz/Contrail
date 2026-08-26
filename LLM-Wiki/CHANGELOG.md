@@ -10,6 +10,9 @@
 
 ## 2026-08-26
 
+- [Fixed] [experiments/20260825-safety-*] 修复 Llama Guard 1B/8B chat template 与判定位置实现错误，重跑三个预注册 safety-classifier-compression 实验并更新实验 README 与项目 overview：decoder S1-adapted 由 0.5000 修正为 0.9000，T8 由 0.5095 修正为 0.8141，encoder M1 由 0.7226 修正为 0.7997；三实验时延目标均达标，质量目标仍未达成（详见各实验 README）。
+- [Added] [experiments/20260826-safety-pruning-finetuned] 完成 LoRA 微调后 Qwen2.5-VL-3B 安全判别在 60%–90% 视觉 token 剪枝下的性能扫描（9 条件 × 300 样本）：微调对 unsafe recall 无提升（C0=0.660），全剪枝范围最大降幅 < 3 pp，结论为检出率由模型固有能力决定而非 token 数量。
+- [Added] [raw/sources] 登记 BeaverTails 数据集（dataset-ji-2023-beavertails），作为实验 20260826 LoRA 微调来源。
 - [Changed] [metadata/tags] 修复 7 个 frontmatter 分隔符错误，为 56 篇论文补充受控技术标签并重构分类标签索引（[[LLM-Wiki/changes/2026-08-26-normalize-technical-tags.md|详情]]）。
 
 ## 2026-08-25
@@ -19,7 +22,8 @@
 - [Added] [research/ai-safety-systems-security-venues] 完成 2023—2026 安全四大顶会中内容安全、对齐、检测与系统治理工作的保守调研，纳入20篇核心论文并明确排除攻击方法（[[LLM-Wiki/changes/2026-08-25-survey-ai-safety-systems-security-venues.md|详情]]）。
 - [Changed] [research/ai-safety-systems-security-venues] 重新泛读核对14篇现有论文，并将英文阅读记录统一改写为中文结构化笔记（[[LLM-Wiki/changes/2026-08-25-survey-ai-safety-systems-security-venues.md|详情]]）。
 
-- [Added] [experiments/safety-classifier-compression] 新增三个互相独立且共享统一数据与超参协议的标准压缩实验设计：0.5B decoder、0.4B 置信度级联和 0.3B encoder（[[LLM-Wiki/changes/2026-08-25-design-safety-compression-experiments.md|详情]]）。
+- [Changed] [experiments/20260825-vispco-qwen25vl-small] 修复 v1 hook 实现（KV-cache 绕过问题），改用 scoring pass + embedding 归零，重跑 Phase 1 v2（20 样本，B0 macro=0.817 vs B1=0.350，剪枝实际生效）与 Phase 2 v2（275 样本，六条件），H1 不满足（V2 相对 B1 仅 +0.73 pp），TextVQA 50% 预算下几乎归零；完整记录 v1/v2 运行、实现限制与序列压缩后续路径。
+- [Added] [experiments/20260825-vispco-qwen25vl-small] 执行 VisPCO Qwen2.5-VL-3B 小规模配置优化测试（Phase 0–2 v1），记录环境冻结（模型 SHA、GPU、依赖版本）、负向运行（HF generate KV-cache 导致所有条件输出完全相同）并记录修复路径。
 - [Added] [research/safety-classifier-compression] 调研 On-policy 蒸馏并凝练为概念实体，补充安全 Guard 的适用边界、方法路线、候选缺口与假设（[[LLM-Wiki/changes/2026-08-25-survey-on-policy-distillation.md|详情]]）。
 - [Changed] [research/visual-token-pruning] 精读 VisPCO 的 Qwen2.5-VL 实验与官方实现，并新增不含代码的小规模预注册实验方案（[[LLM-Wiki/changes/2026-08-25-deep-read-vispco-qwen-experiment.md|详情]]）。
 - [Changed] [wiki] 将品牌视觉与 Wiki 内容结构分离，在仓库根目录建立主 README 与响应式 HTML 封面，并移除 LLM-Wiki 内部 README。

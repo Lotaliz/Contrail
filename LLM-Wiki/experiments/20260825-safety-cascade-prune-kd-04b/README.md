@@ -2,9 +2,9 @@
 id: 20260825-safety-cascade-prune-kd-04b
 type: experiment
 tags: [experiment, data, research, method]
-status: draft
+status: active
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 title: 0.4B Decoder-only Guard 与 8B Guard 的置信度级联
 project_id: safety-classifier-compression
 sources: [paper-fedorov-2024-llama-guard-int4, paper-muralidharan-2024-minitron, paper-lee-2025-saferoute]
@@ -12,7 +12,7 @@ sources: [paper-fedorov-2024-llama-guard-int4, paper-muralidharan-2024-minitron,
 
 # 实验二：0.4B Decoder-only Guard 与 8B Guard 的置信度级联
 
-> 本文是独立实验说明，不依赖任何其他实验的 checkpoint、缓存、阈值或文档；所需训练、剪枝、蒸馏和评测流程均在此重述。无代码，尚未执行。
+> 本文是独立实验说明，不依赖任何其他实验的 checkpoint、缓存、阈值或文档；所需训练、剪枝、蒸馏和评测流程均在此重述。无代码。实验已执行（seed 42），结果见第 9 节。
 
 ## 1. 目的与假设
 
@@ -161,9 +161,78 @@ S1 在 `train-kd` 上用 hard CE 训练 3 epochs；保存 best-dev checkpoint。
 
 ## 9. 原始结果与限制
 
-尚未执行。运行时需保存模型版本、参数统计、结构排序、教师缓存清单、逐样本小/大模型概率、是否回退、原始计时和所有失败记录。
+### 执行环境
 
-限制：仅英文 prompt 二分类；max-probability confidence 在分布外可能失准；两模型同时驻留增加显存；低 deferral 并不保证罕见危害被正确转交；公开数据仍包含使用条款和有害内容治理要求。
+- 种子：42（预注册 13、42、2026，实际仅执行 seed 42）
+- GPU：NVIDIA H20-3e（144 GB），非预注册 A100 80GB
+- 软件：transformers 4.57.6、PyTorch 2.10.0+cu128、CUDA 12.8、BF16
+- 代码位置：`/home/ljm534318/safety-exp/`（Contrail 目录外）
+- 结果文件：`results/exp2_seed42.json`
+
+### 目标形状
+
+| 参数 | 值 |
+|---|---|
+| 层数 | 10 |
+| Hidden width | 1,536 |
+| MLP width | 3,072 |
+| KV heads | 8 |
+| Q heads | 24 |
+| Head dim | 64 |
+| 实际参数量 | 0.4015B |
+
+保留层：[1, 5, 8, 9, 10, 11, 12, 13, 14, 15]。
+
+### 分类与级联结果（seed 42，修复后）
+
+| 模型 | WildGuardTest macro | ToxicChat macro | XSTest macro | 等权 macro | Deferral |
+|---|---|---|---|---|---|
+| B0 (T8) | 0.8070 | 0.7363 | 0.8990 | 0.8141 | — |
+| B3 (hard) | 0.7380 | 0.6255 | 0.5000 | 0.6212 | — |
+| B4 (KD-only) | 0.7056 | 0.6071 | 0.5000 | 0.6042 | — |
+| M1 (cascade) | 0.7558 | 0.6539 | 0.5000 | 0.6366 | WGT 36.3% / TC 32.5% / XS 0.0% |
+
+级联阈值 τ=0.76（T8 dev unsafe_recall=0.7270，目标≥0.7170）。修复实现错误后，小模型 KD-only 不再全 safe 坍缩：在 WildGuardTest 上 unsafe_recall=0.5159、macro=0.7056。但 XSTest 上仍完全预测 safe（unsafe_recall=0.000），导致级联在该集 0% 转交、macro=0.5000。整体级联等权 macro=0.6366，低于 T8 的 0.8141。
+
+> 首次运行同样因 Llama Guard 输入构造与判定位置错误导致小模型全 safe/全 unsafe 坍缩，级联 100% 转交 T8；修复细节见实验一。
+
+### Risk-coverage 曲线（修复后）
+
+τ 从 0.50 提升到 0.99 时，小模型 coverage 由 1.0 单调降至 0.017，deferral 由 0% 升至 98.3%。在 τ=0.50 时完全依赖小模型（macro≈0.6042，XSTest unsafe_recall=0.0）；随着 τ 提高，越来越多困难样本被转交 T8，WildGuardTest 与 ToxicChat 的 unsafe_recall 逐步上升。τ=0.76 为预注册选择阈值，测试集 deferral 在 WildGuardTest 为 36.3%、ToxicChat 为 32.5%、XSTest 为 0.0%，等权 macro=0.6366。τ≥0.93 时 coverage 已低于 12%，接近纯 T8 水平。完整曲线见 `results/exp2_seed42.json` 的 `risk_coverage_curve`。
+
+### 时延与吞吐（seed 42，修复后）
+
+| 模型 | batch=1 P50 (ms) | batch=32 P50 (ms) | samples/s | 峰值显存 (GB) |
+|---|---|---|---|---|
+| B0 (T8) | 37.1 | 1,859.9 | 17.6 | 33.0 |
+| B4 (KD-only) | 7.4 | 80.4 | 407.1 | 33.0 |
+| M1 (cascade) | 6.0 (total p50) | 487.3 | 65.0 | 22.4 |
+
+级联 batch=1 中位总时延 6.0 ms（小模型 5.9 ms + 路由 0.05 ms，非延迟样本占中位数），延迟样本额外增加 T8 53.4 ms；该时延子集 deferral=22.3%。batch=32 级联吞吐 65.0 samples/s，相对 T8-only 的 17.6 samples/s 提升 3.7×。级联峰值显存因大部分时间只需小模型而降至 22.4 GB。
+
+### 成功标准评估（修复后）
+
+| 标准 | 阈值 | 实际 | 结果 |
+|---|---|---|---|
+| unsafe recall 距 T8 | ≤1.0 pp | XSTest -83.0 pp（0.83→0.00） | 失败 |
+| worst-dataset 距 T8 | ≤2.0 pp | XSTest -83.0 pp | 失败 |
+| deferral rate | ≤20% | 22.3%–36.3%（依数据集） | 失败 |
+| batch=1 时延降低 | ≥40% | 83.9%（37.1→6.0 ms p50） | 达标 |
+| batch=32 吞吐提升 | ≥1.50× | 3.7×（17.6→65.0 sps） | 达标 |
+
+### 结论（修复后）
+
+部分结果。修复后小模型不再坍缩，置信度级联具备实际路由能力：batch=1 中位时延和 batch=32 吞吐均显著优于 T8-only。但级联未能满足预注册质量与经济性约束：XSTest 上小模型完全预测 safe，导致该集 unsafe_recall 从 T8 的 0.83 跌至 0.00；WildGuardTest/ToxicChat 的 deferral 也超过 30%，高于 20% 上限。因此，0.4B→8B 级联在系统效率上成立，但召回缺口和 deferral 率均未达标，不能宣称预注册成功。
+
+### 偏差
+
+- 仅执行 seed 42，未完成预注册的 13 和 2026 seeds。
+- GPU 为 H20-3e（144 GB），非预注册 A100 80GB；时延数值不可直接与 A100 结果比较。
+- 未执行 paired bootstrap CI（需多 seed）。
+
+### 限制
+
+仅英文 prompt 二分类；max-probability confidence 在分布外可能失准；两模型同时驻留增加显存；低 deferral 并不保证罕见危害被正确转交；公开数据仍包含使用条款和有害内容治理要求。
 
 ## 10. 关联实体与一次来源
 
