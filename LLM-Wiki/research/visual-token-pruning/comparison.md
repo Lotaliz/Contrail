@@ -4,10 +4,10 @@ type: synthesis
 title: 视觉 Token 剪枝统一比较
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # 统一比较
@@ -43,3 +43,22 @@ updated: 2026-08-24
 - [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md#统一比较|图文多模态 Token 剪枝统一比较]]。
 
 快速选型：encoder-style VLM 用 TRIPS/PuMer；decoder-only training-free 基线用 FastV；重 multi-turn/prefill 用 VisionZip；高压缩覆盖基线用 DivPrune；需要 prompt-aware progressive pruning 用 SparseVLM；任何复杂方法都必须同时对比 Random/Pooling，并单独搜索层预算。
+
+## 双自适应 Guard Serving 的相邻系统比较
+
+| 系统/方法 | 已解决的自适应维度 | 组批/执行机制 | 质量约束 | 当前课题必须新增什么 |
+|---|---|---|---|---|
+| Orca, OSDI'22 | 生成请求的迭代进度 | iteration-level scheduling；selective batching | 无 Guard 安全约束 | 同时容纳可变 token 与可变主干路径 |
+| Brainstorm, OSDI'23 | sub-tensor 动态路由/子网 | Cell、Router、动态分布专门化 | 通用模型精度 | Guard execution signature、安全证据与风险约束 |
+| Deja Vu, ICML'23 | 输入相关 head/MLP 稀疏 | 在线预测、异步硬件感知执行 | 通用 LM 质量 | 多模态 Guard 上的安全保持与高 batch 执行 |
+| Sarathi-Serve, OSDI'24 | prefill/decode 工作量 | chunked-prefill、stall-free uniform batches | TTFT/TPOT SLO | 短输出 Guard 的 time-to-verdict 与二维异构组批 |
+| Apparate, SOSP'24 | 请求级 early exit | 持续完整执行反馈、在线 ramp/threshold 调整 | accuracy drop budget | fixed-FPR/worst-risk 约束；不能总是后台跑完整 Guard |
+| PowerInfer, SOSP'24 | 热/冷神经元激活 | CPU-GPU 放置、自适应预测、稀疏算子 | 通用 LM 质量 | 数据中心 Guard 的权重驻留与批执行设计 |
+| SuperServe, NSDI'25 | 权重共享子网与请求 slack | SubNetAct + SlackFit | accuracy/latency target | Token×主干联合 profile 与安全回退 |
+| PuDDing, ICML'25 | prompt/task-dependent depth | router 选择 omission set | 任务平均性能 | 风险/证据驱动路径以及 serving integration |
+| SafeRoute, Findings ACL'25 | 小/大 Guard 路由 | router 选择独立模型 | Guard F1/计算 | 多模态、权重共享、batch/SLO 与细粒度安全约束 |
+| SafeWatch, ICLR'25 | policy-aware 视频 token | policy attention + adaptive pruning | 平均 Guard 指标 | 主干弹性、在线服务、P99 与固定 FPR |
+
+### 结论
+
+当前方案的每个单模块都有强先例，但“Guard 安全约束下同时控制序列长度和主干路径，并保持高效批执行”尚未被上述论文完整覆盖。这一交集是可投稿空间，也是必须用系统机制而非模块堆砌证明的部分。

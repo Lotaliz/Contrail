@@ -3,10 +3,10 @@ id: visual-token-pruning-motivation
 type: synthesis
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-zhan-2024-token-pruning-vssm, paper-cao-2023-pumer, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-zhan-2024-token-pruning-vssm, paper-cao-2023-pumer, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 title: 面向精度保持与低时延的研究动机
 synthesis_kind: motivation
 ---
@@ -46,3 +46,38 @@ synthesis_kind: motivation
 3. 任务：VQAv2/MMBench、TextVQA、RefCOCO、POPE、Visual Haystack、multi-turn 与一个视频 QA。
 4. 质量：accuracy/EM/CIDEr、grounding IoU、幻觉、输出长度与按类别失败率。
 5. 系统：vision encode、TTFT、decode tokens/s、E2E P50/P95、KV/peak memory、selector 时间；固定 prompt/output length 对照。
+
+## 面向 OSDI 的双自适应安全判别 Serving
+
+### 场景约束
+
+多模态 AI 服务常在目标模型调用前后执行安全判别。Guard 位于关键路径，既需要在突发、并发到达下满足 time-to-verdict SLO，又不能用普通平均 accuracy 换取高风险漏报。请求的图像分辨率、视频帧数、文本长度、政策数量和风险难度具有显著异质性，统一使用最大 Token 预算和完整主干会浪费计算。
+
+### 已有方法的假设
+
+SafeWatch 假设可按 policy relevance 剪视频 Token；PuDDing、Deja Vu 与 PowerInfer 分别证明可按输入改变主干深度或激活；Apparate、SuperServe 证明可在 serving 时按请求选择 early exit 或共享子网；Orca、Sarathi-Serve 与 Brainstorm 提供动态组批和动态网络执行机制。因而“增加 Token 剪枝、增加主干剪枝、支持 batch”本身是已有技术组合，不足以构成 OSDI 动机。
+
+### 可测缺口
+
+两个自适应维度共同形成二维 execution signature：序列预算改变 GEMM 形状和 KV/激活规模，主干预算改变 kernel 序列与权重访问。逐请求最优路径可能把一个 dense batch 碎裂为许多小批次，使选择器节省被 padding、分桶等待、kernel launch 和低 occupancy 抵消。同时，Token 删除会改变后续层的安全可分性，使两个预算在质量上也可能非独立。现有代表工作没有同时以 Guard 的 fixed-FPR/worst-risk 约束、二维动态执行和真实并发 SLO 为优化对象。
+
+### 研究问题
+
+能否构建一个 **risk- and SLO-aware elastic Guard serving system**：以少量可执行二维 profile 表达 Token 与主干预算；在请求风险、证据覆盖、deadline slack 和队列状态之间联合决策；通过 execution-signature-aware batching 保持 GPU 利用率；并在风险下界不足或分布漂移时恢复 Token、升级路径或回退完整 Guard？
+
+### OSDI 投稿判断
+
+课题方向合适，但当前三模块表述仍偏算法拼接。达到 OSDI 标准的最小主线应是：
+
+1. **新抽象或机制：** 双维弹性 Guard profile，以及 profile 间可恢复/升级的执行语义。
+2. **核心系统难题：** 在动态 shape 与动态 path 并存时维持高效 batch、kernel/graph 复用和低 P99。
+3. **在线策略：** 风险约束优先、SLO 次之、资源效率再次之；不能用平均准确率补偿安全漏报。
+4. **完整实现：** 接入主流推理引擎，至少在服务器 GPU 上实现真实 kernel/runtime 路径，而非离线模拟调度。
+5. **端到端证据：** 真实或公开到达 trace、突发负载、模态/风险混合、分布漂移；比较 dense Guard、静态压缩、独立自适应、SafeRoute/SuperServe-style routing 和动态网络 runtime 基线。
+
+### 贡献边界
+
+- 若主干模块只是离线生成若干剪枝模型，再按置信度路由，更像 SuperServe/SafeRoute 的 Guard 应用。
+- 若只报告单请求 latency/FLOPs，不解决批次碎片化和 P99，难以达到 OSDI。
+- 若为适配 Guard 发明复杂剪枝训练，但系统机制较弱，更适合 MLSys/ICML。
+- 若证明二维质量—成本面非可分，并用新的 runtime/scheduler 在风险约束下显著提高 SLO goodput，则具备较强 OSDI 叙事。

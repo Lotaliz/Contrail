@@ -4,10 +4,10 @@ type: synthesis
 title: 视觉 Token 剪枝证据缺口
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-zhan-2024-token-pruning-vssm, paper-yao-2026-v-pruner, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-zhan-2024-token-pruning-vssm, paper-yao-2026-v-pruner, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # 证据缺口
@@ -74,3 +74,31 @@ updated: 2026-08-24
 - 反证：视觉 token 通常远多于 prompt token，优先压视觉侧可能已覆盖主要成本；文本压缩还有独立 LLM/KV 文献。
 - 边界：该判断来自代表性样本而非穷举，尚不进入正式 Motivation。
 - 待验证：扩大到 ACL/EMNLP/NeurIPS/ICLR 的 joint multimodal cache/pruning 文献后，是否仍成立？
+
+## G10：Token 预算与主干预算通常被独立优化（满足 Motivation 门槛）
+
+- 支持：SafeWatch 只自适应视频 Token；PuDDing 只按 prompt 选择主干 omission set；Deja Vu/PowerInfer 只利用主干激活稀疏。它们分别证明两个维度可行，但没有回答删除输入证据后哪些层仍可安全省略。
+- 反证：Brainstorm 能表达一般 sub-tensor 动态路由，理论上可承载两个维度；因此缺口不是“框架无法执行”，而是缺少 Guard 特有的联合决策、质量约束和执行优化。
+- 边界：若两个预算近似独立，离线笛卡尔积 profile + 查表已足够，不构成新系统问题。
+- 待验证：在多模态 Guard 上测量二维质量/时延面是否非可分；比较独立贪心、顺序决策和联合 oracle 的差距。
+
+## G11：请求级双动态会破坏批处理同构性（满足 Motivation 门槛）
+
+- 支持：Orca 说明生成请求需要迭代级重组批；Sarathi-Serve 说明均匀 batch 可减少 stall；Brainstorm 说明 sub-tensor 动态路由需要专门执行抽象。视觉/文本 Token 数和主干路径共同变化会同时改变矩阵形状与 kernel 序列。
+- 反证：将预算量化为少量固定 profile、使用 padding 或每 profile 单独队列，可能已经足够；在低负载或 batch=1 下问题也较弱。
+- 边界：只有在真实并发、突发到达和严格尾时延目标下证明 naive 动态策略失去净收益，才构成 OSDI 级系统缺口。
+- 待验证：量化不同 execution signature 数量对 GPU occupancy、CUDA graph 复用、排队、P50/P99 与 goodput 的影响。
+
+## G12：普通 accuracy/SLO 不适合直接约束安全 Guard（满足 Motivation 门槛）
+
+- 支持：Apparate 和 SuperServe 以 accuracy budget 或 accuracy-latency operating point 调度；SafeRoute 主要以 F1/计算权衡；SafeWatch 主要报告平均 Guard 指标。安全审核的 false negative 成本、固定 FPR 召回和风险类别 worst-group 并未进入这些 serving 策略。
+- 反证：只要业务能把安全指标转换成统一 utility，通用 SLO scheduler 也可使用；Guard 特殊性不能只靠口头强调。
+- 边界：需要真实证明相同平均 F1 的 profile 在高风险组上排序不同，且 accuracy-aware 策略会选择错误路径。
+- 待验证：建立 per-risk-class 保守下界或 conformal/calibrated risk bound，并评估漂移与自适应攻击下的失效。
+
+## G13：在线反馈与完整 Guard 回退的成本尚未闭合（候选缺口）
+
+- 支持：Apparate 可让已提前返回请求继续跑完整模型，以获得持续精度反馈；安全服务若对所有请求这样做，计算节省可能只降低响应时延而不提高吞吐。SafeRoute 的大 Guard fallback 同样消耗额外容量。
+- 反证：稀疏抽样审计、影子副本或低负载期验证可能足够，未必需要全量反馈。
+- 边界：该问题依赖漂移速度、允许的风险和审计预算，目前没有本地 trace 证据。
+- 待验证：比较全量 shadow、风险分层抽样、漂移触发审计和无审计策略的安全—goodput—检测延迟权衡。

@@ -6,9 +6,9 @@ aliases: [视觉 Token 剪枝, 视觉 Token 压缩]
 tags: [research, method]
 status: active
 related: [multimodal-token-pruning]
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # 视觉模型 Token 剪枝：精度保持与推理时延优化
@@ -39,6 +39,8 @@ updated: 2026-08-24
 6. 多模态选择具有 query dependence：TRIPS、PuMer、SparseVLM 证明文本可指导视觉选择；但 Wen et al. 的统一复核显示普通 benchmark 上 random/pooling 可胜部分 attention selector，语言信号与 attention 分数都不是普适真值。
 7. 生成任务新增 prefill、decode 与 KV cache 三阶段。VisionZip 的 prefill 约 7.8× 改善只对应约 3× 总时间，DivPrune 的 prefill 约快 55%只对应 E2E 约快 22%，必须分项测量。
 8. 该方向属于 2024–2026 的明显热点，但尚未成熟：研究已扩展到 multi-turn、视频、多样性与 Pareto 配置；联合图文 token 剪枝、未来生成相关性和跨硬件 P95 仍是空白。
+9. 面向 OSDI 的“双自适应 Guard serving”方向合适，但视觉/文本 Token 剪枝、任务相关主干剪枝与动态 serving 均已有直接先例。可成立的系统问题不是三个模块相加，而是：请求级二维动态执行导致批次碎片化，如何在安全质量约束与时延 SLO 下联合选择、组批、执行和回退。
+10. Brainstorm、Apparate 与 SuperServe 已分别覆盖动态网络运行时、在线 early-exit serving 和权重共享子网调度。当前课题必须利用 Guard 特有的漏报不对称、证据完整性和风险回退形成新的系统抽象；仅做置信度路由或若干固定剪枝 profile 不足以支持 OSDI 新颖性。
 
 ## 面向判别任务的建议路线
 
@@ -47,6 +49,12 @@ updated: 2026-08-24
 ## 面向图文多模态的建议路线
 
 以 `Random/Pooling → FastV → VisionZip/DivPrune → SparseVLM → layer-budget search` 建立基线，任务至少覆盖普通 VQA、TextVQA/OCR、RefCOCO、POPE、multi-turn 与视频；分开报告 vision encode、TTFT/prefill、decode tokens/s、KV memory 和 E2E P50/P95。
+
+## 面向 OSDI 的双自适应 Guard Serving 判断
+
+建议把系统抽象为一个 **risk- and SLO-aware elastic Guard runtime**。每个请求不独立选择两个连续剪枝率，而是从少量可高效执行的二维 profile 中选择：`(视觉/文本 token budget, 主干执行路径)`。调度器将风险下限、deadline slack、队列状态和 GPU profile 共同纳入决策，并按 execution signature 组批；当证据覆盖、校准置信度或运行时漂移不满足安全约束时，恢复 token、升级主干或回退完整 Guard。
+
+OSDI 贡献应至少包含：二维弹性 Guard 的执行抽象；避免动态 shape/path 破坏 GPU batch 的机制；安全约束下的在线策略；真实到达 trace、突发负载和分布漂移上的 goodput/P99 评估。模型剪枝算法本身可采用或扩展现有方法，不宜同时声称三个彼此松散的算法贡献。
 
 ## 项目文档
 

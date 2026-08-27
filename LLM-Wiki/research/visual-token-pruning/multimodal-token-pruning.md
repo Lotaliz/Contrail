@@ -3,10 +3,10 @@ id: visual-token-pruning-multimodal-survey
 type: synthesis
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 title: 图文多模态模型 Token 剪枝：分类、生成与新挑战
 synthesis_kind: literature-review
 ---
@@ -95,6 +95,10 @@ VisionZip 将 LLaVA-NeXT 7B prefill 从 218ms 降到 27.8ms（7.8×），但同�
 ### C10：层位置与预算是独立优化问题
 
 PuMer/TRIPS 已观察“越早减越快、越晚减越稳”；VisPCO 进一步显示在 50% 中等预算下，不同配置可相差最多 19 个百分点，并通过 Pareto search 改善多种 base pruning rules。说明“选什么 token”和“何时/剪多少”应分开建模。
+
+### C11：Token 与主干双自适应放大批次异构
+
+若再为每个请求选择不同 Transformer 层/子网，系统同时面对可变序列长度和可变执行图。Orca/Sarathi-Serve 说明批内工作量不均会导致等待与 stall，Brainstorm 说明 sub-tensor dynamic dispatch 需要专门抽象，Apparate/SuperServe 说明请求级路径选择还要与 SLO 和在线质量反馈协调。对 Guard，最小可行方案应将连续选择量化为少量 `(token bucket, backbone path)` profile，并验证 profile 数量、组批等待和安全质量之间的 Pareto 面。
 
 ## 技术路线图
 

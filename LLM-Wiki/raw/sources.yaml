@@ -847,3 +847,99 @@ sources:
     sha256: ""
     license: "unknown"
     notes: "Video moderation based on cross-frame scene-graph evidence; provides direct evidence that sparse, distributed safety semantics can be lost by frame/token reduction."
+  - id: paper-yu-2022-orca
+    kind: paper
+    title: "Orca: A Distributed Serving System for Transformer-Based Generative Models"
+    authors: ["Gyeong-In Yu", "Joo Seong Jeong", "Geon-Woo Kim", "Soojeong Kim", "Byung-Gon Chun"]
+    year: 2022
+    venue: "OSDI 2022"
+    url: "https://www.usenix.org/conference/osdi22/presentation/yu"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Iteration-level scheduling and selective batching for autoregressive Transformer serving."
+  - id: paper-cui-2023-brainstorm
+    kind: paper
+    title: "Optimizing Dynamic Neural Networks with Brainstorm"
+    authors: ["Weihao Cui", "Zhenhua Han", "Lingji Ouyang", "Yichuan Wang", "Ningxin Zheng", "Lingxiao Ma", "Yuqing Yang", "Fan Yang", "Jilong Xue", "Lili Qiu", "Lidong Zhou", "Quan Chen", "Haisheng Tan", "Minyi Guo"]
+    year: 2023
+    venue: "OSDI 2023"
+    url: "https://www.usenix.org/conference/osdi23/presentation/cui"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Cell/Router abstractions and runtime specialization for sub-tensor dynamic neural-network execution."
+  - id: paper-liu-2023-dejavu
+    kind: paper
+    title: "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time"
+    authors: ["Zichang Liu", "Jue Wang", "Tri Dao", "Tianyi Zhou", "Binhang Yuan", "Zhao Song", "Anshumali Shrivastava", "Ce Zhang", "Yuandong Tian", "Christopher Ré", "Beidi Chen"]
+    year: 2023
+    venue: "ICML 2023"
+    url: "https://proceedings.mlr.press/v202/liu23am.html"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Input-dependent attention-head and MLP contextual sparsity with asynchronous hardware-aware execution."
+  - id: paper-agrawal-2024-sarathi-serve
+    kind: paper
+    title: "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve"
+    authors: ["Amey Agrawal", "Nitin Kedia", "Ashish Panwar", "Jayashree Mohan", "Nipun Kwatra", "Bhargav Gulavani", "Alexey Tumanov", "Ramachandran Ramjee"]
+    year: 2024
+    venue: "OSDI 2024"
+    url: "https://www.usenix.org/conference/osdi24/presentation/agrawal"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Chunked-prefill and stall-free scheduling for uniform batches under tail-latency constraints."
+  - id: paper-dai-2024-apparate
+    kind: paper
+    title: "Apparate: Rethinking Early Exits to Tame Latency-Throughput Tensions in ML Serving"
+    authors: ["Yinwei Dai", "Rui Pan", "Anand Iyer", "Kai Li", "Ravi Netravali"]
+    year: 2024
+    venue: "SOSP 2024"
+    url: "https://doi.org/10.1145/3694715.3695963"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Serving-time early exits with continual feedback and online ramp/threshold adaptation under accuracy constraints."
+  - id: paper-song-2024-powerinfer
+    kind: paper
+    title: "PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU"
+    authors: ["Yixin Song", "Zeyu Mi", "Haotong Xie", "Haibo Chen"]
+    year: 2024
+    venue: "SOSP 2024"
+    url: "https://doi.org/10.1145/3694715.3695964"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Hot/cold neuron placement, adaptive activation predictors and sparse operators for hybrid CPU-GPU LLM serving."
+  - id: paper-khare-2025-superserve
+    kind: paper
+    title: "SuperServe: Fine-Grained Inference Serving for Unpredictable Workloads"
+    authors: ["Alind Khare", "Dhruv Garg", "Sukrit Kalra", "Snigdha Grandhi", "Ion Stoica", "Alexey Tumanov"]
+    year: 2025
+    venue: "NSDI 2025"
+    url: "https://www.usenix.org/conference/nsdi25/presentation/khare"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Weight-shared subnet actuation and SLO-aware reactive scheduling across latency-accuracy operating points."
+  - id: paper-wee-2025-pudding
+    kind: paper
+    title: "Prompt-based Depth Pruning of Large Language Models"
+    authors: ["Juyun Wee", "Minjae Park", "Jaeho Lee"]
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://proceedings.mlr.press/v267/wee25a.html"
+    accessed: 2026-08-26
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Prompt-routed selection among task-dependent Transformer block omission sets."

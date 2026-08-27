@@ -4,10 +4,10 @@ type: synthesis
 title: 视觉 Token 剪枝检索与阅读日志
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # 检索与阅读日志
@@ -68,3 +68,27 @@ updated: 2026-08-24
 
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]：从 patch token、ViT/Swin 结构、任务类型、训练/推理流程到剪枝/合并/凝聚/恢复的区别。
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]：图文 token、prefill/decode/KV cache 与分类—生成差异。
+
+## OSDI 双自适应 Guard Serving 补充检索
+
+- 检索日期与时间截点：2026-08-26。
+- 站点：USENIX OSDI/NSDI 正式 proceedings、ACM SOSP DOI 页面、PMLR/ICML；Guard 直接证据复用 Wiki 已登记的 SafeWatch、SafeRoute。
+- 关键词族：`dynamic neural network serving`, `adaptive subnet serving SLO`, `early exit serving batching`, `LLM contextual sparsity`, `prompt depth pruning`, `continuous batching`, `chunked prefill`, `multimodal guard latency`。
+- 纳入：OSDI/SOSP/NSDI/MLSys/ICML 中直接处理请求级动态计算、主干稀疏、连续批处理或 SLO 调度的正式论文；以及与多模态 Guard 自适应直接相关的正式论文。
+- 排除：仅静态量化/权重压缩、没有真实系统执行的纯剪枝精度论文、未录用预印本、与 Guard/动态组批关系较弱的通用集群资源管理。
+- 覆盖限制：本轮目标是判断 OSDI 定位而非穷举全部 LLM serving；八篇新增论文均为 `skimmed/source-checked`，结论限于官方摘要、正文公开页和论文元数据，未做本地复现。
+
+| 论文 | 会议 | 层级 | 核验 | 纳入角色 |
+|---|---|---|---|---|
+| Orca | OSDI 2022 | skimmed | source-checked | iteration-level scheduling 与 selective batching 基础 |
+| Brainstorm | OSDI 2023 | skimmed | source-checked | 动态网络 Cell/Router 抽象与运行时优化核心先例 |
+| Deja Vu | ICML 2023 | skimmed | source-checked | 输入相关 head/MLP contextual sparsity |
+| Sarathi-Serve | OSDI 2024 | skimmed | source-checked | chunked-prefill、uniform batch 与尾时延 |
+| Apparate | SOSP 2024 | skimmed | source-checked | early-exit serving、在线反馈与准确率约束 |
+| PowerInfer | SOSP 2024 | skimmed | source-checked | 激活稀疏的权重放置、预测器和 sparse operator |
+| SuperServe | NSDI 2025 | skimmed | source-checked | 权重共享子网激活与 SLO-aware routing |
+| PuDDing | ICML 2025 | skimmed | source-checked | prompt/task-dependent Transformer depth pruning |
+
+### 检索结论
+
+“任务自适应 Token 剪枝 + 任务自适应主干剪枝 + batch serving”中的每个单项均已有强先例。当前可辩护缺口是三者交叉处的 Guard 特有问题：Token 与主干预算质量上非可分、执行上产生二维异构，以及平均 accuracy 不能替代 fixed-FPR/worst-risk 安全约束。

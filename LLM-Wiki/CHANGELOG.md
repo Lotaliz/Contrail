@@ -10,6 +10,7 @@
 
 ## 2026-08-26
 
+- [Changed] [research/visual-token-pruning] 补充 OSDI/SOSP/NSDI 动态网络与推理 serving 调研，将多模态 Guard 课题重构为风险/SLO 约束下的 Token—主干二维弹性执行、批处理与回退系统（[[LLM-Wiki/changes/2026-08-26-osdi-dual-adaptive-guard-serving.md|详情]]）。
 - [Fixed] [experiments/20260825-safety-*] 修复 Llama Guard 1B/8B chat template 与判定位置实现错误，重跑三个预注册 safety-classifier-compression 实验并更新实验 README 与项目 overview：decoder S1-adapted 由 0.5000 修正为 0.9000，T8 由 0.5095 修正为 0.8141，encoder M1 由 0.7226 修正为 0.7997；三实验时延目标均达标，质量目标仍未达成（详见各实验 README）。
 - [Added] [experiments/20260826-safety-pruning-finetuned] 完成 LoRA 微调后 Qwen2.5-VL-3B 安全判别在 60%–90% 视觉 token 剪枝下的性能扫描（9 条件 × 300 样本）：微调对 unsafe recall 无提升（C0=0.660），全剪枝范围最大降幅 < 3 pp，结论为检出率由模型固有能力决定而非 token 数量。
 - [Added] [raw/sources] 登记 BeaverTails 数据集（dataset-ji-2023-beavertails），作为实验 20260826 LoRA 微调来源。

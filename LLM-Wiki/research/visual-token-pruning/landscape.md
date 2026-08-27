@@ -4,10 +4,10 @@ type: synthesis
 title: 视觉 Token 剪枝技术路线图
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 ---
 
 # 技术路线图
@@ -48,6 +48,22 @@ decoder-only VLM 的收益分为视觉编码、prefill/TTFT、decode 与 KV cach
 
 VisPCO 把层位置/保留率建模为 Pareto configuration；Wen et al. 则显示 random/pooling、空间均匀性和真实 latency 是不可省略的基线。路线已从“谁的 attention score 更好”转向“重要性 + 冗余/覆盖 + 层预算 + 系统成本”。
 
+## 10. 输入相关的主干稀疏与深度路由
+
+Deja Vu 在线预测 attention head/MLP contextual sparsity；PowerInfer 将热/冷神经元分布落实为 CPU-GPU 放置与稀疏算子；PuDDing 则按 prompt 从 Transformer block omission sets 中选择路径。三者说明“按任务剪 LLM 主干”已有算法和系统先例。对 Guard 而言，需要重新定义选择信号为风险难度、策略类别和多模态证据充分性，并验证这些信号是否真能预测安全判别所需深度。
+
+## 11. 动态网络执行抽象
+
+OSDI'23 Brainstorm 用 Cell 与 Router 表达 sub-tensor 粒度的动态分发，并按运行时动态分布专门化执行。双自适应 Guard 同时改变序列维和模型路径维，属于它覆盖的广义动态网络问题。新的系统必须在 Guard 场景中提出更具体的 execution signature、算子或批处理机制，而不能把 Python 层 mask 与 padding 当作完成的 runtime。
+
+## 12. SLO 感知的可变模型 Serving
+
+SOSP'24 Apparate 已支持请求级 early exit、持续质量反馈与在线阈值调整；NSDI'25 SuperServe 已支持权重共享子网的快速激活和基于 slack 的调度；SafeRoute 则在小/大 Guard 间路由。它们把当前课题的竞争焦点推向：Token 与主干预算的耦合、安全风险约束、二维异构批次，以及无法继续完整执行所有请求时的低成本审计与回退。
+
+## 13. 连续批处理与异构工作量整形
+
+Orca 的 iteration-level scheduling、Sarathi-Serve 的 chunked-prefill 与 uniform batch 表明，批内工作量差异会直接转化为排队、stall 与尾延迟。双自适应 Guard 需要将 `(token bucket, layer/subnet profile)` 作为执行签名：同签名请求形成高效 dense batch，临近 deadline 的请求可升级、降级或单独发射；但任何降级都必须先满足风险下限。
+
 ## 综合判断
 
-精度保持需要“重要性 + 多样性/聚合 + 架构约束”；多模态还需加入“当前查询 + 未来生成/多轮可复用性”。时延缩短需要“规则张量形状或高效动态执行 + 目标硬件测量”，生成任务必须拆分 TTFT、decode 与 KV。单独优化任何一侧都可能出现 FLOPs 降低但时延不降，或平均精度稳定但定位/OCR/事实性失效。
+精度保持需要“重要性 + 多样性/聚合 + 架构约束”；多模态还需加入“当前查询 + 未来生成/多轮可复用性”。时延缩短需要“规则张量形状或高效动态执行 + 目标硬件测量”，生成任务必须拆分 TTFT、decode 与 KV。对双自适应 Guard，系统核心进一步变为“风险约束下的二维 profile 选择 + execution-signature-aware batching + 安全回退”。单独优化任何一侧都可能出现 FLOPs 降低但时延不降，或平均精度稳定但高风险请求漏检。
