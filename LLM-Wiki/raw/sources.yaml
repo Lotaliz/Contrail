@@ -891,8 +891,8 @@ sources:
     venue: "OSDI 2024"
     url: "https://www.usenix.org/conference/osdi24/presentation/agrawal"
     accessed: 2026-08-26
-    local_path: ""
-    sha256: ""
+    local_path: "papers/2024-agrawal-sarathi-serve.pdf"
+    sha256: "2416e51f584230107739783e5995d3dea3efad93f189e2c3119434d62a31412c"
     license: "unknown"
     notes: "Chunked-prefill and stall-free scheduling for uniform batches under tail-latency constraints."
   - id: paper-dai-2024-apparate
@@ -943,3 +943,171 @@ sources:
     sha256: ""
     license: "unknown"
     notes: "Prompt-routed selection among task-dependent Transformer block omission sets."
+  - id: paper-zhu-2025-nanoflow
+    kind: paper
+    title: "NanoFlow: Towards Optimal Large Language Model Serving Throughput"
+    authors: ["Kan Zhu", "Yufei Gao", "Yilong Zhao", "Liangyu Zhao", "Gefei Zuo", "Yile Gu", "Dedong Xie", "Tian Tang", "Qinyu Xu", "Zihao Ye", "Keisuke Kamahori", "Chien-Yu Lin", "Ziren Wang", "Stephanie Wang", "Arvind Krishnamurthy", "Baris Kasikci"]
+    year: 2025
+    venue: "OSDI 2025"
+    url: "https://www.usenix.org/conference/osdi25/presentation/zhu-kan"
+    accessed: 2026-08-27
+    local_path: "papers/2025-zhu-nanoflow.pdf"
+    sha256: "0b6a8d61e59bf808d9e5426364e6637095b2a22a2eced4fcba09b6eece145481"
+    license: "unknown"
+    notes: "Intra-device parallelism via nano-batching and interference-aware pipeline search for LLM serving throughput."
+  - id: paper-yu-2026-prism
+    kind: paper
+    title: "Prism: Cost-Efficient Multi-LLM Serving via GPU Memory Ballooning"
+    authors: ["Shan Yu", "Yifan Qiao", "Mingyuan Ma", "Yangmin Li", "Shuo Yang", "Xinyuan Tong", "Yang Wang", "Zhiqiang Xie", "Yuwei An", "Shiyi Cao", "Ke Bao", "Deepak Vij", "Xiaoning Ding", "Yichen Wang", "Qingda Lu", "Zhong Wang", "Gao Gao", "Harry Xu", "Junyi Shu", "Jiarong Xing", "Ying Sheng"]
+    year: 2026
+    venue: "OSDI 2026"
+    url: "https://www.usenix.org/conference/osdi26/presentation/yu-shan"
+    accessed: 2026-08-27
+    local_path: "papers/2026-yu-prism.pdf"
+    sha256: "b2af6f908a07adbb037c0dc14ccebfa51b7635c2ec614f1a0d39d8eea4017347"
+    license: "unknown"
+    notes: "Cross-model GPU memory ballooning and hierarchical SLO-aware scheduling for production multi-LLM serving."
+  - id: paper-shen-2025-numerical-pruning
+    kind: paper
+    title: "Numerical Pruning for Efficient Autoregressive Models"
+    authors: ["Xuan Shen", "Zhao Song", "Yufa Zhou", "Bo Chen", "Jing Liu", "Ruiyi Zhang", "Ryan A. Rossi", "Hao Tan", "Tong Yu", "Xiang Chen", "Yufan Zhou", "Tong Sun", "Pu Zhao", "Yanzhi Wang", "Jiuxiang Gu"]
+    year: 2025
+    venue: "AAAI 2025"
+    url: "https://ojs.aaai.org/index.php/AAAI/article/view/34249"
+    accessed: 2026-08-28
+    local_path: "papers/2025-shen-numerical-pruning.pdf"
+    sha256: "9af8f7eb2c606478b97cb95bd2d5efa75a8a9f35a189d0277c13d1dfce4d221f"
+    license: "unknown"
+    notes: "Training-free structured head/channel pruning using Newton numerical scores, global ranking, and closed-form weight compensation."
+  - id: paper-kwon-2023-vllm
+    kind: paper
+    title: "Efficient Memory Management for Large Language Model Serving with PagedAttention"
+    authors: ["Woosuk Kwon", "Zhuohan Li", "Siyuan Zhuang", "Ying Sheng", "Lianmin Zheng", "Cody Hao Yu", "Joseph E. Gonzalez", "Hao Zhang", "Ion Stoica"]
+    year: 2023
+    venue: "SOSP 2023"
+    url: "https://arxiv.org/abs/2309.06180"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "PagedAttention and block-based KV-cache management for high-throughput variable-length LLM serving."
+  - id: paper-zhong-2024-distserve
+    kind: paper
+    title: "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving"
+    authors: ["Yinmin Zhong", "Shengyu Liu", "Junda Chen", "Jianbo Hu", "Yibo Zhu", "Xuanzhe Liu", "Xin Jin", "Hao Zhang"]
+    year: 2024
+    venue: "OSDI 2024"
+    url: "https://www.usenix.org/conference/osdi24/presentation/zhong-yinmin"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Disaggregates prefill and decode to remove phase interference and independently optimize parallelism under TTFT and TPOT SLOs."
+  - id: paper-ma-2023-llm-pruner
+    kind: paper
+    title: "LLM-Pruner: On the Structural Pruning of Large Language Models"
+    authors: ["Xinyin Ma", "Gongfan Fang", "Xinchao Wang"]
+    year: 2023
+    venue: "NeurIPS 2023"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/44956951349095f74492a5471128a7e0-Abstract-Conference.html"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Structured pruning of coupled parameter groups using first-order Taylor and approximate Fisher information, followed by LoRA recovery."
+  - id: paper-an-2024-flap
+    kind: paper
+    title: "Fluctuation-Based Adaptive Structured Pruning for Large Language Models"
+    authors: ["Yongqi An", "Xu Zhao", "Tao Yu", "Ming Tang", "Jinqiao Wang"]
+    year: 2024
+    venue: "AAAI 2024"
+    url: "https://ojs.aaai.org/index.php/AAAI/article/view/28960"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Retraining-free structured pruning using activation fluctuation, global score standardization and baseline bias compensation."
+  - id: paper-zhong-2025-blockpruner
+    kind: paper
+    title: "BlockPruner: Fine-grained Pruning for Large Language Models"
+    authors: ["Longguang Zhong", "Fanqi Wan", "Ruijun Chen", "Xiaojun Quan", "Liangzhi Li"]
+    year: 2025
+    venue: "Findings of ACL 2025"
+    url: "https://aclanthology.org/2025.findings-acl.262/"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Training-free iterative pruning that treats MHA and MLP residual branches as minimal blocks and ranks single-block masks by calibration perplexity."
+  - id: paper-men-2025-shortgpt
+    kind: paper
+    title: "ShortGPT: Layers in Large Language Models are More Redundant Than You Expect"
+    authors: ["Xin Men", "Mingyu Xu", "Qingyu Zhang", "Qianhao Yuan", "Bingning Wang", "Hongyu Lin", "Yaojie Lu", "Xianpei Han", "Weipeng Chen"]
+    year: 2025
+    venue: "Findings of ACL 2025"
+    url: "https://aclanthology.org/2025.findings-acl.1035/"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Layer pruning using Block Influence, an activation-only cosine-distance measure between residual-block inputs and outputs."
+  - id: paper-shi-2023-upop
+    kind: paper
+    title: "UPop: Unified and Progressive Pruning for Compressing Vision-Language Transformers"
+    authors: ["Dachuan Shi", "Chaofan Tao", "Ying Jin", "Zhendong Yang", "Chun Yuan", "Jiaqi Wang"]
+    year: 2023
+    venue: "ICML 2023"
+    url: "https://proceedings.mlr.press/v202/shi23e.html"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Unified learnable-mask search and progressive pruning for vision-language Transformers across modalities and structures."
+  - id: paper-sanh-2020-movement-pruning
+    kind: paper
+    title: "Movement Pruning: Adaptive Sparsity by Fine-Tuning"
+    authors: ["Victor Sanh", "Thomas Wolf", "Alexander M. Rush"]
+    year: 2020
+    venue: "NeurIPS 2020"
+    url: "https://proceedings.neurips.cc/paper/2020/hash/eae15aabaa768ae4a5993a8a4f4fa6e4-Abstract.html"
+    accessed: 2026-08-27
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Task-adaptive first-order mask-score pruning for pretrained Transformers during fine-tuning."
+  - id: paper-cai-2020-once-for-all
+    kind: paper
+    title: "Once-for-All: Train One Network and Specialize it for Efficient Deployment"
+    authors: ["Han Cai", "Chuang Gan", "Tianzhe Wang", "Zhekai Zhang", "Song Han"]
+    year: 2020
+    venue: "ICLR 2020"
+    url: "https://openreview.net/forum?id=HylxE1HKwS"
+    accessed: 2026-08-28
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Classic once-for-all supernetwork trained by progressive shrinking, followed by deployment-time subnet specialization across depth, width, kernel size and resolution."
+  - id: paper-devvrit-2024-matformer
+    kind: paper
+    title: "MatFormer: Nested Transformer for Elastic Inference"
+    authors: ["Devvrit", "Sneha Kudugunta", "Aditya Kusupati", "Tim Dettmers", "Kaifeng Chen", "Inderjit Dhillon", "Yulia Tsvetkov", "Hannaneh Hajishirzi", "Sham Kakade", "Ali Farhadi", "Prateek Jain"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/fe066022bab2a6c6a3c57032a1623c70-Abstract-Conference.html"
+    accessed: 2026-08-28
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Nested FFN Transformer that trains a universal elastic model and supports extraction or dynamic selection of many behaviorally consistent submodels."
+  - id: paper-raposo-2024-mixture-of-depths
+    kind: paper
+    title: "Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models"
+    authors: ["David Raposo", "Sam Ritter", "Blake Richards", "Timothy Lillicrap", "Peter Conway Humphreys", "Adam Santoro"]
+    year: 2024
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2404.02258"
+    accessed: 2026-08-28
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Token-level top-k routing around Transformer blocks under a fixed compute budget and static tensor shapes; adjacent counterexample to load-time subnet selection."

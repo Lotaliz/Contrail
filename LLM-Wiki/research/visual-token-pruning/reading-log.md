@@ -4,13 +4,33 @@ type: synthesis
 title: 视觉 Token 剪枝检索与阅读日志
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 status: active
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-08-28
 ---
 
 # 检索与阅读日志
+
+## 2026-08-28：自适应模型规模执行语义核验
+
+- 问题：现有 elastic/adaptive model-size inference 是否通常不在执行阶段裁剪参数，而是从大网络选择并加载子网模块；该判断是否适用于多模态安全 Guard。
+- 站点与时间截点：ICLR/OpenReview、NeurIPS Proceedings、PMLR、USENIX、ACM/作者公开版与 arXiv；截至 2026-08-28。
+- 关键词：`elastic inference subnet extraction`、`weight-shared supernetwork serving`、`prompt-routed depth pruning parameter loading`、`contextual sparsity runtime`、`dynamic compute allocation transformer`。
+- 纳入：明确说明子网生成、路由时机、参数驻留/加载或运行时条件执行的一次论文；排除只报告精度—FLOPs而无执行语义的工作。
+
+| 论文 | 层级 | 核验 | 角色 |
+|---|---|---|---|
+| Once-for-All | skimmed | source-checked | 部署前超网专门化的经典正例 |
+| MatFormer | deep-read | source-checked | Transformer嵌套子网；可提前抽取或运行时按 query/token 选择 |
+| SuperServe | deep-read | source-checked | 常驻权重共享超网内就地 actuation，明确避免关键路径加载 |
+| PuDDing | deep-read | source-checked | 按 prompt 选 omission set 并从存储加载 blocks 的直接正例 |
+| Deja Vu | skimmed | source-checked | 每层在线预测 head/MLP contextual sparsity |
+| Mixture-of-Depths | skimmed | source-checked | 固定形状下 token-level block routing 的反例 |
+| PowerInfer | skimmed | source-checked | 热/冷 neuron 分层常驻与在线预测执行 |
+| SafeRoute | deep-read | source-checked | 独立小/大 Guard 路由，与共享子网区分 |
+
+综合结论：“不在请求关键路径永久裁剪参数”在代表性方法中成立；“通常加载适当子网模块”只适用于部分内存受限实现，不能概括常驻超网、上下文稀疏和 token-level routing。Mixture-of-Depths截至本轮仍按预印本处理，不作为正式系统证据的唯一来源。
 
 ## 检索设置
 
@@ -83,12 +103,22 @@ updated: 2026-08-26
 | Orca | OSDI 2022 | skimmed | source-checked | iteration-level scheduling 与 selective batching 基础 |
 | Brainstorm | OSDI 2023 | skimmed | source-checked | 动态网络 Cell/Router 抽象与运行时优化核心先例 |
 | Deja Vu | ICML 2023 | skimmed | source-checked | 输入相关 head/MLP contextual sparsity |
-| Sarathi-Serve | OSDI 2024 | skimmed | source-checked | chunked-prefill、uniform batch 与尾时延 |
+| Sarathi-Serve | OSDI 2024 | deep-read | source-checked | chunked-prefill、uniform batch 与尾时延 |
 | Apparate | SOSP 2024 | skimmed | source-checked | early-exit serving、在线反馈与准确率约束 |
 | PowerInfer | SOSP 2024 | skimmed | source-checked | 激活稀疏的权重放置、预测器和 sparse operator |
 | SuperServe | NSDI 2025 | skimmed | source-checked | 权重共享子网激活与 SLO-aware routing |
 | PuDDing | ICML 2025 | skimmed | source-checked | prompt/task-dependent Transformer depth pruning |
+| NanoFlow | OSDI 2025 | deep-read | source-checked | 单设备内 nano-batch 异构资源重叠与理论吞吐上界 |
+| Prism | OSDI 2026 | deep-read | source-checked | 多模型生产 workload、GPU memory ballooning 与两级 SLO 调度 |
 
 ### 检索结论
 
 “任务自适应 Token 剪枝 + 任务自适应主干剪枝 + batch serving”中的每个单项均已有强先例。当前可辩护缺口是三者交叉处的 Guard 特有问题：Token 与主干预算质量上非可分、执行上产生二维异构，以及平均 accuracy 不能替代 fixed-FPR/worst-risk 安全约束。
+
+
+## 2026-08-27 LLM Serving 三篇精读
+
+- [[LLM-Wiki/research/visual-token-pruning/papers/2024-agrawal-sarathi-serve.md|Sarathi-Serve]]：请求/迭代层，控制 prefill 对 decode 的干扰并均衡 PP 微批。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhu-nanoflow.md|NanoFlow]]：算子/设备内层，通过 nano-batching 重叠 compute、memory 与 network。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-yu-prism.md|Prism]]：模型/集群层，通过跨模型显存弹性统一空间共享与时间共享。
+- 三者形成互补层次：**跨模型 residency → 单模型请求组批 → 单设备算子执行**。它们不能直接互相替代，实验指标也分别侧重 SLO attainment、serving capacity 和 per-GPU total token throughput。

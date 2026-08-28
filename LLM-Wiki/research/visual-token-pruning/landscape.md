@@ -4,10 +4,10 @@ type: synthesis
 title: 视觉 Token 剪枝技术路线图
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 status: active
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-08-28
 ---
 
 # 技术路线图
@@ -63,6 +63,15 @@ SOSP'24 Apparate 已支持请求级 early exit、持续质量反馈与在线阈�
 ## 13. 连续批处理与异构工作量整形
 
 Orca 的 iteration-level scheduling、Sarathi-Serve 的 chunked-prefill 与 uniform batch 表明，批内工作量差异会直接转化为排队、stall 与尾延迟。双自适应 Guard 需要将 `(token bucket, layer/subnet profile)` 作为执行签名：同签名请求形成高效 dense batch，临近 deadline 的请求可升级、降级或单独发射；但任何降级都必须先满足风险下限。
+
+## 14. 弹性子网的四种执行语义
+
+1. **部署前抽取：** Once-for-All 从训练好的超网按设备/时延约束导出专用子网；运行时只执行已确定的小模型。
+2. **常驻嵌套超网：** MatFormer把 FFN 宽度做成参数前缀嵌套，可提前抽取，也可在 universal model 常驻时按资源或输入难度选择切片；SuperServe进一步用控制流算子在权重共享超网内就地激活子网，明确避免关键路径模型加载。
+3. **按请求加载预定义模块：** PuDDing先由 prompt router 选择候选 omission set，再从存储加载构成该深度子网的 blocks；它节约低内存设备峰值内存，但 prompt 变化会带来增量加载成本。
+4. **前向内条件执行：** Deja Vu 按层预测活跃 head/MLP，Mixture-of-Depths按 block 选择参与计算的 Top-k token，PowerInfer预测活跃 neuron并在预置 CPU/GPU 位置执行。它们不永久删除权重，也不需要先组成一个完整的请求级子模型。
+
+因此，“推理阶段不做永久剪枝”基本成立；“统一根据任务加载子网模块”不成立。需要分别说明 selection granularity、decision time、weight residency、execution graph 和 batching contract。
 
 ## 综合判断
 

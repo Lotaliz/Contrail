@@ -34,6 +34,34 @@
       "contentDigest": "fc7fe34e353d4df4938f604fe08e0bc345ff63c47e11c50735b1c009d7f8208c",
       "providerUserMessageId": "01a038c5-8a58-7580-9569-3f724f48a8ed",
       "providerAssistantMessageId": "msg_022250a328d01b64016a8d838b025087d087f6c5c2e57fabc0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787818676928-ucxcadp",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1787818676813-ag2l7wz",
+      "timestamp": 1787818676813,
+      "rawDisplayText": "精读以下几篇论文，重点关注它们的【问题场景】【工作量/创新点】【实验设计和目的】：\nTaming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve\nNanoFlow: Towards Optimal Large Language Model Serving Throughput\nPrism: Cost-Efficient Multi-LLM Serving via GPU Memory Ballooning",
+      "canonicalText": "精读以下几篇论文，重点关注它们的【问题场景】【工作量/创新点】【实验设计和目的】：\nTaming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve\nNanoFlow: Towards Optimal Large Language Model Serving Throughput\nPrism: Cost-Efficient Multi-LLM Serving via GPU Memory Ballooning",
+      "images": [],
+      "contentDigest": "25c0b1c2421285d5ddf931f31afe9b960607fba85a19ea1083ca60bbcfd0c1d9",
+      "providerUserMessageId": "01a0424c-1b80-7411-8113-9cfffc832cba",
+      "providerAssistantMessageId": "msg_022250a328d01b64016a8ff795bdc487d09341809d2a0e2505"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787902744241-xnmn3bd",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1787902744116-w67ek48",
+      "timestamp": 1787902744116,
+      "rawDisplayText": "精读这篇论文，分析总结其剪枝算法：Numerical Pruning for Efficient Autoregressive Models",
+      "canonicalText": "精读这篇论文，分析总结其剪枝算法：Numerical Pruning for Efficient Autoregressive Models",
+      "images": [],
+      "contentDigest": "b0c3af7621e323e02160af7a6862b89b3c9ea2cee6b3fb60373fed760cebeca9",
+      "providerUserMessageId": "01a0474f-2060-7f30-b982-9cae6e638fea",
+      "providerAssistantMessageId": "msg_022250a328d01b64016a913fc9c54887d098d43f30eed0ab1f"
     }
   ]
 }

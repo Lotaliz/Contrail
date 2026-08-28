@@ -31,8 +31,9 @@ research 以一个一级子目录对应一个研究方向或项目：
 
 | 研究方向 | 状态 | 范围摘要 | 最近更新 |
 |---|---|---|---|
-| [[LLM-Wiki/research/visual-token-pruning/overview.md\|视觉模型 Token 剪枝]] | active | 2023–2026 顶会；判别任务精度—真实推理时延权衡 | 2026-08-24 |
-| [[LLM-Wiki/research/safety-classifier-compression/overview.md\|安全判别系统的剪枝与蒸馏]] | active | 2023-08-24 至 2026-08-24；文本与多模态安全判别的吞吐、精度和总成本 | 2026-08-24 |
+| [[LLM-Wiki/research/visual-token-pruning/overview.md\|视觉模型 Token 剪枝]] | active | 截至 2026-08-28；Token 剪枝、弹性子网与风险/SLO 感知执行 | 2026-08-28 |
+| [[LLM-Wiki/research/safety-classifier-compression/overview.md\|安全判别系统的剪枝与蒸馏]] | active | 截至 2026-08-27；文本与多模态安全判别的吞吐、任务对齐剪枝和总成本 | 2026-08-27 |
+| [[LLM-Wiki/research/variable-length-llm-serving/overview.md\|变长自回归 LLM 的批推理与流水线调度]] | active | 截至 2026-08-27；连续组批、KV 管理、chunked prefill、PP bubble 与 SLO | 2026-08-27 |
 
 > 表格内若使用别名 WikiLink，必须把竖线转义。
 

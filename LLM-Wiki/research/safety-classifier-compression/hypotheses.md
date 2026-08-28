@@ -4,19 +4,19 @@ type: synthesis
 title: 安全判别剪枝与蒸馏待验证假设
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
 status: draft
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-08-27
 ---
 
 # 待验证假设
 
 ## H1：安全梯度比通用激活更适合结构剪枝
 
-假设：在相同 FLOPs 预算下，用危害类别、边界样本和固定 FPR 下的损失评估 head/FFN/layer 重要性，比通用语料上的激活幅值更能保持 rare-category recall。
+假设：在相同实测时延预算下，以安全连续损失定义 `gradient × weight`，再用少量真实模块消融校正，比 PPL、raw gradient、通用激活或其中任一单一指标更能保持 rare-category 与 fixed-FPR recall。
 
-验证：比较通用激活排序、任务输入聚类、Fisher/gradient 与安全验证集性能下降四类重要性；报告每类召回、ECE 与真实时延。
+验证：比较 PPL、accuracy drop、连续任务损失 drop、BI、activation norm、Wanda、FLAP、raw gradient、Taylor 与 Fisher；先报告它们和真实单模块损失的 rank correlation、top-k overlap、跨 seed 稳定性，再报告最终模型的每类召回、AUPRC、ECE 与真实时延。三级方案为 `forward proxy → Taylor/Fisher → iterative true ablation`。
 
 ## H2：学生错误驱动的数据蒸馏优于一次性教师标注
 
@@ -59,4 +59,3 @@ updated: 2026-08-25
 假设：对会生成 `verdict → category → rationale` 的小型自回归 Guard，在保留固定红队/长尾数据的同时，把教师 token 预算集中到当前学生的高风险、错误和不确定 rollout，并提高早期判定 token 权重，会比只在教师/人工固定序列上蒸馏获得更高的 fixed-FPR 与 worst-group recall。
 
 验证：固定学生初始化、训练 token、教师前向 token 与数据切片，对比 SFT、静态 token KD、GKD 混合、risk-conditioned GKD 和 prefix-only OPD；同时记录 ECE、类别召回、解释忠实度、学生 rollout/教师成本、time-to-verdict 和完整 P95。该假设不外推到无自回归轨迹的 encoder Guard。
-

@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏统一比较
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-shen-2025-numerical-pruning]
 status: active
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-08-28
 ---
 
 # 统一比较
@@ -47,3 +47,59 @@ updated: 2026-08-25
 - 归因生成 Guard：以 SafeWatch 的 policy-aware selector 为直接基线，但必须增加 coverage 保护、归因忠实度和 time-to-verdict/P95 评测。
 - 自回归 Guard 蒸馏：先以 GKD 的固定/学生 rollout 混合为可控基线，再比较 KL 方向、前缀截断和风险条件采样；encoder Guard 的错误驱动造数应单列，不标为严格 OPD。
 - 流量长尾：用 SafeRoute 式小/大 Guard 级联，不以平均 F1 代替困难样本安全。
+
+## 多模态安全判别的任务对齐剪枝重要性
+
+### 推荐结论
+
+不把 BlockPruner 的 PPL 简单替换为 accuracy drop。保留其“真实 mask + 迭代重估”，但采用 `前向代理预筛 → safety-loss Taylor/Fisher 排序 → 少量真实任务消融复核`。最终按安全损失与目标硬件实测时延形成 Pareto 前沿。
+
+accuracy 与任务一致但在小校准集上离散、阈值敏感，并会被 safe/unsafe 不平衡和长尾类别掩盖。模块消融的主目标应是连续风险函数，例如 cost-sensitive CE/focal/Brier 加 worst-group CVaR 与校准损失；fixed-FPR recall、worst-category recall、AUPRC、ECE 用于最终验收。
+
+| 指标 | 代表证据 | 适用角色 | 主要边界 |
+|---|---|---|---|
+| 真实任务损失 `ΔJ` | MoPE-CLIP；BlockPruner 框架改造 | 最终校正 | 每个候选需前向；小集噪声；需迭代重估 |
+| accuracy/F1 drop | MoPE 的离散变体 | 报告与 sanity check | 不连续，不宜单独搜索 |
+| 输入—输出余弦差异 | ShortGPT BI | 整层/残差块预筛 | 不直接对齐安全边界 |
+| 激活/输出范数 | Minitron | head、neuron、channel 预筛 | 大激活不等于有利于正确类别 |
+| `weight × activation` | Wanda | neuron/channel 廉价代理 | 原生权重级；跨层尺度不可比 |
+| activation fluctuation × weight | FLAP | 前向可恢复性代理 | 局部重构仍不等于任务风险 |
+| raw gradient | — | 不推荐单用 | 参数化敏感、正负抵消、驻点附近不可靠 |
+| `|gradient × weight|` | LLM-Pruner | 第二阶段主排序 | 需要反向；依赖校准分布与损失 |
+| Fisher/Taylor 二阶近似 | LLM-Pruner | 高风险候选补充 | 更高显存/计算；对角近似忽略交互 |
+| learnable gate/mask | Movement Pruning、UPop | 有恢复训练预算时的强基线 | 正则、预算和初始化影响结果 |
+
+对可执行剪枝组 `G`，建议先按样本计算再聚合，避免梯度抵消：`S_T(G)=mean_x |sum_(p in G) w_p·dL_safety(x)/dw_p|`；Fisher 型补充分数为该样本级组贡献的平方均值。不同大小的组同时报告 sum/mean，并以 `ΔJ/Δlatency` 比较，参数量和 FLOPs 只作代理。
+
+### 模块与模态映射
+
+| 剪枝对象 | 前向/梯度代理 | 最终复核 |
+|---|---|---|
+| 整层、MHA/MLP 残差块 | BI + task Taylor | mask 后连续 `ΔJ`，每轮重估 |
+| attention head | 经 `W_O` 的 head 输出或 head-gate Taylor | unsafe margin 与 fixed-FPR recall |
+| MLP neuron/channel | activation × outgoing weight、FLAP、group Taylor | 按层成组删除后的 `ΔJ` |
+| embedding/LayerNorm channel | 归一化激活 + 全模型耦合组 | 联动依赖矩阵消融 |
+| 视觉编码器 | 安全图像上的 activation/Taylor | image-only、OCR、小目标切片 |
+| projector/Q-Former/cross-attention | 跨模态 safety loss/Taylor | 图文冲突、组合危害、否定关系 |
+| LLM 主干/verdict head | 标签或 verdict-token loss Taylor | label-only 与 explanation 分开验收 |
+| visual token | policy relevance + coverage | deletion/insertion 与证据覆盖 |
+
+attention probability、entropy 或激活本身只说明模块“被使用”，不能证明其对正确安全判定有益。多模态模型中视觉、文本、连接器和语言主干的分数应分别标准化，再按真实时延收益联合分配预算；UPop 与 MoPE-CLIP均反对跨模态统一幅值阈值，SafeWatch 进一步表明安全 token 选择需要 policy 条件。
+
+### 校准集与实验矩阵
+
+- 分层平衡 safe/unsafe 和危害类别，并覆盖 text-only、image-only、image+text、视频。
+- 强制纳入 OCR、小目标、图文冲突、否定/反讽、跨帧组合、隐式危害、越狱改写和 dense 模型低-margin/历史误判样本。
+- 使用只改文字、只改图像或只改局部风险证据的反事实对，检测单模态捷径。
+- 至少 3 个 calibration split/seed，报告代理与真实单模块 `ΔJ` 的 Spearman/Kendall、top-k overlap、bootstrap 排名稳定性。
+- 在相同参数/FLOPs和相同实测时延两种预算下，比较一次性与迭代重估；最终报告 fixed-FPR recall、worst-category recall、AUPRC、ECE、P50/P95、吞吐和峰值显存。
+
+证据边界：通用 LLM 论文覆盖 BlockPruner、ShortGPT、LLM-Pruner、FLAP 与 Minitron；通用 VLP 论文覆盖 MoPE-CLIP 与 UPop；SafeWatch 提供多模态安全 token 剪枝直接证据。本轮没有发现系统比较全部指标在多模态安全 Guard 结构剪枝上的论文，因此三级方案是跨论文综合假设，需本地验证。
+
+## Numerical Pruning：结构化重构路线
+
+| 方法 | 选择信号 | 结构粒度 | 恢复机制 | 计算/数据需求 | 主要证据边界 |
+|---|---|---|---|---|---|
+| [[LLM-Wiki/research/safety-classifier-compression/papers/2025-shen-numerical-pruning.md|Numerical Pruning]] | `(WWᵀ)⊙(XᵀX)` 二次重构目标的 Newton 连续 mask | 全局 attention head + MLP intermediate channel | `W_O/W_down` 上的等式约束最小二乘闭式补偿 | 128 个校准样本；score `O(TD³)`，补偿 `O(D³)`；无 backward | LLaMA/LlamaGen 通用生成；无安全指标；Newton/罚项/全局预算实现细节和组件消融不足 |
+
+与 FLAP 相比，它用跨通道二阶相关矩阵替代 activation fluctuation，并用完整 weight perturbation 替代均值 bias；与 LLM-Pruner 相比，它不需要任务 loss 的 backward/Fisher，但局部输出重构与 Guard 风险边界的对齐更弱。用于安全分类时应把它作为候选 mask 生成器，再以任务损失和 fixed-FPR/worst-group 指标复核。

@@ -6,9 +6,9 @@ aliases: [安全分类器压缩, Guard Model 压缩]
 tags: [research, method]
 status: active
 related: [visual-token-pruning, on-policy-distillation]
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-08-27
 ---
 
 # 安全判别系统的剪枝与蒸馏
@@ -40,6 +40,7 @@ updated: 2026-08-25
 6. 小模型不应强行处理所有输入。SafeRoute 的 oracle 分析在 WildGuardMix 上仅让约 5.09% 样本使用 8B Guard，F1 从 1B 的 0.6702 和 8B 的 0.7054 提升到 0.8101；实际路由仍受训练分布与校准误差约束，但证明“压缩学生 + 困难样本升级”具有较高上限。
 7. 多模态安全 Token 剪枝已经出现直接正例，但尚未广泛闭环。SafeWatch 在可生成多标签判定与逐政策解释的视频 Guard 中使用 policy-aware visual-token pruning：作者报告剪除最高 90% 视频 token 时平均性能下降小于 1%，同底座 SFT 平均时延由 4.6 s 降至完整系统的 3.9 s。该证据仍集中于视频与平均指标，尚未证明图像—文本组合危害、OCR、小目标、多轮和归因忠实度。
 8. On-policy 蒸馏最适合会生成判定与归因的自回归 Guard：教师在学生实际生成的前缀上纠正错误，可缩小训练—推理状态错配；GKD、MiniLLM、DistiLLM 与 prefix OPD 已形成“rollout 混合—散度稳定—轨迹降本”的通用路线。当前直接安全证据主要是 OPSA 预印本中的生成式安全对齐，而非独立 Guard 分类或多模态安全判别，因此本项目只把它列为候选验证方向。
+9. 面向安全判别的结构剪枝不应继续用 PPL 单独排序，也不宜只换成离散 accuracy drop。BlockPruner 的迭代真实消融、LLM-Pruner 的 `gradient × weight`、FLAP/Minitron 的前向激活代理与 MoPE-CLIP 的跨模态任务下降各自覆盖不同成本—保真区间；当前最稳妥的研究方案是三级筛选并在每轮剪枝后重估。
 
 ## 推荐工程路线
 
@@ -57,6 +58,7 @@ updated: 2026-08-25
 - [[LLM-Wiki/research/safety-classifier-compression/hypotheses.md|待验证假设]]
 - [[LLM-Wiki/concepts/methods/on-policy-distillation.md|On-policy 蒸馏概念]]
 - [[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md|可生成归因的多模态自回归 Guard Token 剪枝]]
+- [[LLM-Wiki/research/safety-classifier-compression/comparison.md|统一维度比较：含任务对齐剪枝重要性指标]]
 - [[LLM-Wiki/research/visual-token-pruning/overview.md|邻接项目：视觉 Token 剪枝]]
 
 ## 预注册实验设计（未执行）

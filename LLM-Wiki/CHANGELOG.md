@@ -8,6 +8,17 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-08-28
+
+- [Added] [research/safety-classifier-compression] 精读 Numerical Pruning，梳理 Newton 连续 mask、全局 attention-head/MLP-channel 结构选择、闭式权重补偿、实验依据与数学实现边界。
+- [Changed] [research/visual-token-pruning] 核验自适应模型规模的子网抽取、权重驻留、模块加载和条件执行语义，并明确其在多模态安全 Guard 中的适用边界（[[LLM-Wiki/changes/2026-08-28-verify-adaptive-model-size-execution.md|详情]]）。
+
+## 2026-08-27
+
+- [Added] [research/safety-classifier-compression] 调研 BlockPruner 替代重要性指标，形成多模态安全任务的前向代理、Taylor/Fisher 与迭代真实消融三级剪枝方案（[[LLM-Wiki/changes/2026-08-27-survey-task-aligned-pruning-importance.md|详情]]）。
+- [Added] [research/variable-length-llm-serving] 调研变长自回归请求的连续组批、Paged KV、chunked prefill、流水线均衡与 prefill/decode 解耦，结论为常规难题已较好解决但严格 SLO 和复杂集群下仍非彻底消失。
+- [Changed] [research/visual-token-pruning] 深读 Sarathi-Serve、NanoFlow 与 Prism，补全请求组批、设备内异构资源重叠和跨模型显存弹性三层问题场景、系统创新、实验目的及证据边界。
+
 ## 2026-08-26
 
 - [Changed] [research/visual-token-pruning] 补充 OSDI/SOSP/NSDI 动态网络与推理 serving 调研，将多模态 Guard 课题重构为风险/SLO 约束下的 Token—主干二维弹性执行、批处理与回退系统（[[LLM-Wiki/changes/2026-08-26-osdi-dual-adaptive-guard-serving.md|详情]]）。

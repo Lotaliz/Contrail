@@ -6,9 +6,9 @@ aliases: [视觉 Token 剪枝, 视觉 Token 压缩]
 tags: [research, method]
 status: active
 related: [multimodal-token-pruning]
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-08-28
 ---
 
 # 视觉模型 Token 剪枝：精度保持与推理时延优化
@@ -41,6 +41,7 @@ updated: 2026-08-26
 8. 该方向属于 2024–2026 的明显热点，但尚未成熟：研究已扩展到 multi-turn、视频、多样性与 Pareto 配置；联合图文 token 剪枝、未来生成相关性和跨硬件 P95 仍是空白。
 9. 面向 OSDI 的“双自适应 Guard serving”方向合适，但视觉/文本 Token 剪枝、任务相关主干剪枝与动态 serving 均已有直接先例。可成立的系统问题不是三个模块相加，而是：请求级二维动态执行导致批次碎片化，如何在安全质量约束与时延 SLO 下联合选择、组批、执行和回退。
 10. Brainstorm、Apparate 与 SuperServe 已分别覆盖动态网络运行时、在线 early-exit serving 和权重共享子网调度。当前课题必须利用 Guard 特有的漏报不对称、证据完整性和风险回退形成新的系统抽象；仅做置信度路由或若干固定剪枝 profile 不足以支持 OSDI 新颖性。
+11. “自适应模型规模”通常不在请求关键路径重新计算重要性并永久改写参数，但其执行机制并不统一：OFA/MatFormer可提前抽取子网，PuDDing按 prompt 选择并加载预定义 blocks，SuperServe在常驻权重共享超网内就地激活子网，Deja Vu/Mixture-of-Depths则在前向中动态跳过 head、MLP 或 token-block 计算。因而应区分结构生成、权重驻留和条件执行，不能把所有方法概括为“加载子网模块”。
 
 ## 面向判别任务的建议路线
 
