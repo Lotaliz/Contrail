@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1788145006528-rugjspubj",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788145007860-5eb98tn",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1788145006522-6ic0mdk",
+      "timestamp": 1788145006522,
+      "rawDisplayText": "参考当前llm-wiki的工作要求，查找并精读这篇论文：Ghosted Layers: Unconstrained Activation Alignment for Recovering Layer-Pruned LLMs",
+      "canonicalText": "参考当前llm-wiki的工作要求，查找并精读这篇论文：Ghosted Layers: Unconstrained Activation Alignment for Recovering Layer-Pruned LLMs",
+      "images": [],
+      "contentDigest": "43e3af593c668a6ce9bc95cea72a62284bbf6f05fdbd22198c5de2aa60beb2f4",
+      "providerUserMessageId": "01a055bf-c7dc-70d2-927c-549c15aeb44f",
+      "providerAssistantMessageId": "msg_0da2bd3794289f0a016a94f0ebcd2487d081531e9691494f3c"
+    }
+  ]
+}

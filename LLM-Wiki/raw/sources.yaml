@@ -1111,3 +1111,75 @@ sources:
     sha256: ""
     license: "unknown"
     notes: "Token-level top-k routing around Transformer blocks under a fixed compute budget and static tensor shapes; adjacent counterexample to load-time subnet selection."
+  - id: paper-michel-2019-sixteen-heads
+    kind: paper
+    title: "Are Sixteen Heads Really Better than One?"
+    authors: ["Paul Michel", "Omer Levy", "Graham Neubig"]
+    year: 2019
+    venue: "NeurIPS 2019"
+    url: "https://proceedings.neurips.cc/paper/2019/hash/2c601ad9d2ff9bc8b282670cdd54f69f-Abstract.html"
+    accessed: 2026-08-31
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Classic head-ablation study showing substantial head redundancy but higher dependence on multi-headedness in encoder-decoder attention than self-attention."
+  - id: paper-voita-2019-specialized-heads
+    kind: paper
+    title: "Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned"
+    authors: ["Elena Voita", "David Talbot", "Fedor Moiseev", "Rico Sennrich", "Ivan Titov"]
+    year: 2019
+    venue: "ACL 2019"
+    url: "https://aclanthology.org/P19-1580/"
+    accessed: 2026-08-31
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Identifies specialized linguistically interpretable heads and removes 38 of 48 encoder heads on WMT English-Russian with only 0.15 BLEU loss."
+  - id: paper-geva-2021-ffn-memory
+    kind: paper
+    title: "Transformer Feed-Forward Layers Are Key-Value Memories"
+    authors: ["Mor Geva", "Roei Schuster", "Jonathan Berant", "Omer Levy"]
+    year: 2021
+    venue: "EMNLP 2021"
+    url: "https://aclanthology.org/2021.emnlp-main.446/"
+    accessed: 2026-08-31
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Mechanistic evidence that Transformer FFNs behave as key-value memories whose lower layers capture shallow patterns and upper layers more semantic patterns."
+  - id: paper-dai-2022-knowledge-neurons
+    kind: paper
+    title: "Knowledge Neurons in Pretrained Transformers"
+    authors: ["Damai Dai", "Li Dong", "Yaru Hao", "Zhifang Sui", "Baobao Chang", "Furu Wei"]
+    year: 2022
+    venue: "ACL 2022"
+    url: "https://aclanthology.org/2022.acl-long.581/"
+    accessed: 2026-08-31
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Uses attribution to identify FFN neurons associated with factual recall and tests targeted knowledge editing in BERT."
+  - id: paper-wang-2026-gisp
+    kind: paper
+    title: "From Local to Global: Revisiting Structured Pruning Paradigms for Large Language Models"
+    authors: ["Ziyan Wang", "Enmao Diao", "Qi Le", "Pu Wang", "Minwoo Lee", "Shu-ping Yeh", "Evgeny Stupachenko", "Hao Feng", "Li Yang"]
+    year: 2026
+    venue: "ACL 2026"
+    url: "https://aclanthology.org/2026.acl-long.1653/"
+    accessed: 2026-08-31
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Global iterative pruning of attention heads and MLP channels using first-order target-loss importance with block-wise normalization; supports task-aligned decision objectives and nested subnetworks."
+  - id: paper-yun-2026-ghosted-layers
+    kind: paper
+    title: "Ghosted Layers: Unconstrained Activation Alignment for Recovering Layer-Pruned LLMs"
+    authors: ["Vincent-Daniel Yun", "Junhyuk Jo", "Sai Praneeth Karimireddy", "Sunwoo Lee"]
+    year: 2026
+    venue: "arXiv preprint (v2, under review)"
+    url: "https://arxiv.org/abs/2605.15491"
+    accessed: 2026-08-31
+    local_path: "papers/2026-yun-ghosted-layers.pdf"
+    sha256: "1fc5c483e57dfbdaf12bbd3cc68327a8cf75828c1a4e720b37961d380790d2b8"
+    license: "CC BY 4.0"
+    notes: "Training-free post-layer-pruning recovery via an unconstrained closed-form linear operator fitted to pre/post-boundary activations; arXiv v2 dated 2026-06-07."

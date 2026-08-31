@@ -7,10 +7,28 @@ project_id: visual-token-pruning
 sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 status: active
 created: 2026-08-24
-updated: 2026-08-28
+updated: 2026-08-31
 ---
 
 # 检索与阅读日志
+
+## 2026-08-31：七种多模态 Token 剪枝方法精读
+
+- 目标：围绕用户输入、任务特点、系统位置、选择信号、训练流程、实验效果和安全判别边界，精读 TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune、SafeWatch。
+- 来源：本库保存的七篇正式论文 PDF；逐项回查方法章节、主实验、消融、效率表与局限，未进行本地复现。
+- 产物：[[LLM-Wiki/research/visual-token-pruning/seven-methods-deep-read.md|七种多模态 Token 剪枝方法精读]]，并将七篇 paper note 统一升级为 `deep-read/source-checked`。
+
+| 论文 | 场景 | 精读重点 | 层级 |
+|---|---|---|---|
+| TRIPS | 编码器式单轮图文预训练/理解 | 文本条件视觉主干选择、低分融合 | deep-read |
+| PuMer | ViLT/METER 融合层 | 视觉剪枝、图文模态内合并、蒸馏 | deep-read |
+| FastV | decoder-only 图像/视频生成 | layer 2 后 attention pruning、计时口径 | deep-read |
+| SparseVLM | prompt-aware 渐进 LLM 剪枝 | text raters、rank 预算、token recycling | deep-read |
+| VisionZip | LLM 前、多轮可复用压缩 | dominant proxy、context merging、TTFT | deep-read |
+| DivPrune | 极端压缩图像/视频生成 | max-min diversity、layer 0、E2E | deep-read |
+| SafeWatch | 长视频多政策安全 Guard | 事件采样、PEPE、PAP、三阶段训练 | deep-read |
+
+综合结论：七篇的主要差异不是 selector 公式，而是“文本/政策在何时已知、token 在哪里剪、是否需要跨轮复用、任务能否容忍证据遗漏”。安全场景不能只复用通用 benchmark 的平均保真结论。
 
 ## 2026-08-28：自适应模型规模执行语义核验
 

@@ -15,7 +15,7 @@ status: active
 - 功能标签描述页面角色；技术标签描述论文的任务、模型/模态、机制和系统属性。
 - 论文笔记通常使用多个技术标签，但只选择对跨论文检索有价值的标签。
 - 不创建论文名、模型名、数据集名、会议名或单篇方法缩写标签。
-- “论文数”按 `research/*/papers/*.md` 中当前 75 篇论文笔记统计；概念、综合和实验页不计入。
+- “论文数”按 `research/*/papers/*.md` 中当前 81 篇论文笔记统计；概念、综合和实验页不计入。
 
 ## 文档功能标签
 
@@ -57,7 +57,7 @@ status: active
 |---|---:|---|---|
 | `#vision-language-model` | 16 | CLIP、VLM、MLLM 等图文模型 | [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-sparsevlm.md\|SparseVLM]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-devvrit-matformer.md\|MatFormer]] |
 | `#multimodal-pretraining` | 3 | 图文预训练、强化数据和跨模态表征学习 | [[LLM-Wiki/research/visual-token-pruning/papers/2022-jiang-trips.md\|TRIPS]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-vasu-mobileclip.md\|MobileCLIP]] |
-| `#model-compression` | 24 | 以更小参数量、结构或训练成本派生模型 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-devvrit-matformer.md\|MatFormer]] |
+| `#model-compression` | 28 | 以更小参数量、结构或训练成本派生模型 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-devvrit-matformer.md\|MatFormer]] |
 
 ## 压缩、蒸馏与自适应计算机制
 
@@ -65,7 +65,7 @@ status: active
 |---|---:|---|---|
 | `#visual-token-pruning` | 18 | 删除或选择视觉、视频及 VLM Token | [[LLM-Wiki/research/visual-token-pruning/papers/2024-chen-fastv.md\|FastV]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md\|SafeWatch]] |
 | `#token-merging` | 4 | 通过聚合相似 Token 降低序列长度 | [[LLM-Wiki/research/visual-token-pruning/papers/2023-bolya-tome.md\|ToMe]]；[[LLM-Wiki/research/visual-token-pruning/papers/2023-cao-pumer.md\|PuMer]] |
-| `#structured-pruning` | 15 | 层、头、宽度、FFN 或其他可执行结构剪枝 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/papers/2020-cai-once-for-all.md\|Once-for-All]] |
+| `#structured-pruning` | 19 | 层、头、宽度、FFN 或其他可执行结构剪枝 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/papers/2020-cai-once-for-all.md\|Once-for-All]] |
 | `#unstructured-pruning` | 1 | 权重级非结构化或半结构化稀疏 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-sun-wanda.md\|Wanda]] |
 | `#quantization` | 2 | 权重、激活或混合低比特近似 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-fedorov-llama-guard-int4.md\|Llama Guard INT4]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-activation-approximations.md\|Activation Approximations]] |
 | `#knowledge-distillation` | 16 | 教师标签、Logit、特征、关系或轨迹蒸馏 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-harmaug.md\|HarmAug]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2023-wu-tinyclip.md\|TinyCLIP]] |
@@ -76,7 +76,7 @@ status: active
 | `#dynamic-sparsity` | 4 | 根据当前输入动态选择激活、神经元、头或细粒度子网 | [[LLM-Wiki/research/visual-token-pruning/papers/2023-liu-dejavu.md\|Deja Vu]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-raposo-mixture-of-depths.md\|Mixture-of-Depths]] |
 | `#early-exit` | 1 | 从中间层提前产生预测或结束主干执行 | [[LLM-Wiki/research/visual-token-pruning/papers/2024-dai-apparate.md\|Apparate]] |
 | `#model-routing` | 3 | 在多个模型、Guard 或共享子网路径之间选择执行 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]]；[[LLM-Wiki/research/visual-token-pruning/papers/2025-khare-superserve.md\|SuperServe]] |
-| `#training-free` | 13 | 无需额外训练或微调的部署期方法 | [[LLM-Wiki/research/visual-token-pruning/papers/2024-chen-fastv.md\|FastV]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-an-flap.md\|FLAP]] |
+| `#training-free` | 14 | 无需额外训练或微调的部署期方法 | [[LLM-Wiki/research/visual-token-pruning/papers/2024-chen-fastv.md\|FastV]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-an-flap.md\|FLAP]] |
 | `#test-time-adaptation` | 1 | 测试阶段利用当前输入进行无监督适应 | [[LLM-Wiki/research/visual-token-pruning/papers/2025-wang-tca.md\|TCA]] |
 | `#hardware-aware-optimization` | 7 | 将设备时延、算子或端侧约束纳入优化 | [[LLM-Wiki/research/visual-token-pruning/papers/2023-dong-heatvit.md\|HeatViT]]；[[LLM-Wiki/research/visual-token-pruning/papers/2020-cai-once-for-all.md\|Once-for-All]] |
 
@@ -84,12 +84,12 @@ status: active
 
 | 标签 | 论文数 | 适用范围 | 代表页面 |
 |---|---:|---|---|
-| `#efficient-inference` | 30 | 以真实时延、吞吐、内存或设备部署为主要目标 | [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-sparsevlm.md\|SparseVLM]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-raposo-mixture-of-depths.md\|Mixture-of-Depths]] |
+| `#efficient-inference` | 32 | 以真实时延、吞吐、内存或设备部署为主要目标 | [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-sparsevlm.md\|SparseVLM]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-raposo-mixture-of-depths.md\|Mixture-of-Depths]] |
 | `#model-serving` | 8 | 面向在线推理服务的执行、调度、资源或反馈机制 | [[LLM-Wiki/research/visual-token-pruning/papers/2023-cui-brainstorm.md\|Brainstorm]]；[[LLM-Wiki/research/visual-token-pruning/papers/2025-khare-superserve.md\|SuperServe]] |
 | `#continuous-batching` | 2 | 在运行中重组请求或按迭代/分块组织批执行 | [[LLM-Wiki/research/visual-token-pruning/papers/2022-yu-orca.md\|Orca]]；[[LLM-Wiki/research/visual-token-pruning/papers/2024-agrawal-sarathi-serve.md\|Sarathi-Serve]] |
 | `#slo-aware-serving` | 4 | 以 deadline、尾时延或 SLO attainment/goodput 驱动在线调度 | [[LLM-Wiki/research/visual-token-pruning/papers/2024-dai-apparate.md\|Apparate]]；[[LLM-Wiki/research/visual-token-pruning/papers/2025-khare-superserve.md\|SuperServe]] |
 | `#efficiency-evaluation` | 3 | 系统复核 FLOPs、近似与真实效率或安全之间的差异 | [[LLM-Wiki/research/visual-token-pruning/papers/2025-wen-token-pruning-right-problem.md\|Right Problem]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-activation-approximations.md\|Activation Approximations]] |
-| `#representation-probing` | 4 | 从隐藏表示、跨层信号或共享表征进行检测与分析 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-liu-sentinel.md\|Sentinel]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-jbshield.md\|JBShield]] |
+| `#representation-probing` | 6 | 从隐藏表示、跨层信号或共享表征进行检测与分析 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-liu-sentinel.md\|Sentinel]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-jbshield.md\|JBShield]] |
 | `#activation-steering` | 2 | 在中间表示或生成过程中操控安全相关方向 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-jbshield.md\|JBShield]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-zhong-rennervate.md\|Rennervate]] |
 | `#runtime-monitoring` | 4 | 在线输入、输出、隐藏状态或生成轨迹监控 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-wang-selfdefend.md\|SelfDefend]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2024-wu-legilimens.md\|Legilimens]] |
 | `#policy-enforcement` | 3 | 将安全判定映射为可执行策略、阻断或治理动作 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-li-ace.md\|ACE]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-syros-saga.md\|SAGA]] |

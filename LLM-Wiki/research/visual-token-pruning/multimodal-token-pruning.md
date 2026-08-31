@@ -6,7 +6,7 @@ project_id: visual-token-pruning
 sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-khare-2025-superserve, paper-wee-2025-pudding]
 status: active
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-08-31
 title: 图文多模态模型 Token 剪枝：分类、生成与新挑战
 synthesis_kind: literature-review
 ---
@@ -158,4 +158,5 @@ PuMer/TRIPS 已观察“越早减越快、越晚减越稳”；VisPCO 进一步�
 - 概念入口：[[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]。
 - 纯视觉基础：[[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]。
 - 项目总览：[[LLM-Wiki/research/visual-token-pruning/overview.md|视觉模型 Token 剪枝总览]]。
+- 七篇方法精读：[[LLM-Wiki/research/visual-token-pruning/seven-methods-deep-read.md|TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune 与 SafeWatch]]。
 - 证据缺口：[[LLM-Wiki/research/visual-token-pruning/gaps.md|视觉 Token 剪枝证据缺口]]。

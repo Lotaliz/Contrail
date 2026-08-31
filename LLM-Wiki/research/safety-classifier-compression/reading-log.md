@@ -4,10 +4,10 @@ type: synthesis
 title: "安全判别剪枝与蒸馏检索日志"
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-shen-2025-numerical-pruning]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers]
 status: active
 created: 2026-08-24
-updated: 2026-08-28
+updated: 2026-08-31
 ---
 
 # 检索与阅读日志
@@ -99,6 +99,25 @@ updated: 2026-08-28
 - 该方法是 calibration-based、training-free，而非 data-free；主要质量证据来自 LLaMA/LlamaGen 的 PPL、通用任务与图像生成，不能直接证明 Guard 安全保持。
 - 关键复核点：有限罚项并不严格等价于固定 cardinality；Algorithm 1 未显示 box projection；二次目标为何需要约 50 次 Newton 迭代未解释；缺少 no-compensation、local-vs-global 和简单 score 的关键消融。
 
+## 2026-08-31：MHA 与 MLP 功能及剪枝敏感性增量检索
+
+- 范围：MHA/attention head 与 MLP/FFN neuron、channel、residual block 对任务能力的作用及结构剪枝敏感性；扩展到多模态模块剪枝。
+- 站点：ACL Anthology、NeurIPS Proceedings、CVF Open Access；关键词：`attention head pruning redundancy`、`FFN key value memory knowledge neuron`、`MHA MLP block pruning`、`vision-language head FFN pruning sensitivity`、`task-aligned global structured pruning`。
+- 纳入：一次论文明确提供模块功能分析、真实消融或结构化剪枝结果；排除只以参数量猜测能力、没有模块区分或无法回到一次来源的结论。
+
+| 论文 | 层级 | 核验 | 对结论的作用 |
+|---|---|---|---|
+| Michel et al. 2019 | skimmed | source-checked | 大量 head 可删，但 encoder-decoder attention 更依赖多头 |
+| Voita et al. 2019 | skimmed | source-checked | 少数专门化 head 承担关键功能；38/48 heads 删除仅降 0.15 BLEU |
+| Geva et al. 2021 | skimmed | source-checked | FFN 的 key-value memory 与层间浅层/语义模式解释 |
+| Dai et al. 2022 | skimmed | source-checked | 特定 FFN 神经元与事实表达、编辑相关 |
+| Minitron | deep-read | source-checked | 同时剪 heads、neurons、embedding width 并以 KD 恢复；宽剪经恢复优于深剪 |
+| BlockPruner | deep-read | source-checked | Llama2 低于约 17% 时 MHA blocks 更冗余，继续 MHA-only 剪枝后陡降 |
+| MoPE-CLIP | skimmed | source-checked | 跨模态任务下降联合评估 heads 与 FFN neuron groups，不支持统一模块先验 |
+| GISP | skimmed | source-checked | 以目标 loss 在全局预算内联合排序 attention heads 与 MLP channels |
+
+覆盖限制：没有发现多模态安全 Guard 在相同参数、FLOPs 和实测时延三种预算下系统对比 MHA-only、MLP-only 与 mixed pruning 的论文。因而“默认细剪 FFN channels + 保守剪 heads，再按安全损失联合预算”是风险控制建议，不是已建立的普适定律。
+
 ## 2026-08-25：安全顶会审稿视角增量检索
 
 - 范围：2024–2026 USENIX Security、ACM CCS、NDSS、IEEE S&P 中与 Guard、内容审核、越狱检测、部署近似和多模态长尾直接相关的论文；辅以 ICLR/ACL 的 Guard 压缩直接证据。
@@ -113,3 +132,10 @@ updated: 2026-08-28
 | VSG-Safe | skimmed | source-checked | 跨帧分布式危害是视频审核的安全语义；激进 token/frame 削减可能破坏证据完整性 |
 
 覆盖限制：本轮不宣称穷尽全部 2026 论文；四篇增量论文基于官方论文页、摘要和方法/结果概览完成 `skimmed`，未达到复现层级。
+
+## 2026-08-31：Ghosted Layers 精读
+
+- [[LLM-Wiki/research/safety-classifier-compression/papers/2026-yun-ghosted-layers.md|Ghosted Layers]]把剪层后的恢复写成边界激活上的无约束线性最小二乘，闭式估计单个 `C×C` 修补矩阵；它是层选择之后的恢复器，不是层重要性指标。
+- 主证据覆盖六个 LLM 骨干、三类剪层准则、PPL/九项 zero-shot QA、校准规模/语料、轻量微调和 A40 prefill；LLaMA-3.1-8B 7/32 中平均 PPL 为 27.81、QA 平均准确率 60.01，优于同成本 LinearPatch，但仍未恢复 dense 的 8.50/67.77。
+- 对安全 Guard 的价值是提供 training-free 边界恢复基线；通用激活 MSE 不能代替 fixed-FPR、长尾危害与校准指标，风险加权最小二乘仍是待验证假设。
+- 证据边界：arXiv v2、under review；无本地复现、无安全/多模态任务、无 decode/P95/多并发时延，论文内部对骨干数量、LinearPatch 微调约束和 solver 与伪逆“等价”的表述需实现级复核。

@@ -8,7 +8,7 @@ status: active
 related: [multimodal-token-pruning]
 sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 created: 2026-08-24
-updated: 2026-08-28
+updated: 2026-08-31
 ---
 
 # 视觉模型 Token 剪枝：精度保持与推理时延优化
@@ -62,6 +62,7 @@ OSDI 贡献应至少包含：二维弹性 Guard 的执行抽象；避免动态 s
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|基础入门：ViT、patch token 与 Token 剪枝]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|概念：多模态 Token 剪枝]]
 - [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|专题调研：图文分类与生成中的 Token 剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/seven-methods-deep-read.md|精读：TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune 与 SafeWatch]]
 - [[LLM-Wiki/research/visual-token-pruning/reading-log.md|检索与阅读日志]]
 - [[LLM-Wiki/research/visual-token-pruning/landscape.md|技术路线图]]
 - [[LLM-Wiki/research/visual-token-pruning/comparison.md|统一维度比较]]

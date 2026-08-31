@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏统一比较
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-shen-2025-numerical-pruning]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers]
 status: active
 created: 2026-08-24
-updated: 2026-08-28
+updated: 2026-08-31
 ---
 
 # 统一比较
@@ -23,6 +23,7 @@ updated: 2026-08-28
 | PGKD | 工业多类文本分类 | 验证报告 + hard negatives 驱动教师造数 | 1000 初始标注，迭代停止 | 多轮教师生成 + BERT 微调 | GPU 批量 64：0.46s，对 Llama 3 8B 58.05s；最高约 130× | 蒸馏生成昂贵；prompt/教师敏感 |
 | P-pruning | GLUE/SQuAD 文本任务 | 任务输入上的 head/neuron 输出聚类与中心选择 | 相对 FLOPs 0.9–0.2 | 先剪后微调 | MNLI 60% FLOPs 约束下 fine-tuning 1.8×；FLOPs 降 40% | BERT/GPT-2 规模；任务特异性强 |
 | Minitron | 通用语言模型 | 激活统计排序层、head、neuron、embedding | 15B→8B/4B | 轻量恢复 KD，少量校准 | 派生单个尺寸最高少 40× tokens；模型家族训练成本 1.8×；MMLU 对从头训练最高 +16% | 非安全专测；教师 forward 增加恢复成本 |
+| Ghosted Layers | 层剪枝后的通用 LLM | 原模型剪枝边界前后激活；每个删除区间插入完整 `C×C` 线性算子 | 已选定的 7/32、11/32 等深度预算 | 无主干训练；无标签离线校准 | LLaMA-3.1-8B 7/32：QA 60.01、PPL 27.81、A40 prefill 291.9 ms；dense 为 67.77/8.50/362.6 ms | 只恢复不选层；需原模型；无安全指标；多边界矩阵成本；仅 prefill 均值 |
 | Wanda | 通用 LLM | weight × activation；权重层 | 50% 非结构或 N:M | 免训练 | 低剪枝计算成本，保持困惑度/下游性能 | 无稀疏 kernel 时难转化为时延 |
 | Sheared LLaMA | 通用 LLM | 可学习结构 mask；层/head/hidden/FFN | 7B→1.3B/2.7B | 结构搜索 + 动态数据加载恢复 | 作者报告只需从头训练同尺寸约 3% compute | 非安全专测；仍需大规模继续训练 |
 | TinyCLIP | 图文零样本分类/检索 | affinity mimic + weight inheritance；双塔宽/深 | 50% 到极限小模型 | 多阶段蒸馏 | 50% ViT-B/32 参数仍接近零样本性能；训练 1.4–7.8×；8.9% 参数模型超过原 CLIP 3.5 点 | 权重继承受架构兼容性影响 |
@@ -36,6 +37,12 @@ updated: 2026-08-28
 | DistiLLM / DistiLLM-2 | 指令、代码、偏好、VLM | skew-KL；学生负序列与教师正序列对比 | rollout 刷新与数据课程 | 学生生成、教师监督，可复用历史输出 | DistiLLM 报告相对近期 KD 约 2.5–4.3× 训练提速 | 设置不可跨论文直比；部分历史数据是 off-policy；无 Guard 专测 |
 | Prefix OPD | 长推理 | 学生推理前缀上的 reverse-KL 信号 | 截断 prefix 长度 | 部分 rollout + 教师前向 | 作者在 Qwen3 数学/OOD 推理上报告约 2–40× FLOPs 降低且接近完整 OPD | 只证明长推理；短安全标签未必受益 |
 | OPSA | 生成式模型安全对齐 | 学生 rollout；特权安全上下文条件下的冻结教师逐 token KL | rollout/安全上下文 | 在线自蒸馏 | 两个模型家族、五个规模；作者报告部分小模型安全—推理权衡提升 | 2026 预印本；非 Guard 分类；依赖潜在安全能力和自动评估器 |
+
+### 剪层后的恢复：Ghosted Layers
+
+Ghosted Layers 与 ShortGPT/BlockPruner 位于不同阶段：后两者回答“删什么”，前者回答“删完怎样修补”。它直接最小化 `X_pre W ≈ X_post`，比 LinearPatch 的固定 Hadamard 对角参数化表达力更强；在融合后两者都是一次边界 `C×C` GEMM。对 Guard 的合理组合是 `任务对齐层选择 → Ghosted 边界恢复 → 安全指标复核`，而不是用通用激活 MSE 替代安全选择目标。
+
+当前证据不支持把它列为安全保持方案：C4/WikiText-2 校准只覆盖通用语言分布，九项 QA 平均分会掩盖稀有危害和低 margin 样本。后续应比较普通最小二乘与危害/低-margin 加权最小二乘，并在相同 P95 时延与显存预算下报告 fixed-FPR recall、worst-category、AUPRC 和 ECE。
 
 ## 选型结论
 
@@ -95,6 +102,30 @@ attention probability、entropy 或激活本身只说明模块“被使用”，
 - 在相同参数/FLOPs和相同实测时延两种预算下，比较一次性与迭代重估；最终报告 fixed-FPR recall、worst-category recall、AUPRC、ECE、P50/P95、吞吐和峰值显存。
 
 证据边界：通用 LLM 论文覆盖 BlockPruner、ShortGPT、LLM-Pruner、FLAP 与 Minitron；通用 VLP 论文覆盖 MoPE-CLIP 与 UPop；SafeWatch 提供多模态安全 token 剪枝直接证据。本轮没有发现系统比较全部指标在多模态安全 Guard 结构剪枝上的论文，因此三级方案是跨论文综合假设，需本地验证。
+
+## MHA 与 MLP：任务作用和剪枝敏感性
+
+### 结论摘要
+
+不存在跨模型、跨任务、跨粒度都成立的“剪 MHA 一定比剪 MLP 安全”或反向结论。现有证据支持更细的表述：MHA 主要负责 token 间和模态间的信息路由、聚合与关系建模；MLP/FFN 主要负责逐 token 的非线性特征变换、容量扩展，并承载部分模式和事实知识。两者不可互换，但内部都高度过参数化。
+
+| 比较层次 | MHA 的证据 | MLP/FFN 的证据 | 可支持的判断 |
+|---|---|---|---|
+| 功能 | 多头并行形成不同关系路由；少数头呈稳定语言学专门化；encoder-decoder attention 比 self-attention 更依赖多头 | FFN 可解释为 key-value memories；部分神经元与事实表达和编辑相关 | MHA 更偏“搬运/组合上下文”，MLP 更偏“变换/存储模式”；这是机制概括而非互斥分工 |
+| 单个 head / neuron | Michel、Voita 显示大量 head 冗余，但关键头集中且联合删除存在交互 | Minitron、P-pruning、GISP 等均能剪 FFN channels；知识神经元提示少量单元可能承载稀有能力 | 细粒度下两者都可剪，重要性分布均非均匀，不能逐层固定比例 |
+| 整个残差块 | BlockPruner 在 Llama2-7B/13B 的约 17% 低剪枝区间中，MHA-only 损失低于 MLP-only；继续剪 MHA 后性能陡降 | 同一实验中 MLP blocks 初期相对较少被删 | 只对该模型、PPL 校准和通用下游平均分成立；说明“先有 MHA 冗余、后有关键瓶颈”，不是永久优先级 |
+| 相同参数/FLOPs/时延预算 | 剪 head 可同时减投影计算和 KV-cache，但实际收益受 GQA、kernel 与序列长度影响 | FFN 常占更多参数和逐 token FLOPs，剪 channel 往往带来更大的模型体积/矩阵乘收益 | 必须比较 `任务损失 / 实测收益`，不能按“一个 head 对一个 neuron”或“一个 block 对一个 block”计数 |
+| 多模态 | MoPE-CLIP 证明单模态幅值不能可靠评估跨模态 head；跨模态对齐、OCR、图文关系和冲突判定预期更依赖关键路由 | 同一工作对 FFN neuron groups 也用跨模态任务下降打分，未给出全局 MHA/FFN 胜负 | 多模态没有统一模块排序；必须在图像、文本、连接器/融合层分别校准 |
+
+### 对安全判别剪枝的操作建议
+
+1. 搜索空间同时包含 MHA block、MLP block、head 和 FFN channel，但四类结构分别归一化；最终用 `ΔJ_safety / Δlatency` 或 Pareto 前沿分配预算。
+2. 默认从 FFN channel 与低重要 head 的细粒度宽度剪枝开始，不先删除完整 MLP block；完整 MHA block 只在真实任务消融证明可删时删除。理由是细粒度宽剪更容易保住专门化头/知识单元，也更容易得到规则 dense 形状。
+3. 对图文安全任务，保守保护早期视觉特征抽取、跨模态连接器/交叉注意力、最终 verdict 附近模块；这是一条风险控制假设，不是现有论文已经证明的通用层序。
+4. 将 OCR、小目标、图文冲突、组合危害、否定/反讽和低 margin 样本分别统计模块排名。若同一模块在平均集上可剪但显著伤害任一高风险切片，应进入保护集合或只允许级联回退。
+5. 做三个必要消融：相同参数预算、相同理论 FLOPs、相同目标硬件 P95 时延；分别比较 MHA-only、MLP-only 与 mixed global pruning。只有 mixed 在多个种子和 worst-group 指标上占优，才可声称联合预算优于固定模块配额。
+
+证据边界：MHA 功能和头冗余主要来自机器翻译/BERT 时代研究，MLP 知识证据主要来自 BERT/语言模型，BlockPruner 来自 Llama2，MoPE-CLIP 来自 CLIP。尚无论文在多模态安全 Guard 上以统一成本预算系统比较 MHA 与 MLP 的能力损失，因此上述工程优先级仍需本地实验确认。
 
 ## Numerical Pruning：结构化重构路线
 

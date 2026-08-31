@@ -8,6 +8,13 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-08-31
+
+- [Changed] [research/visual-token-pruning] 精读 TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune 与 SafeWatch，补齐问题场景、方法流程、实验条件、证据边界及多模态安全判别建议。
+- [Added] [research/safety-classifier-compression] 精读 Ghosted Layers，登记 arXiv v2 原件并梳理无约束边界激活对齐、闭式求解、质量—效率证据、数学表述边界与安全 Guard 复用假设。
+- [Added] [research/safety-classifier-compression] 调研 MHA 与 MLP 的任务作用、细粒度冗余和整块剪枝敏感性，形成多模态安全 Guard 的联合预算建议。
+- [Fixed] [wiki] 将残留的 LaTeX `\[...\]` 与 `\(...\)` 公式统一改为 Markdown 阅读器支持的 `$$...$$` 与 `$...$` 语法，并完成全库扫描。
+
 ## 2026-08-28
 
 - [Added] [research/safety-classifier-compression] 精读 Numerical Pruning，梳理 Newton 连续 mask、全局 attention-head/MLP-channel 结构选择、闭式权重补偿、实验依据与数学实现边界。
