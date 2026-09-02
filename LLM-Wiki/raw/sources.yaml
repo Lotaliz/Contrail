@@ -36,6 +36,30 @@ sources:
     sha256: "ec315d529c51ba2053795b46dab9b71459268d10ac78156d3714f5f6656dfb58"
     license: "unknown"
     notes: "Training-free attention-based pruning of visual tokens inside decoder-only LVLMs."
+  - id: paper-meng-2024-deepstack
+    kind: paper
+    title: "DeepStack: Deeply Stacking Visual Tokens is Surprisingly Simple and Effective for LMMs"
+    authors: ["Lingchen Meng", "Jianwei Yang", "Rui Tian", "Xiyang Dai", "Zuxuan Wu", "Jianfeng Gao", "Yu-Gang Jiang"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/29cd7f8331d13ede6dc6d6ef3dfacb70-Abstract-Conference.html"
+    accessed: 2026-08-31
+    local_path: "papers/2024-meng-deepstack.pdf"
+    sha256: "02ee7112f1b864cc684d748b2defce7bf84218c0bbd6c8277bef06937f809f84"
+    license: "unknown"
+    notes: "Local file is arXiv v1; NeurIPS 2024 camera-ready metadata and headline results were cross-checked against the official proceedings page. Depth-wise visual-token injection keeps LLM context length fixed while exposing early layers to additional high-resolution visual features."
+  - id: paper-bai-2025-qwen3-vl
+    kind: paper
+    title: "Qwen3-VL Technical Report"
+    authors: ["Qwen Team"]
+    year: 2025
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2511.21631"
+    accessed: 2026-08-31
+    local_path: "papers/2025-bai-qwen3-vl.pdf"
+    sha256: "ee075d08e67de1148d6437c6c1d481f7894183b8793905a2deb5f62664f49380"
+    license: "unknown"
+    notes: "Qwen3-VL architecture and ablation source. Its DeepStack variant projects three intermediate ViT feature levels with dedicated mergers and residually injects them into the first three LLM layers without increasing context length."
   - id: paper-yang-2025-visionzip
     kind: paper
     title: "VisionZip: Longer is Better but Not Necessary in Vision Language Models"
@@ -1183,3 +1207,27 @@ sources:
     sha256: "1fc5c483e57dfbdaf12bbd3cc68327a8cf75828c1a4e720b37961d380790d2b8"
     license: "CC BY 4.0"
     notes: "Training-free post-layer-pruning recovery via an unconstrained closed-form linear operator fitted to pre/post-boundary activations; arXiv v2 dated 2026-06-07."
+  - id: paper-wang-2026-metacompress
+    kind: paper
+    title: "Rethinking Token Reduction for Large Vision-Language Models"
+    authors: ["Yi Wang", "Haofei Zhang", "Qihan Huang", "Anda Cao", "Gongfan Fang", "Wei Wang", "Xuan Jin", "Jie Song", "Mingli Song", "Xinchao Wang"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://arxiv.org/abs/2603.21701"
+    accessed: 2026-09-02
+    local_path: "papers/2026-wang-metacompress.pdf"
+    sha256: "ef2e676cb3a27de47bc06ba4d2653d594fc0267d0fbb6f7cc21c4f05cb5ebe4a"
+    license: "CC BY 4.0"
+    notes: "Learning-based prompt-agnostic visual-token compression for multi-turn VQA; unifies pruning and merging as a learned compression projection and is not a safety-semantic or policy-conditioned pruning method."
+  - id: derivative-wang-2026-metacompress-text
+    kind: extracted-text
+    title: "Rethinking Token Reduction for Large Vision-Language Models — pdftotext derivative"
+    authors: ["Yi Wang", "Haofei Zhang", "Qihan Huang", "Anda Cao", "Gongfan Fang", "Wei Wang", "Xuan Jin", "Jie Song", "Mingli Song", "Xinchao Wang"]
+    year: 2026
+    venue: "Local text derivative"
+    url: "https://arxiv.org/pdf/2603.21701"
+    accessed: 2026-09-02
+    local_path: "papers/2026-wang-metacompress.txt"
+    sha256: "c6524b49057efb465141ae5f948d83094888aa1fcf8d66710a0ee0fd0eeb9046"
+    license: "inherits-source"
+    notes: "Layout-preserving pdftotext derivative of paper-wang-2026-metacompress; created for source localization, not an independent source."

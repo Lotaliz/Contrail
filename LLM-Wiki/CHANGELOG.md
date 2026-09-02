@@ -8,8 +8,15 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-09-02
+
+- [Added] [research/visual-token-pruning] 精读 CVPR 2026 MetaCompress，登记原始论文并梳理学习式压缩矩阵、attention 启发式反证、训练目标、实验边界及其与安全语义剪枝的区别。
+
 ## 2026-08-31
 
+- [Changed] [concepts/methods] 将 DeepStack 从仅描述多尺度高分辨率 token 的定义扩展为跨层视觉信息注入家族，并基于 Qwen3-VL 技术报告与公开实现补充多深度 ViT 特征侧路、消融证据及空间 × 深度联合剪枝启发。
+
+- [Added] [concepts/methods] 精读 NeurIPS 2024 DeepStack 并凝练视觉 Token 深度注入概念，明确固定 LLM 上下文、跨层有效 token、真实视觉编码成本及其与剪枝的边界。
 - [Changed] [research/visual-token-pruning] 精读 TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune 与 SafeWatch，补齐问题场景、方法流程、实验条件、证据边界及多模态安全判别建议。
 - [Added] [research/safety-classifier-compression] 精读 Ghosted Layers，登记 arXiv v2 原件并梳理无约束边界激活对齐、闭式求解、质量—效率证据、数学表述边界与安全 Guard 复用假设。
 - [Added] [research/safety-classifier-compression] 调研 MHA 与 MLP 的任务作用、细粒度冗余和整块剪枝敏感性，形成多模态安全 Guard 的联合预算建议。

@@ -6,10 +6,10 @@ title: 多模态 Token 剪枝
 aliases: [视觉语言 Token 剪枝, MLLM Visual Token Pruning, 多模态 Token 压缩]
 tags: [method, technology]
 status: active
-related: [vision-transformer-token-pruning-basics, visual-token-pruning]
-sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+related: [vision-transformer-token-pruning-basics, visual-token-pruning, deepstack-visual-token-injection]
+sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-31
 ---
 
 # 多模态 Token 剪枝
@@ -78,6 +78,7 @@ flowchart LR
 - **文本无关的覆盖与多样性：** VisionZip、DivPrune，适合复用和多轮但可能弱化当前 query 相关性。
 - **配置/预算优化：** VisPCO 搜索层位置与保留率，不绑定单一 importance rule。
 - **批判性基线：** Random、Pooling、spatial-window selection；它们是判断复杂 selector 是否真正有效的必要下界。
+- **固定序列长度的深度注入：** DeepStack 不做 importance pruning；原始方法将额外高分辨率视觉 token 分组注入，Qwen3-VL 则注入多深度 ViT 中间特征。它是“删减视觉信息”之外的相邻效率与保真路线，并提示剪枝应联合考虑空间位置和表征深度。
 
 ## 评测最低要求
 
@@ -97,3 +98,4 @@ flowchart LR
 - 纯视觉基础：[[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]。
 - 详细调研：[[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]。
 - 项目总览：[[LLM-Wiki/research/visual-token-pruning/overview.md|视觉模型 Token 剪枝总览]]。
+- 相邻概念：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]。

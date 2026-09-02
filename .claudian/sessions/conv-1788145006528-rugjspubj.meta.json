@@ -4,7 +4,7 @@
   "title": "查找并精读 Ghosted Layers 论文",
   "titleGenerationStatus": "success",
   "createdAt": 1788145006572,
-  "lastActivityAt": 1788145910483,
+  "lastActivityAt": 1788169981798,
   "sessionId": "01a055bf-8542-7d61-ad9d-009878dcf086",
   "selectedModel": "gpt-5.6-sol",
   "providerState": {
@@ -15,13 +15,13 @@
     "workspaceDependencyToolVersion": 1
   },
   "usage": {
-    "inputTokens": 126069,
+    "inputTokens": 168274,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 125696,
+    "cacheReadInputTokens": 166656,
     "contextWindow": 258400,
     "contextWindowIsAuthoritative": true,
-    "contextTokens": 126069,
-    "percentage": 49,
+    "contextTokens": 168274,
+    "percentage": 65,
     "model": "gpt-5.6-sol"
   }
 }

@@ -4,13 +4,35 @@ type: synthesis
 title: 视觉 Token 剪枝检索与阅读日志
 tags: [research, method]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
+sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-wang-2026-metacompress, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
 status: active
 created: 2026-08-24
-updated: 2026-08-31
+updated: 2026-09-02
 ---
 
 # 检索与阅读日志
+
+## 2026-09-02：MetaCompress 精读
+
+- **来源：** CVPR 2026《Rethinking Token Reduction for Large Vision-Language Models》，核对 arXiv v1 16 页正文与补充材料。
+- **层级：** `deep-read/source-checked`；未复现实验，官方仓库当前仍未公开实现代码。
+- **结论：** MetaCompress 不是 safety-aware selector，而是面向多轮 VQA 的 prompt-agnostic learned compression projection；它以完整/压缩 LVLM 输出 KL 为监督，统一剪枝与合并，并用 entropy 与 collapse regularization 控制稀疏聚焦和位置坍塌。
+- **证据边界：** 90% reduction 下普遍优于 Random/Sample/FastV，但仍低于完整模型；没有安全策略、风险指标、文本剪枝、视觉编码器压缩或动态预算证据。
+- **产物：** [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-metacompress.md|MetaCompress 精读笔记]]。
+
+## 2026-08-31：Qwen3-VL 多深度 DeepStack 与剪枝启发
+
+- **范围：** 聚焦阅读 Qwen3-VL 技术报告 §2、§2.2、§5.12.2/Table 12，并核对官方模型配置与 Transformers 实现；未把整份技术报告标为 deep-read。
+- **结论：** Qwen3-VL 以最终 ViT 输出作为视觉主路，再从三个中间 ViT 深度抽取特征，经独立 merger 后依次加到前三个 LLM block 的视觉位置。它保持 context length 不变，把视觉—语言接口从单点瓶颈变成多层侧路；相应地，token 重要性应建模为空间位置 × 表征深度，且剪枝时机决定计算收益与证据可恢复性。
+- **证据边界：** Table 12 平均分 74.7→76.0，但没有三个抽取层的独立消融、DeepStack latency/FLOPs 分解或安全剪枝实验。
+- **产物：** [[LLM-Wiki/research/visual-token-pruning/papers/2025-bai-qwen3-vl.md|Qwen3-VL 聚焦笔记]]；更新 [[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 概念]]。
+
+## 2026-08-31：DeepStack 精读与概念凝练
+
+- 来源：NeurIPS 2024 官方 proceedings；本地保存 arXiv v1 PDF，正式题录与摘要结果已回查官方页面。
+- 层级：`deep-read/source-checked`；未复现实验。
+- 结论：DeepStack 不是 token pruning，而是把高分辨率视觉 token 按空间对应分组后沿 Transformer 深度注入，在 576 个 LLM 视觉槽位中累计承载 2880 个有效视觉 token；它限制 LLM context/KV 长度，但没有消除高分辨率视觉编码成本，也缺少真实 latency 主证据。
+- 产物：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]、[[LLM-Wiki/research/visual-token-pruning/papers/2024-meng-deepstack.md|论文精读]]。
 
 ## 2026-08-31：七种多模态 Token 剪枝方法精读
 
