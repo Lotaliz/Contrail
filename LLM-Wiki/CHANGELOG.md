@@ -8,8 +8,43 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-09-09
+
+- [Changed] [metadata, skills, research/visual-token-pruning] 将 ETC 与 OTPrune 的公式改为 Markdown 预览支持的 `$...$` 和 `$$...$$`，并把数学定界符规范写入维护约定、研究技能及 Wiki 校验器。
+- [Changed] [research/visual-token-pruning] 将 ETC 与 OTPrune 升级为精读，区分训练期任务表征重构与无恢复的 OT 子集覆盖，补全执行路径、实验边界及面向早层安全充分性蒸馏的迁移判断。
+- [Changed] [concepts/technology] 补充标准 ViT 从 RGB patch 到 `[B,N,D]` token 序列的张量变换、颜色通道投影与编码器输入口径，并澄清固定序列长度下的逐层计算、并行注意力、真实 token 剪枝位置及已有早剪先例。
+- [Changed] [research/visual-token-pruning] 补检少量视觉 token 与完整表征的恢复和对齐方法，新增 SiT/FRD、EM-KD、RESTORE、OTPrune 四条来源及论文笔记，并将候选空白收束为安全证据加权的训练期线性可恢复性。
+
+## 2026-09-08
+
+- [Changed] [research/visual-token-pruning] 对缩短视觉塔、前置剪枝和压缩样本再训练做直接排重，将方法收束为政策因果安全充分视觉前缀、最坏压缩格训练与压缩翻转回放，并新增 8 条来源及论文笔记（[[LLM-Wiki/changes/2026-09-08-safety-sufficient-vision-prefix.md|详情]]）。
+
+- [Changed] [research/visual-token-pruning] 将主线更新为同结构的任务与压缩联合训练，补充 EPIC、TBD、ViCO 等 14 条来源及 12 篇分级笔记，重写背景、候选空白和动机并加入可见性约束训练对照（[[LLM-Wiki/changes/2026-09-08-training-aware-visual-safety-pruning.md|详情]]）。
+
+- [Changed] [research/ai-safety-systems-security-venues] 将 HMGUARD 从泛读升级为精读，补全 harmful meme 任务场景、HMCOT 方法、主结果与消融，并登记原始 PDF 及指标一致性、复现和部署证据边界。
+- [Changed] [research/visual-token-pruning, experiments/20260908-bidirectional-token-intervention] 将 label-first 归因界定为可能受首标签中介的事后合理化，登记 Unfaithful CoT、label—rationale association 与 RORA，并加入标签前缀反事实、span 级标签支配指数和低成本 evidence-first/延迟承诺实验。
+- [Added] [experiments/20260908-bidirectional-token-intervention] 将视觉 Token 剪枝的纠错/致错双向翻转预注册为因果干预审计，区分语义干扰删除、证据/关系损失、attention/position 重标定与随机边界抖动，并登记 DART、CrisPrune、EmbedLens、Information Horizon、VASparse 和 VisPruner 来源。
+- [Changed] [research/visual-token-pruning] 调研视觉 Token 剪枝中的复杂推理退化、视觉遗忘与安全政策推理，登记 DSTP、TVC、Look and Think、VFlowOpt、Policy-Guided Safety Tuning 和 GuardReasoner-VL，并将候选缺口明确为 label-first Guard 中“感知保留但政策绑定失败”的诊断与推理保持压缩。
+
+## 2026-09-07
+
+- [Added] [experiments/20260907-xguard-token-pruning-analysis] 归档 XGuard 41 类安全分类、归因生成、Ghosted Layers、FastV、DivPrune 与降分辨率实验原始记录并完成派生复核，将研究优先级收束为逐样本 harmful-flip 审计、平衡长尾确认和 resolution-first 证据恢复。
+
+## 2026-09-04
+
+- [Changed] [research/visual-token-pruning] 将本会话的 Token 剪枝研究整理为单一方案文档，删除目录内其余专题与论文笔记，并重定向相关索引和跨项目链接（[[LLM-Wiki/changes/2026-09-04-consolidate-visual-token-pruning-research.md|详情]]）。
+- [Added] [research/visual-token-pruning] 调研可解释性与 Token 剪枝交叉，登记 X-Pruner、FRESH、ERASER、TokenTM、GAP、SemVID、IF-Prune、FPVG 与解释指标反证，并将候选主线收束为带 provenance 的多模态安全证据瓶颈、非对称证据契约和不确定性回退。
+- [Added] [research/visual-token-pruning] 评估离线 profile、fixed-shape token reducer 与 profile-aware batch serving 三层贡献的已有工作、实现风险和投稿路径，登记 E-AdaPrune、OccamToken、Conformal LLM Routing、PLA-Serve、HELIOS，并将主线收束为 risk-calibrated execution contract。
+- [Added] [research/visual-token-pruning] 调研离线激活/梯度校准的 Token 选择与融合，登记 Prune and Merge、DiffPrune，区分固定结构、离线预算与训练式在线 selector，并将安全 profile 细化为固定执行骨架、动态内容寻址、空间覆盖/关系槽及归因恢复的候选路线。
+- [Changed] [research/visual-token-pruning] 核验低分辨率安全关键样本的研究必要性，补充分辨率反事实漏报定义、现有工作覆盖边界与压缩状态攻击威胁，并登记《Less Is More—Until It Breaks》预印本。
+
+## 2026-09-03
+
+- [Added] [research/visual-token-pruning] 调研输入图像下采样、动态分辨率、低清先行/高清回退与均匀空间池化，登记 VTC-Bench、VisionThink、Qwen2-VL、M3、DeCo 原始论文，形成多模态安全判别的分辨率优先方案、失败边界和实验矩阵。
+
 ## 2026-09-02
 
+- [Added] [research/visual-token-pruning] 核对 FastV、SparseVLM 与 DivPrune 的选择器、attention-kernel 和物理压缩开销，形成端到端时延成本模型、复现 profiler 清单及短标签安全 Guard 的低开销混合剪枝建议。
 - [Added] [research/visual-token-pruning] 精读 CVPR 2026 MetaCompress，登记原始论文并梳理学习式压缩矩阵、attention 启发式反证、训练目标、实验边界及其与安全语义剪枝的区别。
 
 ## 2026-08-31

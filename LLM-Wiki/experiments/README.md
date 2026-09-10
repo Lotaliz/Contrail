@@ -16,6 +16,9 @@ YYYYMMDD-short-name/
 
 ## 已登记的实验
 
+- [[LLM-Wiki/experiments/20260908-bidirectional-token-intervention/README.md]]
+- [[LLM-Wiki/experiments/20260907-xguard-token-pruning-analysis/README.md]]
+- [[LLM-Wiki/experiments/20260826-safety-pruning-finetuned/README.md]]
 - [[LLM-Wiki/experiments/20260825-vispco-qwen25vl-small/README.md]]
 - [[LLM-Wiki/experiments/20260825-safety-decoder-prune-kd-05b/README.md]]
 - [[LLM-Wiki/experiments/20260825-safety-cascade-prune-kd-04b/README.md]]

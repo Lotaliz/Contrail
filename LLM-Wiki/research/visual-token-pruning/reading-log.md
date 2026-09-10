@@ -1,164 +1,80 @@
 ---
-id: visual-token-pruning-reading-log
+id: visual-token-pruning-training-reading-log
 type: synthesis
-title: 视觉 Token 剪枝检索与阅读日志
-tags: [research, method]
+title: "训练参与的视觉 Token 压缩：检索与证据日志"
+tags: [research, visual-token-pruning, knowledge-distillation, multimodal-safety]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-wang-2026-metacompress, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune]
 status: active
-created: 2026-08-24
-updated: 2026-09-02
+created: 2026-09-08
+updated: 2026-09-09
 ---
 
-# 检索与阅读日志
+# 检索范围
 
-## 2026-09-02：MetaCompress 精读
+检索日与截止日：2026-09-09。以 arXiv 原文、CVF、NeurIPS、OpenReview、ACL、AAAI、ECVA 和作者项目页为证据；搜索引擎中的聚合页只用于发现，再回到原文。覆盖 2022—2026，重点补充 2025—2026 的训练、蒸馏、跨分辨率一致性及压缩安全研究。不以检索未命中证明研究不存在。
 
-- **来源：** CVPR 2026《Rethinking Token Reduction for Large Vision-Language Models》，核对 arXiv v1 16 页正文与补充材料。
-- **层级：** `deep-read/source-checked`；未复现实验，官方仓库当前仍未公开实现代码。
-- **结论：** MetaCompress 不是 safety-aware selector，而是面向多轮 VQA 的 prompt-agnostic learned compression projection；它以完整/压缩 LVLM 输出 KL 为监督，统一剪枝与合并，并用 entropy 与 collapse regularization 控制稀疏聚焦和位置坍塌。
-- **证据边界：** 90% reduction 下普遍优于 Random/Sample/FastV，但仍低于完整模型；没有安全策略、风险指标、文本剪枝、视觉编码器压缩或动态预算证据。
-- **产物：** [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-metacompress.md|MetaCompress 精读笔记]]。
+纳入：改变训练目标或训练输入预算、具有直接新颖性冲突、研究压缩导致的语义/安全失败，或提供强比较基线的工作。排除：纯权重压缩、无视觉任务的上下文压缩、纯生成加速、单纯 serving 优化；保留必要相邻工作作为反证。代码未运行，论文数字不视为本地测量。
 
-## 2026-08-31：Qwen3-VL 多深度 DeepStack 与剪枝启发
+## 检索批次与 discovered 候选（先登记，后核验）
 
-- **范围：** 聚焦阅读 Qwen3-VL 技术报告 §2、§2.2、§5.12.2/Table 12，并核对官方模型配置与 Transformers 实现；未把整份技术报告标为 deep-read。
-- **结论：** Qwen3-VL 以最终 ViT 输出作为视觉主路，再从三个中间 ViT 深度抽取特征，经独立 merger 后依次加到前三个 LLM block 的视觉位置。它保持 context length 不变，把视觉—语言接口从单点瓶颈变成多层侧路；相应地，token 重要性应建模为空间位置 × 表征深度，且剪枝时机决定计算收益与证据可恢复性。
-- **证据边界：** Table 12 平均分 74.7→76.0，但没有三个抽取层的独立消融、DeepStack latency/FLOPs 分解或安全剪枝实验。
-- **产物：** [[LLM-Wiki/research/visual-token-pruning/papers/2025-bai-qwen3-vl.md|Qwen3-VL 聚焦笔记]]；更新 [[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 概念]]。
+| 批次 | 实际查询关键词 | 初步候选与处理 |
+|---|---|---|
+| Q1 | visual token pruning training aware fine tuning low high resolution distillation 2026; visual token compression training safety guard pruning 2026 | ViCO、VisCo、ETC、TBD；待原文阅读 |
+| Q2 | site.arxiv.org visual token compression training 2026 distillation; ViCO; PyramidDrop; LLaVolta | InternVL3.5、PyramidDrop、LLaVolta；区分训练加速和推理压缩 |
+| Q3 | Token-Budget Distillation; visual token pruning-aware training; visual token safety compression training distillation | TBD、Fast-Slow、CoViPAL、ET-Prune；待核对结构与任务 |
+| Q4 | visual Progressive Consistency Distillation; Security Pitfalls Token Compression; Visual Token Compression Enhances Robustness; high low-resolution distillation VLM token | ICD、Security Pitfalls、Robustness、LOREAL、RADIOv2.5；待区分 Guard 检测与被保护模型拒答 |
+| Q6 | early vision encoder layer reduction distillation VLM; pre-encoder token pruning; query-guided early pruning; efficient multimodal guard frozen vision encoder | EfficientVLM、Patch Slimming、METR、FastVLM、Dyna-ViT、QuietPrune、ResponseGuard；用于三项策略排重 |
+| Q7 | token-pruning-induced vulnerabilities safety-aware pruning; compression-aware safety training guard | SAP 及相邻压缩攻击；区分生成模型 jailbreak/拒答与独立 Guard 漏报 |
+| Q8 | visual token pruning feature reconstruction/distillation; unbalanced vision-token alignment; distribution/attention alignment; least-squares recovery | SiT/FRD、EM-KD、ETC、OTPrune、RESTORE；用于“少 token→完整表征恢复”排重 |
 
-## 2026-08-31：DeepStack 精读与概念凝练
+候选尚不构成 motivation；后续阅读结果、唯一来源 ID、版本和排除原因在本页更新。项目主文仍为 [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md]]。
 
-- 来源：NeurIPS 2024 官方 proceedings；本地保存 arXiv v1 PDF，正式题录与摘要结果已回查官方页面。
-- 层级：`deep-read/source-checked`；未复现实验。
-- 结论：DeepStack 不是 token pruning，而是把高分辨率视觉 token 按空间对应分组后沿 Transformer 深度注入，在 576 个 LLM 视觉槽位中累计承载 2880 个有效视觉 token；它限制 LLM context/KV 长度，但没有消除高分辨率视觉编码成本，也缺少真实 latency 主证据。
-- 产物：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]、[[LLM-Wiki/research/visual-token-pruning/papers/2024-meng-deepstack.md|论文精读]]。
+## 阅读结果与版本边界
 
-## 2026-08-31：七种多模态 Token 剪枝方法精读
-
-- 目标：围绕用户输入、任务特点、系统位置、选择信号、训练流程、实验效果和安全判别边界，精读 TRIPS、PuMer、FastV、SparseVLM、VisionZip、DivPrune、SafeWatch。
-- 来源：本库保存的七篇正式论文 PDF；逐项回查方法章节、主实验、消融、效率表与局限，未进行本地复现。
-- 产物：[[LLM-Wiki/research/visual-token-pruning/seven-methods-deep-read.md|七种多模态 Token 剪枝方法精读]]，并将七篇 paper note 统一升级为 `deep-read/source-checked`。
-
-| 论文 | 场景 | 精读重点 | 层级 |
+| 方法 | source_id / 笔记 | 本轮层级 | 处理 |
 |---|---|---|---|
-| TRIPS | 编码器式单轮图文预训练/理解 | 文本条件视觉主干选择、低分融合 | deep-read |
-| PuMer | ViLT/METER 融合层 | 视觉剪枝、图文模态内合并、蒸馏 | deep-read |
-| FastV | decoder-only 图像/视频生成 | layer 2 后 attention pruning、计时口径 | deep-read |
-| SparseVLM | prompt-aware 渐进 LLM 剪枝 | text raters、rank 预算、token recycling | deep-read |
-| VisionZip | LLM 前、多轮可复用压缩 | dominant proxy、context merging、TTFT | deep-read |
-| DivPrune | 极端压缩图像/视频生成 | max-min diversity、layer 0、E2E | deep-read |
-| SafeWatch | 长视频多政策安全 Guard | 事件采样、PEPE、PAP、三阶段训练 | deep-read |
+| epic | [[LLM-Wiki/research/visual-token-pruning/papers/2025-wen-epic.md]]；`paper-wen-2025-epic` | deep-read / source-checked | 2510.00515v1；会议身份另核对 NeurIPS 2025 官方页 |
+| tbd | [[LLM-Wiki/research/visual-token-pruning/papers/2026-guo-token-budget-distillation.md]]；`paper-guo-2026-token-budget-distillation` | deep-read / source-checked | 2608.28138v1，2026-08-28；会议标注来自稿件，未独立确认 proceedings |
+| vico | [[LLM-Wiki/research/visual-token-pruning/papers/2025-wang-internvl35-vico.md]]；`paper-wang-2025-internvl35` | skimmed / source-checked | 2508.18265v2；仅聚焦 ViR/ViCO，authors 登记第一作者，完整名单见原文 |
+| etc | [[LLM-Wiki/research/visual-token-pruning/papers/2026-gao-etc.md]]；`paper-gao-2026-etc` | deep-read / source-checked | 2606.00543v2；§1–5、附录 A.1–A.2、图表与执行路径 |
+| dualspeed | [[LLM-Wiki/research/visual-token-pruning/papers/2026-zhang-dualspeed.md]]；`paper-zhang-2026-dualspeed` | skimmed / source-checked | 2602.03815v1 |
+| ood | [[LLM-Wiki/research/visual-token-pruning/papers/2026-gu-ood-vtp.md]]；`paper-gu-2026-ood-vtp` | skimmed / source-checked | 2607.22716v1；稿件会议 DOI 为占位符，不据此确认录用 |
+| etprune | [[LLM-Wiki/research/visual-token-pruning/papers/2026-ding-et-prune.md]]；`paper-ding-2026-et-prune` | skimmed / source-checked | 2608.01979v1 |
+| visco | [[LLM-Wiki/research/visual-token-pruning/papers/2026-zheng-visco.md]]；`paper-zheng-2026-visco` | skimmed / source-checked | 2607.12756v1 |
+| evidencerl | [[LLM-Wiki/research/visual-token-pruning/papers/2026-huang-evidence-rl.md]]；`paper-huang-2026-evidence-rl` | skimmed / source-checked | 2608.08021v1 |
+| attcot | [[LLM-Wiki/research/visual-token-pruning/papers/2026-sinha-att-cot.md]]；`paper-sinha-2026-att-cot` | skimmed / source-checked | 2606.01558v1 |
+| llavolta | [[LLM-Wiki/research/visual-token-pruning/papers/2024-chen-llavolta.md]]；`paper-chen-2024-llavolta` | discovered / unverified | 2406.20092v2；本轮仅题录/摘要与作者项目页 |
+| pyramiddrop | [[LLM-Wiki/research/visual-token-pruning/papers/2024-xing-pyramiddrop.md]]；`paper-xing-2024-pyramiddrop` | discovered / unverified | 2410.17247v2；本轮只核题录/摘要 |
+| efficientvlm | [[LLM-Wiki/research/visual-token-pruning/papers/2022-wang-efficientvlm.md]]；`paper-wang-2022-efficientvlm` | skimmed / source-checked | 2210.07795v1；蒸馏后缩短视觉/文本/融合层 |
+| patch-slimming | [[LLM-Wiki/research/visual-token-pruning/papers/2022-tang-patch-slimming.md]]；`paper-tang-2022-patch-slimming` | skimmed / source-checked | 2106.02852；final→early patch 选择先例 |
+| metr | [[LLM-Wiki/research/visual-token-pruning/papers/2024-liu-metr.md]]；`paper-liu-2024-metr` | skimmed / source-checked | ICLR 2024 官方页/PDF；多出口 early pressure+自蒸馏 |
+| fastvlm | [[LLM-Wiki/research/visual-token-pruning/papers/2025-vasu-fastvlm.md]]；`paper-vasu-2025-fastvlm` | skimmed / source-checked | CVPR 2025；新混合视觉编码器，显式测 vision+prefill |
+| dyna-vit | [[LLM-Wiki/research/visual-token-pruning/papers/2026-rubab-dyna-vit.md]]；`paper-rubab-2026-dyna-vit` | skimmed / source-checked | CVPR 2026 Findings；无参 pre-encoder saliency |
+| quietprune | [[LLM-Wiki/research/visual-token-pruning/papers/2026-gao-quietprune.md]]；`paper-gao-2026-quietprune` | skimmed / source-checked | CVPR 2026；query adapter 引导 ViT 内早剪 |
+| responseguard | [[LLM-Wiki/research/visual-token-pruning/papers/2026-na-responseguard.md]]；`paper-na-2026-responseguard` | deep-read / source-checked | 2607.21401v1；§1–6、主表、视觉差距与校准 |
+| sap | [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-sap.md]]；`paper-wang-2026-sap` | skimmed / source-checked | 官方作者仓库；正文链接本轮未得，会议状态仅按仓库登记 |
+| sit-frd | [[LLM-Wiki/research/visual-token-pruning/papers/2022-zong-self-slimmed-vit.md]]；`paper-zong-2022-self-slimmed-vit` | skimmed / source-checked | ECCV 2022；RTSM 训练期稠密恢复+逐 block MSE |
+| em-kd | [[LLM-Wiki/research/visual-token-pruning/papers/2026-feng-em-kd.md]]；`paper-feng-2026-em-kd` | skimmed / source-checked | AAAI 2026；Hungarian matching+视觉语义/图文 affinity 蒸馏 |
+| restore | [[LLM-Wiki/research/visual-token-pruning/papers/2026-cho-restore.md]]；`paper-cho-2026-restore` | skimmed / source-checked | ICML 2026；位置与注意力失真校准、anchor merging |
+| otprune | [[LLM-Wiki/research/visual-token-pruning/papers/2026-chen-otprune.md]]；`paper-chen-2026-otprune` | deep-read / source-checked | arXiv 2602.20205v3；§1–6 与附录；原文标注 CVPR 2026 |
 
-综合结论：七篇的主要差异不是 selector 公式，而是“文本/政策在何时已知、token 在哪里剪、是否需要跨轮复用、任务能否容忍证据遗漏”。安全场景不能只复用通用 benchmark 的平均保真结论。
+第一次训练参与调研登记 14 条来源：原表 12 条及下列 2 条待核候选；新增 12 篇笔记（现为 3 deep-read、7 skimmed、2 discovered）。针对用户三项策略的二次排重再登记 8 条来源并新增 8 篇笔记（1 deep-read、7 skimmed）。表征恢复补检新增 4 条来源与 4 篇笔记（现为 1 deep-read、3 skimmed）。累计登记 26 条来源、24 篇笔记（5 deep-read、17 skimmed、2 discovered）；来源原件未下载，仅登记稳定 URL；未改动已存 PDF、原始实验和旧笔记。
 
-## 2026-08-28：自适应模型规模执行语义核验
+- LOREAL：`paper-wang-2026-loreal`；[CVF PDF](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_LOREAL_Mitigating_Low-Resolution_Challenges_in_Vision-Language_Models_with_Attribute-driven_Prompt_CVPR_2026_paper.pdf) 搜索可见，但直接 PDF/HTML 访问失败；discovered，作者字段待核，不用于正式动机。它是 G1 新颖性结论的重要未决项。
+- CoViPAL：`paper-2026-covipal`；[OpenReview 稿件](https://openreview.net/pdf?id=RqY4w2gxW9) 仅搜索片段；discovered，题录/状态待核，不用于正式动机。
+- Q5 补检：`visual token training September 2026`、`visual token safety distillation guard`、`visual token counterfactual training`，发现并回读 Evidence-RL 与 Att-CoT；LOREAL 另用题名查询。
+- Q6/Q7 补检表明三项单点均有直接最近邻：EfficientVLM/METR 对应浅层任务蒸馏，Dyna-ViT/QuietPrune 对应前置或 ViT 内早剪，EPIC/TBD 对应剪枝状态再训练；SAP 进一步排除“首次安全感知 token pruning”。Q8 表明稠密特征恢复、不等长匹配、任务统计量、分布保持与注意力校准均有先例；未检索到直接以闭式最小二乘恢复安全证据子空间的工作，但此结论仅是有限检索结果。
+- 其他发现但未入核心比较：LRCP/EvoCut/SPARE（选择规则）、LiteFrame（换视觉编码器）、RADIOv2.5（视觉基础模型蒸馏）、长视频 selection/reinvestment。只作为后续检索线索，不据此概括具体论文方法或推出研究空白。
 
-- 问题：现有 elastic/adaptive model-size inference 是否通常不在执行阶段裁剪参数，而是从大网络选择并加载子网模块；该判断是否适用于多模态安全 Guard。
-- 站点与时间截点：ICLR/OpenReview、NeurIPS Proceedings、PMLR、USENIX、ACM/作者公开版与 arXiv；截至 2026-08-28。
-- 关键词：`elastic inference subnet extraction`、`weight-shared supernetwork serving`、`prompt-routed depth pruning parameter loading`、`contextual sparsity runtime`、`dynamic compute allocation transformer`。
-- 纳入：明确说明子网生成、路由时机、参数驻留/加载或运行时条件执行的一次论文；排除只报告精度—FLOPs而无执行语义的工作。
+## 既有证据复用
 
-| 论文 | 层级 | 核验 | 角色 |
-|---|---|---|---|
-| Once-for-All | skimmed | source-checked | 部署前超网专门化的经典正例 |
-| MatFormer | deep-read | source-checked | Transformer嵌套子网；可提前抽取或运行时按 query/token 选择 |
-| SuperServe | deep-read | source-checked | 常驻权重共享超网内就地 actuation，明确避免关键路径加载 |
-| PuDDing | deep-read | source-checked | 按 prompt 选 omission set 并从存储加载 blocks 的直接正例 |
-| Deja Vu | skimmed | source-checked | 每层在线预测 head/MLP contextual sparsity |
-| Mixture-of-Depths | skimmed | source-checked | 固定形状下 token-level block routing 的反例 |
-| PowerInfer | skimmed | source-checked | 热/冷 neuron 分层常驻与在线预测执行 |
-| SafeRoute | deep-read | source-checked | 独立小/大 Guard 路由，与共享子网区分 |
+Security Pitfalls 复查原文 §3–5 的压缩专属攻击与任务范围；VTC-Bench 核对 ACL 页面并沿用库内 PDF/主文分析；M3/VisionThink 复用既有来源。未整体提升这些论文的阅读深度，也未新建重复来源。SafeWatch、GuardReasoner-VL、DART 等使用已有 Wiki 笔记与主文。
 
-综合结论：“不在请求关键路径永久裁剪参数”在代表性方法中成立；“通常加载适当子网模块”只适用于部分内存受限实现，不能概括常驻超网、上下文稀疏和 token-level routing。Mixture-of-Depths截至本轮仍按预印本处理，不作为正式系统证据的唯一来源。
+XGuard 2026-09-07 的探索结果与 2026-08-26 text-only 微调负结果均保留。双向因果审计是计划而非已得到结果。
 
-## 检索设置
+## 覆盖不足与证据门槛
 
-- 检索日期与时间截点：2026-08-24。
-- 站点：CVF Open Access、OpenReview、NeurIPS Proceedings、PMLR、IJCAI Proceedings、AAAI Proceedings、ECVA、IEEE/作者公开版。
-- 关键词族：`vision transformer token pruning`, `visual token compression`, `token merging`, `adaptive token sparsification`, `ImageNet latency throughput`, `hardware-aware token pruning`, `vision state space token pruning`。
-- 纳入：会议白名单内正式主会论文；视觉判别任务；机制确实减少中间 token 计算；至少报告质量指标。
-- 核心证据升级：同时报告真实时延/吞吐，或揭示影响精度保持的明确失败机制。
-- 排除：WACV/ICCV workshop、期刊、撤稿、预印本；只报生成任务；只报 FLOPs 且与核心问题弱相关。
+本轮针对性搜索覆盖公开可访问材料，不等于 2026-09-08 前全部工作；无检索命中不能证明不存在。近期 arXiv 的会议页眉可能含占位元数据，TBD/OOD-VTP 不仅凭页眉宣布正式录用。EPIC 的 NeurIPS 2025 身份已核对[官方页](https://papers.nips.cc/paper_files/paper/2025/hash/6518f9339196e172fa0ceef48a85543a-Abstract-Conference.html)。
 
-## 覆盖结果
-
-| 论文 | 会议 | 层级 | 核验 | 纳入角色 |
-|---|---|---|---|---|
-| HeatViT | HPCA 2023 | deep-read | source-checked | 系统与真实硬件核心证据 |
-| ToMe | ICLR 2023 | skimmed | source-checked | 合并基线与信息保真边界 |
-| STViT | CVPR 2023 | deep-read | source-checked | 语义凝聚、下游恢复与入门概念的主要证据 |
-| Adaptive Sparse ViT | IJCAI 2023 | deep-read | source-checked | 动态阈值、吞吐与单图时延 |
-| DiffRate | ICCV 2023 | deep-read | source-checked | 自动层预算、剪枝与合并协同 |
-| Zero-TPrune | CVPR 2024 | skimmed | source-checked | 免训练重要性与相似性联合 |
-| ToCom | ECCV 2024 | deep-read | source-checked | 推理预算变化时的精度补偿 |
-| Token Pruning in VSSMs | NeurIPS 2024 | deep-read | source-checked | 跨架构失败反例 |
-| TCA | ICCV 2025 | skimmed | source-checked | 分布偏移下的凝聚式适应 |
-| V-Pruner | AAAI 2026 | skimmed | source-checked | 全局序列决策最新进展 |
-
-## 覆盖限制
-
-- “顶会”采用本项目明示白名单，不声称是唯一学界定义。
-- 2026 年仅覆盖截至 8 月 24 日已正式发表内容，后续会议尚不完整。
-- 论文的硬件、实现、batch size 和计时协议差异很大，表中速度数字不可直接横向排序。
-- 没有本地复现实验，所有结果均为论文来源陈述；`verification` 不使用 `reproduced`。
-
-## 图文多模态补充检索
-
-- 检索日期：2026-08-24；时间截点同日。
-- 站点：ACL Anthology、ECVA/ECCV、CVF Open Access、PMLR/ICML。
-- 关键词族：`vision language token pruning`, `multimodal LLM visual token pruning`, `text-guided patch selection`, `visual token compression`, `prefill KV cache multimodal`, `multi-turn visual token pruning`。
-- 纳入：正式会议论文；确实减少视觉或图文 token；覆盖分类/检索/VQA/captioning/开放式生成/视频；至少报告质量与计算量，核心论文优先含真实 latency/TTFT/KV。
-- 排除：仅预印本、纯文本 KV pruning、只改权重/头、只做 DiT 图像生成、没有 token 减少机制的纯 encoder redesign。
-
-| 论文 | 会议 | 层级 | 核验 | 纳入角色 |
-|---|---|---|---|---|
-| TRIPS | EMNLP 2022 | skimmed | source-checked | 视觉编码器内文本指导选择的早期代表 |
-| PuMer | ACL 2023 | skimmed | source-checked | 图文联合 pruning 与模态内 merging |
-| FastV | ECCV 2024 | skimmed | source-checked | decoder 内 training-free attention pruning 基线 |
-| VisionZip | CVPR 2025 | deep-read | source-checked | LLM 前信息凝聚、TTFT 与 multi-turn 证据 |
-| DivPrune | CVPR 2025 | skimmed | source-checked | 多样性/覆盖与 image-video E2E 证据 |
-| SparseVLM | ICML 2025 | skimmed | source-checked | text raters、自适应比例与 token recycling |
-| Are We Solving the Right Problem? | Findings ACL 2025 | deep-read | source-checked | random/pooling 反例、空间偏置与 latency 复核 |
-| VisPCO | ACL 2026 | deep-read | source-checked | Qwen2.5-VL 实验、逐层 Pareto 配置、数据预处理与官方实现核对 |
-
-详细结果见 [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]。
-
-## 基础阅读
-
-- [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]：从 patch token、ViT/Swin 结构、任务类型、训练/推理流程到剪枝/合并/凝聚/恢复的区别。
-- [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]：图文 token、prefill/decode/KV cache 与分类—生成差异。
-
-## OSDI 双自适应 Guard Serving 补充检索
-
-- 检索日期与时间截点：2026-08-26。
-- 站点：USENIX OSDI/NSDI 正式 proceedings、ACM SOSP DOI 页面、PMLR/ICML；Guard 直接证据复用 Wiki 已登记的 SafeWatch、SafeRoute。
-- 关键词族：`dynamic neural network serving`, `adaptive subnet serving SLO`, `early exit serving batching`, `LLM contextual sparsity`, `prompt depth pruning`, `continuous batching`, `chunked prefill`, `multimodal guard latency`。
-- 纳入：OSDI/SOSP/NSDI/MLSys/ICML 中直接处理请求级动态计算、主干稀疏、连续批处理或 SLO 调度的正式论文；以及与多模态 Guard 自适应直接相关的正式论文。
-- 排除：仅静态量化/权重压缩、没有真实系统执行的纯剪枝精度论文、未录用预印本、与 Guard/动态组批关系较弱的通用集群资源管理。
-- 覆盖限制：本轮目标是判断 OSDI 定位而非穷举全部 LLM serving；八篇新增论文均为 `skimmed/source-checked`，结论限于官方摘要、正文公开页和论文元数据，未做本地复现。
-
-| 论文 | 会议 | 层级 | 核验 | 纳入角色 |
-|---|---|---|---|---|
-| Orca | OSDI 2022 | skimmed | source-checked | iteration-level scheduling 与 selective batching 基础 |
-| Brainstorm | OSDI 2023 | skimmed | source-checked | 动态网络 Cell/Router 抽象与运行时优化核心先例 |
-| Deja Vu | ICML 2023 | skimmed | source-checked | 输入相关 head/MLP contextual sparsity |
-| Sarathi-Serve | OSDI 2024 | deep-read | source-checked | chunked-prefill、uniform batch 与尾时延 |
-| Apparate | SOSP 2024 | skimmed | source-checked | early-exit serving、在线反馈与准确率约束 |
-| PowerInfer | SOSP 2024 | skimmed | source-checked | 激活稀疏的权重放置、预测器和 sparse operator |
-| SuperServe | NSDI 2025 | skimmed | source-checked | 权重共享子网激活与 SLO-aware routing |
-| PuDDing | ICML 2025 | skimmed | source-checked | prompt/task-dependent Transformer depth pruning |
-| NanoFlow | OSDI 2025 | deep-read | source-checked | 单设备内 nano-batch 异构资源重叠与理论吞吐上界 |
-| Prism | OSDI 2026 | deep-read | source-checked | 多模型生产 workload、GPU memory ballooning 与两级 SLO 调度 |
-
-### 检索结论
-
-“任务自适应 Token 剪枝 + 任务自适应主干剪枝 + batch serving”中的每个单项均已有强先例。当前可辩护缺口是三者交叉处的 Guard 特有问题：Token 与主干预算质量上非可分、执行上产生二维异构，以及平均 accuracy 不能替代 fixed-FPR/worst-risk 安全约束。
-
-
-## 2026-08-27 LLM Serving 三篇精读
-
-- [[LLM-Wiki/research/visual-token-pruning/papers/2024-agrawal-sarathi-serve.md|Sarathi-Serve]]：请求/迭代层，控制 prefill 对 decode 的干扰并均衡 PP 微批。
-- [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhu-nanoflow.md|NanoFlow]]：算子/设备内层，通过 nano-batching 重叠 compute、memory 与 network。
-- [[LLM-Wiki/research/visual-token-pruning/papers/2026-yu-prism.md|Prism]]：模型/集群层，通过跨模型显存弹性统一空间共享与时间共享。
-- 三者形成互补层次：**跨模型 residency → 单模型请求组批 → 单设备算子执行**。它们不能直接互相替代，实验指标也分别侧重 SLO attainment、serving capacity 和 per-GPU total token throughput。
+强新颖性排重仍需 LOREAL、CoViPAL 原文及更广泛低分辨率/选择性预测研究。本轮不声称复现实验或发现确定空白；候选差异均附反证和停止条件。正式动机引用事实已映射到来源/实验，方法效果均为 hypothesis。

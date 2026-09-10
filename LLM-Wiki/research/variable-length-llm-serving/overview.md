@@ -64,7 +64,7 @@ updated: 2026-08-27
 
 - [[LLM-Wiki/research/variable-length-llm-serving/reading-log.md|检索与阅读日志]]
 - [[LLM-Wiki/research/variable-length-llm-serving/comparison.md|机制比较]]
-- [[LLM-Wiki/research/visual-token-pruning/papers/2024-agrawal-sarathi-serve.md|Sarathi-Serve 深读]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|Token 剪枝研究方案中的 Serving 对照]]
 
 ## 官方实现页面
 

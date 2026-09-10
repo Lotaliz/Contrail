@@ -8,7 +8,7 @@ description: Finalize and validate any change to the Contrail LLM Wiki by checki
 1. Read LLM-Wiki/metadata/workflows/wiki-finalize.md.
 2. Determine affected files from the current task's operations and explicit scope. Preserve unrelated user changes.
 3. Do not inspect or invoke Git. Git status, diff, history, staging, and commits belong exclusively to the user.
-4. Complete required source registry, metadata, dates, links, indexes, and the dated CHANGELOG entry.
+4. Complete required source registry, metadata, dates, links, indexes, and the dated CHANGELOG entry; ensure Wiki mathematics uses `$...$` or `$$...$$`, not `\(...\)` or `\[...\]`.
 5. Use exactly:
    - Date heading: ## YYYY-MM-DD
    - Entry: - [Type] [scope] one-sentence result.

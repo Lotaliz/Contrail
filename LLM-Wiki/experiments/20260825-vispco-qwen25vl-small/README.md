@@ -357,9 +357,7 @@ VLM 作为 guard 分类器。系统提示要求模型对 (image, text) 输入输
 
 ## 关联实体与来源
 
-- [[LLM-Wiki/research/visual-token-pruning/papers/2026-ji-vispco.md|VisPCO 精读笔记]]
-- [[LLM-Wiki/research/visual-token-pruning/overview.md|视觉模型 Token 剪枝项目]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
-- [[LLM-Wiki/research/visual-token-pruning/papers/2024-chen-fastv.md|FastV]]
 - 数据源 `paper-liu-2024-mm-safetybench`（MM-SafetyBench，ECCV 2024）—— 见 `LLM-Wiki/raw/sources.yaml`
 - 数据源 `paper-luo-2024-jailbreakv`（JailBreakV-28K，ICLR 2024）—— 见 `LLM-Wiki/raw/sources.yaml`

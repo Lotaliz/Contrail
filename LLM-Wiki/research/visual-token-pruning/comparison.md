@@ -1,100 +1,68 @@
 ---
 id: visual-token-pruning-comparison
 type: synthesis
-title: 视觉 Token 剪枝统一比较
-tags: [research, method]
+title: "训练参与视觉压缩：统一比较与最近邻审查"
+tags: [research, visual-token-pruning, multimodal-safety, knowledge-distillation]
 project_id: visual-token-pruning
-sources: [paper-dong-2023-heatvit, paper-bolya-2023-tome, paper-chang-2023-stvit, paper-liu-2023-adaptive-sparse-vit, paper-chen-2023-diffrate, paper-wang-2024-zero-tprune, paper-jie-2024-tocom, paper-zhan-2024-token-pruning-vssm, paper-wang-2025-tca, paper-yao-2026-v-pruner, paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-chen-2025-safewatch, paper-lee-2025-saferoute, paper-yu-2022-orca, paper-cui-2023-brainstorm, paper-liu-2023-dejavu, paper-agrawal-2024-sarathi-serve, paper-dai-2024-apparate, paper-song-2024-powerinfer, paper-khare-2025-superserve, paper-wee-2025-pudding, paper-zhu-2025-nanoflow, paper-yu-2026-prism, paper-cai-2020-once-for-all, paper-devvrit-2024-matformer, paper-raposo-2024-mixture-of-depths]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune]
 status: active
-created: 2026-08-24
-updated: 2026-08-27
+created: 2026-09-08
+updated: 2026-09-09
 ---
 
-# 统一比较
+# 方法比较
 
-> 数字均为作者在各自设置下报告，硬件、batch size、模型和计时口径不同，不可直接排名。“精度损失”通常为绝对百分点。
+下表中的代码状态是本轮核查结果，不代表论文没有代码。相同 token 数不代表相同时延；训练样本、GPU 小时和可训练参数须同时匹配。新论文详见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md]]。
 
-| 方法 | 任务/主干 | 选择与压缩 | 训练需求 | 质量—效率代表点 | 时延证据 | 主要局限 |
-|---|---|---|---|---|---|---|
-| HeatViT, HPCA'23 | ImageNet；DeiT/LV-ViT | 多头选择器；丢弃并聚合；硬件延迟约束 | 多阶段微调 + 8-bit 量化 | 相近精度下降低 28.4%–65.3% 计算；部分设置无精度下降可剪 16.1%–23.1% | ZCU102 上剪枝本身 1.82–2.58×，叠加量化总计 3.46–4.89× | 加速器专用；剪枝与量化贡献需分开看 |
-| ToMe, ICLR'23 | 图像/视频/音频分类 | 二分匹配合并相似 token | 可免训练 | 高分辨率 ViT-L/H 约 2× throughput，精度降 0.2–0.3 | 报吞吐，合并核实现敏感 | 不是纯剪枝；均匀每层合并率可能次优 |
-| STViT, CVPR'23 | ImageNet、视频、检测/分割 | 语义 token 聚类与恢复 | 需训练/改造 | DeiT 16 token 下约 60% FLOPs 降低且精度相当；推理速度提升超过 100% | 报 inference speed | 更像架构级凝聚；恢复模块削弱部分收益 |
-| AS-ViT, IJCAI'23 | ImageNet；DeiT/LV-ViT | 多头加权 class attention + 可学习阈值 | 30 epoch 微调 | DeiT-S throughput +50%，Top-1 -0.2；30%–35% 计算下降时精度损失≤0.2 | 2080Ti；batch=64 吞吐、batch=1 平均时延 | 依赖 class token/attention；动态长度执行开销 |
-| DiffRate, ICCV'23 | ImageNet；DeiT/MAE ViT | 可微层级剪枝率 + 合并率 | 可仅优化 rate，支持免全量微调 | MAE ViT-H FLOPs -40%，throughput 1.5×，Top-1 -0.16 | 报 GPU throughput | 搜索所得 budget 对硬件未必最优 |
-| Zero-TPrune, CVPR'24 | ImageNet；多种 ViT | 注意力图 WPR 重要性 + 相似性剪枝 | 免训练 | DeiT-S FLOPs -34.7%，throughput +45.3%，Top-1 -0.4 | 报 throughput | PageRank/排序有固定开销；主要验证分类 |
-| ToCom, ECCV'24 | 20+ 分类下游任务；DeiT | 为不同 compression degree 学补偿插件 | 一次快速参数高效自蒸馏 | CIFAR100/FGVC/VTAB 平均性能最高提升 2.3/1.5/2.0 点 | 复用 ToMe 吞吐曲线，不主张新增剪枝加速 | 解决精度补偿而非选择器；需保存插件 |
-| ToP-ViM, NeurIPS'24 | ImageNet、COCO；ViM/PlainMamba | SSM 输出重要性 + 隐状态位置对齐 | 30 epoch 微调 | PlainMamba-L3 Top-1 81.7，FLOPs -41.6%；基线 82.3 | 论文称有实际加速，但主表以 FLOPs 为主 | 缺少统一详细 latency 表；架构专用 |
-| TCA, ICCV'25 | CLIP/SigLIP 跨域分类 | 代表 token + 域锚点凝聚、logit correction | 免训练 | 跨数据集/腐化集最高提升 21.4%，GFLOPs -12.2% 至 -48.9% | 未形成跨硬件时延主证据 | 目标含适应增益，不能与 IID ImageNet 直接比 |
-| V-Pruner, AAAI'26 | ImageNet；ViT-L/DeiT | Fisher 初始化 + PPO 全局逐层决策 | 约 1.3h（文中代表设置） | 多尺度模型上同时比较精度、GFLOPs、吞吐与 latency；DeiT-T/S 表中约 1.23–1.4× 级加速 | 报 img/s 与 ms | RL 搜索仍依赖校准与硬件；需独立复现 |
+| 方法 | 任务/输入 | 选择信号与位置 | 预算 | 训练需求 / 结构 | 数据、基线与指标 | 效率口径 / 局限 | 代码 |
+|---|---|---|---|---|---|---|---|
+| EPIC | 通用图文理解 | 复用 DART/FastV/Random，层位置可渐进 | 多预算 | SFT+渐进 KL，同主干 | LLaVA-665K；多种压缩/无蒸馏消融；10 基准 | 表 2 为 POPE CUDA 总时间，非安全时延 | 作者仓库已定位，未运行 |
+| TBD | 视频问答 | LLM 前 FlashVID 等，selector 不训练 | 固定保留预算 | LoRA+可靠答案蒸馏 | Video-178K；LoRA-only/多压缩模块；4 基准 | 训练完整教师仍昂贵；无 Guard 召回约束 | 官方可用实现未核实 |
+| ViCO / ViR | 通用图文、OCR | patch 网格压缩，损失比监督 router | 256/64 per patch | 一致性后训+额外 ViR | SFT/OCR/VQA；Flash 对原版均分 | 表 17 非安全子群；不能代替输入 resize 时延 | 原文入口，未运行 |
+| DualSpeed | MLLM 训练 | 插件式剪枝，fast/slow 模式 | 压缩/完整 | 双模式、自蒸馏、mode isolator | LLaVA 系列；剪枝训练/推理比较 | 核心是训练墙钟；full-path 失配需检查 | 作者仓库已定位，未运行 |
+| ETC | 图文问答/grounding | 任务加权 hidden state 的 VID 稠密重构，LLM 瓶颈 | 1/2/4 压缩 tokens | 学习 token；训练期 MLP decoder，推理移除 | LLaVA/Qwen3；通用 VQA、RefCOCO | 完整视觉塔与完整 token prefill 仍执行；短标签时延收益未证 | 官方来源，未运行 |
+| SiT / FRD | 纯视觉分类 | TSM 软聚合；训练期 RTSM 恢复稠密 token | 多 stage | 逐 block token MSE+logit KD；推理移除 RTSM | ImageNet；vanilla ViT/LV-ViT | 最接近少 token→完整特征恢复；非安全/VLM | 官方代码，未运行 |
+| EM-KD | 通用 MLLM | Hungarian 匹配不等长视觉 token | 教师/学生不同 token 数 | 视觉词表 reverse KL+图文 affinity Smooth L1 | 多理解/解析基准 | 不重构全部教师位置；训练匹配开销不进入推理 | 未运行 |
+| OTPrune | 通用 MLLM | 零均值高斯二阶统计、Wasserstein 代理与 log-det 覆盖；不做特征重构 | 固定原 token 子集 | training-free，Gram+Cholesky 贪心 | 11 个多模态基准 | 完整视觉塔已执行；均匀且文本无关；selector-inclusive latency 未报 | 官方来源，未运行 |
+| RESTORE | 通用 MLLM | 位置保持、注意力校准和 anchor merging | 多保留率 | 推理期校准，不做教师 feature KD | LLaVA/Qwen 系列、多基准 | TextVQA merging 暴露高频细节稀释 | 官方代码，未运行 |
+| VisCo | 通用图文理解 | 内在自编码、分层 memory KV | 多种紧凑预算 | 共享主干，改变 memory 执行 | 三主干、六基准 | 不改主干不等于不改执行协议 | 未核实 |
+| ET-Prune | OCR 密集图文 | 问题相关、区域保护、熵密度；中层 | 动态下限 | 无训练 | TextVQA/OCRBench；多 selector | 单次评测点估计，早段成本未省 | 未核实 |
+| OOD-VTP | 生成拒答/幻觉 | 语言空间距离；选定层 | 剪枝率 | 无训练 | SafeBench/MM-SafetyBench/CHAIR | 拒答不是 Guard 检出，需补良性 FPR | 作者仓库已定位，未运行 |
+| Evidence-RL | 证据密集视觉推理 | 局部干预支持差，训练期 | 不研究压缩预算 | GRPO，无在线审计 | 九基准、证据/干预消融 | 无额外审计不等于短输出 | 未核实 |
+| Att-CoT | 多步视觉推理 | 视觉 attention+承诺时序，训练期 | CoT 长度非视觉预算 | 辅助 SFT，同架构 | CLEVR/ChartQA 等及遮挡测试 | CoT decode 仍需计费 | 未核实 |
+| EfficientVLM | 通用 VL | 先蒸馏，后按模态做结构/神经元剪枝 | 6V/3T/3X 等 | 紧凑学生，改变整体模型规模 | VQA/NLVR/检索/描述 | 报告 2.2x；非 Guard、非输入 patch 联合压缩 | 未运行 |
+| Patch Slimming | 纯视觉分类 | final→early 的 top-down patch 影响 | 分层 patch 预算 | 微调既有 ViT | ImageNet 等 | FLOPs 降低不等于 VLM 判定时延 | 未运行 |
+| METR | 纯视觉分类 | 多出口压力使早期 `[CLS]` attention 可用于删 token | 多层 reduction | 训练多出口+自蒸馏；推理保留 reduction | 标准视觉基准 | 已直接覆盖“早层任务压力+token reduction” | 未运行 |
+| FastVLM | 通用 VLM | 新 FastViTHD 编码器，以输入分辨率控制 token | 多分辨率 | 换视觉 backbone 并训练 | 多项 VLM/OCR 基准 | 显式测 vision+prefill；结构变化较大 | 官方代码，未运行 |
+| Dyna-ViT | 纯视觉分类 | encoder 前按能量/边缘/熵等无参显著性选 patch | 固定 Top-K | 主干不改，无新增参数 | VOC/CIFAR/Tiny-ImageNet | 不看 query/policy；安全小证据可能低显著 | 未运行 |
+| QuietPrune | 通用 VLM | 文本→视觉 `[Q-CLS]`；ViT 内早剪和聚合 | 多剪枝率 | 训练轻量 adapter，改变前向输入 | Qwen3-VL/InternVL3，多项 VLM 基准 | 同时省视觉塔和 prefill；安全政策未测 | 无代码入口，未运行 |
+| ResponseGuard | 独立多模态 Guard | 单次 pooled 表示直接分类 | 固定全输入 | LoRA+小 head，冻结视觉编码器 | prompt/response harmfulness | 报 67.6 ms；图像组仍弱，骨干非同模型对照 | 官方代码，未运行 |
+| SAP | 被保护生成 VLM 的 jailbreak 安全 | 推理期恶意锚点识别、良性 token 恢复和 attention 重分配 | 多剪枝率 | plug-and-play，推理协议变化 | 3 安全+4 utility（仓库说明） | 非独立 Guard 检出；论文正文链接本轮未得 | 官方代码，未运行 |
 
-## 可直接用于选型的判断
+## 与既有证据的关系
 
-- 零训练、分类先行：Zero-TPrune；同时保留 ToMe 作为信息保真基线。
-- 可微调且追求精度：AS-ViT 或 DiffRate；高压缩优先联合剪枝/合并。
-- 多预算部署：ToCom 弥补不同推理预算下的精度损失，但仍需目标硬件重新找预算。
-- FPGA/固定边缘设备：HeatViT 式 latency LUT 与算子共设计最有证据。
-- 视觉 SSM：不可直接套用 ViT selector，优先 ToP-ViM 式位置对齐。
-- 分布偏移分类：TCA 提示“压缩可兼作适应”，但要独立验证 IID 精度与真实 latency。
+- M3 已联合训练嵌套视觉网格；不能声称首次任意预算训练。
+- VisionThink 已用训练决定何时看高清；不能声称首次学习分辨率升级。
+- SafeWatch 已是 policy-aware pruning 的直接安全先例。
+- VTC-Bench 与 XGuard 已使 resize 成为必须比较的方案。
+- Security Pitfalls 已研究压缩状态特有漏洞；“发现剪枝可被攻击”不足以构成新安全论文。
 
-## 图文多模态比较入口
+上述复用已登记来源及主文已有来源定位，本轮不将其整体阅读级别自动提升。
 
-多模态方法还必须比较压缩位置（vision encoder/projector/LLM layer/cache）、是否使用文本、是否支持 multi-turn，以及 TTFT/decode/KV 指标。完整统一表见：
+## 拟议方法必须增加什么
 
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md#统一比较|图文多模态 Token 剪枝统一比较]]。
+| 候选增量 | 最近邻已覆盖 | 仍须证明的差异 |
+|---|---|---|
+| 任务+压缩联合训练 | EPIC/TBD/ViCO | 固定 FPR 下困难政策子群改善，不仅均分恢复 |
+| 高清→低清对齐 | ViCO 相邻预算、TBD full→compressed；LOREAL 待读 | 学生证据可见性决定监督与拒绝强一致性，且击败相同训练的 resize |
+| 少 token→完整表征恢复或分布覆盖 | SiT/FRD、EM-KD、ETC、OTPrune、RESTORE | ETC 属于任务表征重构，OTPrune 只做二阶分布覆盖；安全证据加权的训练期可恢复性还需证明其预测 harmful flip，不能只报全局 feature MSE |
+| 首标签政策关系蒸馏 | TBD margin；Att-CoT；GuardReasoner-VL | 不增加在线推理长度仍改善组合风险，且避免标签/语言捷径 |
+| 干预生成训练监督 | Evidence-RL | 干预×压缩的交互收益，而非普通 grounding 后训收益 |
+| 可靠蒸馏 | TBD 教师过滤 | 独立检查学生可观察性与 full/pruned 双向纠错 |
+| 压缩安全防御 | Security Pitfalls；OOD-VTP | 明确 Guard 威胁模型、固定 FPR、跨攻击/预算泛化，不靠全回退 |
+| 浅层安全视觉塔 | EfficientVLM；MuE；METR | 不是普通 early exit；须证明政策条件下的安全充分性、真实截断及 image-only/worst-group 增益 |
+| encoder 前/内早剪 | Patch Slimming；Dyna-ViT；QuietPrune | 不是 query adapter 换成 policy；须处理低显著度危险证据和输入×深度交互 |
+| 单次 Guard 判定 | ResponseGuard | 同 backbone/数据下拆分视觉前缀、输出形式和训练目标；严格 FPR 而非只报加权 F1 |
+| 安全感知剪枝 | SAP；SafeWatch；Security Pitfalls | 独立检测 Guard、漏报威胁与训练泛化；不把生成拒答或 jailbreak ASR 当 recall |
 
-快速选型：encoder-style VLM 用 TRIPS/PuMer；decoder-only training-free 基线用 FastV；重 multi-turn/prefill 用 VisionZip；高压缩覆盖基线用 DivPrune；需要 prompt-aware progressive pruning 用 SparseVLM；任何复杂方法都必须同时对比 Random/Pooling，并单独搜索层预算。
-
-## 双自适应 Guard Serving 的相邻系统比较
-
-| 系统/方法 | 已解决的自适应维度 | 组批/执行机制 | 质量约束 | 当前课题必须新增什么 |
-|---|---|---|---|---|
-| Orca, OSDI'22 | 生成请求的迭代进度 | iteration-level scheduling；selective batching | 无 Guard 安全约束 | 同时容纳可变 token 与可变主干路径 |
-| Brainstorm, OSDI'23 | sub-tensor 动态路由/子网 | Cell、Router、动态分布专门化 | 通用模型精度 | Guard execution signature、安全证据与风险约束 |
-| Deja Vu, ICML'23 | 输入相关 head/MLP 稀疏 | 在线预测、异步硬件感知执行 | 通用 LM 质量 | 多模态 Guard 上的安全保持与高 batch 执行 |
-| Sarathi-Serve, OSDI'24 | prefill/decode 工作量 | chunked-prefill、stall-free uniform batches | TTFT/TPOT SLO | 短输出 Guard 的 time-to-verdict 与二维异构组批 |
-| Apparate, SOSP'24 | 请求级 early exit | 持续完整执行反馈、在线 ramp/threshold 调整 | accuracy drop budget | fixed-FPR/worst-risk 约束；不能总是后台跑完整 Guard |
-| PowerInfer, SOSP'24 | 热/冷神经元激活 | CPU-GPU 放置、自适应预测、稀疏算子 | 通用 LM 质量 | 数据中心 Guard 的权重驻留与批执行设计 |
-| SuperServe, NSDI'25 | 权重共享子网与请求 slack | SubNetAct + SlackFit | accuracy/latency target | Token×主干联合 profile 与安全回退 |
-| PuDDing, ICML'25 | prompt/task-dependent depth | router 选择 omission set | 任务平均性能 | 风险/证据驱动路径以及 serving integration |
-| SafeRoute, Findings ACL'25 | 小/大 Guard 路由 | router 选择独立模型 | Guard F1/计算 | 多模态、权重共享、batch/SLO 与细粒度安全约束 |
-| SafeWatch, ICLR'25 | policy-aware 视频 token | policy attention + adaptive pruning | 平均 Guard 指标 | 主干弹性、在线服务、P99 与固定 FPR |
-
-### 结论
-
-当前方案的每个单模块都有强先例，但“Guard 安全约束下同时控制序列长度和主干路径，并保持高效批执行”尚未被上述论文完整覆盖。这一交集是可投稿空间，也是必须用系统机制而非模块堆砌证明的部分。
-
-## “自适应模型规模”是否在推理阶段裁剪模型
-
-这里必须把“裁剪”拆成参数结构生成、权重驻留和执行路径选择。现有论文并不共享同一种实现。
-
-| 方法 | 决策时机/粒度 | 权重驻留或加载 | 请求执行阶段发生什么 | 对题述判断 |
-|---|---|---|---|---|
-| Once-for-All | 部署前；设备/预算级 | 可导出并只部署专用子网 | 固定小模型正常前向 | 支持“不现场剪枝”，但不是按请求选择 |
-| MatFormer | 部署前或运行时；层级 FFN 宽度、query/token | 可抽取独立子模型，也可让 universal model 常驻后切片 | 嵌套权重前缀组成不同粒度子模型 | 部分支持；不要求模块加载 |
-| SuperServe | 每请求；accuracy/latency/SLO profile | 权重共享超网就地驻留；SubNetAct避免额外加载 | 控制流选择 LayerSelect/WeightSlice 等路径 | 直接反驳“通常需要加载子网” |
-| PuDDing | 每 prompt 一次；Transformer omission set | 低内存设定下从存储加载被选 blocks | 执行预定义深度子网；不现场搜索剪枝 | 最直接支持题述实现 |
-| Deja Vu | 每层/输入；head 与 MLP | 依赖异步硬件感知执行；不是请求级完整子网 | 在线预测 contextual sparsity并跳过计算 | 运行时条件剪枝反例 |
-| Mixture-of-Depths | 每层每 token | 完整权重结构存在；固定 k 保持静态 tensor size | Top-k token 进入 block，其余绕过 | 运行时动态计算、非模块加载 |
-| PowerInfer | 离线放置 + 在线每层 neuron 预测 | 热 neuron GPU 常驻，冷 neuron CPU 常驻 | 两端直接计算预测活跃 neuron并合并 | 是分层驻留，不是临时组成子网 |
-| SafeRoute | 每请求；独立小/大 Guard | 两个独立模型，可能同时驻留或由 serving 层管理 | router选择一个模型 | 是模型路由，不是权重共享剪枝 |
-
-### 对多模态安全 Guard 的判断
-
-- **适用的部分：** 不在请求关键路径执行 BlockPruner 式逐模块重要性测量、张量删除和模型重构。离线建立少量安全校准过的可执行 profile，在线只路由、切片或跳过。
-- **需要修正的部分：** 路由依据不应只是“任务”。同一安全判别任务内部，OCR、小目标、图文冲突、隐式危害和高风险低置信样本需要不同计算量；应使用风险、证据充分性、校准置信度、deadline slack 与队列状态。
-- **推荐数据中心实现：** 权重共享或嵌套超网常驻 GPU，预编译少量 `(token budget, backbone profile)`，请求按 execution signature 组批；风险不满足时升级 profile 或回退完整 Guard。不要在关键路径从 CPU/SSD 装配任意子网。
-- **推荐边缘实现：** 显存/内存放不下完整 Guard 时，PuDDing式 block loading才有必要；必须计入路由、存储读取、模块重用和 prompt 切换成本。
-- **论文新颖性边界：** “训练大网—选子网—按置信度路由”已有 OFA、MatFormer、SuperServe、PuDDing 和 SafeRoute。可成立的贡献应是多模态安全证据与主干预算耦合、fixed-FPR/worst-risk 约束、二维异构组批以及可验证回退，而不是自适应子网本身。
-
-
-## LLM Serving 三层系统对照
-
-| 论文 | 优化层级 | 核心场景 | 主要机制 | 首要评价目标 | 不适用/薄弱场景 |
-|---|---|---|---|---|---|
-| [[LLM-Wiki/research/visual-token-pruning/papers/2024-agrawal-sarathi-serve.md|Sarathi-Serve]] | 请求/迭代/微批 | 单模型在线生成，长 prefill 干扰 decode；跨节点 PP batch 不均 | chunked prefill、decode-first token budget、stall-free hybrid batch | P99 TBT SLO 下的最大可持续 QPS | 短输出分类器、缺少长 decode 的 Guard；未定量比较 P/D disaggregation |
-| [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhu-nanoflow.md|NanoFlow]] | 单 GPU 内算子/资源 | 高并发、大 batch、aggregate compute-bound，但 compute/memory/network 串行 | nano-batch、干扰 profile、两阶段 MILP pipeline search | total tokens/s/GPU 与理论 compute roofline 的差距 | 低 load、memory-bound/小模型长 decode、非 NVIDIA runtime 可移植性未证 |
-| [[LLM-Wiki/research/visual-token-pruning/papers/2026-yu-prism.md|Prism]] | 模型 residency/跨 GPU 内存/集群 | 大量长尾模型保持可用，活跃模型组持续变化且请求 burst 交错 | CUDA VMM ballooning、eTensor、KVPR placement、slack-aware arbitration | TTFT/TPOT attainment 与达到目标所需 GPU 数 | 弱互联加载、未知 trace shift、局部调度的最优性依赖可估 prefill |
-
-### 组合关系
-
-三篇工作可串成一个层级化 serving stack：Prism 决定模型驻留位置和跨模型物理显存份额；Sarathi-Serve 决定某模型实例每轮接纳哪些 prefill/decode token；NanoFlow 再把该轮算子拆成 nano-operations，在设备内重叠异构资源。它们处理的瓶颈不同，因此把三者的 speedup 相乘是不成立的；真正的组合实验应重新测端到端 SLO goodput，并检查上层弹性是否破坏下层稳定大批假设。
+完整可执行对照矩阵见主文 §20；候选性质见 [[LLM-Wiki/research/visual-token-pruning/gaps.md]]。

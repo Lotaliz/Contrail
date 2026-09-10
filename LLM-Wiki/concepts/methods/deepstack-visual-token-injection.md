@@ -172,7 +172,6 @@ Qwen3-VL 变体进一步带来五点直接启发：
 
 ## 来源与继续阅读
 
-- [[LLM-Wiki/research/visual-token-pruning/papers/2024-meng-deepstack.md|DeepStack 论文精读]]
-- [[LLM-Wiki/research/visual-token-pruning/papers/2025-bai-qwen3-vl.md|Qwen3-VL DeepStack 聚焦笔记]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]

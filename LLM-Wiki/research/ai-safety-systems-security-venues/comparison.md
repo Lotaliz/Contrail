@@ -8,7 +8,7 @@ sources: [paper-qu-2023-unsafe-diffusion, paper-he-2024-yopo, paper-wu-2024-legi
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-08
 ---
 
 # 统一比较
@@ -20,7 +20,7 @@ updated: 2026-08-25
 | JBShield | 激活概念 | 检测+操控 | 白盒 | 内部信号更丰富 |
 | VLM Unsafe Concepts | 感知与对齐 | PPO | 模型级 | 保护跨模态一致性 |
 | Activation Approximations | 近似误差 | QuadA | 部署链 | 压缩后安全复验 |
-| HMGUARD | prompt + CoT | 检测 | MLLM guard | 质量高但生成慢 |
+| HMGUARD | 领域/任务提示 + 表层、融合、构图、宣传、意图推理 | 二分类检测 | GPT-4V 多调用 guard；英文 meme | 同模型提示增益强，但未报告时延/成本；可按模块审计剪枝失效 |
 | EnchTable | 安全向量 | 蒸馏+合并 | 发布链 | 安全恢复 |
 | Sentinel | 多层 probe | 早期检测 | 白盒外挂 | 小于5M直接证据 |
 | Rennervate | token attention | 检测+清洗 | 白盒运行时 | 细粒度干预 |

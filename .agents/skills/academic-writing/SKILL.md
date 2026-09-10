@@ -13,5 +13,6 @@ description: Draft or revise academic research writing from the Contrail LLM Wik
 6. Never invent citations, results, settings, or novelty. Mark unsupported claims as TODO or hypothesis.
 7. Organize Related Work by problem and technical distinction. Construct motivation from scenario constraint, failed assumption, measurable gap, and research question.
 8. Check terminology, symbols, numbers, figures, citations, limitations, and contribution scope.
-9. Write new research judgments back to the relevant synthesis; do not turn wording edits into concept changes.
-10. If the Wiki changes, finish with the wiki-finalize procedure and run its validator.
+9. In Wiki Markdown, write inline and display mathematics with `$...$` and `$$...$$`; convert `\(...\)` and `\[...\]` copied from LaTeX sources.
+10. Write new research judgments back to the relevant synthesis; do not turn wording edits into concept changes.
+11. If the Wiki changes, finish with the wiki-finalize procedure and run its validator.

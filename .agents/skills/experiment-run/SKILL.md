@@ -14,4 +14,5 @@ description: Plan, run, reproduce, benchmark, ablate, debug, or analyze a resear
 7. Separate raw results, derived metrics, statistical inference, and interpretation.
 8. Do not expand cost, download restricted data, or mutate external systems without authorization.
 9. Link conclusions to the exact run and update hypotheses or motivation only to the degree supported.
-10. Finish with the wiki-finalize procedure and run its validator.
+10. Use `$...$` and `$$...$$` for mathematics in Wiki Markdown so equations render in preview.
+11. Finish with the wiki-finalize procedure and run its validator.

@@ -28,6 +28,20 @@
       "images": [],
       "contentDigest": "0b87a8e0da167e49967985a184131ae5569f6176fc867eab70a1d9d2b4d8adab",
       "providerUserMessageId": "01a05739-66c8-7ba3-9a40-2d1a15a03fa2"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788856388639-qdc6zap",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1788856388603-pwudwpc",
+      "timestamp": 1788856388603,
+      "rawDisplayText": "精读这篇论文：I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models\n重点明确其任务（问题）场景、方法设计和实验效果",
+      "canonicalText": "精读这篇论文：I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models\n重点明确其任务（问题）场景、方法设计和实验效果",
+      "images": [],
+      "contentDigest": "e387af9642a7a31d5d9d6067471328eb4c638d935a66c52358c07e88ab749714",
+      "providerUserMessageId": "01a08026-6253-7ac0-9c63-a4858087cebb",
+      "providerAssistantMessageId": "msg_0da2bd3794289f0a016a9fd1b811a487d0a7c47c3c53af8306"
     }
   ]
 }

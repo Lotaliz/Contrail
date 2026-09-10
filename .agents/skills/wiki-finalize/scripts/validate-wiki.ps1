@@ -73,6 +73,11 @@ if (Test-Path -LiteralPath $wiki) {
         if ($rel -like "LLM-Wiki/templates/*") { continue }
 
         $text = Get-Content -LiteralPath $file.FullName -Raw
+        $mathText = [regex]::Replace($text, '(?s)```.*?```', '')
+        $mathText = [regex]::Replace($mathText, '`[^`\r\n]*`', '')
+        if ([regex]::IsMatch($mathText, '\\\(|\\\)|\\\[|\\\]')) {
+            $errors.Add("${rel}: unsupported math delimiter; use `$...`$ or `$$...`$$")
+        }
         $fm = Get-Frontmatter $text
         $requiresFrontmatter = $rel -like "LLM-Wiki/concepts/*" -or $rel -like "LLM-Wiki/research/*/*.md" -or $rel -like "LLM-Wiki/research/*/papers/*"
         if (-not $fm) {

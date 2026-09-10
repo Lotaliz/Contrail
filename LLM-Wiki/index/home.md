@@ -16,7 +16,8 @@ status: active
 - [[LLM-Wiki/metadata/workflows/README.md|标准研究工作流]]
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/research/visual-token-pruning/overview.md|安全充分视觉前缀：背景、最近邻、方法与候选空白（2026-09-08）]]
 - concepts 按技术、方法、工程、写作和数据五类组织；现已建立首个技术基础概念。
 
 ## 管理入口

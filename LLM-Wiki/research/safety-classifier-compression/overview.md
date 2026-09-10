@@ -60,7 +60,7 @@ updated: 2026-08-31
 - [[LLM-Wiki/concepts/methods/on-policy-distillation.md|On-policy 蒸馏概念]]
 - [[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md|可生成归因的多模态自回归 Guard Token 剪枝]]
 - [[LLM-Wiki/research/safety-classifier-compression/comparison.md|统一维度比较：含任务对齐剪枝重要性指标]]
-- [[LLM-Wiki/research/visual-token-pruning/overview.md|邻接项目：视觉 Token 剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|邻接项目：多模态安全判别 Token 剪枝]]
 
 ## 预注册实验设计（未执行）
 

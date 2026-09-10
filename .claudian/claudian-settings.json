@@ -52,7 +52,7 @@
         {
           "model": "gpt-5.6-sol",
           "displayName": "GPT-5.6-Sol",
-          "description": "Reliable agentic workhorse for everyday tasks.",
+          "description": "Latest frontier agentic coding model.",
           "supportedReasoningEfforts": [
             {
               "value": "low",
@@ -183,7 +183,7 @@
         {
           "model": "gpt-5.5",
           "displayName": "GPT-5.5",
-          "description": "Proven previous-generation model for coding and general work.",
+          "description": "Frontier model for complex coding, research, and real-world work.",
           "supportedReasoningEfforts": [
             {
               "value": "low",
@@ -218,62 +218,25 @@
           "isDefault": false
         },
         {
-          "model": "gpt-5.4",
-          "displayName": "GPT-5.4",
-          "description": "Strong model for everyday coding.",
+          "model": "gpt-5.2",
+          "displayName": "GPT-5.2",
+          "description": "Optimized for professional work and long-running agents.",
           "supportedReasoningEfforts": [
             {
               "value": "low",
-              "description": "Fast responses with lighter reasoning"
+              "description": "Balances speed with some reasoning; useful for straightforward queries and short explanations"
             },
             {
               "value": "medium",
-              "description": "Balances speed and reasoning depth for everyday tasks"
+              "description": "Provides a solid balance of reasoning depth and latency for general-purpose tasks"
             },
             {
               "value": "high",
-              "description": "Greater reasoning depth for complex problems"
+              "description": "Maximizes reasoning depth for complex or ambiguous problems"
             },
             {
               "value": "xhigh",
-              "description": "Extra high reasoning depth for complex problems"
-            }
-          ],
-          "defaultReasoningEffort": "medium",
-          "serviceTiers": [
-            {
-              "id": "priority",
-              "name": "Fast",
-              "description": "1.5x speed, increased usage"
-            }
-          ],
-          "defaultServiceTier": null,
-          "inputModalities": [
-            "text",
-            "image"
-          ],
-          "isDefault": false
-        },
-        {
-          "model": "gpt-5.4-mini",
-          "displayName": "GPT-5.4-Mini",
-          "description": "Small, fast, and cost-efficient model for simpler coding tasks.",
-          "supportedReasoningEfforts": [
-            {
-              "value": "low",
-              "description": "Fast responses with lighter reasoning"
-            },
-            {
-              "value": "medium",
-              "description": "Balances speed and reasoning depth for everyday tasks"
-            },
-            {
-              "value": "high",
-              "description": "Greater reasoning depth for complex problems"
-            },
-            {
-              "value": "xhigh",
-              "description": "Extra high reasoning depth for complex problems"
+              "description": "Extra high reasoning for complex problems"
             }
           ],
           "defaultReasoningEffort": "medium",
@@ -292,7 +255,7 @@
       "reasoningSummary": "detailed",
       "environmentVariables": "",
       "environmentHash": "runtime-input:v1:043bfc7403e189ecfd44d01483bcbd9e99321a99e6c8d6e66173200ed93a7290",
-      "catalogTimestamp": 1788331953962,
+      "catalogTimestamp": 1789009826929,
       "catalogFingerprint": "2:feb2dea940f7226b478cb2ffa38a5569dad98813396bcdb2f957ed73eb67994b",
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {}

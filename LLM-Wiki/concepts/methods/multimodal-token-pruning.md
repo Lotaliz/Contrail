@@ -7,9 +7,9 @@ aliases: [视觉语言 Token 剪枝, MLLM Visual Token Pruning, 多模态 Token 
 tags: [method, technology]
 status: active
 related: [vision-transformer-token-pruning-basics, visual-token-pruning, deepstack-visual-token-injection]
-sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco]
+sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-liao-2026-vtc-bench, paper-yang-2025-visionthink, paper-wang-2024-qwen2-vl, paper-cai-2024-matryoshka-mm, paper-yao-2024-deco, paper-wen-2025-epic, paper-guo-2026-token-budget-distillation]
 created: 2026-08-24
-updated: 2026-08-31
+updated: 2026-09-08
 ---
 
 # 多模态 Token 剪枝
@@ -42,6 +42,7 @@ flowchart LR
 
 | 位置 | 主要节省 | 能否利用文本 | 主要限制 |
 |---|---|---|---|
+| 输入分辨率/patchify 前 | 视觉 backbone + LLM 全链路 | 可在选择分辨率时利用文本，但纯离线缩放通常不利用 | 必须原生支持可变 token；细粒度信息不可逆丢失 |
 | 视觉编码器内部 | 视觉 backbone 计算 | 需额外跨模态通路或先获得文本 | 架构耦合；空间结构风险 |
 | projector / LLM 之前 | LLM prefill、KV、decode | 可 text-agnostic，也可额外算相似度 | 不减少视觉编码器成本 |
 | LLM 浅/中层 | 后续 LLM blocks 与 KV | 可直接复用图文 attention | 已支付前几层成本；attention score 可能有偏置 |
@@ -70,14 +71,28 @@ flowchart LR
 8. **空间、时间与多图覆盖：** 高分辨率 OCR、小目标、多帧事件、多图对照要求保留低频出现但关键的 token。
 9. **任务异质性：** 感知任务更需要 redundancy/coverage，知识推理更需要 prompt relevance；同一 selector 很难跨 benchmark 保持排序。
 10. **系统指标分裂：** 视觉编码、prefill、TTFT、decode tokens/s、KV memory 和端到端 latency 的瓶颈不同；FLOPs 大降不保证长生成同比加速。
+11. **选择器并不免费：** attention map、第二次 attention operation、rank/top-k、聚类、两两距离、gather 和动态 shape 都可能抵消后层节省；仅做 mask 而不物理缩短张量不会带来计算加速。
 
 ## 方法家族
 
+### 训练对象是独立分类轴
+
+同一个免训练 selector 可以作用于经过压缩适配的模型。EPIC/TBD 表明可更新原有主干权重来适应短视觉输入；因此“selector 无训练”“模型无训练”“无新增主干结构”不是同一概念。分别记录训练目标、压缩位置、在线执行图和可训练参数，不能只标 training-free/training-based。
+
+跨分辨率对齐也需区分输入像素减少、高清编码后 token 网格减少、以及压缩前先凝聚语义。前者可能同时减少视觉塔和 LLM 成本，后两者通常仍支付前段视觉计算。“主干不变”的 memory/KV 压缩还可能引入额外阶段，不能用 token 数直接推出短标签加速。
+
+来源与机制比较：[[LLM-Wiki/research/visual-token-pruning/papers/2025-wen-epic.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-guo-token-budget-distillation.md]]、[[LLM-Wiki/research/visual-token-pruning/landscape.md]]。安全政策可见性假设只放项目 gaps，不在此作为通用已验证概念。
+
+### 压缩机制与评测家族
+
+- **分辨率优先：** Qwen2-VL 的动态分辨率使输入像素预算直接映射为视觉 token 数；VTC-Bench 将直接下采样确立为强基线；VisionThink 采用低清先行、必要时高清回退。
+- **均匀空间压缩：** DeCo 与 M3 在视觉编码器后池化 token 网格；可避免复杂 selector，但不减少视觉塔前向，不能与输入下采样混为一类。
 - **文本指导的视觉选择：** TRIPS、PuMer、FastV、SparseVLM。
 - **模态内合并/被删 token 回收：** PuMer、SparseVLM、VisionZip。
 - **文本无关的覆盖与多样性：** VisionZip、DivPrune，适合复用和多轮但可能弱化当前 query 相关性。
 - **配置/预算优化：** VisPCO 搜索层位置与保留率，不绑定单一 importance rule。
 - **批判性基线：** Random、Pooling、spatial-window selection；它们是判断复杂 selector 是否真正有效的必要下界。
+- **分辨率敏感评测：** 将样本拆为低清/高清均正确、仅高清正确、高清也错误三组；复杂压缩方法的价值主要应在“仅高清正确”组检验。
 - **固定序列长度的深度注入：** DeepStack 不做 importance pruning；原始方法将额外高分辨率视觉 token 分组注入，Qwen3-VL 则注入多深度 ViT 中间特征。它是“删减视觉信息”之外的相邻效率与保真路线，并提示剪枝应联合考虑空间位置和表征深度。
 
 ## 评测最低要求
@@ -86,6 +101,20 @@ flowchart LR
 - 效率：视觉编码时间、TTFT、prefill、decode tokens/s、端到端 P50/P95、峰值显存/KV cache，明确 batch、输出长度、硬件和 kernel。
 - 基线：Random、uniform pooling、纯视觉 attention、文本指导 attention、diversity/merging、低分辨率或更小模型。
 - 消融：同 token budget、同 FLOPs 与同真实 latency 三种口径分别比较。
+
+## 选择器开销的判断准则
+
+真实净收益应计算为：
+
+$$
+\Delta T_{net}
+=\Delta T_{prefill}+\Delta T_{decode}
+-T_{score}-T_{select}-T_{compact}-\Delta T_{runtime}.
+$$
+
+FastV 没有第二次视觉编码器前向，但可能因显式 attention map 失去 FlashAttention；SparseVLM 的 dual-flash 方案明确增加第二次 attention operation；DivPrune 不依赖 attention，但有 $O(N^2)$ 距离矩阵。对短标签安全判别，decode 很短，selector 更难摊销，应优先考虑 LLM 前一次性、低开销、可物理 compact 且适合固定少量 token profile 的方案。
+
+详细证据见 [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 
 ## 证据边界
 
@@ -96,6 +125,5 @@ flowchart LR
 ## 关系与继续阅读
 
 - 纯视觉基础：[[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]。
-- 详细调研：[[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态 Token 剪枝调研]]。
-- 项目总览：[[LLM-Wiki/research/visual-token-pruning/overview.md|视觉模型 Token 剪枝总览]]。
+- 统一研究方案：[[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 - 相邻概念：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]。

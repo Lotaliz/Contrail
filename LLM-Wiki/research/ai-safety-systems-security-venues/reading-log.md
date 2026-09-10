@@ -8,7 +8,7 @@ sources: [paper-qu-2023-unsafe-diffusion, paper-he-2024-yopo, paper-wu-2024-legi
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-08
 ---
 
 # 检索与阅读日志
@@ -27,7 +27,7 @@ updated: 2026-08-25
 | 2025 | USENIX | VLM Unsafe Concepts | 跨模态安全对齐 | deep-read |
 | 2025 | USENIX | Activation Approximations | 近似后的安全退化 | skimmed |
 | 2025 | USENIX | I Cannot Write This | 产品政策/体验 | skimmed |
-| 2025 | NDSS | HMGUARD | 有害 meme 检测 | skimmed |
+| 2025 | NDSS | HMGUARD | 有害 meme 检测 | deep-read |
 | 2025 | CCS | SafeGuider | T2I 安全控制 | discovered |
 | 2026 | S&P | EnchTable | 安全迁移/合并 | skimmed |
 | 2026 | NDSS | ACE / SAGA | app 与 agent 架构 | skimmed |
@@ -58,3 +58,10 @@ updated: 2026-08-25
 - 将 [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-liu-sentinel.md|Sentinel]] 升级为 `deep-read`：重点核对逐层探针、ACI、多层去冗余融合、自适应白盒攻击和效率计时边界，并明确 probe 可分性不等于因果认知。
 - 将 [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-qu-vlm-unsafe-concepts.md|VLM Unsafe Concepts]] 升级为 `deep-read`：重点核对 UnsafeConcepts 构建、感知—对齐分解、跨模态差距、情境分析、简化 PPO 及 SFT/DPO 比较边界。
 - 两篇论文的共同结构是“输入信息已被部分识别，但安全策略未稳定执行”：一篇沿模型深度研究识别—执行缺口，另一篇沿输入模态研究感知—对齐缺口。
+
+## 2026-09-08 HMGUARD 精读
+
+- 将 [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhuang-hmguard.md|HMGUARD]] 升级为 `deep-read`，按“任务场景—失效测量—HMCOT 设计—主结果—消融—实景与鲁棒性”重构笔记。
+- 论文把 harmful meme 检测分解为表层含义、图文融合、多格构图、宣传技巧和攻击意图五类推理，并用 meme 领域对齐与审核任务适配作为前置提示。
+- 同一 GPT-4V 基础模型上，结构化提示相对通用单问在 FHM 的 Accuracy/F1 从 0.61/0.60 提升至 0.86/0.85，在 HarMeme 从 0.74/0.69 提升至 0.92/0.91；但表 VI 的多个 Precision/Recall/F1 三元组数学上不一致，精确指标比较需保留警告。
+- 对当前多模态 Guard 研究的直接价值是提供模块级失效坐标；尚缺端到端时延/成本、固定版本复现、多次运行、跨语言和广义对抗鲁棒证据。

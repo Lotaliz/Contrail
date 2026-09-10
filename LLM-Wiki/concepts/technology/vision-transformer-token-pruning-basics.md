@@ -7,14 +7,14 @@ aliases: [ViT Token 剪枝入门, 视觉 Token 压缩基础]
 tags: [technology, method]
 status: active
 related: [paper-note-chang-2023-stvit, visual-token-pruning]
-sources: [paper-chang-2023-stvit, attachment-chang-2023-stvit-supplement]
+sources: [paper-chang-2023-stvit, attachment-chang-2023-stvit-supplement, paper-tang-2022-patch-slimming, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune]
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-09
 ---
 
 # 视觉 Transformer 与 Token 剪枝基础
 
-> 阅读目标：建立从“图像如何变成 token”到“为什么、在哪里、怎样减少 token”的最小完整心智模型。本页以 STViT 论文为主要证据；凡超出论文直接陈述的通用解释，均标为“编者综合”。
+> 阅读目标：建立从“图像如何变成 token”到“为什么、在哪里、怎样减少 token”的最小完整心智模型。本页以 STViT、Patch Slimming、Dyna-ViT 与 QuietPrune 为主要证据；凡超出论文直接陈述的通用解释，均标为“编者综合”。
 
 ## 1. 一句话定义
 
@@ -28,26 +28,84 @@ updated: 2026-08-24
 
 $$N=\frac{H}{P}\times\frac{W}{P}$$
 
-每个 patch 被展平并经线性投影（实现上常可视作 stride=$P$ 的卷积）变成 $C$ 维向量。这个向量就是**初始 patch token**。例如 224×224 图像、16×16 patch 会得到 14×14=196 个 patch tokens。
+每个 patch 不是只有 $P\times P$ 个数，因为 RGB 三个颜色通道都要保留。单个 patch 的原始形状是 $P\times P\times 3$，展平后的维度为 $3P^2$。随后使用可学习的线性投影
+
+$$
+z_i=x_iE+b,\qquad E\in\mathbb{R}^{(3P^2)\times D},
+$$
+
+把第 $i$ 个 patch 的像素向量 $x_i\in\mathbb{R}^{3P^2}$ 变成模型隐藏宽度为 $D$ 的向量 $z_i\in\mathbb{R}^{D}$。$z_i$ 才是送入第一个 Transformer block 的**初始 patch token**。这里的 $D$ 由模型配置决定，不必等于原始 patch 的像素维度。
+
+以 $224\times224\times3$、patch size 为 $16\times16$ 的标准例子说明：
+
+1. 图像被分成 $14\times14=196$ 个 patch；
+2. 每个 patch 含 $16\times16\times3=768$ 个像素通道值；
+3. 每个 patch 展平为一个 $1\times768$ 向量，而不是 $1\times256$；
+4. 线性层把 $1\times768$ 投影为 $1\times D$；
+5. 196 个投影结果组成 $196\times D$ 的 token 序列；
+6. 若模型加入一个 `[CLS]` token，Transformer 的序列长度是 197，否则是 196；再考虑 batch 后，输入形状分别是 `[B,197,D]` 或 `[B,196,D]`。
+
+在不带输入剪枝的标准 ViT 中，这 196 个 patch 都会经过 patch embedding，并全部进入视觉 Transformer。只有模型显式使用 pre-encoder pruning、动态 tokenization、区域裁剪或其他早期选择时，首个 Transformer block 才可能少于 196 个 patch tokens。
 
 ```mermaid
 flowchart LR
-    A[224×224×3 图像] --> B[切成 16×16 patches]
-    B --> C[196 个像素块]
-    C --> D[线性投影到 C 维]
-    D --> E[14×14 个 patch tokens]
-    E --> F[加位置/类型信息]
-    F --> G[Transformer blocks]
+    A[输入 B×3×224×224] --> B[切成 14×14 个 RGB patches]
+    B --> C[196×16×16×3]
+    C --> D[每块展平为 196×768]
+    D --> E[共享线性投影 768→D]
+    E --> F[196×D patch tokens]
+    F --> G[可选 CLS + 位置编码]
+    G --> H[Transformer 输入 B×196/197×D]
 ```
 
-### 2.2 它不等于一个“物体”或一个“词”
+### 2.2 三个颜色通道如何处理
+
+RGB 通道通常先分别按训练时使用的均值和标准差做归一化，然后作为同一个 patch 的三个输入通道共同参与 patch projection。它们不会默认生成三个 token，也不会先各自独立经过一套 Transformer。
+
+从展平视角看，单个 patch 可以写成：
+
+$$
+x_i=[R_{1},\ldots,R_{256},G_{1},\ldots,G_{256},B_{1},\ldots,B_{256}],
+$$
+
+具体内存排列顺序由实现决定，但总维度都是 $16\times16\times3=768$。投影矩阵的每个输出维度都可以学习组合不同空间位置和不同颜色通道，因此能够响应边缘、颜色对比、纹理等局部模式。
+
+实际代码通常不显式执行“切块→展平→Linear”，而使用一个等价的二维卷积：
+
+```python
+# 输入: [B, 3, 224, 224]
+patch_embed = Conv2d(
+    in_channels=3,
+    out_channels=D,
+    kernel_size=16,
+    stride=16,
+)
+
+# 卷积输出: [B, D, 14, 14]
+# 展平空间网格并交换维度: [B, 196, D]
+```
+
+卷积核形状为 `[D,3,16,16]`。对每一个 $16\times16$ 区域，它同时读取三个颜色通道并产生 $D$ 个输出值，正好等价于对长度为 768 的向量应用同一个线性投影。
+
+### 2.3 Patch embedding 与视觉编码器的边界
+
+“视觉编码器的输入”存在两种常见口径：
+
+| 口径 | 输入张量 | 含义 |
+|---|---|---|
+| 整个 vision tower | `[B,3,H,W]`，或视频的 `[B,T,3,H,W]` | patch embedding 被视为视觉编码器的第一部分 |
+| Transformer blocks | `[B,N,D]` | 图像已经完成切块、通道联合投影和位置编码 |
+
+讨论 pre-encoder token pruning 时必须说明采用哪一种口径。在像素/patch embedding 之前选择区域，可以减少几乎整个视觉塔的计算；在 patch embedding 之后、第一个 Transformer block 之前删除 token，仍能减少所有自注意力 block 的计算，但 patch projection 已经执行。patch embedding 通常很便宜，主要成本仍在后续 blocks。
+
+### 2.4 它不等于一个“物体”或一个“词”
 
 - 初始 token 对应一个固定图像区域，但只是该区域的向量表示，不天然代表“猫”“车轮”等语义实体。
 - 经过自注意力后，一个位置上的 token 已融合其他位置的信息，其有效感受野可以是全图；因此“第 10 层 token”不能简单理解为原 patch 的像素摘要。
 - 论文常混用 **patch token** 与 **image token**。严格说，前者强调输入切块来源，后者可泛指视觉主干中的空间 token。
 - **semantic token** 是 STViT 另行生成的聚类中心式表示：一个 semantic token 可以从多个 patch/image tokens 聚合信息，不再一一对应原始 patch。
 
-### 2.3 常见 token 类型
+### 2.5 常见 token 类型
 
 | 类型 | 作用 | 能否直接按二维网格定位 |
 |---|---|---|
@@ -145,6 +203,38 @@ flowchart LR
 
 STViT 的吞吐在 V100、batch=128 测量，因此它能证明该设置下存在真实加速，但不足以证明所有部署环境都有同等收益。
 
+### 6.4 固定输入分辨率时，每层计算量是否不变
+
+**编者综合：基本正确，但“分辨率不变”本身不是充分条件。** 对标准、等宽、全局注意力 ViT，若以下条件同时成立：
+
+1. 输入分辨率、patch size 与 stride 不变，因此初始 token 数 $N$ 不变；
+2. patch embedding 前后以及各个 block 内都不做 token 删除、合并、池化或动态 tokenization；
+3. 不做 early exit、跳层或按样本改变注意力模式；
+4. 各 block 的隐藏宽度、头数和 MLP expansion 等结构相同；
+
+那么每个 block 接收的张量形状都为 `[B,N,D]`，其理论计算量基本相同。输入内容会改变注意力数值，却不会改变标准 dense kernel 要执行的矩阵形状。单层全局 MHA 的主要项为 $4ND^2+2N^2D$，FFN 的主要项与 $ND^2$ 成正比；只把某些 token 乘零或盖上 mask、但仍保留 `[B,N,D]`，通常不会得到相应的 dense FLOPs 或时延下降。
+
+这个结论不适用于本身会 patch merging 的分层 ViT、局部/窗口注意力、宽度不同的 stage，或会在层间真正缩短序列的模型。即使每个已执行 block 的 token 数不变，early exit 或缩短深度仍可降低**总**计算量。
+
+### 6.5 Patch embedding tokens 能否直接剪枝
+
+可以。patch tokens 不是像自回归文本生成那样按顺序逐个送入编码器；一层自注意力会并行接收整个 `[B,N,D]` 序列，并形成尺寸与 $N$ 有关的 $Q/K/V$ 和注意力矩阵。所谓“直接剪 embedding token”，是先得到候选 token 的分数或索引，再把张量实际 gather/pack 成 `[B,K,D]`（$K<N$），让后续 block 只处理保留序列。
+
+| 剪枝位置 | 哪些计算仍处理全部 $N$ 枚 token | 主要优点 | 主要限制与已有先例 |
+|---|---|---|---|
+| patch projection 之前 | 轻量像素/patch scorer；被保留 patch 才做后续投影 | 理论节省最大 | scorer 必须比省下的计算便宜；原始像素显著性未必等于任务证据 |
+| patch embedding 之后、首个 block 之前 | patch projection 已处理 $N$；所有 Transformer blocks 只处理 $K$ | patch projection 通常便宜，几乎完整保留视觉塔内的 token 加速 | Dyna-ViT 已用无参显著性做 pre-encoder Top-K，因此“首层前剪 token”本身不是空白 |
+| 第 $l$ 个浅层 block 之后 | 前 $l$ 层处理 $N$，后续层处理 $K$ | token 已具备更多上下文，评分通常更可靠 | 越晚剪，视觉塔时延收益越小；Patch Slimming、QuietPrune 与大量动态剪枝方法属于这一邻域 |
+| 完整视觉塔之后、LLM/projector 之前 | 整个视觉编码器都处理 $N$ | 易插入现有 VLM，可减少 projector/LLM prefill | 不降低视觉编码器计算量 |
+
+实现时还需处理三个细节：
+
+- **位置不能被重新编号成错误语义。** 使用绝对位置向量时，应一起 gather 原 token 及其原位置编码；使用二维 RoPE/M-RoPE 时，应保留原网格坐标。token merging 则需定义合并后的位置。
+- **mask 不等于剪枝。** 若只是将被删 token 的注意力权重设为零，Q/K/V 投影、FFN 和多数矩阵乘仍按 $N$ 执行。需要真实缩短张量，或使用确实跳过这些元素的稀疏 kernel。
+- **动态长度未必带来真实时延收益。** 同一 batch 内每张图保留数不同，常被 padding 回最大长度；固定 $K$、少量预算档位，或支持 packed/ragged sequence 的 kernel 更容易获得稳定加速。
+
+当前已有工作说明三条路径都可行：Dyna-ViT 在 encoder 前用无监督显著性代理选择 Top-K patch，保持标准 ViT 主干；Patch Slimming 用深层有效 patch 反向指导更早层的选择；QuietPrune 把文本 query 映射到视觉域，在 ViT 内做查询引导的早剪。对图文安全判别而言，真正仍需验证的不是“embedding token 能否剪”，而是：如何在首层或极浅层仅用很小代价识别**低显著度、小区域、OCR 或依赖文本/政策语境的危险证据**，并让训练后的模型在这些难例上保持召回。通用显著性 Top-K 和“把 query 换成安全 policy”都已有直接近邻，不能单独构成论文贡献。
+
 ## 7. “剪枝”不是一种单一操作
 
 | 家族 | 操作 | 信息命运 | 典型风险 |
@@ -175,6 +265,10 @@ STViT 的吞吐在 V100、batch=128 测量，因此它能证明该设置下存�
 5. **“分类精度不变就说明剪枝无损。”** 错；分类标签可能不要求边界、小目标或像素级细节。
 6. **“所有 ViT 都可使用同一 selector。”** 错；全局 ViT、窗口 ViT 和视觉 SSM 的结构约束不同。
 7. **“semantic token 就是挑出来的重要 patch。”** 错；STViT semantic token 是多个 tokens 的可学习聚合中心。
+8. **“16×16 patch 展平后是 256 维。”** 错；RGB 图像还包含 3 个颜色通道，因此是 $16\times16\times3=768$ 维。
+9. **“196 个 patch 就是 196×768 个参数。”** 错；这是当前样本的输入数值。所有 patch 共享同一个 $768\times D$ 投影矩阵，参数量不会乘以 196。
+10. **“patch tokens 是按空间顺序逐个输入注意力。”** 错；一个 block 通常并行接收完整 token 序列，序列索引和位置编码只说明位置关系。
+11. **“把不重要 token mask 为零就已经省掉计算。”** 错；对标准 dense kernel，张量长度没有真正缩短时，主要矩阵乘通常仍会执行。
 
 ## 10. 阅读剪枝论文的检查清单
 
@@ -190,12 +284,10 @@ STViT 的吞吐在 V100、batch=128 测量，因此它能证明该设置下存�
 
 ## 11. 关系与继续阅读
 
-- 证据来源与完整精读：[[LLM-Wiki/research/visual-token-pruning/papers/2023-chang-stvit.md|STViT 论文笔记]]。
-- 研究路线与方法比较：[[LLM-Wiki/research/visual-token-pruning/overview.md|视觉模型 Token 剪枝总览]]。
-- 统一对照表：[[LLM-Wiki/research/visual-token-pruning/comparison.md|视觉 Token 剪枝统一比较]]。
+- 研究路线、方法比较与证据入口：[[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 
 ## 12. 证据限制与待办
 
-- 本页只用 STViT 作为主要来源来搭建入门模型，不声称覆盖 ViT 与 token 剪枝的全部历史定义。
-- ViT/DeiT/Swin 的原始论文尚未分别登记为本概念的直接来源；若用于教材或正式论文引用，应后续补齐这些一手来源。
+- 本页只用 STViT、Patch Slimming、Dyna-ViT 与 QuietPrune 搭建入门模型和早剪位置边界，不声称覆盖 ViT 与 token 剪枝的全部历史定义。
+- 本次补充的张量形状、RGB 通道投影和 Conv2d 等价解释属于通用实现说明；ViT/DeiT/Swin 的原始论文尚未分别登记为本概念的直接来源。若用于教材或正式论文引用，应后续补齐一手来源并按 paper-ingestion 流程核验。
 - 没有本地复现实验，所有数值均为作者报告。

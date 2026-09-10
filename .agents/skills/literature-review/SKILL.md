@@ -14,6 +14,7 @@ description: Survey a research field, find classic or recent papers, map technic
 7. Organize landscape and comparison by mechanisms and decision dimensions, not by a chronological list of summaries.
 8. Keep candidate gaps separate from formal motivation until the evidence threshold is met.
 9. Update reusable concepts only when the synthesis generalizes beyond one paper.
-10. Finish with the wiki-finalize procedure and run its validator.
+10. Use the Wiki-supported `$...$` and `$$...$$` delimiters for every mathematical expression written to Markdown.
+11. Finish with the wiki-finalize procedure and run its validator.
 
 Report coverage limits and ambiguous terminology instead of implying an exhaustive search.

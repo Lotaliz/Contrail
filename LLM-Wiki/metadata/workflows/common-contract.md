@@ -20,6 +20,7 @@ status: active
 
 ## 写入边界
 
+- 所有 Markdown 内容遵循 [[LLM-Wiki/metadata/conventions.md|文件与内容规范]]；数学公式统一使用 `$...$` 与 `$$...$$` 定界符。
 - raw 只保存原件，不直接改写。
 - 一篇论文对应一条 sources.yaml 记录；需要阅读内容时创建一份 paper-note。
 - concepts 只保存跨论文复用的实体，不保存单篇论文摘要。

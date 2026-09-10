@@ -64,4 +64,4 @@ CLIP 有 `[CLS]` 时，以第二末层 `[CLS]` 对 patch 的注意力挑 dominan
 ## 关联
 
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-token-pruning.md|图文多模态调研]]
+- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
