@@ -4,15 +4,15 @@ type: synthesis
 title: "训练参与的视觉 Token 压缩：检索与证据日志"
 tags: [research, visual-token-pruning, knowledge-distillation, multimodal-safety]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon]
 status: active
 created: 2026-09-08
-updated: 2026-09-09
+updated: 2026-09-10
 ---
 
 # 检索范围
 
-检索日与截止日：2026-09-09。以 arXiv 原文、CVF、NeurIPS、OpenReview、ACL、AAAI、ECVA 和作者项目页为证据；搜索引擎中的聚合页只用于发现，再回到原文。覆盖 2022—2026，重点补充 2025—2026 的训练、蒸馏、跨分辨率一致性及压缩安全研究。不以检索未命中证明研究不存在。
+检索日与截止日：2026-09-10。以 arXiv 原文、CVF、NeurIPS、OpenReview、ACL、AAAI、ECVA 和作者项目页为证据；搜索引擎中的聚合页只用于发现，再回到原文。覆盖 2022—2026，重点补充 2025—2026 的训练、蒸馏、跨分辨率一致性及压缩安全研究。不以检索未命中证明研究不存在。
 
 纳入：改变训练目标或训练输入预算、具有直接新颖性冲突、研究压缩导致的语义/安全失败，或提供强比较基线的工作。排除：纯权重压缩、无视觉任务的上下文压缩、纯生成加速、单纯 serving 优化；保留必要相邻工作作为反证。代码未运行，论文数字不视为本地测量。
 
@@ -27,6 +27,7 @@ updated: 2026-09-09
 | Q6 | early vision encoder layer reduction distillation VLM; pre-encoder token pruning; query-guided early pruning; efficient multimodal guard frozen vision encoder | EfficientVLM、Patch Slimming、METR、FastVLM、Dyna-ViT、QuietPrune、ResponseGuard；用于三项策略排重 |
 | Q7 | token-pruning-induced vulnerabilities safety-aware pruning; compression-aware safety training guard | SAP 及相邻压缩攻击；区分生成模型 jailbreak/拒答与独立 Guard 漏报 |
 | Q8 | visual token pruning feature reconstruction/distillation; unbalanced vision-token alignment; distribution/attention alignment; least-squares recovery | SiT/FRD、EM-KD、ETC、OTPrune、RESTORE；用于“少 token→完整表征恢复”排重 |
+| Q9 | early-layer vision token pruning; shallow feature token importance; explainable ViT pruning; causal token information | 复核 Patch Slimming、METR、Dyna-ViT、QuietPrune；补入 X-Pruner、EmbedLens 与 Information Horizon，区分热图、probe 与因果删除解释 |
 
 候选尚不构成 motivation；后续阅读结果、唯一来源 ID、版本和排除原因在本页更新。项目主文仍为 [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md]]。
 

@@ -8,6 +8,10 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-09-10
+
+- [Added] [research/visual-token-pruning] 综合视觉编码器前与浅层内部 token 剪枝先例，并将解释证据区分为空间相关性、表示可解码性、输出因果效应和充分集稳定性，形成面向多模态安全判别的可证伪设计建议。
+
 ## 2026-09-09
 
 - [Changed] [metadata, skills, research/visual-token-pruning] 将 ETC 与 OTPrune 的公式改为 Markdown 预览支持的 `$...$` 和 `$$...$$`，并把数学定界符规范写入维护约定、研究技能及 Wiki 校验器。

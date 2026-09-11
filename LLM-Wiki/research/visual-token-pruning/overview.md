@@ -5,7 +5,7 @@ title: "视觉 Token 剪枝研究：训练参与的多模态安全判别"
 tags: [research, visual-token-pruning, multimodal-safety, knowledge-distillation]
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-10
 ---
 
 # 项目入口
@@ -18,6 +18,7 @@ updated: 2026-09-08
 - [[LLM-Wiki/research/visual-token-pruning/gaps.md|候选空白、反证与淘汰条件]]
 - [[LLM-Wiki/research/visual-token-pruning/motivation.md|证据约束下的正式动机草稿]]
 - [[LLM-Wiki/research/visual-token-pruning/reading-log.md|查询、阅读层级与覆盖边界]]
+- [[LLM-Wiki/research/visual-token-pruning/early-encoder-pruning-and-interpretability.md|视觉编码器浅层剪枝与可解释性证据]]
 
 ## 范围与优先次序
 
