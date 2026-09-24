@@ -1,0 +1,68 @@
+2. Related work                                                          query as importance metrics. However, all these methods
+                                                                         perform pruning either at the LLM input or within its inter-
+2.1. Vision-language model                                               nal layers, overlooking the redundancy inherent in the ViT.
+The breakthrough success of large language models                           The recent study SAINT [20] introduces early ViT prun-
+(LLMs) [2, 4, 39] in textual understanding [18, 45] and gen-             ing via similarity-based bipartite matching, but it uses
+eration [11] has catalyzed extensions to multimodal reason-              only visual saliency as guidance and ignores textual cues,
+ing. This has spurred the development of vision-language                 thereby suffering substantial performance drops in multi-
+models (VLMs) [2, 27, 37, 40, 47] that bridge visual and                 modal settings.
+textual domains. The typical VLM architecture comprises
+three key components: a vision transformer (ViT), a projec-              3. Preliminaries
+tor, and an LLM. Popularized by Blip-2 [24], this paradigm
+                                                                         3.1. Vision-language Models
+has become standard in frameworks like LLaVA [27], which
+combines CLIP [33] with Vicuna [38] to achieve strong                    Mainstream VLMs typically consist of three components: a
+multi-modality reasoning capabilities. While recent works                ViT, a projector, and an LLM. For a given image–text pair
+aim to enhance fine-grained visual understanding by scaling              (Xq , Xv ), the ViT first converts the image input Xv into
+input resolutions [28, 29], this leads to a quadratic growth in          visual features Fv . The projector maps Fv into the textual
+visual tokens, introducing substantial computational over-               domain to obtain visual tokens Hv . The LLM then predicts
+head.                                                                    the answer from Hv and the text embedding Hq (obtained
+    To reduce computational cost on the LLM, methods like                by embedding the text input Xq ) in an auto-regressive man-
+InternVL [47] and Qwen-VL [40] employ a token merg-                      ner. The entire pipeline can be formulated as:
+ing operation on visual tokens. InternVL merges spatially
+adjacent 2×2 patches via a pixel shuffle solution, while                              Fv = g(Xv )                                   (1)
+Qwen-VL utilizes an MLP-based merging strategy. Both                                  Hv = proj(Fv ), Hq = emb(Xq )                 (2)
+approaches achieve a 4× reduction in visual tokens before                                        N
+                                                                                                 Y
+LLM processing. However, these methods do not address                                 p(yt ) =         pθ (yt |Hv , Hq , y < t),    (3)
+the dominant computational burden in the ViT.                                                    t=1
+
+
+2.2. Visual token reduction                                              where g(·), proj(·), and emb(·) are the functions of ViT,
+                                                                         projector, and embedding, respectively. yt is t-th prediction
+Visual token reduction techniques improve model efficiency               during auto-regression. p is the conditional probability. θ is
+by dynamically removing redundant visual tokens. These                   the parameter of LLM.
+methods fall into two categories: token pruning [3, 10,
+16, 41] and token merging [7, 35, 42]. Token pruning di-                 3.2. Visual token pruning
+rectly removes redundant tokens, while token merging com-                Despite the strong capabilities of VLMs, they face severe
+bines the information of redundant tokens into important to-             challenges in computational efficiency. An effective accel-
+kens. Since token merging typically involves additional to-              eration approach is visual token pruning, which removes re-
+ken matching and fusion operations that incur extra latency,             dundant visual tokens during VLM inference. The problem
+this work focuses on token pruning techniques.                           of visual token pruning can be formulated as:
+   In general vision tasks, researchers leverage visual
+saliency for token pruning. EViT [25] prunes tokens us-                              Hv∗ = f (Hv )                                  (4)
+ing attention scores relative to the [CLS] token. Dynam-                                          N
+                                                                                                  Y
+icViT [34] employs an auxiliary predictor to predict the                             p∗ (yt ) =         pθ (yt |Hv∗ , Hq , y < t)   (5)
+redundant tokens. Though effective for pure vision tasks,                                         t=1
+these methods face adaptation challenges in multimodal                               Objective : min L(p∗ (yt ), p(yt )),           (6)
+scenarios.                                                                                              f
+
+   Token pruning schemes for VLM have rapidly emerged
+                                                                         where Hv∗ are the retained tokens after pruning, f is the
+in recent years. FastV [10] evaluates token importance via
+                                                                         pruning operation and L is the loss function that measures
+average attention scores of visual tokens. VTW [26] initi-
+                                                                         the difference between the model’s outputs with and with-
+ates visual token pruning in deeper layers of the LLM and
+                                                                         out pruning.
+completely removes visual tokens in the final layers. Re-
+cent studies focus more on improving pruning metrics. Di-                4. Method
+vPrune [3] formalizes token pruning as an MMDP problem
+to maximize the diversity of retained tokens. PACT [14]                  We propose QuietPrune, a query-guided early pruning
+adopts similarities between visual token keys and a global               framework that adaptively removes redundant visual tokens
+
+
+
+                                                                  3555
+

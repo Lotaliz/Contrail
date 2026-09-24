@@ -4,6 +4,7 @@ type: metadata
 tags: [metadata, workflow]
 title: "研究工作流"
 status: active
+updated: 2026-09-16
 ---
 
 # 研究工作流
@@ -14,6 +15,7 @@ status: active
 - [[LLM-Wiki/metadata/workflows/paper-reading-levels.md|三级论文阅读]]
 - [[LLM-Wiki/metadata/workflows/paper-ingestion.md|读论文与收录]]
 - [[LLM-Wiki/metadata/workflows/literature-review.md|做调研]]
+- [[LLM-Wiki/metadata/workflows/arxiv-watch.md|arXiv 近期论文追踪：轻量发现与人工筛选]]
 - [[LLM-Wiki/metadata/workflows/experiment-run.md|跑实验]]
 - [[LLM-Wiki/metadata/workflows/academic-writing.md|写论文]]
 - [[LLM-Wiki/metadata/workflows/wiki-finalize.md|Wiki 收尾与校验]]

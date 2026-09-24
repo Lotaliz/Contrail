@@ -1,0 +1,4 @@
+interface:
+  display_name: "arXiv 近期论文追踪"
+  short_description: "追踪近十天 arXiv 论文，保留轻量候选与人工精读选择，按全库来源去重"
+  default_prompt: "用 $arxiv-watch 收集 visual-token-pruning 近 10 天 arXiv 新论文，更新候选索引与检索日志。"

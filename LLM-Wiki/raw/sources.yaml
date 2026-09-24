@@ -1,5 +1,401 @@
 schema_version: 1
 sources:
+  - id: webpage-cvpr-2027-cfp
+    kind: webpage
+    title: "CVPR 2027 Call for Papers"
+    authors: ["CVPR"]
+    year: 2027
+    venue: "Official conference CFP"
+    url: "https://cvpr.thecvf.com/Conferences/2027/CallForPapers"
+    accessed: 2026-09-21
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official current CFP checked for venue fit and schedule: efficient and scalable vision, multimodal learning, trustworthy/responsible vision, generative AI safety, and datasets/benchmarks are in scope; paper deadline is 2026-11-16 AoE. Used for planning, not acceptance prediction."
+  - id: webpage-usenix-security-2027-cfp-ml
+    kind: webpage
+    title: "USENIX Security '27 Call for Papers and ML Submission Guidance"
+    authors: ["USENIX Association"]
+    year: 2026
+    venue: "USENIX Security 2027 official website"
+    url: "https://www.usenix.org/conference/usenixsecurity27/submitting-ml-work-usenix-security"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official current guidance checked for venue assessment: systems-security relevance, explicit attacker/threat surface/generality/practicality, and exclusion of generic functionality or efficiency work without security implications. Main CFP also checked for originality, rigor, open science, and ethics requirements."
+  - id: webpage-ieee-sp-2027-cfp-compositional-safety
+    kind: webpage
+    title: "IEEE Symposium on Security and Privacy 2027 Call for Papers"
+    authors: ["IEEE Symposium on Security and Privacy"]
+    year: 2026
+    venue: "IEEE S&P 2027 official website"
+    url: "https://sp2027.ieee-security.org/cfpapers.html"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official current CFP checked for venue assessment: novel security/privacy contributions, ML integrity/availability and ML attacks, online abuse, policies, metrics, and clear security application. Existing webpage-ieee-sp-2027-cfp is retained for the earlier project assessment."
+  - id: webpage-acm-ccs-2026-cfp-ml
+    kind: webpage
+    title: "ACM CCS 2026 Call for Papers: Security and Privacy of Machine Learning Guidance"
+    authors: ["ACM SIGSAC"]
+    year: 2026
+    venue: "ACM CCS 2026 official website"
+    url: "https://www.sigsac.org/ccs/CCS2026/call-for/call-for-papers.html"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Latest available official CCS ML-security guidance checked: plausible threat model, generality and practicality; strong submissions should give systematic characterization, generalizable attack patterns, risk frameworks or principled defenses rather than example collections or trial-and-error probes."
+  - id: webpage-ndss-2027-cfp-ml
+    kind: webpage
+    title: "NDSS Symposium 2027 Call for Papers"
+    authors: ["Internet Society", "NDSS Symposium"]
+    year: 2026
+    venue: "NDSS 2027 official website"
+    url: "https://www.ndss-symposium.org/ndss2027/submissions/call-for-papers/"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official current CFP checked: AI/LLM systems security is in scope, but papers primarily contributing to AI/ML without real systems and security relevance may face topic-concern desk rejection; artifact and ethics expectations also checked."
+  - id: paper-wang-2024-siuo
+    kind: paper
+    title: "Safe Inputs but Unsafe Output: Benchmarking Cross-modality Safety Alignment of Large Vision-Language Models"
+    authors: ["Siyin Wang", "Xingsong Ye", "Qinyuan Cheng", "Junwen Duan", "Shimin Li", "Jinlan Fu", "Xipeng Qiu", "Xuanjing Huang"]
+    year: 2025
+    venue: "Findings of NAACL 2025"
+    url: "https://aclanthology.org/2025.findings-naacl.198/"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Skimmed/source-checked against the ACL Anthology paper and arXiv v2 Sections 3-4. Strict safe-image + safe-text -> unsafe-composition benchmark; 167 human-crafted and 102 AI-assisted cases. Note: research/multimodal-compositional-safety/papers/2024-wang-siuo.md."
+  - id: paper-rottger-2025-msts
+    kind: paper
+    title: "MSTS: A Multimodal Safety Test Suite for Vision-Language Models"
+    authors: ["Paul Röttger", "Giuseppe Attanasio", "Felix Friedrich", "Janis Goldzycher", "Alicia Parrish", "Rishabh Bhardwaj", "Chiara Di Bonaventura", "Roman Eng", "Gaia El Khoury Geagea", "Sujata Goswami", "Jieun Han", "Dirk Hovy", "Seogyeong Jeong", "Paloma Jeretič", "Flor Miriam Plaza-del-Arco", "Donya Rooein", "Patrick Schramowski", "Anastassia Shaitarova", "Xudong Shen", "Richard Willats", "Andrea Zugarini", "Bertie Vidgen"]
+    year: 2025
+    venue: "arXiv v1; under review"
+    url: "https://arxiv.org/abs/2501.10057v1"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Skimmed/source-checked Sections 3-5 and Tables 3, 6, 7. Strict joint-meaning suite with 400 prompts over 40 hazards; includes human response labels and eight automated safety classifiers. Note: research/multimodal-compositional-safety/papers/2025-rottger-msts.md."
+  - id: paper-zhou-2024-multimodal-situational-safety
+    kind: paper
+    title: "Multimodal Situational Safety"
+    authors: ["Kaiwen Zhou", "Chengzhi Liu", "Xuandong Zhao", "Anderson Compalas", "Dawn Song", "Xin Eric Wang"]
+    year: 2025
+    venue: "ICLR 2025"
+    url: "https://arxiv.org/abs/2410.06172v2"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed/source-checked arXiv v2 Sections 2-5. MSSBench pairs a language activity with safe and unsafe visual contexts for chat and embodied agents; this is situational composition, adjacent to but broader than strict policy-safe modalities. Note: research/multimodal-compositional-safety/papers/2024-zhou-multimodal-situational-safety.md."
+  - id: paper-kiela-2020-hateful-memes
+    kind: paper
+    title: "The Hateful Memes Challenge: Detecting Hate Speech in Multimodal Memes"
+    authors: ["Douwe Kiela", "Hamed Firooz", "Aravind Mohan", "Vedanuj Goswami", "Amanpreet Singh", "Pratik Ringshia", "Davide Testuggine"]
+    year: 2020
+    venue: "NeurIPS 2020"
+    url: "https://arxiv.org/abs/2005.04790v3"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed/source-checked abstract and benchmark design. Benign confounders were explicitly constructed to defeat unimodal shortcuts; this is an early content-moderation precursor to strict cross-modal safety. Note: research/multimodal-compositional-safety/papers/2020-kiela-hateful-memes.md."
+  - id: paper-zong-2024-vlguard
+    kind: paper
+    title: "Safety Fine-Tuning at (Almost) No Cost: A Baseline for Vision Large Language Models"
+    authors: ["Yongshuo Zong", "Ondrej Bohdal", "Tingyang Yu", "Yongxin Yang", "Timothy Hospedales"]
+    year: 2024
+    venue: "ICML 2024"
+    url: "https://arxiv.org/abs/2402.02207v2"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked for the defense landscape. VLGuard is a broad vision-language safety SFT baseline; its published data patterns do not isolate strict safe-safe-unsafe composition."
+  - id: paper-zhang-2024-spa-vl
+    kind: paper
+    title: "SPA-VL: A Comprehensive Safety Preference Alignment Dataset for Vision Language Model"
+    authors: ["Yongting Zhang", "Lu Chen", "Guodong Zheng", "Yifeng Gao", "Rui Zheng", "Jinlan Fu", "Zhenfei Yin", "Senjie Jin", "Yu Qiao", "Xuanjing Huang", "Feng Zhao", "Tao Gui", "Jing Shao"]
+    year: 2024
+    venue: "arXiv v4"
+    url: "https://arxiv.org/abs/2406.12030v4"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked for the defense landscape. Contains 100,788 preference quadruples across six harmfulness domains; strict safe-safe-unsafe coverage is not separately reported."
+  - id: paper-chakraborty-2024-cross-modal-safety
+    kind: paper
+    title: "Cross-Modal Safety Alignment: Is textual unlearning all you need?"
+    authors: ["Trishna Chakraborty", "Erfan Shayegani", "Zikui Cai", "Nael Abu-Ghazaleh", "M. Salman Asif", "Yue Dong", "Amit K. Roy-Chowdhury", "Chengyu Song"]
+    year: 2024
+    venue: "arXiv v2"
+    url: "https://arxiv.org/abs/2406.02575v2"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked for the defense landscape. Textual unlearning transfers safety to several multimodal jailbreak suites, but those attacks generally do not establish strict semantic safety of each modality."
+  - id: paper-gou-2024-ecso
+    kind: paper
+    title: "Eyes Closed, Safety On: Protecting Multimodal LLMs via Image-to-Text Transformation"
+    authors: ["Yunhao Gou", "Kai Chen", "Zhili Liu", "Lanqing Hong", "Hang Xu", "Zhenguo Li", "Dit-Yan Yeung", "James T. Kwok", "Yu Zhang"]
+    year: 2024
+    venue: "ECCV 2024"
+    url: "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/2634_ECCV_2024_paper.php"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked for the defense landscape. ECSO turns suspicious images into text to reactivate the aligned LLM; benchmark evidence is on visual jailbreak sets rather than strict safe-safe-unsafe composition."
+  - id: paper-shayegani-2023-jailbreak-pieces
+    kind: paper
+    title: "Jailbreak in pieces: Compositional Adversarial Attacks on Multi-Modal Language Models"
+    authors: ["Erfan Shayegani", "Yue Dong", "Nael Abu-Ghazaleh"]
+    year: 2023
+    venue: "arXiv v2"
+    url: "https://arxiv.org/abs/2307.14539v2"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked as an adjacent representation-space attack. The image is benign-looking but adversarially optimized toward toxic embeddings, so it is not a natural semantic safe-safe-unsafe example."
+  - id: paper-lee-2025-elite
+    kind: paper
+    title: "ELITE: Enhanced Language-Image Toxicity Evaluation for Safety"
+    authors: ["Wonjun Lee", "Doehyeon Lee", "Eugene Choi", "Sangyoon Yu", "Ashkan Yousefpour", "Haon Park", "Bumsub Ham", "Suhyun Kim"]
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://arxiv.org/abs/2502.04757v3"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked. ELITE filters ambiguous pairs and diversifies safe/unsafe image-text combinations; used as adjacent benchmark evidence, not as the main strict-composition result."
+  - id: paper-huang-2025-llavashield
+    kind: paper
+    title: "LLaVAShield: Safeguarding Multimodal Multi-Turn Dialogues in Vision-Language Models"
+    authors: ["Guolei Huang", "Qinzhi Peng", "Gan Xu", "Yao Huang", "Yuxuan Lu", "Yongjun Shen"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://arxiv.org/abs/2509.25896v3"
+    accessed: 2026-09-20
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered and abstract/source-checked. MMDS/LLaVAShield extends composition to multimodal multi-turn risk accumulation; strict single-turn safe-safe-unsafe coverage is only partial."
+  - id: paper-wang-2026-safeatlas-vl
+    kind: paper
+    title: "SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models"
+    authors: ["Zongrui Wang", "Xiangyang Zhu", "Sicheng Wang", "Han Wang", "Dingyi Rong", "Zeyu Zhang", "Chunyi Li", "Yue Shi", "Kaiwei Zhang", "Zicheng Zhang", "Yuan Tian", "Qi Jia", "Yan Teng", "Wei Sun", "Ning Liu", "Guangtao Zhai"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2608.29098v1"
+    accessed: 2026-09-18
+    local_path: "papers/2608.29098v1.pdf"
+    sha256: "c5e0a1499ea37a5a43b5baf34625e73985a856030d50181dd6162c3b81e717c5"
+    license: "arXiv perpetual non-exclusive license"
+    notes: "Targeted skimmed/source-checked dataset audit: official v1 HTML and45-page PDF, Sections2/3.1/4, AppendixA.5-A.7 andF; visually checked Figures1/3/4 and TablesA12-A14 on pages3/5/6/36-38. Full1,503,284-instance statistics distinguished from public1M release. No raw-record label counts or modality-ablation experiment. Poppler metadata syntax warnings retained; checked pages rendered legibly. Note: research/visual-token-pruning/papers/2026-wang-safeatlas-vl.md."
+  - id: dataset-safeatlas-vl-2026-public-card
+    kind: webpage
+    title: "SafeAtlas-VL public dataset card: 1M training annotations and target-conditioned schema"
+    authors: ["zrwang1211"]
+    year: 2026
+    venue: "Hugging Face official dataset card"
+    url: "https://huggingface.co/datasets/zrwang1211/SafeAtlas-VL"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Public card checked: train1,000,000 annotations/594,487 images; test5,000 annotations/4,979 images; images and annotations configurations, five labels, target/category/teacher_head fields. Gated data records not accessed or counted. Note: research/visual-token-pruning/safeatlas-vl-public-release.md."
+  - id: code-safeatlas-vl-2026-readme
+    kind: webpage
+    title: "SafeAtlas-VL official README: judgment targets, release size and training interface"
+    authors: ["zrwang1211"]
+    year: 2026
+    venue: "GitHub official author repository"
+    url: "https://github.com/zrwang1211/SafeAtlas-VL"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Read-only README review, not a fixed-revision source-code audit. Image target judges visible content, request target judges image-grounded request, response target judges answer in image/request context. Public release1M/5K. README benchmark numbers differ from arXiv v1; not merged into a single ranking. No execution or Git operation."
+  - id: paper-palaskar-2025-vlsu
+    kind: paper
+    title: "VLSU: Mapping the Limits of Joint Multimodal Understanding for AI Safety"
+    authors: ["Shruti Palaskar", "Leon Gatys", "Mona Abdelrahman", "Mar Jacobo", "Larry Lindsey", "Rutika Moharir", "Gunnar Lund", "Yang Xu", "Navid Shiee", "Jeffrey Bigham", "Charles Maalouf", "Joseph Yitan Cheng"]
+    year: 2025
+    venue: "arXiv v2"
+    url: "https://arxiv.org/abs/2510.18214v2"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered then skimmed/source-checked: official HTML v2 Sections2-5, Tables1/4 and Limitations, cross-checked with Apple ML Research project page. v2 revised2025-12-03. Apple page labels ICLR2026; conference acceptance not independently checked. No PDF stored or reproduction. Reused for strict safe-safe-unsafe synthesis. Note: research/visual-token-pruning/papers/2025-palaskar-vlsu.md."
+  - id: paper-singguard-team-2026-singguard
+    kind: paper
+    title: "SingGuard: A Policy-Adaptive Multimodal LLM Guardrail with Dynamic Reasoning"
+    authors: ["SingGuard Team"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2606.22873v1"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Discovered then skimmed/source-checked: official HTML v1 Sections2.3,2.6,3-4,7 and Table10; covers strict cross-modal hidden-intent synthesis and guard evaluation. Binary-label token confidence gates reasoning generation, not evidence of ViT early exit or pruning. Strict subset count, timing and calibration not independently reproduced. Note: research/visual-token-pruning/papers/2026-singguard-team-singguard.md."
+  - id: paper-tang-2023-mue
+    kind: paper
+    title: "You Need Multiple Exiting: Dynamic Early Exiting for Accelerating Unified Vision Language Model"
+    authors: ["Shengkun Tang", "Yaqing Wang", "Zhenglun Kong", "Tianchi Zhang", "Yao Li", "Caiwen Ding", "Yanzhi Wang", "Yi Liang", "Dongkuan Xu"]
+    year: 2023
+    venue: "CVPR 2023"
+    url: "https://arxiv.org/abs/2211.11152v2"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered then skimmed/source-checked: arXiv v2 Sections3-4 and Table1; Google Research publication page confirms CVPR2023. Modality decomposition and layer-similarity exits in OFA; no safety guarantee or Guard experiment. No reproduction. Note: research/visual-token-pruning/papers/2023-tang-mue.md."
+  - id: paper-angelopoulos-2024-conformal-risk-control
+    kind: paper
+    title: "Conformal Risk Control"
+    authors: ["Anastasios Angelopoulos", "Stephen Bates", "Adam Fisch", "Lihua Lei", "Tal Schuster"]
+    year: 2024
+    venue: "ICLR 2024"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2024/hash/f3549ef9b5ff520a7e41ff3cc306ab2b-Abstract-Conference.html"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered only from official abstract; candidate for later theory reading, no proof audit, no claim that it certifies adaptive multimodal pruning or adversarial/OOD safety."
+  - id: webpage-cvpr-2026-cfp
+    kind: webpage
+    title: "CVPR 2026 Call for Papers"
+    authors: ["CVPR"]
+    year: 2026
+    venue: "Official conference CFP"
+    url: "https://cvpr.thecvf.com/Conferences/2026/CallForPapers"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Checked topic scope: efficient/scalable vision, multimodal learning and vision-language reasoning. Used for venue fit, not acceptance-rate prediction or future deadlines."
+  - id: webpage-osdi-2026-cfp
+    kind: webpage
+    title: "OSDI '26 Call for Papers"
+    authors: ["USENIX"]
+    year: 2026
+    venue: "Official conference CFP"
+    url: "https://www.usenix.org/conference/osdi26/call-for-papers"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Checked Overview and review criteria: systems design/implementation and ML systems. Fit assessment refers primarily to Research track; Operational Systems track has distinct deployment criteria."
+  - id: webpage-ieee-sp-2027-cfp
+    kind: webpage
+    title: "IEEE Symposium on Security and Privacy 2027 Call for Papers"
+    authors: ["IEEE Symposium on Security and Privacy"]
+    year: 2027
+    venue: "Official conference CFP"
+    url: "https://sp2027.ieee-security.org/cfpapers.html"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Checked topic scope and requirement for clear security/privacy application; online abuse and ML integrity/availability are listed. Fit scores are subjective, not conference-issued probabilities."
+  - id: code-cdpruner-2026-audit
+    kind: webpage
+    title: "CDPruner official LLaVA implementation: text tower, conditional DPP and input compaction"
+    authors: ["Theia-4869"]
+    year: null
+    venue: "GitHub official author repository"
+    url: "https://github.com/Theia-4869/CDPruner/tree/9541616c40fcd5625de1cdb8ea6c33c129eb7864"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "Apache-2.0"
+    notes: "Read-only fixed-revision audit of README, clip_encoder.py, llava_arch.py and model_vqa_loader.py; no execution. CLIP text tower and visual projection added; image/text CUDA streams; post-projector Gram matrix and greedy DPP with per-crop budget. llava_arch.py line 159 negates cosine before normalization, unlike paper Eq5-6; reported-experiment revision not verified. No Qwen/InternVL/video adapter audit. GitHub API rate-limited; official HTML/raw source fallback used."
+  - id: code-pumer-2026-audit
+    kind: webpage
+    title: "PuMer official implementation: attention reuse, modality-wise bipartite merging and output distillation"
+    authors: ["csarron"]
+    year: null
+    venue: "GitHub official author repository"
+    url: "https://github.com/csarron/PuMer/tree/8a00d85314175a4635d074fb003ae39da171ddc7"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "MIT"
+    notes: "Read-only fixed-revision audit of README, reducer.py bipartite functions, METER modules_meter/modeling_meter, ViLT vit_vilt/modeling_vilt, task_base output-KL path and VQA/run configurations. Mean-head attention/top-k, reused key metrics and modality-wise merge confirmed; VQA logits_loss_scale=1 and states_loss_scale=0. Deprecated/experimental branches not treated as paper method. No model/benchmark execution."
+  - id: paper-zhang-2025-cdpruner
+    kind: paper
+    title: "Beyond Attention or Similarity: Maximizing Conditional Diversity for Token Pruning in MLLMs"
+    authors: ["Qizhe Zhang", "Mengzhen Liu", "Lichen Li", "Ming Lu", "Yuan Zhang", "Junwen Pan", "Qi She", "Shanghang Zhang"]
+    year: 2025
+    venue: "NeurIPS 2025 Main Conference"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2025/hash/2433fec2144ccf5fea1c9c5ebdbc3924-Abstract-Conference.html"
+    accessed: 2026-09-18
+    local_path: "papers/2025-zhang-cdpruner-neurips.pdf"
+    sha256: "6867644ad62634bb80b90f4d1c47ef83710af26b9ef88cf21a06ab215f147f1e"
+    license: "unknown"
+    notes: "Upgraded to deep-read / source-checked on 2026-09-18: main text Sections1-5, method/experiments, technical AppendicesA-F, greedy Algorithm1, Tables1-11, balance-factor ablation, limitations and relevant checklist claims. Official 31-page NeurIPS2025 PDF; DOI10.52202/085713-0855 verified; arXiv2506.10967 current version not inferred. Added finite fixed-revision LLaVA code audit via separate source; no model reproduction or independent theoretical proof. DPP<10ms not assumed to include text encoding/full selector; public negative-cosine/paper inconsistency and AutoPrune baseline fidelity unresolved. Note: research/visual-token-pruning/papers/2025-zhang-cdpruner.md."
+  - id: paper-liu-2026-autoprune-ai4ai
+    kind: paper
+    title: "An AI4AI Framework for Visual Token Pruning"
+    authors: ["Zhen Liu", "Wenli Huang", "Wei Song", "Yuhan Liu", "Zhiqin Yang", "Jingwen Fu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2608.07193v2"
+    accessed: 2026-09-18
+    local_path: "papers/2608.07193v2.pdf"
+    sha256: "33318dc82fa9e6e0ad12a758869cabb8b6fc46132d1565a1106d08204e5439c5"
+    license: "arXiv perpetual non-exclusive license"
+    notes: "Deep-read / source-checked: v2 revised 2026-09-06; first submitted 2026-08-07. Main text and Appendix A-C, Algorithms 1-2, Tables 1-14; official HTML and 17-page PDF cross-checked. Note: research/visual-token-pruning/papers/2026-liu-autoprune-ai4ai.md. Reported-score arithmetic audit only, no model reproduction. Rel formula/table aggregation inconsistency and unreported timing boundaries retained as evidence gaps. Venue beyond arXiv unverified."
+  - id: code-autoprune-2026-release
+    kind: webpage
+    title: "AutoPrune official source release: final policy and search implementation"
+    authors: ["AIM-ResearchLab"]
+    year: 2026
+    venue: "GitHub official author repository"
+    url: "https://github.com/AIM-ResearchLab/AutoPrune/tree/23daf51afab87239d0c36760cd81326675d44b16"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "PolyForm Noncommercial 1.0.0"
+    notes: "Read-only audit of fixed revision: README, EVAL, FINAL_POLICY_MANIFEST, final anchor/merge YAML, runtime wrapper, typed executor, scoring atoms, search controller and fresh5_small5_history. Final policy includes post-projector residual merge; released 10x5 search uses nonempty prior history; clean baseline metadata differs from manuscript. No execution or independent verification of supplied result logs."
+  - id: webpage-arxiv-api-user-manual
+    kind: webpage
+    title: "arXiv API User's Manual"
+    authors: ["arXiv"]
+    year: null
+    venue: "arXiv official documentation"
+    url: "https://info.arxiv.org/help/api/user-manual.html"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official documentation consulted for submittedDate filtering, UTC minute boundaries, sorting, pagination and spacing consecutive API requests; no publication year inferred."
+  - id: webpage-openai-codex-automations
+    kind: webpage
+    title: "Scheduled tasks"
+    authors: ["OpenAI"]
+    year: null
+    venue: "OpenAI official documentation"
+    url: "https://learn.chatgpt.com/docs/automations?surface=app"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Official Codex automations URL redirects here. Consulted for local project scheduling, skills and requiring the computer on with the desktop app running; setup remains a proposal, not an active automation."
   - id: paper-jiang-2022-trips
     kind: paper
     title: "TRIPS: Efficient Vision-and-Language Pre-training with Text-Relevant Image Patch Selection"
@@ -19,11 +415,11 @@ sources:
     year: 2023
     venue: "ACL 2023"
     url: "https://aclanthology.org/2023.acl-long.721/"
-    accessed: 2026-08-24
+    accessed: 2026-09-18
     local_path: "papers/2023-cao-pumer.pdf"
     sha256: "27b7cfeb1927624da4ef67804aedb3fcd6bb862cb92b592fb58020f79fdf3e1e"
-    license: "unknown"
-    notes: "Text-informed image pruning plus modality-aware image/text merging in cross-modal encoders."
+    license: "CC BY 4.0"
+    notes: "Deep-read / source-checked 2026-09-18 using existing immutable 14-page ACL original: Sections1-8, Algorithm1, Figures1-5, Tables1-7 and AppendixA. ViLT/METER encoder understanding tasks; nonparametric reducers but task finetuning/output distillation required. Throughput is separately optimized-batch 30s runtime; memory uses same batch, not batch1 latency. Fixed official code audit registered separately; no reproduction. Note: research/visual-token-pruning/papers/2023-cao-pumer.md."
   - id: paper-chen-2024-fastv
     kind: paper
     title: "An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models"
@@ -67,11 +463,11 @@ sources:
     year: 2025
     venue: "CVPR 2025"
     url: "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_VisionZip_Longer_is_Better_but_Not_Necessary_in_Vision_Language_CVPR_2025_paper.html"
-    accessed: 2026-08-24
+    accessed: 2026-09-17
     local_path: "papers/2025-yang-visionzip.pdf"
     sha256: "d4e22f2136ba1b7e95a971d99f008a53141b9dbe1b2dfae5bdfbf8c06778e13d"
     license: "unknown"
-    notes: "Text-agnostic dominant-token selection and contextual merging before the LLM, with multi-turn and TTFT evidence."
+    notes: "Text-agnostic dominant-token selection and contextual merging before the LLM. Local CVPR original efficiency table rechecked 2026-09-17: A800-80GB/POPE total benchmark 2293 to 756 s; first-token/prefill 218 to 27.8 ms. Request batch and vision inclusion in the prefill timer remain unspecified."
   - id: paper-alvar-2025-divprune
     kind: paper
     title: "DivPrune: Diversity-based Visual Token Pruning for Large Multimodal Models"
@@ -1538,11 +1934,11 @@ sources:
     year: 2025
     venue: "ICCV 2025"
     url: "https://openaccess.thecvf.com/content/ICCV2025/html/Yang_VFlowOpt_A_Token_Pruning_Framework_for_LMMs_with_Visual_Information_ICCV_2025_paper.html"
-    accessed: 2026-09-08
+    accessed: 2026-09-17
     local_path: ""
     sha256: ""
     license: "unknown"
-    notes: "Progressive pruning with recycled tokens and offline strategy optimization that minimizes full-versus-pruned discrepancy at the last token representation; close precedent for decision-state preservation but not policy binding or rationale generation."
+    notes: "Progressive pruning with recycled tokens and offline strategy optimization minimizing full-versus-pruned discrepancy at the last token representation; close precedent for decision-state preservation but not policy binding or rationale generation. Efficiency audited in arXiv v2 section 4.4/Table 5: LLaVA-OneVision-7B/MME/A100-SXM4-80GB, latency 1040.1 to 272.1 ms at 90 percent pruning, MME 1581 to 1464 (-7.4 percent). Request batch and full-generation timing boundary unspecified; large-batch benefits discussed but not benchmarked."
   - id: paper-zhang-2026-policy-guided-safety-tuning
     kind: paper
     title: "Teach to Reason Safely: Policy-Guided Safety Tuning for MLRMs"
@@ -1910,11 +2306,11 @@ sources:
     year: 2026
     venue: "CVPR 2026"
     url: "https://openaccess.thecvf.com/content/CVPR2026/html/Gao_QuietPrune_Query-Guided_Early_Token_Pruning_for_Vision-Language_Models_CVPR_2026_paper.html"
-    accessed: 2026-09-08
-    local_path: ""
-    sha256: ""
+    accessed: 2026-09-14
+    local_path: "papers/2026-gao-quietprune.pdf"
+    sha256: "b0196dc5186d4125441e016cd32e9503fb7828311d8e056217f951d81b398bd1"
     license: "unknown"
-    notes: "Read official abstract, bibliography and method overview; level=skimmed; note in research/visual-token-pruning/papers/2026-gao-quietprune.md."
+    notes: "Deep-read official CVPR 2026 PDF, Sections 1-6, Figures 2-7, Equations 1-16, Tables 1-2; source-checked; note in research/visual-token-pruning/papers/2026-gao-quietprune.md. No local model reproduction."
   - id: paper-na-2026-responseguard
     kind: paper
     title: "When Are Reasoning-Based Guardrails Not Efficient? ResponseGuard: A Fast Vision-Language Guard for Real-Time Moderation"
@@ -1987,3 +2383,1503 @@ sources:
     sha256: ""
     license: "unknown"
     notes: "Deep-read arXiv 2602.20205v3, including Sections 1-6, appendices, Gaussian/Wasserstein approximation, log-determinant submodular selector, experiments, and limitations; note in research/visual-token-pruning/papers/2026-chen-otprune.md. No local reproduction."
+  - id: paper-wei-2023-tps
+    kind: paper
+    title: "Joint Token Pruning and Squeezing Towards More Aggressive Compression of Vision Transformers"
+    authors: ["Siyuan Wei", "Tianzhu Ye", "Shen Zhang", "Yao Tang", "Jiajun Liang"]
+    year: 2023
+    venue: "CVPR 2023"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/html/Wei_Joint_Token_Pruning_and_Squeezing_Towards_More_Aggressive_Compression_of_CVPR_2023_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract and method; pruning followed by nearest-neighbor squeezing of discarded-token information into retained tokens."
+  - id: paper-kim-2024-tofu
+    kind: paper
+    title: "Token Fusion: Bridging the Gap Between Token Pruning and Token Merging"
+    authors: ["Minchul Kim", "Shangqian Gao", "Yen-Chang Hsu", "Yilin Shen", "Hongxia Jin"]
+    year: 2024
+    venue: "WACV 2024"
+    url: "https://openaccess.thecvf.com/content/WACV2024/html/Kim_Token_Fusion_Bridging_the_Gap_Between_Token_Pruning_and_Token_WACV_2024_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract and method; combines pruning and merging and introduces norm-preserving MLERP fusion."
+  - id: paper-tran-2024-pitome
+    kind: paper
+    title: "Accelerating Transformers with Spectrum-Preserving Token Merging"
+    authors: ["Hoai-Chau Tran", "Duy M. H. Nguyen", "Duy M. Nguyen", "Trung-Tin Nguyen", "Ngan Le", "Pengtao Xie", "Daniel Sonntag", "James Y. Zou", "Binh T. Nguyen", "Mathias Niepert"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/37094fdc81632915a5738293cf9b7ad4-Abstract-Conference.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract and classification trade-offs; energy-guided merging protects isolated informative tokens and approximately preserves token-space spectra."
+  - id: paper-lee-2024-dtem
+    kind: paper
+    title: "Learning to Merge Tokens via Decoupled Embedding for Efficient Vision Transformers"
+    authors: ["Dong Hoon Lee", "Seunghoon Hong"]
+    year: 2024
+    venue: "NeurIPS 2024"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2024/hash/6158e152498f8d8b83d14388a7ec1963-Abstract-Conference.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Deep-read official method and classification tables; learns a small decoupled embedding used only for grouping, with modular or end-to-end training."
+  - id: paper-shang-2024-prumerge
+    kind: paper
+    title: "LLaVA-PruMerge: Adaptive Token Reduction for Efficient Large Multimodal Models"
+    authors: ["Yuzhang Shang", "Mu Cai", "Bingxin Xu", "Yong Jae Lee", "Yan Yan"]
+    year: 2024
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2403.15388"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed arXiv method and experiments; selects attention outliers as centers and merges neighboring token information into them after the visual encoder."
+  - id: paper-yang-2025-libra-merging
+    kind: paper
+    title: "Libra-Merging: Importance-redundancy and Pruning-merging Trade-off for Acceleration Plug-in in Large Vision-Language Model"
+    authors: ["Longrong Yang", "Dong Shen", "Chaoxiang Cai", "Kaibing Chen", "Fan Yang", "Tingting Gao", "Di Zhang", "Xi Li"]
+    year: 2025
+    venue: "CVPR 2025"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_Libra-Merging_Importance-redundancy_and_Pruning-merging_Trade-off_for_Acceleration_Plug-in_in_Large_CVPR_2025_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered from official CVF page; balances token importance and redundancy and avoids merging dissimilar non-target tokens into target tokens."
+  - id: paper-tong-2025-flowcut
+    kind: paper
+    title: "FlowCut: Rethinking Redundancy via Information Flow for Efficient Vision-Language Models"
+    authors: ["Jintao Tong","Wenwei Jin","Pengda Qin","Anqi Li","Yixiong Zou","Yuhong Li","Yuhua Li","Ruixuan Li"]
+    year: 2025
+    venue: "NeurIPS 2025"
+    url: "https://arxiv.org/abs/2505.19536"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked on 2026-09-16 for generative MLLM intra-ViT token reduction. Method and layer location checked in primary text; exact version and evidence boundaries in research/visual-token-pruning/papers/2025-tong-flowcut.md. No reproduction or local PDF."
+  - id: paper-liu-2025-meteor
+    kind: paper
+    title: "METEOR: Multi-Encoder Collaborative Token Pruning for Efficient Vision Language Models"
+    authors: ["Yuchen Liu","Yaoming Wang","Bowen Shi","Xiaopeng Zhang","Wenrui Dai","Chenglin Li","Hongkai Xiong","Qi Tian"]
+    year: 2025
+    venue: "ICCV 2025"
+    url: "https://arxiv.org/abs/2507.20842"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked on 2026-09-16 for generative MLLM intra-ViT token reduction. Method and layer location checked in primary text; exact version and evidence boundaries in research/visual-token-pruning/papers/2025-liu-meteor.md. No reproduction or local PDF."
+  - id: paper-han-2026-ficoco
+    kind: paper
+    title: "Filter, Correlate, Compress: Training-Free Token Reduction for MLLM Acceleration"
+    authors: ["Yuhang Han"]
+    year: 2026
+    venue: "AAAI 2026"
+    url: "https://ojs.aaai.org/index.php/AAAI/article/download/42460/46421"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked on 2026-09-16 for generative MLLM intra-ViT token reduction. Method and layer location checked in primary text; exact version and evidence boundaries in research/visual-token-pruning/papers/2026-han-ficoco.md. No reproduction or local PDF. Authors field records first author only; full list in official paper."
+  - id: paper-hu-2026-illava
+    kind: paper
+    title: "iLLaVA: An Image is Worth Fewer Than 1/3 Input Tokens in Large Multimodal Models"
+    authors: ["Lianyu Hu","Liqing Gao","Fanhua Shang","Liang Wan","Wei Feng"]
+    year: 2026
+    venue: "ICLR 2026"
+    url: "https://arxiv.org/abs/2412.06263"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked on 2026-09-16 for generative MLLM intra-ViT token reduction. Method and layer location checked in primary text; exact version and evidence boundaries in research/visual-token-pruning/papers/2026-hu-illava.md. No reproduction or local PDF."
+  - id: paper-liu-2024-mustdrop
+    kind: paper
+    title: "Multi-Stage Vision Token Dropping: Towards Efficient Multimodal Large Language Model"
+    authors: ["Ting Liu","Liangtao Shi","Richang Hong","Yue Hu","Quanjun Yin","Linfeng Zhang"]
+    year: 2024
+    venue: "arXiv preprint (v1)"
+    url: "https://arxiv.org/abs/2411.10803"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked on 2026-09-16 for generative MLLM intra-ViT token reduction. Method and layer location checked in primary text; exact version and evidence boundaries in research/visual-token-pruning/papers/2024-liu-mustdrop.md. No reproduction or local PDF."
+  - id: paper-islam-2025-adaptmerge
+    kind: paper
+    title: "AdaptMerge: Inference Time Adaptive Visual and Language-Guided Token Merging for Efficient Large Multimodal Models"
+    authors: ["Zahidul Islam", "Mrigank Rochan"]
+    year: 2025
+    venue: "Findings of EMNLP 2025"
+    url: "https://aclanthology.org/2025.findings-emnlp.387/"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked official ACL PDF sections 3.2.1 and 4 on 2026-09-16. AVTM merges between Attention and MLP in each vision encoder layer; ALVTM is a separate post-encoder language-guided merge. Gemma3-4B/12B generative VQA. FLOPs gains are joint-method results, not measured latency; no reproduction or local PDF."
+  - id: paper-burns-2018-women-snowboard
+    kind: paper
+    title: "Women also Snowboard: Overcoming Bias in Captioning Models"
+    authors: ["Kaylee Burns", "Lisa Anne Hendricks", "Kate Saenko", "Trevor Darrell", "Anna Rohrbach"]
+    year: 2018
+    venue: "ECCV 2018"
+    url: "https://arxiv.org/abs/1803.09797"
+    accessed: 2026-09-14
+    local_path: "papers/1803.09797v4.pdf"
+    sha256: "867dc70e46188afebeacb71ecd93a75a6f85297f8b8cc178fc7e83742d252f0c"
+    license: "unknown"
+    notes: "Deep-read arXiv 1803.09797v4, including Sections 1-4, Tables 1-3, appendix analyses, formulas and limitations; note in research/visual-token-pruning/papers/2018-burns-women-also-snowboard.md. No local reproduction."
+  - id: paper-selvaraju-2019-hint
+    kind: paper
+    title: "Taking a HINT: Leveraging Explanations to Make Vision and Language Models More Grounded"
+    authors: ["Ramprasaath R. Selvaraju", "Stefan Lee", "Yilin Shen", "Hongxia Jin", "Shalini Ghosh", "Larry Heck", "Dhruv Batra", "Devi Parikh"]
+    year: 2019
+    venue: "ICCV 2019"
+    url: "https://openaccess.thecvf.com/content_ICCV_2019/html/Selvaraju_Taking_a_HINT_Leveraging_Explanations_to_Make_Vision_and_Language_ICCV_2019_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract and method overview; aligns gradient-based network importance with human attention demonstrations for VQA and captioning, but does not prune tokens."
+  - id: paper-tang-2020-gaic
+    kind: paper
+    title: "Mitigating Gender Bias in Captioning Systems"
+    authors: ["Ruixiang Tang", "Mengnan Du", "Yuening Li", "Zirui Liu", "Na Zou", "Xia Hu"]
+    year: 2020
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2006.08315"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed primary abstract and method claim; GAIC uses self-guided visual attention to reduce contextual gender bias, but does not study token pruning."
+  - id: paper-fu-2024-laps
+    kind: paper
+    title: "Linguistic-Aware Patch Slimming Framework for Fine-grained Cross-Modal Alignment"
+    authors: ["Zheren Fu", "Lei Zhang", "Hou Xia", "Zhendong Mao"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Fu_Linguistic-Aware_Patch_Slimming_Framework_for_Fine-grained_Cross-Modal_Alignment_CVPR_2024_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract; uses language supervision to identify redundant visual patches for fine-grained cross-modal alignment, not safety classification."
+  - id: paper-chen-2025-vltp
+    kind: paper
+    title: "VLTP: Vision-Language Guided Token Pruning for Task-Oriented Segmentation"
+    authors: ["Hanning Chen", "Yang Ni", "Wenjun Huang", "Yezi Liu", "SungHeon Jeong", "Fei Wen", "Nathaniel D. Bastian", "Hugo Latapie", "Mohsen Imani"]
+    year: 2025
+    venue: "WACV 2025"
+    url: "https://openaccess.thecvf.com/content/WACV2025/html/Chen_VLTP_Vision-Language_Guided_Token_Pruning_for_Task-Oriented_Segmentation_WACV_2025_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official abstract and method overview; a vision-language-conditioned decoder predicts per-token task relevance and progressively prunes a segmentation ViT."
+  - id: paper-guo-2025-crop
+    kind: paper
+    title: "CROP: Contextual Region-Oriented Visual Token Pruning"
+    authors: ["Jiawei Guo", "Feifei Zhai", "Pu Jian", "Qianrun Wei", "Yu Zhou"]
+    year: 2025
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2505.21233"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed primary HTML sections 1-3 and analysis; localizes a query-relevant contiguous region, then prunes outside it or assigns it a denser compression budget."
+  - id: paper-anonymous-2026-mvp-token
+    kind: paper
+    title: "MVP: Multi-View-Guided Token Pruning for Vision-Language Models"
+    authors: []
+    year: 2026
+    venue: "anonymous ACL submission; publication status unverified"
+    url: "https://openreview.net/pdf?id=ESrjHebMni"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered/partially skimmed from the anonymous primary manuscript. MVP-PruneSet includes a grounding-model plus segmentation-derived patch mask (GRASP) among multiple selector views and trains a pre-projector pruner. Do not treat as peer-reviewed evidence."
+  - id: paper-shi-2024-crossget
+    kind: paper
+    title: "CrossGET: Cross-Guided Ensemble of Tokens for Accelerating Vision-Language Transformers"
+    authors: ["Dachuan Shi", "Chaofan Tao", "Anyi Rao", "Zhendong Yang", "Chun Yuan", "Jiaqi Wang"]
+    year: 2024
+    venue: "ICML 2024"
+    url: "https://proceedings.mlr.press/v235/shi24e.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official PMLR paper; inserts cross tokens into both modality branches and uses bidirectional cross-guided matching and modality-internal token ensembling."
+  - id: paper-chen-2025-safeptr
+    kind: paper
+    title: "SafePTR: Token-Level Jailbreak Defense in Multimodal LLMs via Prune-then-Restore Mechanism"
+    authors: ["Beitao Chen", "Xinyu Lyu", "Lianli Gao", "Jingkuan Song", "Heng Tao Shen"]
+    year: 2025
+    venue: "NeurIPS 2025"
+    url: "https://papers.neurips.cc/paper_files/paper/2025/hash/53f1c3ec5df814b5aabe9ae88a29bb49-Abstract-Conference.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official conference paper; separately prunes visual and instruction tokens that diverge from a safety-aligned reference in vulnerable LLM layers, then restores benign features. Defense rather than Guard-input compression."
+  - id: paper-zhang-2026-trimtokenator
+    kind: paper
+    title: "TrimTokenator: Towards Adaptive Visual Token Pruning for Large Multimodal Models"
+    authors: ["Hao Zhang", "Mengsi Lyu", "Chenrui He", "Yulong Ao", "Yonghua Lin"]
+    year: 2026
+    venue: "Findings of ACL 2026"
+    url: "https://aclanthology.org/2026.findings-acl.1633/"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official ACL Anthology paper; analyzes modality redundancy and explicitly retains all text tokens while pruning visual tokens, providing counter-evidence to symmetric co-pruning."
+  - id: paper-zhong-2025-aim
+    kind: paper
+    title: "AIM: Adaptive Inference of Multi-Modal LLMs via Token Merging and Pruning"
+    authors: ["Yiwu Zhong", "Zhuoming Liu", "Yin Li", "Liwei Wang"]
+    year: 2025
+    venue: "ICCV 2025"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/Zhong_AIM_Adaptive_Inference_of_Multi-Modal_LLMs_via_Token_Merging_and_ICCV_2025_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official CVF paper, including method and text-token ablation. Decoder-only image/video MLLMs; merges visual tokens before the LLM and progressively prunes only visual tokens in LLM layers. Text-token pruning reduced VideoMME from 58.2 to 45.7."
+  - id: paper-feng-2026-asymvlm
+    kind: paper
+    title: "AsymVLM: Asymmetric Token Pruning for Efficient Vision-Language Model Inference"
+    authors: ["Yilin Feng", "Ahmed Burak Gulhan", "Mahmut Taylan Kandemir"]
+    year: 2026
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2605.29535"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed primary arXiv manuscript. Uses per-sample visual pruning before prefill, but applies text compression only as decode-time KV eviction after generated text exceeds a budget; prompt/prefill tokens remain protected. Preprint evidence only."
+  - id: paper-zhou-2024-rethinking-visual-dependency
+    kind: paper
+    title: "Rethinking Visual Dependency in Long-Context Reasoning for Large Vision-Language Models"
+    authors: ["Yucheng Zhou", "Zhi Rao", "Jun Wan", "Jianbing Shen"]
+    year: 2024
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2410.19732"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed primary arXiv abstract and method summary. Training-free pruning removes less critical textual context to restore visual dependence in long-context LVLM reasoning; not evidence for pruning short safety prompts."
+  - id: paper-sun-2026-hi-lo-prune
+    kind: paper
+    title: "Hi-Lo Prune: Look at What You'll Lose before Pruning with Hierarchical Token Selection"
+    authors: ["Zixun Sun", "Yubo Dong", "Hehe Fan", "Yi Yang"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Sun_Hi-Lo_Prune_Look_at_What_Youll_Lose_before_Pruning_with_CVPR_2026_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official CVF abstract and method overview. Evaluated on Qwen2-VL, Qwen2.5-VL and Qwen3-VL; selects, merges and removes visual tokens in early LLM layers while leaving text tokens intact."
+  - id: paper-zhu-2026-hawk
+    kind: paper
+    title: "HAWK: Head Importance-Aware Visual Token Pruning in Multimodal Models"
+    authors: ["Qihui Zhu", "Tao Zhang", "Yuchen Wang", "Shuangwu Chen", "Xiaobin Tan", "Jian Yang", "Yang Liu", "Yinfei Pan"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Zhu_HAWK_Head_Importance-Aware_Visual_Token_Pruning_in_Multimodal_Models_CVPR_2026_paper.html"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Training-free head-importance-weighted visual pruning. Efficiency rechecked in arXiv v1 Table 5: Qwen2.5-VL-7B/MME, single GPU, whole-benchmark author-labeled E2E 20:15 to 15:04 at 80 percent pruning; request batch and exact profiling GPU unspecified. Abstract 96 percent multi-task retention is not the same MME metric."
+  - id: paper-li-2026-transprune
+    kind: paper
+    title: "TransPrune: Token Transition Pruning for Efficient Large Vision-Language Model"
+    authors: ["Ao Li", "Yuxiang Duan", "Jinghui Zhang", "Congbo Ma", "Yutong Xie", "Gustavo Carneiro", "Mohammad Yaqub", "Hu Wang"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Li_TransPrune_Token_Transition_Pruning_for_Efficient_Large_Vision-Language_Model_CVPR_2026_paper.html"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official CVF abstract and method overview. Training-free progressive visual pruning combines token transition variation with instruction-guided attention; evaluated on LLaVA-v1.5, LLaVA-NeXT and Qwen2.5-VL."
+  - id: paper-chen-2026-priortr
+    kind: paper
+    title: "Accelerating Multimodal Large Language Models with Prior-Corrected Token Reduction"
+    authors: ["Zengjie Chen", "Yuxiang Cai", "Jingcai Guo", "Taotao Cai", "Jianwei Yin", "Zhi Chen"]
+    year: 2026
+    venue: "arXiv preprint"
+    url: "https://arxiv.org/abs/2606.24156"
+    accessed: 2026-09-14
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed primary arXiv manuscript and official repository. Subtracts a task-agnostic attention prior from instruction-conditioned attention using a null probe in one forward; repository includes Qwen3-VL integration. Preprint evidence only."
+  - id: paper-li-2026-compleak
+    kind: paper
+    title: "CompLeak: Deep Learning Model Compression Exacerbates Privacy Leakage"
+    authors: ["Na Li", "Yansong Gao", "Hongsheng Hu", "Boyu Kuang", "Anmin Fu"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/li-na"
+    accessed: 2026-09-15
+    local_path: "papers/2026-li-compleak.pdf"
+    sha256: "9c1f8f9caaced514f01958dec42c91a24ed06e3cc347de50d8a0aa8d5a27d36c"
+    license: "unknown"
+    notes: "Deep-read from the final USENIX Security 2026 proceedings PDF (pp. 6545–6564). Distinguished Artifact Award; the official artifact was evaluated as functional and its results reproduced."
+  - id: paper-du-2026-cmia-pmia
+    kind: paper
+    title: "Cascading and Proxy Membership Inference Attacks"
+    authors: ["Yuntao Du", "Jiacheng Li", "Yuetian Chen", "Kaiyuan Zhang", "Zhizhen Yuan", "Hanshen Xiao", "Bruno Ribeiro", "Ninghui Li"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/cascading-and-proxy-membership-inference-attacks/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official NDSS abstract and introduction. Separates adaptive and non-adaptive MIAs; exploits membership dependencies through conditional shadow training or instance-level proxy selection, emphasizing low-FPR performance."
+  - id: paper-lu-2026-icp-mia
+    kind: paper
+    title: "In-Context Probing for Membership Inference in Fine-Tuned Language Models"
+    authors: ["Zhexi Lu", "Hongliang Chi", "Nathalie Baracaldo", "Swanand Ravindra Kadhe", "Yuseok Jeon", "Lei Yu"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/in-context-probing-for-membership-inference-in-fine-tuned-language-models/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official NDSS paper page. Training-free black-box MIA estimates an optimization gap through in-context probing and reports gains at low FPR for fine-tuned LLMs."
+  - id: paper-chen-2026-window-mia
+    kind: paper
+    title: "Window-based Membership Inference Attacks Against Fine-tuned Large Language Models"
+    authors: ["Yuetian Chen", "Yuntao Du", "Kaiyuan Zhang", "Ashish Kundu", "Charles Fleming", "Bruno Ribeiro", "Ninghui Li"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/chen-yuetian"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. WBC replaces global sequence loss with multi-scale local-window comparisons and sign aggregation, reporting 2–3x higher low-FPR detection rates."
+  - id: paper-tong-2026-tokenizer-mia
+    kind: paper
+    title: "Membership Inference Attacks on Tokenizers of Large Language Models"
+    authors: ["Meng Tong", "Yuntao Du", "Kejiang Chen", "Weiming Zhang", "Ninghui Li"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/tong"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. Treats the tokenizer rather than the full LLM as the membership leakage surface, motivated by label noise, distribution shift and scale mismatch in pretraining-data MIA."
+  - id: paper-nguyen-2026-menta
+    kind: paper
+    title: "Five Queries Are Enough: Query-Efficient and Surrogate-Free Membership Inference Attacks on RAG via Entailment"
+    authors: ["Nguyen Linh Bao Nguyen", "Wanlun Ma", "Viet Vo", "Alsharif Abuadbba", "Minghong Fang", "Jun Zhang", "Yang Xiang"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/nguyen-nguyen"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. MEntA performs surrogate-free RAG-corpus membership inference through natural-language entailment with five queries, targeting practical cost and stealth."
+  - id: paper-wang-2026-vidleaks
+    kind: paper
+    title: "VidLeaks: Membership Inference Attacks Against Text-to-Video Models"
+    authors: ["Li Wang", "Wenyu Chen", "Ning Yu", "Zheng Li", "Shanqing Guo"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/presentation/wang-li"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. Uses sparse key-frame reconstruction fidelity and temporal generation stability for supervised, reference-based and query-only MIA against text-to-video models."
+  - id: paper-zhang-2025-soft
+    kind: paper
+    title: "SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks"
+    authors: ["Kaiyuan Zhang", "Siyuan Cheng", "Hanxi Guo", "Yuetian Chen", "Zian Su", "Shengwei An", "Yuntao Du", "Charles Fleming", "Ashish Kundu", "Xiangyu Zhang", "Ninghui Li"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-kaiyuan"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. Protects LLM fine-tuning by selecting influential data for adjustable obfuscation, targeting a scalable privacy-utility tradeoff."
+  - id: paper-shang-2025-wemem
+    kind: paper
+    title: "Defending Against Membership Inference Attacks on Iteratively Pruned Deep Neural Networks"
+    authors: ["Jing Shang", "Jian Wang", "Kailun Wang", "Jiqiang Liu", "Nan Jiang", "Md Armanuzzaman", "Ziming Zhao"]
+    year: 2025
+    venue: "NDSS 2025"
+    url: "https://www.ndss-symposium.org/ndss-paper/defending-against-membership-inference-attacks-on-iteratively-pruned-deep-neural-networks/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official NDSS paper page. WeMem identifies data reuse and inherent memorability as iterative-pruning risks and applies scenario-specific memorization suppression against adaptive MIAs."
+  - id: paper-li-2025-dhattack
+    kind: paper
+    title: "Enhanced Label-Only Membership Inference Attacks with Fewer Queries"
+    authors: ["Hao Li", "Zheng Li", "Siyuan Wu", "Yutong Ye", "Min Zhang", "Dengguo Feng", "Yang Zhang"]
+    year: 2025
+    venue: "USENIX Security 2025"
+    url: "https://www.usenix.org/conference/usenixsecurity25/presentation/li-hao"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official USENIX paper page. DHAttack targets label-only APIs with 5–30 queries by estimating sample-specific boundary distance toward a fixed point."
+  - id: paper-tan-2026-neural-activation-mia
+    kind: paper
+    title: "Was My Data Used for Training? Membership Inference in Open-Source LLMs via Neural Activations"
+    authors: ["Xue Tan", "Hao Luan", "Mingyu Luo", "Zhuyang Yu", "Jun Dai", "Xiaoyan Sun", "Ping Chen"]
+    year: 2026
+    venue: "NDSS 2026"
+    url: "https://www.ndss-symposium.org/ndss-paper/was-my-data-used-for-training-membership-inference-in-open-source-llms-via-neural-activations/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed official NDSS paper page and opening section. Uses cross-layer neural activations and dynamic benchmarks to infer pretraining membership in open-weight LLMs."
+  - id: report-nist-2025-adversarial-ml-taxonomy
+    kind: report
+    title: "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations"
+    authors: ["Apostol Vassilev", "Alina Oprea", "Alie Fordyce", "Hyrum Anderson", "Xander Davies", "Maia Hamin"]
+    year: 2025
+    venue: "NIST AI 100-2 E2025"
+    url: "https://doi.org/10.6028/NIST.AI.100-2e2025"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Source-checked official NIST report page. Organizes adversarial ML by AI type, lifecycle stage, attacker goals, capabilities and knowledge; covers evasion, poisoning, privacy and GenAI misuse."
+  - id: webpage-owasp-2025-llm-top-10
+    kind: webpage
+    title: "OWASP Top 10 for LLMs and Generative AI Apps 2025"
+    authors: ["OWASP GenAI Security Project"]
+    year: 2025
+    venue: "OWASP GenAI Security Project"
+    url: "https://genai.owasp.org/llm-top-10/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Source-checked official OWASP risk index. Covers prompt injection, sensitive information disclosure, supply chain, poisoning, improper output handling, excessive agency, system prompt leakage, vector/embedding weaknesses, misinformation and unbounded consumption."
+  - id: knowledgebase-mitre-atlas-2026
+    kind: knowledgebase
+    title: "MITRE ATLAS"
+    authors: ["MITRE"]
+    year: 2026
+    venue: "MITRE ATLAS knowledge base"
+    url: "https://atlas.mitre.org/"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Source-checked living knowledge base snapshot. Maps operational adversary tactics and techniques across Predictive AI, Generative AI, Agentic AI and enterprise components."
+  - id: webpage-usenix-security-2026-cfp-ml
+    kind: webpage
+    title: "USENIX Security 2026 Call for Papers: Security and Privacy of ML Scope"
+    authors: ["USENIX Association"]
+    year: 2026
+    venue: "USENIX Security 2026"
+    url: "https://www.usenix.org/conference/usenixsecurity26/call-for-papers"
+    accessed: 2026-09-15
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Source-checked official CFP. Separates Security of ML and Privacy of ML, scopes attacks and defenses across data curation, pre/post-training and deployment, and requires a clear systems-security threat model."
+  - id: paper-peng-2025-uniprunebench
+    kind: paper
+    title: "Can Visual Input Be Compressed? A Visual Input Token Compression Benchmark for Large Multimodal Models"
+    authors: ["Tianfan Peng", "Yuntao Du", "Pengzhou Ji", "Shijie Dong", "Kailin Jiang", "Mingchuan Ma", "Yijun Tian", "Jinhe Bi", "Qian Li", "Wei Du", "Feng Xiao", "Lizhen Cui"]
+    year: 2025
+    venue: "arXiv preprint (v2)"
+    url: "https://arxiv.org/abs/2511.02650"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Deep-read primary arXiv v2. UniPruneBench standardizes ten methods across LLaVA-v1.5, InternVL3 and Qwen2.5-VL; A100-40GB batch-1 runtime profiling shows GPrune and DivPrune provide 1.68x and 1.62x total speedup at 11.1% token retention on InternVL3-8B, with no universal accuracy winner."
+  - id: paper-khaki-2025-sparsevila
+    kind: paper
+    title: "SparseVILA: Decoupling Visual Sparsity for Efficient VLM Inference"
+    authors: ["Samir Khaki", "Junxian Guo", "Jiaming Tang", "Shang Yang", "Yukang Chen", "Konstantinos N. Plataniotis", "Yao Lu", "Song Han", "Zhijian Liu"]
+    year: 2025
+    venue: "ICCV 2025"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/Khaki_SparseVILA_Decoupling_Visual_Sparsity_for_Efficient_VLM_Inference_ICCV_2025_paper.html"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "ICCV efficiency reports 1.4x image and 3.6x/1.7x prefill/decode, A6000 batch 1, optimized AWQ/TinyChat. Later arXiv 2510.17777v1 audited separately: W8A8 vision/W4A16 LLM, greedy batch 1; E+P+D model runtime with fixed outputs 50/image round, 250/video round, 1500/reasoning turn. Later 2.6x E2E is a different-version result relative to an already quantized baseline."
+  - id: paper-he-2025-zipvl
+    kind: paper
+    title: "ZipVL: Accelerating Vision-Language Models through Dynamic Token Sparsity"
+    authors: ["Yefei He", "Feng Chen", "Jing Liu", "Wenqi Shao", "Hong Zhou", "Kaipeng Zhang", "Bohan Zhuang"]
+    year: 2025
+    venue: "ICCV 2025"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/He_ZipVL_Accelerating_Vision-Language_Models_through_Dynamic_Token_Sparsity_ICCV_2025_paper.html"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Efficiency audit of ICCV Table 5/arXiv v2 section 5.4: LLaVA-NeXT-13B/A100, TTFT at batch 1 (128K 48.01 to 20.57 s; 16K 2.64 to 2.61 s). Decode throughput uses each method's maximum feasible single-GPU batch, not a fixed batch or batch-1 comparison; 16K 14.10 to 40.87 tokens/s. Visual-encoder timing inclusion and actual decode batch counts unspecified."
+  - id: paper-zhang-2026-vscan
+    kind: paper
+    title: "VScan: Rethinking Visual Token Reduction for Efficient Large Vision-Language Models"
+    authors: ["Ce Zhang", "Kaixin Ma", "Tianqing Fang", "Wenhao Yu", "Hongming Zhang", "Zhisong Zhang", "Haitao Mi", "Dong Yu"]
+    year: 2026
+    venue: "TMLR 2026"
+    url: "https://arxiv.org/abs/2505.22654"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Output-side scan/merge plus mid-LLM pruning, not intra-ViT early pruning. Efficiency rechecked in arXiv v3 section 5.4: LLaVA-NeXT-7B/POPE 11.1 percent average retention, whole-benchmark total 2294 to 1120 s and cumulative prefill 1420 to 488 s. Request batch and profiling GPU not explicit in checked main text; not a per-request or long-output latency claim."
+  - id: paper-ou-2026-sieve
+    kind: paper
+    title: "When Vision Becomes Text: Visual Token Pruning via Cross-Modal Residual Guidance in VLMs"
+    authors: ["Congyang Ou", "Ruike Song", "Yang Zhou", "Libo Sun", "Haokui Zhang", "Zhenbo Luo"]
+    year: 2026
+    venue: "arXiv preprint (v1)"
+    url: "https://arxiv.org/abs/2608.10489"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Cross-modal residual/relevance/diversity pruning. Efficiency audited in arXiv v1 Table 6: LLaVA-NeXT-7B/POPE 11.1 percent retention, whole-benchmark total 46:11 to 18:32 and prefill 37:21 to 10:20; author-labeled E2E is dataset runtime, not serving latency. Hardware and request batch unspecified in checked main text."
+  - id: paper-liu-2026-pace
+    kind: paper
+    title: "PACE: A Unified Condense-and-Extract Paradigm for Fast VLM Inference"
+    authors: ["Junjie Liu", "Shengyuan Ye", "Xu Chen"]
+    year: 2026
+    venue: "Findings of EMNLP 2026"
+    url: "https://arxiv.org/abs/2608.27206"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Efficiency audited in arXiv v1 section 4.3: Qwen2.5-VL-7B/RTX 4090/DocVQA and TextVQA fixed-resolution 10 percent budget, TTFT 365.89 to 116.79 ms including vision, LLM prefill and preview/resize. Explicitly not full-generation E2E because decode is not accelerated. Request batch unspecified."
+  - id: paper-chen-2026-v2drop
+    kind: paper
+    title: "Variation-aware Vision Token Dropping for Faster Large Vision-Language Models"
+    authors: ["Junjie Chen", "Xuyang Liu", "Zichen Wen", "Yiyu Wang", "Siteng Huang", "Honggang Chen"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Chen_Variation-aware_Vision_Token_Dropping_for_Faster_Large_Vision-Language_Models_CVPR_2026_paper.html"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Progressive inner-LLM variation dropping. arXiv v2 Table 5 audited: A100-PCIe-80GB/PyTorch 2.1.2/CUDA 12.1; batch unspecified. Image LLM-only/full-model/whole-MMBench reductions 31.5/23.1/20.8 percent; video corresponding reductions 74.2/46.5/27.5 percent. Same-table performance retention 95.7/99.1 percent, distinct from abstract's other-budget 94.0/98.6 percent."
+  - id: paper-chen-2026-evoprune
+    kind: paper
+    title: "EvoPrune: Early-Stage Visual Token Pruning for Efficient MLLMs"
+    authors: ["Yuhao Chen", "Bin Shan", "Xin Ye", "Cheng Chen"]
+    year: 2026
+    venue: "arXiv preprint (v1)"
+    url: "https://arxiv.org/abs/2603.03681"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed / source-checked arXiv 2603.03681v1 Algorithm 1 and sections 3-4 on 2026-09-16. Core operation is ScoreGuidedMerge between Attention and MLP, default alternating vision layers, not pure token dropping. LLaVA-1.5-7B and LLaVA-Video-7B/H20; abstract reports 2x VideoMME inference with less than 1% degradation. Not reproduced; no local PDF."
+  - id: paper-wang-2026-stc
+    kind: paper
+    title: "Accelerating Streaming Video Large Language Models via Hierarchical Token Compression"
+    authors: ["Yiyu Wang", "Xuyang Liu", "Xiyan Gui", "Xinying Lin", "Boxue Yang", "Chenfei Liao", "Tailai Chen", "Linfeng Zhang"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Wang_Accelerating_Streaming_Video_Large_Language_Models_via_Hierarchical_Token_Compression_CVPR_2026_paper.html"
+    accessed: 2026-09-17
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Temporal feature caching plus post-encoder token pruning. arXiv v2 Tables 1-2 and official code README audited: ReKV/LLaVA-OV-7B at 0.5 fps, reports ViT encoding 16 frames and LLM prefill, not full-answer decode E2E; reductions 24.5/45.3 percent. Request batch and GPU unspecified in checked main text; 16 frames is not request batch 16."
+  - id: paper-arxiv-2609-17475
+    kind: paper
+    title: "JustFit: 200K-Token LLM Serving on a 24 GiB Laptop with Just-in-Time State Management"
+    authors: ["Yuhua Chen"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.17475"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.17475v1; first submitted 2026-09-15T17:15:48Z; last updated 2026-09-15T17:15:48Z. 摘要筛查判断：主题是 KV 状态压缩、组件驻留和本地 LLM serving，摘要未提出视觉 token 剪枝机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-17248
+    kind: paper
+    title: "Video-HolmesV2: Can MLLMs Reason with Spatio-Temporal Audio-Visual Evidence in Long Videos?"
+    authors: ["Zhaoyang Wei", "Zipeng Wang", "Yushe Cao", "Chenhui Qiang", "Shuaibing Cheng", "Xuesong Yang", "Sen Nie", "Bowen Jiang", "Wenchao Ding", "Yanchao Hao", "Zheng Wei", "Xuehui Yu", "Zhenjun Han"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.17248"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.17248v1; first submitted 2026-09-15T14:30:00Z; last updated 2026-09-15T14:30:00Z. 摘要筛查判断：长视频证据评测配套音频/文本引导 token 压缩，直接涉及视觉上下文与证据保留。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-16936
+    kind: paper
+    title: "RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views"
+    authors: ["Yunxiang Zhang", "Haiquan Wang", "JiaWei Guo", "Hanyang Xia", "Yan Chen", "Tong Chen", "Zhang Zhiwei", "Junchen Ye"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.16936"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.16936v1; first submitted 2026-09-15T10:11:51Z; last updated 2026-09-15T10:11:51Z. 摘要筛查判断：选择并渲染代码图区域以辅助编码 agent，选择单位是仓库结构，非视觉 token。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-16841
+    kind: paper
+    title: "StackTok: Accelerating VLMs Inference with Budget-Adaptive Visual Token Selection"
+    authors: ["Zhenbin Wang", "Lei Zhang", "Lituan Wang", "Wei Huang", "Yan Wang", "Zhenwei Zhang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.16841"
+    accessed: 2026-09-16
+    local_path: "papers/2609.16841v1.pdf"
+    sha256: "e8c663ccfa2fdbb65dfce9606b12a6fa85d015de8ce52ea9e82b291216e5f99a"
+    license: "CC BY 4.0"
+    notes: "Deep-read / source-checked on 2026-09-16, user-selected promotion of existing candidate; observed 2609.16841v1; first submitted 2026-09-15T08:35:57Z. Official HTML methods and main results cross-checked with PDF, including Appendix A proofs and Appendix B Tables A1-A5. Note: research/visual-token-pruning/papers/2026-wang-stacktok.md. No local reproduction; no measured end-to-end speedup reported in manuscript. Venue beyond arXiv unverified."
+  - id: paper-arxiv-2609-16722
+    kind: paper
+    title: "VideoMM: Adaptive Macro-Micro Inference for Efficient Video MLLMs"
+    authors: ["Haoyu Guo", "Yuan Feng", "Junlin Lv", "Mingjun Xiao", "S Kevin Zhou", "Xike Xie"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.16722"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.16722v1; first submitted 2026-09-15T06:47:20Z; last updated 2026-09-15T06:47:20Z. 摘要筛查判断：低分辨率 Macro Proxy 筛选区域，再获取 Micro Tokens，直接压缩视频视觉输入。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-15671
+    kind: paper
+    title: "Don't Send What You Don't Need: Question-Guided Token Pruning as a Privacy Defense for Vision-Language Models"
+    authors: ["Md Khalid Syfullah", "Alvi Ataur Khalil"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15671"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.15671v1; first submitted 2026-09-14T14:48:39Z; last updated 2026-09-14T14:48:39Z. 摘要筛查判断：问句引导与隐私敏感性共同决定视觉 token 保留掩码和样本预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-15570
+    kind: paper
+    title: "DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models"
+    authors: ["Jing Lyu", "Shuanghao Bai", "Runze Xiao", "Zhenyu Liao", "Wenxing Tan", "Zihan Tang", "Ruochuan Shi", "Cheng Peng", "Yuheng Ji", "Yihao Wang", "Badong Chen", "Pengwei Wang", "Zhongyuan Wang", "Xiaoguang Zhao"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15570"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.15570v2; first submitted 2026-09-14T13:46:57Z; last updated 2026-09-15T05:54:35Z. 摘要筛查判断：主题为机器人视频扩散的单步去噪蒸馏，减少去噪步骤，非视觉 token 预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-15457
+    kind: paper
+    title: "AnchorGUI: Asymmetric Memory for Dual-Scale Learning in GUI Navigation"
+    authors: ["Shengjie Jin", "Zelong Sun", "Hengbo Xu", "Yanbiao Ma", "Zhiwu Lu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15457"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.15457v1; first submitted 2026-09-14T12:22:26Z; last updated 2026-09-14T12:22:26Z. 摘要筛查判断：GUI 轨迹截图/文本的非对称记忆与跨任务学习，摘要未说明视觉 token 预算机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-15137
+    kind: paper
+    title: "SparseTalk - Sparsifying 3D Gaussian Language Fields for Efficient 3D Visual Question Answering"
+    authors: ["Davit Soselia", "Joseph JaJa", "Amitabh Varshney"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15137"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.15137v1; first submitted 2026-09-14T07:10:50Z; last updated 2026-09-14T07:10:50Z. 摘要筛查判断：对 3D Gaussian 语义视觉 token 做空间/语义/物体实例稀疏选择，属于 3D 场景近邻。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-15131
+    kind: paper
+    title: "AdaVSkip: Adaptive Visual Token Skipping Across Layers For Efficient MLLMs Inference"
+    authors: ["Yuyao Sun", "Tao Deng", "Shuang Li", "Deqing Wang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15131"
+    accessed: 2026-09-20
+    local_path: "papers/2609.15131v1.pdf"
+    sha256: "b8343bea4f69281a3c8ec5a50fd28aa22a8ac5a3a44268f8a8db7b7159b2646b"
+    license: "CC BY 4.0"
+    notes: "Deep-read / source-checked on 2026-09-20 from the 12-page arXiv v1 PDF; user-selected promotion of an existing visual-token-pruning watch candidate. Necessity profiling, two-stage router training, Tables 1-6 and latency claims checked. Note: research/visual-token-pruning/papers/2026-sun-adavskip.md. The v1 PDF does not include the profiling appendix referenced in the text; no code or model reproduction."
+  - id: paper-arxiv-2609-16070
+    kind: paper
+    title: "Efficient Multimodal Generative Recommendation with Latent Narrative Reasoning"
+    authors: ["Chenxing Wang", "Nantao Zheng", "Hao Miao", "Juyuan Wang", "Xinke Jiang", "Yuchen Fang", "Aolin Li", "Haijun Wu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.16070"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.16070v1; first submitted 2026-09-13T15:04:05Z; last updated 2026-09-13T15:04:05Z. 摘要筛查判断：摘要提及视觉上下文的渐进谱压缩，但是否直接改变视觉 token 预算与粒度待核验；任务是推荐。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-14344
+    kind: paper
+    title: "AURA: Unified Multimodal Framework for Conversational Music Editing"
+    authors: ["Quoc-Huy Trinh", "Minh-Van Nguyen", "Debesh Jha"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.14344"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.14344v1; first submitted 2026-09-13T07:09:30Z; last updated 2026-09-13T07:09:30Z. 摘要筛查判断：主题为对话音乐编辑与音频生成概念 token，非视觉 token 剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-13804
+    kind: paper
+    title: "StepPrune: Adaptive Sequential Visual Token Selection across Multimodal Large Language Models"
+    authors: ["Hansen Zhang", "Landi He", "Mingde Yao", "Lijian Xu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.13804"
+    accessed: 2026-09-20
+    local_path: "papers/2609.13804v1.pdf"
+    sha256: "b85a36c5875f4cebbd348b89c0f954bef555384a4b53bfbce716d02027cadf7b"
+    license: "CC BY-NC-ND 4.0"
+    notes: "Deep-read / source-checked on 2026-09-20 from the 17-page arXiv v1 PDF; user-selected promotion of an existing visual-token-pruning watch candidate. Sequential policy, STOP, noise-gated training, grouped execution, Tables 1-8, latency and limitations checked. Note: research/visual-token-pruning/papers/2026-zhang-stepprune.md. No code or model reproduction."
+  - id: paper-arxiv-2609-13745
+    kind: paper
+    title: "Inside VLM Chart Reading: Tracing Value Reading from Vertical Bar Charts Across Space and Depth"
+    authors: ["Tianhao Niu", "Qingfu Zhu", "Wanxiang Che"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.13745"
+    accessed: 2026-09-20
+    local_path: "papers/2609.13745v1.pdf"
+    sha256: "586c3ef6bca18f14fdd149c6664f01a333b04546e385d440272b62f9a1deec96"
+    license: "arXiv perpetual non-exclusive license"
+    notes: "Deep-read / source-checked on 2026-09-20 from the 33-page arXiv v1 PDF; user-selected promotion of an existing visual-token-pruning watch candidate. Counterfactual construction, activation-patching metric, Tables 1-6, handoff, factorial recombination, limitations and statistical appendices checked. Note: research/visual-token-pruning/papers/2026-niu-chart-reading.md. No code or model reproduction."
+  - id: paper-arxiv-2609-13053
+    kind: paper
+    title: "Dynin-Robotics: Omnimodal Unified Diffusion Vision-Language-Action Model"
+    authors: ["Hoeun Lee", "Jaeik Kim", "Jusang Oh", "Jinhyeok Kim", "Geon Choi", "Hyeonggeun Kim", "Jaeyoung Do"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.13053"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.13053v1; first submitted 2026-09-11T16:49:26Z; last updated 2026-09-11T16:49:26Z. 摘要筛查判断：主题为扩散 VLA 的多目标轨迹建模与动作解码，摘要未提出视觉 token 剪枝机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-12818
+    kind: paper
+    title: "Online Video Agent Harness for Long Video Understanding"
+    authors: ["Sen Yang", "Boqiang Duan", "Jing Yang", "Weihao Bo", "Jie Liu", "Boyuan Tong", "Ze Feng", "Wenkang Zhang", "Jingdong Wang", "Hua Wu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.12818"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.12818v1; first submitted 2026-09-11T13:13:03Z; last updated 2026-09-11T13:13:03Z. 摘要筛查判断：主题为在线视频 agent 的专家工具调用与证据检索 harness，非视觉 token 选择/压缩机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-11899
+    kind: paper
+    title: "Caption-once, Frames-on-Demand: Visual-Need Routing for Budget-Aware Agentic Long Video Understanding"
+    authors: ["Weitong Cai", "Hang Zhang", "Yukai Huang", "Yiqiao Xie", "Shan Gao", "Jiankang Deng", "Songcen Xu", "Jifei Song", "Zhensong Zhang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.11899"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.11899v1; first submitted 2026-09-10T17:53:59Z; last updated 2026-09-10T17:53:59Z. 摘要筛查判断：通过问句感知 Visual-Need Router 限制关键帧获取，属于视觉访问预算近邻；非 token 级剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-11135
+    kind: paper
+    title: "Bidirectional Multimodal Fusion of Sky Images and Time-Series for Solar Forecasting with Large Language Models"
+    authors: ["Ken Chen", "Maneesha Perera", "Wei Wang", "Sachith Seneviratne", "Hansani Weeratunge", "Saman Halgamuge"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.11135"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.11135v1; first submitted 2026-09-10T06:26:02Z; last updated 2026-09-10T06:26:02Z. 摘要筛查判断：主题为天空图像与时间序列融合预测，无视觉 token 预算/剪枝机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-10355
+    kind: paper
+    title: "Why Is Video Still So Expensive? A Survey of Inference-Efficiency Mechanisms in Video and Audiovisual LLMs"
+    authors: ["Killian Steunou", "Yannis Tevissen", "Mounîm A. El Yacoubi"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.10355"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.10355v1; first submitted 2026-09-09T15:50:39Z; last updated 2026-09-09T15:50:39Z. 摘要筛查判断：梳理视频/音视频推理效率，含编码器、连接器 token 缩减与可比较成本口径。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-10346
+    kind: paper
+    title: "Beyond One-Size-Fits-All: Sample-Adaptive Strategy Routing for Vision Token Pruning in MLLMs"
+    authors: ["Haiji Liang", "Pengfei Zhou", "Zhenglin Wan", "Wei Wang", "Yang You", "Wangbo Zhao"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.10346"
+    accessed: 2026-09-20
+    local_path: "papers/2609.10346v1.pdf"
+    sha256: "0d59890089fd7fefafd87697db5329319f04916379bbe5ae7dcdf6e87b916d4d"
+    license: "CC BY 4.0"
+    notes: "Deep-read / source-checked on 2026-09-20 from the 26-page arXiv v1 PDF; user-selected promotion of an existing visual-token-pruning watch candidate. Utility objective, Group A construction, algorithms, Tables 1-9, split and transfer limitations checked. Note: research/visual-token-pruning/papers/2026-liang-vip-router.md. Code was announced but not available for fixed-revision review; no model reproduction."
+  - id: paper-arxiv-2609-10297
+    kind: paper
+    title: "TRACE: Trajectory-robust Admission with Evidence Ordering for Efficient GUI Agents"
+    authors: ["Yuhao Wang", "Mu Qiao", "Xindong Zhang", "Yunzhi Zhuge", "Lei Zhang", "Huchuan Lu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.10297"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.10297v1; first submitted 2026-09-09T15:12:48Z; last updated 2026-09-09T15:12:48Z. 摘要筛查判断：GUI 视觉 token 的不可逆准入、空间覆盖与跨预算嵌套选择，直接涉及证据保留。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-08464
+    kind: paper
+    title: "PAPR-Aware Multimodal Token Transmission in MLLM-Based Multiuser Networks"
+    authors: ["Molka Trabelsi", "Rafik Zayani"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.08464"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.08464v1; first submitted 2026-09-08T09:02:45Z; last updated 2026-09-08T09:02:45Z. 摘要筛查判断：主题为多模态 token 的 OFDM 峰均功率比与通信投影优化，非 token 数量剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-08407
+    kind: paper
+    title: "FastE: Readout-Triggered Token Compression for LLM Embedding Inference"
+    authors: ["Jinsong Shu", "Jinyong Wen", "Baokun Wang", "Zhongle Xie", "Lidan Shou", "Weiqiang Wang", "Gang Chen"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.08407"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.08407v3; first submitted 2026-09-08T08:17:21Z; last updated 2026-09-11T06:10:40Z. 摘要筛查判断：在包含 Qwen3-VL-Embedding 的检索模型中按 readout 信号压缩前缀，属于表征/检索近邻。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-08345
+    kind: paper
+    title: "CoVeR: Coverage-Based Token Pruning for Multi-View 3D Reasoning in VLMs"
+    authors: ["Nhat-Tan Bui", "Varshini Elangovan", "Arun Reddy Anugu", "Sreyas Mohan", "Wei Ye", "Dilin Wang", "JQ Huang", "Rakesh Ranjan", "Aviral Chharia", "Fernando De la Torre"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.08345"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.08345v1; first submitted 2026-09-08T07:16:37Z; last updated 2026-09-08T07:16:37Z. 摘要筛查判断：仅用 3D 坐标做覆盖驱动的多视图视觉 token 选择，并控制精确场景预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-08331
+    kind: paper
+    title: "Do Input-Level Defenses Transfer to Observation-Level Attacks on VideoLLMs?"
+    authors: ["Bangshuo Zhu", "Wei Song", "Yuxin Cao", "Yuezhong Wu", "Zhiquan Liu", "Yuekang Li", "Jingling Xue"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.08331"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.08331v1; first submitted 2026-09-08T06:59:19Z; last updated 2026-09-08T06:59:19Z. 摘要筛查判断：评估视频观察链路攻击与防御，摘要明确涉及 token 压缩导致局部有害视觉信号丢失。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-07915
+    kind: paper
+    title: "JEDI: JEPA-to-Edge Distillation for Efficient Cropland Segmentation from Satellite Imagery"
+    authors: ["Kishor Kumar Bhaumik", "Nicolas Roque dos Santos", "Jia Chen", "Evangelos E. Papalexakis"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.07915"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.07915v1; first submitted 2026-09-07T19:29:45Z; last updated 2026-09-07T19:29:45Z. 摘要筛查判断：主题为跨架构分割模型蒸馏与特征对齐，未说明视觉 token 预算或剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-07838
+    kind: paper
+    title: "ComVLA: Communication-Aware Split Inference for VLA Models in 6G-Connected Robotics"
+    authors: ["Boliang Liu", "Wint Yi Poe", "Jingyun Di", "Riccardo Trivisonno", "Giuseppe Caire"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.07838"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.07838v1; first submitted 2026-09-07T18:00:14Z; last updated 2026-09-07T18:00:14Z. 摘要筛查判断：语言指导视觉 token 剪枝，并按通信容量适配 VLA token 预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-07474
+    kind: paper
+    title: "Where Should Language Sit in a Multimodal Model? Lessons from What Language Does to Human Perception and Cognition"
+    authors: ["Peng Xie", "Amr Alanwar"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.07474"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.07474v3; first submitted 2026-09-07T13:31:29Z; last updated 2026-09-15T12:40:46Z. 摘要筛查判断：主题为语言与感知的模态冲突和认知解释，摘要未提出视觉 token 预算机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-07471
+    kind: paper
+    title: "MEMO: Multimodal Evidence Memory Organization for Long-Horizon LLM Agents"
+    authors: ["Xian Gao", "Jinpeng Wang", "Jiacheng Ruan", "Guangyu Cao", "Ting Liu", "Yuzhuo Fu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.07471"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.07471v1; first submitted 2026-09-07T13:24:40Z; last updated 2026-09-07T13:24:40Z. 摘要筛查判断：主题为 agent 记忆证据选择与文本/视觉载体组织，选择单位是记忆条目，非视觉 token。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-07262
+    kind: paper
+    title: "Query-Aware Token Budgeting for Efficient Late-Interaction Visual Document Retrieval"
+    authors: ["PS Rishi", "Rajeev Ranjan Dwivedi", "Vinod K Kurmi"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.07262"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.07262v1; first submitted 2026-09-07T09:18:03Z; last updated 2026-09-07T09:18:03Z. 摘要筛查判断：视觉文档检索中查询感知的 token 预算与 MaxSim 覆盖选择，可作选择机制近邻。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-06922
+    kind: paper
+    title: "BEFORE THE FLIP: Measuring Hidden Score Shifts In Quantized Vision Language Models Before The Answer Changes for Visual Question Answering"
+    authors: ["Sourajit Saha", "Shubhashis Roy Dipta", "Shaswati Saha", "Nobin Sarwar", "Yuxuan Jiang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.06922"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.06922v1; first submitted 2026-09-07T01:38:42Z; last updated 2026-09-07T01:38:42Z. 摘要筛查判断：主题为权重量化后的分数漂移，视觉 token 替换仅作对照，非视觉预算或剪枝方法。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-06663
+    kind: paper
+    title: "ECOKV: Geometry-Aware KV Cache Eviction via Complementary Diversity Metrics"
+    authors: ["Chin Ting Hsu", "Yu-Syuan Xu", "Ling Zou", "Hsien-Kai Kuo", "Wen-Huang Cheng"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.06663"
+    accessed: 2026-09-16
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title and abstract screened on 2026-09-16; observed 2609.06663v1; first submitted 2026-09-06T15:13:48Z; last updated 2026-09-06T15:13:48Z. 摘要筛查判断：主题为通用 KV cache 驱逐与多样性度量，未说明视觉 token 特定剪枝机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-18723
+    kind: paper
+    title: "Beyond Truncation: Rethinking LLM Decoding as Ensemble Pruning"
+    authors: ["Dunyao Xue", "Chengshuo Du", "Zhengbo Wang", "Wenlin Dai", "Cheng Meng"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.18723"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via web fallback on 2026-09-18; observed 2609.18723v1; first submitted 2026-09-16T14:23:40Z. 摘要筛查判断：剪枝对象是 LLM 解码时的候选生成 token，非视觉 token/patch。 API queries returned HTTP 406; batch coverage partial. No PDF downloaded."
+  - id: paper-arxiv-2609-18487
+    kind: paper
+    title: "ActionPiece: Rethinking Action Tokenization for Autoregressive Vision-Language-Action Models"
+    authors: ["Shijie Lian", "Bin Yu", "Zhaolong Shen", "Xiaopeng Lin", "Yichao Du", "Zhirui Zhang", "Laurence T. Yang", "Kai Chen"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.18487"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via web fallback on 2026-09-18; observed 2609.18487v1; first submitted 2026-09-16T11:19:54Z. 摘要筛查判断：主题为动作 token 的量化与物理关系保真，非视觉 token/patch 选择或减少。 API queries returned HTTP 406; batch coverage partial. No PDF downloaded."
+  - id: paper-arxiv-2609-18279
+    kind: paper
+    title: "Decoder-Agnostic Token Merging for Vision Transformers: A Systematic Study of G2TM"
+    authors: ["Victor Bercy", "Martyna Poreba", "Michal Szczepanski", "Samia Bouchafa"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.18279"
+    accessed: 2026-09-20
+    local_path: "papers/2609.18279v1.pdf"
+    sha256: "5f36f78164583a9f974cb227227ca3bd2079b3749006276b2a0a1c8a88b6fcc7"
+    license: "arXiv perpetual non-exclusive license"
+    notes: "Deep-read / source-checked on 2026-09-20 from the 27-page arXiv v1 PDF; user-selected promotion of an existing visual-token-pruning watch candidate. Method, training/inference paths, Tables 1-11 and failure conditions checked. Note: research/visual-token-pruning/papers/2026-bercy-g2tm.md. No code or model reproduction. Related-resource DOI 10.5220/0014267600004084 is not treated as the preprint identity; CCIS publication status remains independently unverified."
+  - id: paper-arxiv-2609-18110
+    kind: paper
+    title: "SSD-LLaMA: SSD-Native Inference for Trillion-Parameter MoE at 1+ Token/s on a Consumer PC"
+    authors: ["Fangzhou Liang", "Yibin Shen", "Jianmin Hu", "Jiayang Xu", "Hanchi Gao", "Minxian Xu", "Zili Meng"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.18110"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via web fallback on 2026-09-18; observed 2609.18110v1; first submitted 2026-09-16T04:28:47Z. 摘要筛查判断：主题为 MoE 专家 SSD 卸载与存储/执行调度，非视觉 token 减少。 API queries returned HTTP 406; batch coverage partial. No PDF downloaded."
+  - id: paper-arxiv-2609-15229
+    kind: paper
+    title: "Pre-PEFT Probing: Weight Statistics and Perturbation Robustness for Layer Selection in VLM Vision Encoders"
+    authors: ["Qingtao Xia", "Jiahua Bao", "Siyao Cheng", "Jie Liu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.15229"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via web fallback on 2026-09-18; observed 2609.15229v1; first submitted 2026-09-14T08:49:31Z. 摘要筛查判断：选择 PEFT 训练层以减少可训练参数，未提出推理时视觉 token 数量或深度预算的剪枝。 API queries returned HTTP 406; batch coverage partial. No PDF downloaded."
+  - id: paper-arxiv-2609-11236
+    kind: paper
+    title: "HALDETECT at ImageEval 2026 Shared Tasks: Answer-First Contrastive Grounding with QLoRA"
+    authors: ["Syed Mohaiminul Hoque", "Md Sakhawat Hossain"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.11236"
+    accessed: 2026-09-18
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via web fallback on 2026-09-18; observed 2609.11236v1; first submitted 2026-09-10T08:35:29Z. 摘要筛查判断：主题为视觉幻觉检测、QLoRA 适配与回答顺序，未提出视觉 token 预算或剪枝。 API queries returned HTTP 406; batch coverage partial. No PDF downloaded."
+  - id: paper-arxiv-2609-24984
+    kind: paper
+    title: "WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory"
+    authors: ["Wangbo Yu", "Kunhao Liu", "Wenbo Hu", "Shenghai Yuan", "Chaoran Feng", "Haiyang Zhou", "Yukun Huang", "Yiran Wang", "Wang Zhao", "Yingmin Luo", "Ying Shan"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.24984"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.24984v1; first submitted 2026-09-21T17:57:06Z; last updated 2026-09-21T17:57:06Z. 摘要筛查判断：把多视角历史压缩为视频生成器的固定 token 记忆并做少步蒸馏，属于生成式世界模型而非视觉理解剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-24894
+    kind: paper
+    title: "SLICEChat: Progressive In-Encoder Token Pruning for Whole-Slide Pathology Language Models"
+    authors: ["Ali Kerem Bozkurt", "Baris Cem Bakay", "Ibrahim Kulac", "Cigdem Gunduz-Demir", "Erkut Erdem", "Aykut Erdem"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.24894"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.24894v1; first submitted 2026-09-21T16:59:06Z; last updated 2026-09-21T16:59:06Z. 摘要筛查判断：在病理 WSI 的混合 Mamba–Transformer 编码器内逐阶段、语言监督地剪除空间连续的低效 patch token，直接研究视觉编码过程中的 token 减少。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-24526
+    kind: paper
+    title: "ME-VLM:A Unified VLM for Embodied Cognition and Agent Coordination"
+    authors: ["Foundation Model", "Li Auto Inc"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.24526"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.24526v1; first submitted 2026-09-21T12:59:59Z; last updated 2026-09-21T12:59:59Z. 摘要筛查判断：端侧部署组合明确使用视觉 token 压缩并与 W4A8 量化、软硬件协同共同降低 prefill 时延，但摘要未把压缩机制作为独立贡献展开。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-24485
+    kind: paper
+    title: "VPRune: Efficient Training-free Pre-LLM Visual Token Pruning"
+    authors: ["Guangchuan Lv", "Dianxing Shi", "Dingjie FU"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.24485"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.24485v1; first submitted 2026-09-21T12:24:39Z; last updated 2026-09-21T12:24:39Z. 摘要筛查判断：训练无关的 pre-LLM 剪枝同时处理视觉多样性、被丢弃 token 的信息回收和位置保持，直接对应视觉前缀压缩。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23841
+    kind: paper
+    title: "Structured World-State Reasoning for Agentic Robotic Search"
+    authors: ["Finley R. Holt", "Luis A. Pabon", "John Irvin Alora", "Jonas Frey", "Marco Pavone"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23841"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23841v1; first submitted 2026-09-20T19:47:46Z; last updated 2026-09-20T19:47:46Z. 摘要筛查判断：机器人搜索用图结构组织证据并减少推理 token，但没有视觉 token/patch 选择、合并或压缩机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23717
+    kind: paper
+    title: "BindCLIP: One Balanced Coupling For Compositional Vision Language Scoring"
+    authors: ["Liuyang Song", "Yi Zhang", "Zhongyi Deng", "Daqian Yang", "Hongbo Zhang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23717"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23717v1; first submitted 2026-09-20T15:50:19Z; last updated 2026-09-20T15:50:19Z. 摘要筛查判断：token–patch–depth 最优传输用于组合式图文打分和对应关系读取，不减少视觉 token 或视觉计算预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23715
+    kind: paper
+    title: "Layer-Aware Position Embeddings for Visual Token Pruning in Multimodal Large Language Models"
+    authors: ["Yahong Wang", "Zhangkai Ni", "Juncheng Wu", "Yuyin Zhou", "Ying Wen", "Lianghua He"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23715"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23715v1; first submitted 2026-09-20T15:46:49Z; last updated 2026-09-20T15:46:49Z. 摘要筛查判断：专门分析剪枝后位置编码对感知与定位的影响，并按解码层切换位置编码，直接服务视觉 token 剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23601
+    kind: paper
+    title: "PREM: Prefix-Steered Recurrent Memory for Long-Video Understanding"
+    authors: ["Siru Zhong", "Qiongyan Wang", "Xiaohui Lv", "Yuzheng Zhuang", "Shuai Tao", "Wulong Liu", "Haohuan Fu", "Yuxuan Liang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23601"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23601v1; first submitted 2026-09-20T12:41:39Z; last updated 2026-09-20T12:41:39Z. 摘要筛查判断：在严格视频帧预算下把视觉流写入紧凑递归状态并用 K/V 调制读取，关注证据保留与预算，但不直接剪除视觉 token。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23431
+    kind: paper
+    title: "HOIBlender: Blending Lightweight Detection with Vision-Language Priors for Efficient Human-Object Interaction Detection"
+    authors: ["Junwen Chen", "Keiji Yanai"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23431"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23431v1; first submitted 2026-09-20T07:57:26Z; last updated 2026-09-20T07:57:26Z. 摘要筛查判断：从多尺度投影器选择 top-K 图像条件 token 作为人–物候选并移除专用编码器阶段，属于视觉 token 选择与计算缩减。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-23121
+    kind: paper
+    title: "MM-ContextFold: Context Folding for Multimodal Agentic Retrieval"
+    authors: ["Yang Tian", "Fan Liu", "Jingyuan Zhang", "Zhenyang Li", "Yupeng Hu", "Liqiang Nie"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.23121"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.23121v1; first submitted 2026-09-19T16:45:21Z; last updated 2026-09-19T16:45:21Z. 摘要筛查判断：按需载入原图、完成视觉子任务后折叠为文本并丢弃图像上下文，直接管理视觉上下文预算，但粒度高于模型内 token 剪枝。 arXiv metadata reports DOI 10.1145/3767308.3836039; no matching DOI existed in the registry. No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-22910
+    kind: paper
+    title: "When Should a VLM Look? Paying Only for Visual Calls That Were Needed and Used"
+    authors: ["Kunyu Peng", "Junming Liu", "Ruiqi He", "Qingzhuo Wang", "Jianzhong Qi", "Xianhui Liu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.22910"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.22910v1; first submitted 2026-09-19T09:34:22Z; last updated 2026-09-19T09:34:22Z. 摘要筛查判断：以反事实需要性和像素使用度约束 VLM 的裁剪/缩放视觉调用预算，关联查询引导证据选择，但不是内部视觉 token 剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-21811
+    kind: paper
+    title: "MIST: Multimodal Survival Prediction with Genomic-Guided Histology Attention"
+    authors: ["Muhammet Sami Yavuz", "Sabri Mustafa Kahya", "Richard R. Chen", "Jana Lipkova", "Benedikt Wiestler"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.21811"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.21811v1; first submitted 2026-09-18T14:21:37Z; last updated 2026-09-18T14:21:37Z. 摘要筛查判断：用基因 token 查询紧凑病理上下文完成生存预测，摘要没有提出视觉 token 剪枝、合并或动态预算机制。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-21018
+    kind: paper
+    title: "MAGIC: Marginal-Guided Compression with Optimal Transport for Efficient Visual Document Retrieval"
+    authors: ["Xu Yuan", "Hua Liu", "Wenqi Fan", "Qing Li"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.21018"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.21018v1; first submitted 2026-09-17T19:14:06Z; last updated 2026-09-17T19:14:06Z. 摘要筛查判断：对视觉文档检索的 patch 多向量做训练无关的后处理合并，机制可比较 token merging，但目标是索引存储与 MaxSim 检索。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-20820
+    kind: paper
+    title: "Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision"
+    authors: ["Nitish Dashora", "Douglas Chen", "Idan Shenfeld", "John Marangola", "Pulkit Agrawal", "Max Simchowitz"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.20820"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.20820v1; first submitted 2026-09-17T17:59:53Z; last updated 2026-09-17T17:59:53Z. 摘要筛查判断：将机器人历史蒸馏为单个 workspace memory token，目标是长期策略记忆，不是视觉前缀或编码器 token 剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-20423
+    kind: paper
+    title: "WeVisDoc: From Coverage to Capability for Robust End-to-End Document Parsing"
+    authors: ["Hao Yu", "Kang Liu", "Linnan Zhao", "Jiabo Zhan", "Chong Sun", "Chen Li", "Jing Lyu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.20423"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.20423v1; first submitted 2026-09-17T14:04:31Z; last updated 2026-09-17T14:04:31Z. 摘要筛查判断：所述 target-token budget 是文档解析训练数据配额，未提出推理时视觉 token 数量或计算缩减。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19990
+    kind: paper
+    title: "QCPruner: Query-Conditioned Population Coverage for Visual Token Pruning"
+    authors: ["Shengli He", "Yongchao Liang", "Roumeng He", "Junjie Zeng", "Jiyuan He", "Can Wu", "Li Zheng"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19990"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19990v1; first submitted 2026-09-17T09:58:16Z; last updated 2026-09-17T09:58:16Z. 摘要筛查判断：以查询条件双边效用加权 facility-location 覆盖，在固定预算下训练无关地选择视觉 token。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19969
+    kind: paper
+    title: "DeepSeek-V4.1-Flash: Pushing the Limits of KV Cache Compression"
+    authors: ["DeepSeek-AI"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19969"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19969v1; first submitted 2026-09-17T09:43:10Z; last updated 2026-09-17T09:43:10Z. 摘要筛查判断：核心是通用 LLM 的 KV cache 压缩；即使覆盖多模态 agent 场景，摘要未给出视觉 token 特定剪枝机制。 The API exposes a consortium label plus a very large author roster; the registry uses the official consortium label DeepSeek-AI. No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19745
+    kind: paper
+    title: "Region-Level Policy Optimization for Fine-grained MLLM Perception"
+    authors: ["Yuheng Shi", "Xiaohuan Pei", "Minjing Dong", "Chang Xu"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19745"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19745v1; first submitted 2026-09-17T06:10:34Z; last updated 2026-09-17T06:10:34Z. 摘要筛查判断：学习查询相关 RoI 并以稀疏编码放大证据、排除背景 token，在视觉预算下直接减少 MLLM 输入。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19702
+    kind: paper
+    title: "Understanding and Exploiting Diagonal Attention Sparsity in Autoregressive Image Generation"
+    authors: ["Daeun Kim", "Junwha Hong", "Changhun Oh", "Yoonsung Kim", "Yoonhyeong Lee", "Jongse Park"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19702"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19702v1; first submitted 2026-09-17T04:54:59Z; last updated 2026-09-17T04:54:59Z. 摘要筛查判断：研究自回归图像生成解码中的 KV 稀疏注意力，属于生成 serving 加速而非视觉理解输入 token 剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19683
+    kind: paper
+    title: "MiX: Micro-Inverted-Scaling for End-to-End Low-Bit Vision-Language Model Acceleration"
+    authors: ["Yuan Liao", "Jae-sun Seo"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19683"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19683v1; first submitted 2026-09-17T04:31:34Z; last updated 2026-09-17T04:31:34Z. 摘要筛查判断：贡献是 VLM 低比特数值格式与加速器量化，不涉及视觉 token 数量、位置或深度预算。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19669
+    kind: paper
+    title: "Beyond Patch Removal: Persistent Adversarial Effects in Vision-Language-Action Policies"
+    authors: ["Enhao Wu", "Fusen Guo", "Yuxin Cao", "Ziyang Lyu", "Lin Li", "Wei Song"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19669"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19669v1; first submitted 2026-09-17T04:14:19Z; last updated 2026-09-17T04:14:19Z. 摘要筛查判断：patch 指输入图像中的对抗贴片及其移除，不是视觉 token/patch 的计算剪枝。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-19384
+    kind: paper
+    title: "Riemannian--Lorentz Fusion of Vision Transformers and State-Space Models"
+    authors: ["Badri N. Patro", "Vijay S. Agneeswaran"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.19384"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.19384v1; first submitted 2026-09-16T20:05:11Z; last updated 2026-09-16T20:05:11Z. 摘要筛查判断：合并对象是 ViT 与状态空间模型的参数和分支预测，不是视觉 token merging。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-17688
+    kind: paper
+    title: "CapMem: A Benchmark for Caption-Based Episodic Memory in Egocentric Video"
+    authors: ["Dingli Liang", "Yiqiao Xie", "Yukai Huang", "Zhaokai Wang", "Weitong Cai", "Guangwen Feng", "Jifei Song", "Zhensong Zhang", "Hang Zhang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.17688"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.17688v1; first submitted 2026-09-15T18:03:04Z; last updated 2026-09-15T18:03:04Z. 摘要筛查判断：以字幕记忆替代长视频的密集视觉上下文并在受限帧预算下评估证据检索，邻近视频视觉预算与证据保留。 No PDF downloaded; not deep-read."
+  - id: paper-arxiv-2609-20301
+    kind: paper
+    title: "AgentPProf: Semantic Profiler for Long Horizon AI Agents"
+    authors: ["Yusheng Zheng", "Chaokun Chang", "Yu Mao", "Tianyuan Wu", "Yuxi Huang", "Tao Ma", "Wenan Mao", "Shuyi Cheng", "Andi Quinn", "Wei Wang"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2609.20301"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Discovered / unverified. Primary arXiv title, authors, abstract and submission history checked via the official API on 2026-09-22; observed 2609.20301v1; first submitted 2026-09-14T02:46:15Z; last updated 2026-09-14T02:46:15Z. 摘要筛查判断：分析长程 agent 的语义操作和文本 token 成本，未涉及视觉 token/patch 压缩。 No PDF downloaded; not deep-read."
+  - id: paper-cao-2024-madtp
+    kind: paper
+    title: "MADTP: Multimodal Alignment-Guided Dynamic Token Pruning for Accelerating Vision-Language Transformer"
+    authors: ["Jianjian Cao", "Peng Ye", "Shengze Li", "Chong Yu", "Yansong Tang", "Jiwen Lu", "Tao Chen"]
+    year: 2024
+    venue: "CVPR 2024"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MADTP_Multimodal_Alignment-Guided_Dynamic_Token_Pruning_for_Accelerating_Vision-Language_Transformer_CVPR_2024_paper.html"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0"
+    notes: "Skimmed/source-checked against the official CVPR page and arXiv v1 Sections 1, 3 and Appendix C.3. MADTP aligns image and language branches and evaluates vision-only, language-only, and combined token pruning; it is a CVPR precedent for joint multimodal token pruning, but uses CLIP/BLIP-style dual branches rather than a decoder-only long-policy guard. Note: research/visual-token-pruning/papers/2024-cao-madtp.md."
+  - id: paper-piao-2026-policy-adaptive-image-guardrail
+    kind: paper
+    title: "Towards Policy-Adaptive Image Guardrail: Benchmark and Method"
+    authors: ["Caiyong Piao", "Zhiyuan Yan", "Haoming Xu", "Yunzhen Zhao", "Kaiqing Lin", "Feiyang Xu", "Shuigeng Zhou"]
+    year: 2026
+    venue: "CVPR 2026"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/papers/Piao_Towards_Policy-Adaptive_Image_Guardrail_Benchmark_and_Method_CVPR_2026_paper.pdf"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Deep-read/source-checked against the official CVPR paper and arXiv v2 Sections 1-5, Tables 1-6, Figures 1-7, and supplementary policy/implementation details. SafeEditBench applies five policy levels to locality-preserving safe/unsafe pairs; SafeGuard-VL uses unsafe-semantic recaption SFT followed by policy-aware GRPO. The evaluation exposes cross-policy overfitting but lacks a paired policy-flip metric; the paper's 128-image and 62-pair counts require release-level reconciliation. Note: research/visual-token-pruning/papers/2026-piao-safeguard-vl.md."
+  - id: paper-song-2026-policyshiftguard
+    kind: paper
+    title: "PolicyShiftGuard: Benchmarking and Improving Policy-Adaptive Image Guardrails"
+    authors: ["Mingyang Song", "Luxin Xu", "Haoyu Sun", "Minzhou Pan", "Yu Cheng", "Bo Li"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2607.05910"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Deep-read/source-checked against arXiv Sections 1-7, Tables 1-6 and Appendices A-G plus the official project page. PolicyShiftBench has 2,000 instances over 265 images and 28 policy variants; labels are generated by executable rules over voted attributes. PolicyShiftGuard combines randomized policy SFT with matched pass/block boundary-pair margin training, while PSS measures same-image policy flips. Long user-defined policies are explicitly out of scope. Note: research/visual-token-pruning/papers/2026-song-policyshiftguard.md."
+  - id: paper-mu-2023-gist-tokens
+    kind: paper
+    title: "Learning to Compress Prompts with Gist Tokens"
+    authors: ["Jesse Mu", "Xiang Lisa Li", "Noah Goodman"]
+    year: 2023
+    venue: "NeurIPS 2023"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/3d77c6dcc7f143aa2154e7f4d5e22d68-Abstract.html"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "unknown"
+    notes: "Skimmed/source-checked against the NeurIPS proceedings and arXiv HTML Sections 1 and 6. Gisting compresses reusable prompts into cached tokens; the paper reports up to 26x prompt compression and 40% FLOPs reduction but only 4.2% wall-time speedup in one reported setting, reinforcing the need for end-to-end profiling. Note: research/safety-classifier-compression/papers/2023-mu-gist-tokens.md."
+  - id: repository-safeguard-vl
+    kind: repository
+    title: "SafeGuard-VL Official Repository"
+    authors: ["SafeGuard-VL authors"]
+    year: 2026
+    venue: "GitHub"
+    url: "https://github.com/adorableChowhound/SafeGuard-VL"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "Apache-2.0"
+    notes: "Official code release checked on 2026-09-22. It provides inference/evaluation code, a self-recaptioning data pipeline, SafeEdit generation, ms-swift Stage-1 SFT and Stage-2 GRPO scripts, and links to SafeGuard-VL-RL and SafeEditBench."
+  - id: model-safeguard-vl-rl
+    kind: model
+    title: "SafeGuard-VL-RL"
+    authors: ["SafeGuard-VL authors"]
+    year: 2026
+    venue: "Hugging Face"
+    url: "https://huggingface.co/tyodd/SafeGuard-VL-RL"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "Apache-2.0"
+    notes: "Official public checkpoint checked on 2026-09-22. It is a full Qwen2.5-VL-7B-Instruct-class BF16 repository (16.6 GB of files), trained with Stage-2 GRPO only and explicitly without the paper's Stage-1 SFT. The Hugging Face UI's 849k-parameter label is inconsistent with the base model and weight-shard sizes and must not be used as the model size."
+  - id: dataset-safeeditbench
+    kind: dataset
+    title: "SafeEditBench"
+    authors: ["SafeGuard-VL authors"]
+    year: 2026
+    venue: "Hugging Face Datasets"
+    url: "https://huggingface.co/datasets/tyodd/SafeEditBench"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "CC BY 4.0; gated research access"
+    notes: "Official dataset card checked on 2026-09-22. The release lists 901 training images, 128 test images, 601 policy-conditioned test samples, five full-text fictional policies, and standard classification evaluation; access requires accepting research-use conditions."
+  - id: repository-policyshiftguard
+    kind: repository
+    title: "PolicyShiftGuard Official Repository"
+    authors: ["PolicyShiftGuard authors"]
+    year: 2026
+    venue: "GitHub"
+    url: "https://github.com/ssmisya/PolicyShiftGuard"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "MIT"
+    notes: "Official code release checked on 2026-09-22. It provides evaluation, generative SFT, classifier-baseline, RL data-preparation/reward, curation and validation utilities. The public reproduction guide demonstrates Qwen2.5-VL-3B training; architecture portability beyond Qwen is not experimentally established by the release."
+  - id: model-policyshiftguard-3b
+    kind: model
+    title: "PolicyShiftGuard-3B"
+    authors: ["PolicyShiftGuard authors"]
+    year: 2026
+    venue: "Hugging Face"
+    url: "https://huggingface.co/PolicyShiftGuard/PolicyShiftGuard-3B"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "Apache-2.0"
+    notes: "Official final checkpoint checked on 2026-09-22. It is based on Qwen2.5-VL-3B-Instruct, uses RP-SFT followed by BP-Adapt, is directly loadable with Transformers/vLLM/SGLang, and is reported by Hugging Face as 4B total parameters with a 7.53 GB BF16 repository. A separate 3B RP-SFT intermediate checkpoint is also public."
+  - id: dataset-policyshiftbench
+    kind: dataset
+    title: "PolicyShiftBench Public Data"
+    authors: ["PolicyShiftGuard authors"]
+    year: 2026
+    venue: "Hugging Face Datasets"
+    url: "https://huggingface.co/datasets/PolicyShiftGuard/PolicyShiftBench"
+    accessed: 2026-09-22
+    local_path: ""
+    sha256: ""
+    license: "Custom non-commercial research terms"
+    notes: "Official dataset card checked on 2026-09-22. Public artifacts include randomized-policy SFT, reasoning SFT, BP-Adapt boundary pairs, Adaptive and Shift evaluation splits, executable policy rules and policy rephrases. The 3.74 GB package is limited to non-commercial research, review and reproducibility under its LICENSE and TERMS.md."

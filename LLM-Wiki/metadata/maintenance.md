@@ -4,6 +4,7 @@ type: metadata
 title: Wiki 维护规则
 tags: [metadata]
 status: active
+updated: 2026-09-16
 ---
 
 # Wiki 维护规则
@@ -47,6 +48,8 @@ status: active
 所有 Git 检查、暂存、提交和历史管理均由用户手动完成，不属于 Wiki 工作流。
 
 ## 定期维护
+
+- visual-token-pruning 近期论文追踪的建议频率为每周二、周五 10:00，滚动 10 天窗口；配置、去重索引和启用状态见 [[LLM-Wiki/research/visual-token-pruning/watch/overview.md]]，执行 [[LLM-Wiki/metadata/workflows/arxiv-watch.md]]。每月复查候选积压与漏检词，保留不精读和失败记录。
 
 - 每月：检查断链、孤立页面、重复实体、未登记来源和长期停留在 discovered 的论文。
 - 每季度：复查标签体系、过时结论、draft/seed 页面和 Motivation 的证据链。

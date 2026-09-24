@@ -4,10 +4,10 @@ type: synthesis
 title: 面向高吞吐与低总成本的安全判别研究动机
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-vasu-2024-mobileclip, paper-chen-2025-safewatch, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-liu-2026-sentinel, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-vasu-2024-mobileclip, paper-chen-2025-safewatch, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-liu-2026-sentinel, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-cao-2023-pumer, paper-wang-2024-smarttrim, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-14
 ---
 
 # 研究动机
@@ -33,6 +33,10 @@ SafeWatch 提供了安全任务直接基线：policy-aware visual-token pruning 
 Controlled-Release Prompting 表明，攻击者可以利用 Guard 与目标模型之间的计算能力差；The Attacker Moves Second 又说明静态、非自适应测试会系统性高估防御。由此，安全顶会语境下的核心问题不应是“能否把 Guard 从 8B 压到 300M”，而应是：在攻击者可查询或了解防线时，如何把有限计算预算分配给小 Guard、困难样本回退、宿主内部信号和人工复核，使固定漏报风险、自适应 ASR、误拒、P95 与吞吐同时满足约束。剪枝、蒸馏和 token pruning 是实现手段，而不是研究贡献本身。
 
 多模态版本还必须保护证据完整性。VLM Unsafe Concepts 已显示感知与安全对齐可脱节，VSG-Safe 显示危害语义可能分布在非连续帧和实体关系中。因此，token/frame pruning 的安全问题应表述为“攻击者能否把关键危害证据推入被丢弃预算，以及系统能否检测证据不足并回退”，而不是平均删除多少视觉 token。
+
+## M6：将“联合剪图文”改写为生成式 Guard 的模态非对称预算
+
+在 Qwen3-VL/LLaVA 式 decoder-only 模型上，AIM 的文本剪枝消融显著退化，TrimTokenator 全部保留文本，AsymVLM 也只在长生成期管理文本 KV；与此相对，SafeWatch 已证明视觉 token 剪枝可与安全判定和解释生成共存。由此，当前动机不是强制同时删除视觉与文本 token，而是在固定 FPR、危害证据覆盖、unsafe-to-safe flip 和归因忠实度约束下，判断每类文本是否值得压缩：用户文本默认保护，固定政策可编译为少量表示，长上下文才启用 span/context pruning。PuMer、SmartTrim 与 CrossGET 仅提供 gate、成本正则、双向代理和 merging 的可迁移机制，不能作为同构模型已有直接方案。若文本侧没有 selector-inclusive 的真实 P95 净收益，最优解应明确退化为视觉预算 + 文本全保留/政策表示压缩。
 
 ## 安全顶会投稿定位
 

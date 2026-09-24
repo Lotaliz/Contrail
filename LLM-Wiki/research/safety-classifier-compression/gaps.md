@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏研究缺口
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 status: active
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-09-14
 ---
 
 # 研究缺口
@@ -62,3 +62,11 @@ updated: 2026-08-25
 - 反证：不存在“小模型必然不安全”的结论；任务专用 encoder、级联和宿主表征复用可在部分数据上达到或超过大 Guard。
 - 边界：该缺口针对对手知道或可查询 Guard、且目标模型能力显著高于 Guard 的部署；普通非对抗内容审核不受理论式最坏情况完全支配。
 - 待验证：在固定总算力、固定 FPR 和固定回退率下，Guard 容量、输入复杂度、攻击计算预算、time-to-verdict 与自适应 ASR 的 Pareto 前沿是什么？何时应升级到大 Guard、宿主内部信号或人工复核？
+
+## G8：生成式多模态 Guard 缺少“文本侧是否值得压缩”的风险—成本判定（满足 Motivation 门槛）
+
+- 支持：SafeWatch 证明 policy-aware 视觉剪枝可与安全标签和生成式解释共存；AIM 在同构 decoder-only MLLM 中发现文本 token 剪枝使 VideoMME 从 58.2 降至 45.7；TrimTokenator 明确保留全部文本；AsymVLM 只在长生成后对文本 KV 做 eviction。多条证据均指向模态非对称压缩。
+- 邻接而非直接证据：PuMer、SmartTrim、CrossGET 的双模态 reduction 建立在较早双塔或 cross-modal encoder 拓扑上；SafePTR 虽在同序列 MLLM 同时删图文 token，但目标是抑制 jailbreak，而不是保留危害证据完成判别与归因。
+- 反证与条件：长上下文 LVLM 的文本 context pruning 表明，当文本确实冗长且有噪声时，结构化文本删除可能有益；固定长政策也可能通过 latent/前缀表示压缩节省 prefill。
+- 边界：本轮未发现成熟闭环不等于绝对不存在；AIM/TrimTokenator 的通用 benchmark 不能替代 Qwen3-VL 安全数据。
+- 待验证：在目标 Qwen3-VL 上测量 $N_v,N_p,N_u,N_o$ 与阶段时延后，visual-only、policy-latent、长文本 span compression 和用户文本全保留四类策略的 selector-inclusive P95、fixed-FPR recall、unsafe-to-safe flip、worst-group recall 与归因忠实度如何变化？文本侧若无正净收益，最优控制器应允许退化为 $K_u=N_u$。

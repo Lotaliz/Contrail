@@ -7,9 +7,9 @@ aliases: [视觉语言 Token 剪枝, MLLM Visual Token Pruning, 多模态 Token 
 tags: [method, technology]
 status: active
 related: [vision-transformer-token-pruning-basics, visual-token-pruning, deepstack-visual-token-injection]
-sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-liao-2026-vtc-bench, paper-yang-2025-visionthink, paper-wang-2024-qwen2-vl, paper-cai-2024-matryoshka-mm, paper-yao-2024-deco, paper-wen-2025-epic, paper-guo-2026-token-budget-distillation]
+sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-liao-2026-vtc-bench, paper-yang-2025-visionthink, paper-wang-2024-qwen2-vl, paper-cai-2024-matryoshka-mm, paper-yao-2024-deco, paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2024-smarttrim, paper-shi-2024-crossget, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-gao-2026-quietprune, paper-sun-2026-hi-lo-prune, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 created: 2026-08-24
-updated: 2026-09-08
+updated: 2026-09-21
 ---
 
 # 多模态 Token 剪枝
@@ -89,6 +89,8 @@ flowchart LR
 - **均匀空间压缩：** DeCo 与 M3 在视觉编码器后池化 token 网格；可避免复杂 selector，但不减少视觉塔前向，不能与输入下采样混为一类。
 - **文本指导的视觉选择：** TRIPS、PuMer、FastV、SparseVLM。
 - **模态内合并/被删 token 回收：** PuMer、SparseVLM、VisionZip。
+- **视觉—文本两支共同 reduction（较早 VLP）：** PuMer 分别合并两模态 token；SmartTrim 对样本动态 gate；CrossGET 用双向 cross-token 代理指导两支 token ensemble。它们的 ViLT/METER/双分支拓扑不等价于 Qwen3-VL 式同序列 decoder-only 输入剪枝，只能提供机制来源。
+- **decoder-only MLLM 的模态非对称 reduction：** AIM 和 TrimTokenator 保留文本并只压视觉；AsymVLM 把视觉输入 pruning 与长生成期文本 KV eviction 分开；长上下文 context pruning 仅在文本冗长和噪声成立时适用。
 - **文本无关的覆盖与多样性：** VisionZip、DivPrune，适合复用和多轮但可能弱化当前 query 相关性。
 - **配置/预算优化：** VisPCO 搜索层位置与保留率，不绑定单一 importance rule。
 - **批判性基线：** Random、Pooling、spatial-window selection；它们是判断复杂 selector 是否真正有效的必要下界。
@@ -114,16 +116,17 @@ $$
 
 FastV 没有第二次视觉编码器前向，但可能因显式 attention map 失去 FlashAttention；SparseVLM 的 dual-flash 方案明确增加第二次 attention operation；DivPrune 不依赖 attention，但有 $O(N^2)$ 距离矩阵。对短标签安全判别，decode 很短，selector 更难摊销，应优先考虑 LLM 前一次性、低开销、可物理 compact 且适合固定少量 token profile 的方案。
 
-详细证据见 [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
+详细证据见 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 
 ## 证据边界
 
-- 现有证据高度集中于“删除视觉 token 以加速图像/视频理解型 MLLM”；真正联合剪文本与视觉 token 的代表较少。
+- 现有 decoder-only MLLM 证据高度集中于“删除视觉 token 以加速图像/视频理解与生成”；本轮未发现当前输入文本与视觉 token 共同按样本剪枝并完成效率—生成质量闭环的成熟方法族。
+- AIM 的文本剪枝消融和 TrimTokenator 的模态冗余分析均构成对称联合剪枝的反证；AsymVLM 进一步把文本压缩限定为长生成期 cache 管理。因此联合控制器必须允许文本完全保留，而非强制两侧同时删除。
 - 多数论文用短回答 benchmark；对长文生成、chain-of-thought、多轮长会话、跨硬件 P95 的证据仍不足。
 - 本概念不涵盖仅剪权重、注意力头或仅压缩文本 KV cache 的工作。
 
 ## 关系与继续阅读
 
 - 纯视觉基础：[[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]。
-- 统一研究方案：[[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
+- 统一研究方案：[[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 - 相邻概念：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]。

@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏技术路线图
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 status: active
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-09-14
 ---
 
 # 技术路线图
@@ -32,9 +32,11 @@ Wanda 用权重幅值乘输入激活选择稀疏权重，几乎不需恢复训�
 
 TinyCLIP 模仿图文 affinity 并继承教师权重；CLIP-KD 显示简单 feature MSE 是很强的基线；MobileCLIP 把教师 embedding 和合成 caption 离线写入 reinforced dataset，避免每次训练都在线运行教师。路线重点从 Logit 迁移到跨模态几何关系和可复用离线监督。
 
-## 6. 多模态结构与 Token 联合剪枝
+## 6. 生成式 MLLM 的模态非对称 Token 压缩
 
-MoPE-CLIP 用跨模态任务性能下降估计 head、FFN 和层的重要性；SmartTrim 按样本动态剪 Token 和 attention heads，并以 full-capacity 路径自蒸馏；VisionZip 在大型生成式 VLM 中选择少量 dominant/contextual visual tokens。对安全审核，视觉 Token 剪枝必须额外保护 OCR、小目标、隐蔽符号和图文组合才成立。
+对视觉 token 与文本 token 进入同一 decoder-only LLM 的架构，直接证据并不支持统一联合剪枝。AIM 在 LLM 前合并视觉 token、在层内渐进剪视觉 token，但其文本剪枝消融由 58.2 降至 45.7；TrimTokenator 同样保留全部文本。AsymVLM 更明确地按阶段拆分：视觉侧在 prefill 前做样本级裁减，文本侧只在长生成后管理 KV cache，prompt 始终保护。SafeWatch 则为可生成解释的安全 Guard 提供 visual-only、policy-aware 的任务直接证据。
+
+SafePTR 在同序列 MLLM 中同时删除视觉与指令 token，但服务于阻断 jailbreak，目标方向与危害检出相反。PuMer、SmartTrim 与 CrossGET 建立在 ViLT/METER/双分支等较早拓扑上，只保留模态内 merging、样本 gate、成本正则和双向代理等可迁移机制，不能作为 Qwen3-VL 式联合输入剪枝的直接先例。长上下文文本 pruning 仅在文本冗长且有噪声时提供条件性证据。详细比较见 [[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md]]。
 
 ## 7. Policy-aware Token 剪枝与归因生成
 

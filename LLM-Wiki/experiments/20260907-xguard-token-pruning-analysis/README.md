@@ -5,7 +5,7 @@ title: XGuard 视觉 Token 与语言层剪枝实验复核
 tags: [experiment, data, research, safety, visual-token-pruning, structured-pruning, efficient-inference]
 status: active
 created: 2026-09-07
-updated: 2026-09-07
+updated: 2026-09-21
 project_id: visual-token-pruning
 ---
 
@@ -202,7 +202,7 @@ Self-PPL 在所有压缩强度下仍约为 1.8–2.3，而 Gold PPL 已从 5.28 
 
 ## 关联实体与来源
 
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]
 - [[LLM-Wiki/research/safety-classifier-compression/overview.md|安全判别系统的剪枝与蒸馏]]
 - [[LLM-Wiki/experiments/20260826-safety-pruning-finetuned/README.md|先前安全 Token 剪枝实验]]
 

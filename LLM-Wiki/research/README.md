@@ -4,6 +4,7 @@ type: index
 title: 研究方向索引
 tags: [index, research]
 status: active
+updated: 2026-09-22
 ---
 
 # 研究方向索引
@@ -31,9 +32,13 @@ research 以一个一级子目录对应一个研究方向或项目：
 
 | 研究方向 | 状态 | 范围摘要 | 最近更新 |
 |---|---|---|---|
-| [[LLM-Wiki/research/visual-token-pruning/overview.md\|多模态安全判别 Token 剪枝]] | active | 截至 2026-09-08；政策因果安全充分视觉前缀、最坏压缩格训练、困难召回与真实时延 | 2026-09-08 |
+| [[LLM-Wiki/research/multimodal-safety-guard/overview.md\|多模态安全 Guard 双路线计划]] | active | 路线一研究图文组合式规避与兼容防御；路线二研究长政策编译与视觉—条款协同预算 | 2026-09-22 |
+| [[LLM-Wiki/research/multimodal-compositional-safety/overview.md\|图文联合内容风险与组合式安全]] | active | strict 三标签与配对反事实数据、专业 Guard 漏洞测量、端到端逃逸及 legacy 非劣防御 | 2026-09-21 |
+| [[LLM-Wiki/research/visual-token-pruning/overview.md\|长政策条件下的视觉—政策协同压缩]] | active | 长政策编译/条款检索与 pre-ViT 视觉选择协同，评测可变政策下的安全—时延 Pareto；保留 [[LLM-Wiki/research/visual-token-pruning/watch/overview.md\|近期论文追踪]] | 2026-09-22 |
 | [[LLM-Wiki/research/safety-classifier-compression/overview.md\|安全判别系统的剪枝与蒸馏]] | active | 截至 2026-08-27；文本与多模态安全判别的吞吐、任务对齐剪枝和总成本 | 2026-08-27 |
 | [[LLM-Wiki/research/variable-length-llm-serving/overview.md\|变长自回归 LLM 的批推理与流水线调度]] | active | 截至 2026-08-27；连续组批、KV 管理、chunked prefill、PP bubble 与 SLO | 2026-08-27 |
+| [[LLM-Wiki/research/model-compression-privacy/overview.md\|模型压缩与隐私泄露]] | active | 单模型与多压缩版本发布下的成员推断、MIA 前沿定位及压缩后再训练边界 | 2026-09-15 |
+| [[LLM-Wiki/research/ai-system-security-landscape/overview.md\|AI 系统安全问题版图]] | active | 安全属性 × 生命周期二维分类；覆盖模型、RAG、agent、serving、隐私与供应链 | 2026-09-15 |
 
 > 表格内若使用别名 WikiLink，必须把竖线转义。
 

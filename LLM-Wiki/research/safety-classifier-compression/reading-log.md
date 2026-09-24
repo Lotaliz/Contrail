@@ -4,10 +4,10 @@ type: synthesis
 title: "安全判别剪枝与蒸馏检索日志"
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-fairoze-2026-controlled-release, paper-nasr-2026-attacker-moves-second, paper-zhang-2026-mtk, paper-zhang-2026-vsg-safe, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator]
 status: active
 created: 2026-08-24
-updated: 2026-08-31
+updated: 2026-09-14
 ---
 
 # 检索与阅读日志
@@ -139,3 +139,39 @@ updated: 2026-08-31
 - 主证据覆盖六个 LLM 骨干、三类剪层准则、PPL/九项 zero-shot QA、校准规模/语料、轻量微调和 A40 prefill；LLaMA-3.1-8B 7/32 中平均 PPL 为 27.81、QA 平均准确率 60.01，优于同成本 LinearPatch，但仍未恢复 dense 的 8.50/67.77。
 - 对安全 Guard 的价值是提供 training-free 边界恢复基线；通用激活 MSE 不能代替 fixed-FPR、长尾危害与校准指标，风险加权最小二乘仍是待验证假设。
 - 证据边界：arXiv v2、under review；无本地复现、无安全/多模态任务、无 decode/P95/多并发时延，论文内部对骨干数量、LinearPatch 微调约束和 solver 与伪逆“等价”的表述需实现级复核。
+
+## 2026-09-14：生成式多模态 Guard 的视觉—文本 Token 压缩增量检索
+
+- 范围：限定 Qwen3-VL/LLaVA/InternVL 式 decoder-only 生成 MLLM，视觉 token 与 system/policy/user 文本 token 进入同一 LLM，并输出安全判定与简短归因。CLIP、ViLT/METER、`[CLS]` 分类模型不作为直接进展，只记录可迁移机制。
+- 站点：ACL Anthology、PMLR、NeurIPS Proceedings、CVF、OpenReview、arXiv。关键词：`joint visual text token pruning`、`image and text token merging`、`adaptive multimodal token budget`、`multimodal safety visual textual token pruning`。
+
+| 论文 | 层级 | 核验 | 角色 |
+|---|---|---|---|
+| AIM | skimmed | source-checked | 同构 decoder-only MLLM；只剪视觉，文本剪枝使 VideoMME 58.2→45.7 |
+| QuietPrune / Hi-Lo Prune | deep-read / skimmed | source-checked | Qwen3-VL 直接证据；QuietPrune 精读，ViT 早剪；Hi-Lo 层内先 merge 再删；均只缩减视觉 token |
+| SafeWatch | deep-read | source-checked | 直接安全 Guard，但只剪视觉 token |
+| SafePTR | skimmed | source-checked | 安全目标同时剪图文 token；生成防御而非 Guard 降本 |
+| TrimTokenator | skimmed | source-checked | 文本 token 敏感、只剪视觉的正式反证 |
+| AsymVLM | skimmed | source-checked | 预印本；视觉输入剪枝，文本仅做长生成期 KV eviction，prompt 全保留 |
+| Rethinking Visual Dependency | skimmed | source-checked | 预印本；只在长文本上下文中删除文本噪声 |
+| PuMer / SmartTrim / CrossGET | skimmed | source-checked | 非同构 VLP；仅保留 merging、动态 gate、双向代理等机制 |
+
+覆盖限制：未发现对当前输入视觉 token 与文本 token 同时做样本级剪枝，并以 fixed-FPR Guard recall、unsafe-to-safe flip、生成式归因和 selector-inclusive time-to-verdict 完成闭环的同构论文；该结论限于本轮公开检索，不构成不存在性证明。没有本地 Qwen3-VL 复现。
+
+## 2026-09-14：文本指导视觉 Token 剪枝增量检索
+
+- 范围：Qwen3-VL/LLaVA/InternVL 式 decoder-only MLLM；文本 query/policy 指导视觉 token 选择，文本 token 本身不剪。
+- 站点：CVF、PMLR、ACL Anthology、ICLR Proceedings、arXiv、作者仓库。关键词：`text-guided visual token pruning MLLM`、`query-guided early token pruning Qwen3-VL`、`instruction-guided attention visual token reduction`、`policy-aware pruning multimodal guard`、`prior-corrected text visual attention`。
+
+| 论文 | 层级 | 核验 | 角色 |
+|---|---|---|---|
+| FastV | skimmed | source-checked | 浅层 LLM 文本—视觉 attention 的简单 training-free 基线 |
+| SparseVLM | skimmed | source-checked | 文本 raters、层级自适应预算与 token recycling |
+| SafeWatch | deep-read | source-checked | policy-aware、可生成判定与解释的安全直接证据 |
+| QuietPrune | deep-read | source-checked | query 前移到 ViT；逆 projector adapter、三处半结构化早剪、聚合与蒸馏；Qwen3-VL 强基线 |
+| CrisPrune / TrimTokenator | skimmed | source-checked | 相关性与 saliency/diversity 联合，防止视野过窄 |
+| HAWK / TransPrune | skimmed | source-checked | head importance 或 token transition 校正单一 attention |
+| PriorTR | skimmed | source-checked | 预印本；校正任务无关 attention prior，含 Qwen3-VL 实现 |
+| ET-Prune | skimmed | source-checked | 预印本；OCR 证据保护与样本级 token floor |
+
+覆盖限制：没有本地模型复现；SafeWatch 之外均未直接验证 fixed-FPR 安全判别与归因忠实度。PriorTR、ET-Prune 按预印本处理。

@@ -3,10 +3,10 @@ id: safety-autoregressive-multimodal-guard-token-pruning
 type: synthesis
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-chen-2025-safewatch, paper-chi-2024-llama-guard-vision, paper-yang-2025-visionzip, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem]
+sources: [paper-chen-2025-safewatch, paper-chi-2024-llama-guard-vision, paper-yang-2025-visionzip, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator]
 status: active
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-21
 title: 可生成归因的多模态自回归 Guard：Token 剪枝可行性与设计边界
 synthesis_kind: literature-review
 ---
@@ -15,7 +15,7 @@ synthesis_kind: literature-review
 
 ## 结论
 
-**可以加速，而且已有安全领域直接正例，但应把结论限定为“有条件可行”。** ICLR 2025 SafeWatch 已在会生成多标签判定和逐政策自然语言解释的视频 Guard 中使用 policy-aware visual-token pruning。它报告剪掉最高 90% 视频 token 时平均性能下降小于 1%，同底座 SFT 的平均时延从 4.6 s 降到完整系统的 3.9 s。这个结果建立了可行性，但约 15% 的端到端时延改善也说明：对自回归 Guard，视觉 token 剪枝并不会消除顺序解码归因文本的成本。
+**可以加速，而且已有安全领域直接正例，但当前直接证据支持的是视觉 token 剪枝，不是当前输入图文 token 的对称共同剪枝。** ICLR 2025 SafeWatch 已在会生成多标签判定和逐政策自然语言解释的视频 Guard 中使用 policy-aware visual-token pruning。它报告剪掉最高 90% 视频 token 时平均性能下降小于 1%，同底座 SFT 的平均时延从 4.6 s 降到完整系统的 3.9 s。AIM 在同构 decoder-only MLLM 上发现文本 token 剪枝使 VideoMME 从 58.2 降至 45.7；TrimTokenator 全部保留文本，AsymVLM 也只在长生成后管理文本 KV。对“标签 + 简短归因”的 Guard，默认路线应是视觉预算、文本保护和受控短输出。
 
 ## 为什么特别适合安全 Guard
 
@@ -46,6 +46,10 @@ synthesis_kind: literature-review
 SafeWatch 评估了解释质量，但没有建立“保留 token → 引用证据 → 解释文本”的因果链。被删证据可能由语言先验补写，造成合理化而非忠实归因。
 
 ## 推荐设计
+
+### 0. 先按文本角色区分压缩对象
+
+固定 system/policy 文本可研究 policy latent、soft prompt 或前缀表示复用；当前用户文本默认完整保护；生成归因用固定 schema 和长度预算。只有当真实长度与 profiling 证明长文本主导 prefill 时，才加入 span/context pruning。不要把三者统一成一个文本保留率。
 
 ### A. Policy-aware、coverage-preserving selector
 
@@ -84,11 +88,11 @@ SafeWatch 明确发现直接启用 PAP 会引入分布变化，因此增加 adap
 
 - **已证实：** safety-specific、policy-aware visual-token pruning 能与自回归解释输出共存，并取得有限但真实的延迟收益。
 - **尚未证实：** 该结论能稳定迁移到图像—文本对话 Guard、所有危害类别和多轮审核；自然语言归因是否忠实于保留视觉证据；training-free 通用 selector 是否足够安全。
-- **研究判断：** 最有价值的问题不是“能否剪”，而是“在固定漏报风险和归因忠实度约束下，如何动态分配视觉证据预算，并把 time-to-verdict 与完整解释时延一起最小化”。
+- **研究判断：** 最有价值的问题不是“能否同时删图文 token”，而是“在固定漏报风险和归因忠实度约束下，如何动态分配视觉证据预算，并判断固定政策、用户文本和短归因分别应保留、表示压缩还是按条件裁减”。
 
 ## 相关页面
 
 - [[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md|SafeWatch 论文笔记]]
 - [[LLM-Wiki/research/safety-classifier-compression/overview.md|安全判别系统的剪枝与蒸馏]]
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝概念]]

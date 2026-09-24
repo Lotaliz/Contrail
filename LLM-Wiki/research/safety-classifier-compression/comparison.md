@@ -4,10 +4,10 @@ type: synthesis
 title: 安全判别剪枝与蒸馏统一比较
 tags: [research, method]
 project_id: safety-classifier-compression
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-sanh-2020-movement-pruning, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-shen-2025-numerical-pruning, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-yun-2026-ghosted-layers, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 status: active
 created: 2026-08-24
-updated: 2026-08-31
+updated: 2026-09-14
 ---
 
 # 统一比较
@@ -30,9 +30,14 @@ updated: 2026-08-31
 | CLIP-KD | 图文分类/检索 | feature/logit/relation/gradient/contrastive 对照 | 多种学生架构 | 在 CC3M+12M 训练 | 简单 feature MSE 最稳；ViT-B/16 零样本 ImageNet 达 57.5% | 训练数据和 teacher 差异大，不能只归因 KD |
 | MobileCLIP | 图文零样本分类/检索 | 离线 teacher embedding + 合成 captions；移动架构 | S0/S1/S2/B | 一次数据强化，多模型复用 | S2 比此前 ViT-B/16 方案 2.3× 快且更准；学习效率 10–1000×；iPhone batch=1 | 数据强化存储与一次生成成本需摊销 |
 | MoPE-CLIP | CLIP 零样本与下游任务 | 跨模态任务性能下降；head/FFN/layer | 先宽后深；pretrain/fine-tune 两阶段 | 剪枝后跨/单模态蒸馏 | 比单模态幅值指标更稳，兼顾预训练与任务压缩 | importance profiling 依赖任务和校准集 |
-| SmartTrim | VQA、检索等 VLM 任务 | 每实例 Token 与 head gate；多层 | 动态预算 | gate 训练 + full-path 自蒸馏 | 作者报告 2–3× 加速且性能下降小 | 动态形状、gate 开销与部署 kernel |
+| PuMer / SmartTrim / CrossGET | 较早 VLP 的 VQA、检索、蕴含、caption | 模态内合并、样本 gate、双向代理 | 架构各异 | 微调/KD 或轻量适配 | 证明若干 reduction 机制可行 | 非 Qwen3-VL 式同序列 decoder-only 直接证据；仅作机制迁移参考 |
 | VisionZip | 图像/视频 VLM 理解 | dominant/contextual visual token；输入侧 | 训练自由可调 token 数 | 免训练 | prefill 最多 8×；13B 可快于未压缩 7B | 主要不是安全分类；可能漏 OCR/局部风险 |
+| AIM | LLaVA-OneVision/LLaVA-1.5 自回归生成 | LLM 前视觉合并 + LLM 层内渐进视觉剪枝 | 可调视觉 schedule | training-free | 作者报告约 7× FLOPs 降低；文本剪枝使 VideoMME 58.2→45.7 | 同构强基线与文本侧负证据；非安全任务、未测 Qwen3-VL |
 | SafeWatch | 视频安全；多标签判定 + 自然语言解释 | 每条 policy 对视频 token 的 cross-attention；LLM 前更新 KV | 最高测试 99% pruning | 多阶段 SFT + 剪枝适应训练 + DPO | 最高剪 90% 时平均性能下降 <1%；SFT 4.6 s→完整系统 3.9 s；PR-95% 时准确率/解释评分明显下降 | 视频专测；平均指标；无归因忠实度与 P95；系统组件耦合 |
+| SafePTR | MLLM jailbreak 防御 | 图文 token 分别按与安全指令的距离剪；后续恢复 | vulnerable layers Top-k | training-free | 三类 MLLM、文本与视觉攻击上降低 ASR并保持 utility | 目标是删危害触发而非 Guard 检出；恢复/旁路使其不是输入降本闭环 |
+| TrimTokenator | 通用 MLLM | 保留全部文本，只按图文互信息与视觉多样性剪视觉 token | 视觉侧自适应 | training-free | 作者报告删 88.9% token、推理速度改善 56.7% | 是对称 co-pruning 的反证；安全长文本/政策未测 |
+| AsymVLM | 现代 decoder-only VLM；2026 预印本 | prefill 前样本级视觉剪枝 | 仅长生成后做文本 KV eviction | learned scorer + threshold | 作者报告最高 54% FLOPs 节省 | 保护 prompt，非联合输入剪枝；短归因 Guard 的文本收益未证实 |
+| Rethinking Visual Dependency | 长上下文 LVLM；2024 预印本 | 保留视觉 | 删除低价值长文本 context | training-free | 作者报告恢复视觉依赖并改善长上下文推理 | 只适用于长文本噪声；不能外推短安全 prompt |
 | GKD / MiniLLM | 通用自回归生成 | 当前学生 rollout 前缀上的教师 logits；混合 KL 或 reverse KL | 固定/学生数据比例、采样长度 | 学生采样 + 白盒教师前向 | 多任务支持学生状态上的 KD；MiniLLM 加入混合采样与低方差优化 | 非安全专测；教师/学生词表与 logits 访问；弱学生轨迹不稳 |
 | DistiLLM / DistiLLM-2 | 指令、代码、偏好、VLM | skew-KL；学生负序列与教师正序列对比 | rollout 刷新与数据课程 | 学生生成、教师监督，可复用历史输出 | DistiLLM 报告相对近期 KD 约 2.5–4.3× 训练提速 | 设置不可跨论文直比；部分历史数据是 off-policy；无 Guard 专测 |
 | Prefix OPD | 长推理 | 学生推理前缀上的 reverse-KL 信号 | 截断 prefix 长度 | 部分 rollout + 教师前向 | 作者在 Qwen3 数学/OOD 推理上报告约 2–40× FLOPs 降低且接近完整 OPD | 只证明长推理；短安全标签未必受益 |

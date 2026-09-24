@@ -8,6 +8,74 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-09-23
+
+- [Changed] [research/visual-token-pruning] 将当前课题切换为模板短政策条件下的文本政策指导视觉 Token 剪枝，整理 v1–v3 数据构造、短政策证据边界和首轮同场景 baseline 协议，并将联合压缩方案标为历史路线（[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|新版方案]]）。
+
+## 2026-09-22
+
+- [Changed] [research/visual-token-pruning] 将路线二定稿为视觉—政策文本相互指导的联合压缩，核对 PolicyShiftGuard-3B/7B、SafeGuard-VL-RL 及两套公开数据的可用性与许可，并以“零新增人工标注、零全量 Guard 重训、允许 selector/LoRA 适配”替代不可证的零训练前提（[[LLM-Wiki/research/visual-token-pruning/research-plan.md|计划]]）。
+- [Changed] [research/visual-token-pruning] 深读 SafeGuard-VL 与 PolicyShiftGuard，区分跨政策泛化和同图政策翻转两种任务定义，比较语义 SFT+RLVR 与属性规则+边界配对训练，并将 PSS、双重反事实和长政策未覆盖边界回填路线二计划（[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|比较]]）。
+- [Changed] [research/visual-token-pruning, research/safety-classifier-compression] 根据长政策 token 主导与 pure-visual 90% 剪枝仅 1.14× 的用户报告约束，将路线二转为政策编译/条款检索与 pre-ViT 视觉选择协同预算；补入 MADTP、SafeGuard-VL、PolicyShiftGuard 和 Gist Tokens 证据，并保留精度提升为待反证次要假设（详情：[[LLM-Wiki/changes/2026-09-22-long-policy-bottleneck-pivot.md]]）。
+- [Added] [research/visual-token-pruning/watch] 完成滚动 10 天 arXiv 收集，60 条命中合并为 39 个唯一 ID，登记 6 篇直接相关、6 篇相邻与 12 篇排除题录，复用 15 个既有来源并保留人工决定，记录完整 API 分页与筛查边界（详情：[[LLM-Wiki/changes/2026-09-22-arxiv-watch.md]]）。
+
+## 2026-09-21
+
+- [Changed] [research/multimodal-safety-guard, research/multimodal-compositional-safety, research/visual-token-pruning] 将研究重组为两条独立投稿路线：专业 Guard 的图文组合式规避与兼容防御，以及 `(image, policy)` 的 ViT 前视觉 Token 剪枝；补充可行性、方法、实验、会议写作、阶段门和停止条件（详情：[[LLM-Wiki/changes/2026-09-21-multimodal-guard-two-track-plan.md]]）。
+- [Removed] [research/multimodal-compositional-safety, research/visual-token-pruning] 删除三个旧方案/评估文档并重定向跨库链接；保留论文笔记、原始来源、阅读日志、专题综述、实验记录和负结果。
+
+## 2026-09-20
+
+- [Added] [research/multimodal-compositional-safety] 从安全四大当前 CFP 与既有多模态 Guard 近邻评估快速图文 Token 联合判别器，结论为问题必要性和研究基础充分，但需以可利用的组合式逃逸、明确威胁模型、风险校准防御及端到端系统证据建立安全顶会创新；该旧评估于 2026-09-21 并入 [[LLM-Wiki/research/multimodal-compositional-safety/research-plan.md|当前路线一计划]]。
+
+- [Added] [research/visual-token-pruning] 精读近期追踪中选定的 G2TM、StepPrune、VIP-Router、AdaVSkip 与图表读数因果定位，保存五份原件及哈希，更新来源、候选状态、项目入口与阅读日志，并记录方法边界及未复现实验（详情：[[LLM-Wiki/changes/2026-09-20-selected-watch-deep-read.md]]）。
+
+- [Added] [research/multimodal-compositional-safety] 调研安全图像与安全文本组合后的内容风险，登记 SIUO、MSTS、MSSBench、Hateful Memes 及攻防近邻来源，比较任务模型对齐失效、自动判别漏检和 strict 定向 Guard 防御，并给出三标签反事实评测与研究缺口（[[LLM-Wiki/research/multimodal-compositional-safety/overview.md|综述]]）。
+
+## 2026-09-18
+
+- [Added] [research/visual-token-pruning] 核验 SafeAtlas-VL 完整训练集安全样本及公开 1M 版本边界，保存原始论文与定向笔记，区分配对相关性和联合判别必要性并推导 core-only 请求/回复的文本教师捷径，标明缺模态消融与原始记录统计尚未完成（[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-safeatlas-vl.md|核验]]）。
+
+- [Added] [research/visual-token-pruning] 评估浅层图文联合判别、unsafe 单侧早退出和不确定分支剪枝，补入 MuE/VLSU/SingGuard 定向来源及会议范围，记录流量比例、全链错误预算、残余分布和真实时延的验证门槛与主观会议适配；该旧分支评估于 2026-09-21 删除，历史记录保留于 reading-log。
+
+- [Changed] [research/visual-token-pruning] 新增 PuMer 精读并将 CDPruner 升级为精读，复用原件并只读审查两者固定代码版本，比较图文 attention 复用与额外 embedding/DPP 的成本和训练/选择性能机制，记录吞吐计时边界及公开相关性符号不一致（[[LLM-Wiki/research/visual-token-pruning/pumer-cdpruner-text-conditioning-cost.md|比较]]）。
+
+- [Changed] [research/visual-token-pruning] 定向核对并收录 NeurIPS 2025 CDPruner 条件 DPP 方法及原始结果，补充 AutoPrune 的 Qwen 基线保真度、只读版面检查与有条件投稿潜力判断，区分公开来源事实和主观评审意见（[[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-cdpruner.md|CDPruner]]；[[LLM-Wiki/research/visual-token-pruning/papers/2026-liu-autoprune-ai4ai.md|AutoPrune]]）。
+
+- [Added] [research/visual-token-pruning] 精读 AI4AI/AutoPrune v2 并只读审查固定版本最终策略与搜索实现，保存原件，核对模型角色、post-projector 有限交换/回灌和人工基线优势，记录聚合口径、已有搜索历史及计时边界的未决项（[[LLM-Wiki/research/visual-token-pruning/papers/2026-liu-autoprune-ai4ai.md|笔记]]）。
+
+- [Added] [research/visual-token-pruning/watch] 执行滚动 10 天定时收集，API HTTP 406 后网页回退新增 G2TM 直接相关候选与 5 篇排除题录、合并 4 篇已知命中并保留人工决定，记录 partial 覆盖与补查范围（详情：[[LLM-Wiki/changes/2026-09-18-arxiv-watch.md]]）。
+
+## 2026-09-17
+
+- [Fixed] [research/visual-token-pruning] 审计既有时延基线的生成任务、硬件、请求 batch 与计时边界，修正 ZipVL 可变最大 batch、V2Drop 的 LLM-only 与全模型/全数据集区别及 PACE/EvoPrune 的 TTFT 边界，并补齐定向来源笔记（详情：[[LLM-Wiki/changes/2026-09-17-vlm-latency-protocol-audit.md]]）。
+
+## 2026-09-16
+
+- [Changed] [research/visual-token-pruning] 严格筛选生成式 MLLM 在 ViT 出口之前的 token 减少，补入 FlowCut/METEOR/FiCoCo-V 与四项合并先例的分级证据，修正 VScan 的输出端位置和 EvoPrune 的合并机制，并记录联合收益归因边界（详情：[[LLM-Wiki/changes/2026-09-16-generative-intra-vit-pruning.md]]）。
+
+- [Changed] [research/visual-token-pruning] 将用户指定的 StackTok 从近期发现候选升级为精读，保存原文与哈希，核对参考门控、共享 crop 预算和主表/附录消融，明确无实测加速与 OCR 退化边界，并同步来源和候选索引（[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|笔记]]）。
+
+- [Added] [research/visual-token-pruning/watch] 完成首次近 10 天 arXiv 轻量收集，将 49 条命中合并为 32 篇并登记候选与来源（直接相关 10、相邻 7、待核验 1、排除 14），保留 pending 供人工选择（详情：[[LLM-Wiki/changes/2026-09-16-arxiv-watch-first-run.md]]）。
+
+- [Added] [research/visual-token-pruning/watch] 建立滚动 10 天 arXiv 发现索引、检索日志、人工筛选到精读晋升的流程与仓库 skill，提供每周两次的维护建议，尚未运行检索或启用调度（详情：[[LLM-Wiki/changes/2026-09-16-arxiv-watch-design.md]]）。
+- [Added] [research/visual-token-pruning] 汇总多模态自回归 VLM 视觉 Token 剪枝的统一复现与论文自报时延—性能基线，区分 encoder、prefill、TTFT、decode 与端到端口径，并精读 UniPruneBench 作为跨方法校准依据。
+
+## 2026-09-15
+
+- [Added] [research/ai-system-security-landscape] 结合 USENIX Security、NIST AI 100-2、OWASP GenAI Top 10 与 MITRE ATLAS，建立安全属性 × AI 生命周期二维分类并梳理 2025—2026 热门系统安全问题。
+- [Added] [research/model-compression-privacy] 精读 USENIX Security 2026 CompLeak，并以 2025—2026 安全顶会十篇代表工作定位 MIA 主流程度与攻击/防御前沿，区分单模型、多版本差分、现实威胁模型及生成式大模型外推边界。
+
+## 2026-09-14
+
+- [Changed] [research/visual-token-pruning] 将 QuietPrune 升级为精读，补齐逆 projector adapter、`[Q-CLS]` 评分、三阶段半结构化剪枝、被删 token 聚合、自蒸馏、主要实验与安全迁移边界。
+- [Added] [research/safety-classifier-compression] 按选择位置、attention 校正、相关性—覆盖和动态证据预算梳理生成式 MLLM 的文本指导视觉 Token 剪枝，并形成面向 Qwen3-VL 安全 Guard 的组合方案与基线。
+- [Fixed] [research/safety-classifier-compression] 将视觉—文本 Token 压缩范围收缩到 Qwen3-VL/LLaVA 式 decoder-only 生成 Guard，补入 AIM、AsymVLM、Hi-Lo Prune 与长上下文文本剪枝证据，并把 PuMer、SmartTrim、CrossGET 降级为非同构机制来源。
+- [Changed] [research/safety-classifier-compression] 区分文本指导的纯视觉剪枝与视觉—文本 Token 共同压缩，补入 PuMer、SmartTrim、CrossGET、SafePTR 与 TrimTokenator 的机制和反证，并将安全判别缺口收束为固定漏报风险下的样本级分模态联合预算。
+- [Changed] [research/visual-token-pruning] 精读 Equalizer 的反事实区域约束，梳理 HINT、GAIC、LAPS、VLTP、CROP、MVP-Token 与 SafeWatch 的后续谱系，并将安全剪枝方案收束为政策条件证据组覆盖、必要性干预和无关背景不变性。
+- [Added] [experiments/20260914-dual-evidence-token-compression] 将完整视觉前缀、双头证据选择、context residual merge、类别边界监督、原生视觉尾部 LoRA 适配及位置与物理 compact 约束整合为可证伪实验设计。
+- [Added] [research/visual-token-pruning] 梳理视觉 Token 合并的池化、匹配、语义凝聚、信息回灌、学习式和 VLM 条件合并路线，并按可比实验区分免训练吞吐、分类精度与重训练上界。
+
 ## 2026-09-10
 
 - [Added] [research/visual-token-pruning] 综合视觉编码器前与浅层内部 token 剪枝先例，并将解释证据区分为空间相关性、表示可解码性、输出因果效应和充分集稳定性，形成面向多模态安全判别的可证伪设计建议。

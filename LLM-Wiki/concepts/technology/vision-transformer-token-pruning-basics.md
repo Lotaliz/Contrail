@@ -9,7 +9,7 @@ status: active
 related: [paper-note-chang-2023-stvit, visual-token-pruning]
 sources: [paper-chang-2023-stvit, attachment-chang-2023-stvit-supplement, paper-tang-2022-patch-slimming, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune]
 created: 2026-08-24
-updated: 2026-09-09
+updated: 2026-09-21
 ---
 
 # 视觉 Transformer 与 Token 剪枝基础
@@ -284,7 +284,7 @@ STViT 的吞吐在 V100、batch=128 测量，因此它能证明该设置下存�
 
 ## 11. 关系与继续阅读
 
-- 研究路线、方法比较与证据入口：[[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
+- 研究路线、方法比较与证据入口：[[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
 
 ## 12. 证据限制与待办
 

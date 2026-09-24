@@ -16,6 +16,7 @@ YYYYMMDD-short-name/
 
 ## 已登记的实验
 
+- [[LLM-Wiki/experiments/20260914-dual-evidence-token-compression/README.md]]
 - [[LLM-Wiki/experiments/20260908-bidirectional-token-intervention/README.md]]
 - [[LLM-Wiki/experiments/20260907-xguard-token-pruning-analysis/README.md]]
 - [[LLM-Wiki/experiments/20260826-safety-pruning-finetuned/README.md]]

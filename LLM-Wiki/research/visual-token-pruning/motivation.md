@@ -1,50 +1,53 @@
 ---
 id: visual-token-pruning-motivation
 type: synthesis
-title: "研究动机：面向低时延 Guard 的安全充分视觉前缀"
-tags: [research, writing, visual-token-pruning, multimodal-safety, knowledge-distillation]
+title: "研究动机：长政策条件下的视觉—政策协同预算"
+tags: [research, writing, visual-token-pruning, multimodal-safety, efficient-inference]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-liao-2026-vtc-bench, paper-zhang-2026-security-pitfalls-token-compression, paper-gu-2026-ood-vtp, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-wang-2022-efficientvlm, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap]
-status: draft
+sources: [paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-gao-2026-quietprune, paper-rubab-2026-dyna-vit, paper-chen-2025-safewatch, webpage-cvpr-2027-cfp]
+status: deprecated
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-23
 ---
 
-# 论点—证据—可写边界
+# 研究动机：长政策条件下的视觉—政策协同预算
 
-| 论点 | 直接证据与定位 | 门槛与边界 |
+> **历史动机。** 本页对应 2026-09-22 的联合压缩主线；当前课题已改为短政策条件下的文本政策指导视觉剪枝，见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|新版课题方案]]。下文保留原场景约束和候选假设，不作为当前贡献主张。
+
+## 场景约束
+
+目标是输入图像 $I$ 与运行时政策 $P$，预测 $y(I,P)$。在当前数据和模型上，用户报告 $N_p>4N_v$，90% pre-ViT 视觉剪枝只有 1.14× 端到端加速且质量明显下降。这个结果说明：即使视觉选择器本身接近无损，视觉路径也不是当前系统的主要可移除成本。
+
+## 失败假设
+
+原计划假设“越早删除视觉 patch，越能获得足以支撑论文的端到端收益”。Dyna-ViT 复现和 token 分布推翻了该假设。只筛选短政策数据会改变任务以适配方法，无法说明真实政策 Guard 的效率；把主张改成普通分类精度提升，又容易被校准、类别不平衡或 dropout 正则化解释。
+
+## 已有证据与剩余问题
+
+| 论点 | 直接证据 | 写作边界 |
 |---|---|---|
-| 训练必须成为强基线 | EPIC §3–4；TBD §3–4 | 两篇独立来源证明训练先例，不证明本方法新颖或安全有效 |
-| 低预算有信息恢复边界 | TBD §5；VTC-Bench 既有分辨率敏感评测；XGuard §3.2 | 多来源加本地证据支持问题，“可见性门控更好”仍未验证 |
-| 真实时延与风险需联合评估 | 用户关键路径约束；XGuard 时延测量 | 场景约束加直接实验达到门槛，当前并非固定 FPR 安全加速结论 |
-| 生成模型安全不等于 Guard 检出 | OOD-VTP §4.1；Security Pitfalls §4–5 | 用于限定评价对象，尚未证明本地 Guard 的新增漏洞 |
-| 整体表现不足以衡量困难子群 | XGuard §2 的类别缺失与 §3.2 异质性；VTC-Bench 筛选原则 | 支持独立子群评测，不支持预设哪个子群必然受益 |
-| 视觉塔是独立时延与能力瓶颈 | FastVLM 的 vision+prefill 分解；ResponseGuard §5.3–5.4 | 支持直接研究视觉路径；ResponseGuard 未证明解冻或截层一定有效 |
-| 浅层任务压力与前置剪枝已有先例 | EfficientVLM；METR；Dyna-ViT；QuietPrune | 反证简单组合的新颖性，迫使方法回答安全充分性与最坏压缩状态 |
-| 安全感知剪枝已出现 | SAP 官方论文仓库；Security Pitfalls | 生成模型 jailbreak 与独立 Guard 漏报必须分开，不能声称首次安全剪枝 |
+| 联合图文 token 压缩属于 CVPR 范围 | MADTP, CVPR 2024 | 不能声称首次；其架构和成本结构不同 |
+| 政策自适应图像 Guard 是视觉问题 | SafeEditBench/SafeGuard-VL, CVPR 2026 | 不等于已有大规模短政策训练集 |
+| 同图异策数据可用于政策敏感评测 | PolicyShiftBench | 政策长度、模板捷径和许可证仍需本地审计 |
+| 提示可编译为少量可缓存 token | Gist Tokens | 普通提示质量不能替代安全条款保持；墙钟收益可能远小于 FLOPs |
+| pre-ViT 与 query-guided visual pruning 已有先例 | Dyna-ViT、QuietPrune | 视觉 selector 只能作为联合方案的一部分 |
 
-原文与阅读层级见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md]]；本地证据见 [[LLM-Wiki/experiments/20260907-xguard-token-pruning-analysis/README.md]]。VTC-Bench 沿用既有原文与主文证据，本轮不声称重新完整精读。
+## 正式研究问题
 
-# 可用于研究计划的动机草稿
+> 当长自然语言政策主导多模态 Guard 成本时，能否把政策编译为可审计条款表示，并根据图像联合选择政策条款与视觉 patch，在未见政策、否定/例外和同图政策翻转上保持安全非劣，同时获得真实端到端加速？
 
-多模态安全判别器必须在较短时间内根据图像、用户文本和政策作出决定；决定性证据可能是局部小字、实体间关系，或图文结合后才出现的风险。本地 XGuard 实验表明，输入降分辨率比已比较的中间层选择更快，同时呈现不同的类别退化。FastVLM 将视觉编码与 LLM prefill 同时计入效率分析，进一步说明只在视觉塔之后删 token 会漏掉关键成本。这些证据支持直接优化视觉路径，但不足以证明安全召回可以无损保持。
+该问题保留明确的视觉核心：图像证据决定哪些政策条款激活，政策条款决定哪些 patch 值得高成本编码。创新不在“两侧都删”，而在**视觉—条款协同覆盖与风险约束回退**。
 
-研究范围不能局限于对既有模型施加推理剪枝。EPIC 和 TBD 已将压缩纳入训练；EfficientVLM 已用蒸馏派生浅视觉语言模型；METR 已用多出口监督把任务压力送入早期视觉层；Dyna-ViT 与 QuietPrune 已分别覆盖无参 pre-encoder 选择和 query-guided ViT 早剪。因此，仅增加微调、截层、前置 Top-K 或合成剪枝样本都不是充分贡献。
+## 方法假设
 
-安全任务仍有一个可检验的交叉空白。ResponseGuard 的单次判定把剩余差距定位到 image-only cells，并把冻结视觉编码器列为可能原因；同时，SAP 已表明 token 选择会改变多模态 jailbreak 行为。这两项证据共同提示，视觉路径不只是通用精度组件，其压缩状态可能改变安全决策边界。现有工作没有据此证明：原有视觉塔的一个浅层前缀能否在图文—政策监督下成为安全判别的充分表示，以及输入分辨率、patch mask 与截断深度中少数最危险的组合能否通过训练被系统修复。这里的“没有证明”是本轮有限检索结论，不是全领域首次声明。
+若完整政策先离线编译为条款图或少量 policy memory，低成本视觉预览能以高召回检索候选条款，再由候选条款指导 pre-ViT patch 选择，那么联合预算可能同时缩短主导的 LLM 输入和视觉路径。full-policy/full-vision teacher、同图异策边界对和不确定回退可能控制安全退化。以上均为 hypothesis，尚无本地实验。
 
-据此，本项目提出研究问题：在不设计新 backbone 的条件下，能否用完整视觉塔作训练期教师，把图文—政策决策所需的证据前移到可部署的浅层视觉前缀，并在分辨率×patch×深度压缩格上直接优化会造成漏报的尾部状态？学生仍可观察证据时，训练应保持政策反事实效应和 unsafe margin；证据被压缩抹去时，不应盲目复制高清教师的确定性。候选方法必须超过同等资源下的截层安全 SFT、logit/feature KD、METR 式 early pressure、EPIC/TBD 式多预算蒸馏、QuietPrune 式早剪及直接低分辨率训练。
+## 不能提前写成贡献
 
-这一设计把用户提出的三项策略变成同一个闭环：压缩格中的高损失状态决定合成与重采样；同一政策因果监督决定哪些 patch 应在首层前保留；同一最坏组约束决定最浅可部署深度。训练辅助出口、教师和状态搜索均在部署时删除。若固定深度和固定 token 预算已经达到目标，则无需在线 router；只有信息确实不可观察的样本才进入后续升级研究。
+- 不声称首次联合图文剪枝、首次政策自适应 Guard 或首次 pre-ViT pruning。
+- 不把用户报告的 1.14× 写成已归档 reproduced 结果。
+- 不把政策摘要、token 比例或 FLOPs 直接等同于 wall-clock 加速。
+- 不把平均 accuracy 提升等同于安全鲁棒性。
+- 不把只在短政策数据上的收益外推到真实长政策。
 
-# 尚不能写成贡献的内容
-
-- Hypothesis H1：可观察性门控比仅教师置信过滤更有效。
-- Hypothesis H2：关系/政策训练可把部分困难判别前移到短输出路径。
-- Hypothesis H3：压缩状态安全训练可缩小 Guard 特有绕过面。
-- Hypothesis H4：政策因果监督可以使原视觉塔前缀在相同深度下优于普通 multi-exit/KD。
-- Hypothesis H5：按 unsafe harmful-flip 的压缩尾部训练优于平均随机多预算训练。
-- 不声称首次训练感知剪枝、首次因果证据训练、零信息损失、安全保证或确定达到某顶会标准。
-- 完整模型也可能错；升级成本与失败必须计入最终指标。
-
-假设的反证与停止条件见 [[LLM-Wiki/research/visual-token-pruning/gaps.md]]；流程见 [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md]] §20。
+完整方法和实验见 [[LLM-Wiki/research/visual-token-pruning/research-plan.md]]；三路线评估见 [[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md]]。

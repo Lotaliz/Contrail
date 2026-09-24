@@ -4,7 +4,7 @@ type: experiment
 tags: [experiment, data, research, safety]
 status: active
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-21
 title: Qwen2.5-VL-3B 上的 VisPCO 小规模配置优化测试
 project_id: visual-token-pruning
 sources: [paper-ji-2026-vispco, paper-chen-2024-fastv, paper-liu-2024-mm-safetybench, paper-luo-2024-jailbreakv]
@@ -357,7 +357,7 @@ VLM 作为 guard 分类器。系统提示要求模型对 (image, text) 输入输
 
 ## 关联实体与来源
 
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
 - 数据源 `paper-liu-2024-mm-safetybench`（MM-SafetyBench，ECCV 2024）—— 见 `LLM-Wiki/raw/sources.yaml`
 - 数据源 `paper-luo-2024-jailbreakv`（JailBreakV-28K，ICLR 2024）—— 见 `LLM-Wiki/raw/sources.yaml`

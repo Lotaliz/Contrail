@@ -6,9 +6,9 @@ aliases: [安全分类器压缩, Guard Model 压缩]
 tags: [research, method]
 status: active
 related: [visual-token-pruning, on-policy-distillation]
-sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp]
+sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 created: 2026-08-24
-updated: 2026-08-31
+updated: 2026-09-21
 ---
 
 # 安全判别系统的剪枝与蒸馏
@@ -42,11 +42,12 @@ updated: 2026-08-31
 8. On-policy 蒸馏最适合会生成判定与归因的自回归 Guard：教师在学生实际生成的前缀上纠正错误，可缩小训练—推理状态错配；GKD、MiniLLM、DistiLLM 与 prefix OPD 已形成“rollout 混合—散度稳定—轨迹降本”的通用路线。当前直接安全证据主要是 OPSA 预印本中的生成式安全对齐，而非独立 Guard 分类或多模态安全判别，因此本项目只把它列为候选验证方向。
 9. 面向安全判别的结构剪枝不应继续用 PPL 单独排序，也不宜只换成离散 accuracy drop。BlockPruner 的迭代真实消融、LLM-Pruner 的 `gradient × weight`、FLAP/Minitron 的前向激活代理与 MoPE-CLIP 的跨模态任务下降各自覆盖不同成本—保真区间；当前最稳妥的研究方案是三级筛选并在每轮剪枝后重估。
 10. MHA 与 MLP 没有跨任务固定的剪枝优先级。MHA 更偏上下文/跨模态路由，MLP 更偏逐 token 非线性变换和模式/知识表征；低比例整块剪枝在 Llama2 上显示 MHA 冗余更大，但高比例时会陡降。安全 Guard 应从 head/channel 细粒度联合预算开始，并以安全损失和高风险切片真实消融决定模块配额。
+11. 对 Qwen3-VL/LLaVA 式 decoder-only 生成模型，尚未形成“视觉与当前输入文本共同剪枝”的成熟效率路线。AIM 的同构消融显示剪文本会显著退化，TrimTokenator 全部保留文本，AsymVLM 也把视觉输入剪枝与长生成期文本 KV eviction 分开。PuMer、SmartTrim、CrossGET 属于较早 VLP 拓扑，只保留其样本 gate、双向信号和 merge 机制，不再作为直接进展。当前默认假设应是视觉预算 + 文本保护，文本侧只在长政策/长上下文实测成瓶颈后研究结构化压缩。
 
 ## 推荐工程路线
 
 - 文本首选：8B Guard 教师 → 100M–500M encoder 学生 → 困难/有害样本增广 → 结构化头/FFN/层剪枝 → 蒸馏恢复 → INT8/INT4 → 小/大 Guard 路由。
-- 多模态首选：先训练/蒸馏小型双塔或轻量 VLM，蒸馏跨模态 embedding/affinity；再做跨模态敏感度驱动的结构剪枝。若使用可生成归因的自回归 Guard，采用 policy-aware、coverage-protected visual-token pruning，分开测 time-to-verdict 与完整解释时延，并单独验证小目标、OCR、短暂事件、隐式跨模态危害和归因忠实度。
+- 多模态生成式 Guard 首选：保持 Qwen3-VL/LLaVA 式自回归拓扑，采用 policy-aware、coverage-protected visual-token pruning；固定政策可研究 latent/前缀表示压缩，用户文本默认完整保护。分开测 time-to-verdict 与完整解释时延，并单独验证小目标、OCR、短暂事件、隐式跨模态危害和归因忠实度。双塔/`[CLS]` 分类模型只作为可迁移机制来源，不作为替代目标架构。
 - 统一验收：macro/micro F1、AUPRC、各危害类别召回、FPR、ECE、越狱/变体鲁棒性、P50/P95 时延、吞吐、峰值显存、能耗，以及教师生成/标注和恢复训练的总成本。
 
 ## 项目文档
@@ -59,8 +60,10 @@ updated: 2026-08-31
 - [[LLM-Wiki/research/safety-classifier-compression/hypotheses.md|待验证假设]]
 - [[LLM-Wiki/concepts/methods/on-policy-distillation.md|On-policy 蒸馏概念]]
 - [[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md|可生成归因的多模态自回归 Guard Token 剪枝]]
+- [[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md|生成式多模态 Guard 中的视觉—文本 Token 压缩]]
+- [[LLM-Wiki/research/safety-classifier-compression/text-guided-visual-token-pruning.md|生成式多模态 Guard 的文本指导视觉 Token 剪枝]]
 - [[LLM-Wiki/research/safety-classifier-compression/comparison.md|统一维度比较：含任务对齐剪枝重要性指标]]
-- [[LLM-Wiki/research/visual-token-pruning/multimodal-safety-token-pruning-research-plan.md|邻接项目：多模态安全判别 Token 剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|邻接项目：多模态安全判别 Token 剪枝]]
 
 ## 预注册实验设计（未执行）
 
