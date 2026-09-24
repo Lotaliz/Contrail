@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, token-merging, vision-transformer, semantic-segmentation]
 status: active
 created: 2026-09-20
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # G2TM：解码器无关的 ViT 早期 Token 合并
@@ -99,7 +99,7 @@ G2TM 是当前 Wiki 中“完整视觉塔之前真实缩短 token 序列”的�
 
 对安全项目的迁移仍是待验证假设。可比较“纯局部相似度合并”与“政策/文本条件的证据选择”，重点测小型有害区域、OCR 字符、跨分辨率阈值迁移和 unsafe 漏报；不能把连通分量的空间连贯性称为安全充分性。该笔记补充机制与基线，不修改正式 motivation。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/early-encoder-pruning-and-interpretability.md|浅层视觉编码器剪枝与解释性]]；[[LLM-Wiki/research/visual-token-pruning/token-merging-landscape.md|视觉 Token 合并方法比较]]；[[LLM-Wiki/research/visual-token-pruning/research-plan.md|当前研究主方案]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/early-encoder-pruning-and-interpretability.md|浅层视觉编码器剪枝与解释性]]；[[LLM-Wiki/research/visual-token-pruning/token-merging-landscape.md|视觉 Token 合并方法比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
 
 ## 证据定位与待验证项
 

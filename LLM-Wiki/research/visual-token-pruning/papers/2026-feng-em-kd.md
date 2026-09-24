@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-24
 ---
 
 # EM-KD
@@ -23,4 +23,4 @@ EM-KD 针对教师与高效学生视觉 token 数不等的问题，先把视觉 
 
 “不等长视觉 token 的匹配后语义蒸馏”和“对齐图文关系而非仅 hidden MSE”已有直接正式先例。EM-KD 匹配少量学生 token 与教师 token 子集，并不把少量 token 重构为全部教师空间位置；它也不研究安全判别的低显著度证据和固定 FPR 长尾召回。若本项目使用匹配，应超过 Hungarian+VSD+VLAD，而不是只替换距离函数。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

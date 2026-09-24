@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Dyna-ViT
@@ -23,5 +23,4 @@ Dyna-ViT 在 encoder 前按无监督显著性代理排序 patch，只保留 Top-
 
 输入到首个 Transformer block 前删 patch 已有直接正式先例；“前置剪枝”和“不增加参数”本身都不足以构成贡献。Dyna-ViT 不看文本/政策，也没有验证低显著度危险证据、OCR 和困难安全子群。它应作为最便宜的前置无参基线，而非新方法核心。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

@@ -7,7 +7,7 @@ project_id: visual-token-pruning
 sources: [paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-chen-2025-safewatch, paper-huang-2026-evidence-rl, paper-gao-2026-quietprune]
 status: active
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-24
 ---
 
 # 从 Equalizer 到区域/理由监督的安全视觉 Token 剪枝
@@ -80,7 +80,7 @@ updated: 2026-09-14
 
 ## 对当前研究主线的启发
 
-- Equalizer 最适合作为 [[LLM-Wiki/research/visual-token-pruning/gaps.md]] 中 G3“保持安全决策干预效应”的早期概念先例，而不是新的 selector 名称。
+- Equalizer 是旧版缺口 G3“保持安全决策干预效应”的早期概念先例；该历史缺口页已清理，现行方案见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
 - 新颖性应放在**政策条件化证据组 + 双向因果干预 + 安全尾部约束**，不要放在 region-guided、query-guided 或 attention-guided pruning。
 - 区域是下限约束，不是完整排序规则：先保证证据组和全局覆盖，再用相关性/冗余分配剩余预算，可减少小 OCR 和多主体关系被 Top-k 吞掉。
 - 训练目标应区分“看不见”与“看错”：证据已被剪掉时让模型升级/拒判；证据仍在时才要求高置信与教师一致。这与项目中的学生可观察性约束直接一致。

@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # EfficientVLM
@@ -23,5 +23,4 @@ updated: 2026-09-08
 
 它直接表明“蒸馏后减少视觉层数”不是新原语。其任务是通用视觉语言理解，且学生结构整体缩小；未研究独立多模态 Guard、固定 FPR 困难召回、输入分辨率/patch 与视觉深度的联合最坏状态。本文所报数字不能迁移为本地安全判别收益。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # ResponseGuard
@@ -25,5 +25,4 @@ ResponseGuard 将图像、请求与响应的 pooled representation 直接映射�
 
 这为安全任务专用视觉编码器训练提供直接动机，也要求本课题证明视觉前缀训练改善 image-only 与跨模态困难组，而不只改善总体 F1。其单次 pooled head 改变了输出形式；本项目若沿用首标签 Guard，须把完整判定 token 时延单独报告。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/motivation.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

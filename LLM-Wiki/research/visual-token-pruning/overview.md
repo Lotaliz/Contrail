@@ -7,7 +7,7 @@ status: active
 related: [multimodal-compositional-safety, safety-classifier-compression]
 sources: [paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-gao-2026-quietprune, paper-rubab-2026-dyna-vit, paper-chen-2025-safewatch, webpage-cvpr-2027-cfp]
 created: 2026-09-08
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # 短政策条件下的文本政策指导视觉 Token 剪枝
@@ -18,7 +18,7 @@ updated: 2026-09-23
 
 此前用户报告：约 882-token 长政策主导输入时，90% pre-ViT 视觉剪枝仅约 1.14× 端到端加速且精度明显下降；该数字仍缺可复核原始 profiler。用户现报告约 32-token 模板短政策可经训练取得接近长政策的初步分类/召回，但完整结果尚未归档。缩短政策后视觉路径占比和可得加速须重新测量，不能沿用旧上限。
 
-完整场景数据构造、首轮 baseline 协议、方法假设和 CVPR 边界见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|新版课题方案]]。原 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|视觉—政策联合压缩方案]]与[[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md|转向评估]]保留为历史方案和背景依据。
+完整场景数据构造、首轮 baseline 协议、方法假设和 CVPR 边界见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。历史路线的决策和证据边界见 [[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|清理记录]]与阅读日志。
 
 ## 与另一条路线的边界
 
@@ -36,11 +36,7 @@ updated: 2026-09-23
 ## 研究入口
 
 - [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划：短政策条件下的文本政策指导视觉剪枝]]
-- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|历史方案：长政策下的视觉—政策协同压缩]]
-- [[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md|长政策瓶颈下的转向评估]]
 - [[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|SafeGuard-VL 与 PolicyShiftGuard 定义、方法和边界比较]]
-- [[LLM-Wiki/research/visual-token-pruning/motivation.md|历史联合压缩动机与论点—证据边界]]
-- [[LLM-Wiki/research/visual-token-pruning/gaps.md|历史联合压缩缺口与可证伪问题]]
 - [[LLM-Wiki/research/visual-token-pruning/landscape.md|视觉 Token 剪枝与安全训练版图]]
 - [[LLM-Wiki/research/visual-token-pruning/comparison.md|方法比较]]
 - [[LLM-Wiki/research/visual-token-pruning/early-encoder-pruning-and-interpretability.md|早期视觉编码器剪枝与解释性综述]]

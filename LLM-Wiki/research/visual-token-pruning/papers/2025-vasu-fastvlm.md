@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # FastVLM
@@ -23,5 +23,4 @@ FastVLM 联合分析输入分辨率、视觉编码时延、输出视觉 token �
 
 它证明视觉塔成本与送入 LLM 的 token 成本必须联合优化，也说明重新设计高效编码器是拥挤路线。本课题优先复用原视觉主干的浅层前缀，避免把新 backbone 架构作为贡献；FastVLM 必须作为换编码器上界或强系统基线。其通用 VLM 分数不代表固定 FPR 的安全困难召回。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/motivation.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # A Simple Romance Between Multi-Exit Vision Transformer and Token Reduction
@@ -23,5 +23,4 @@ METR 观察到早期 ViT block 的 `[CLS]` 尚未受到足够任务压力，因�
 
 它直接覆盖“让安全任务信息更早进入视觉层”和“多出口训练辅助早剪”的一般机制。候选方法必须改变监督对象：使用图文—政策反事实、压缩诱发漏报和证据可观察性来定义安全充分性；训练辅助出口在部署时移除，并验证真正截断视觉塔的收益。若只把类别从 ImageNet 换成 unsafe，创新不足。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

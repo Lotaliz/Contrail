@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-18
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # VLSU
@@ -25,4 +25,4 @@ updated: 2026-09-21
 
 “看到风险物体就早退”必须考虑文本用途与政策例外；不能用单模态高置信替代组合判断。建议将 S-S-U 与含风险但合法的组合设为早出口和剪枝的压力子群。这是评测建议，原文没有验证本项目浅层方案的可行性。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/research-plan.md]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md]]。

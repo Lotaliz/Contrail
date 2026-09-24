@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, model-compression, efficient-inference]
 status: active
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # Gist Tokens：可复用提示压缩
@@ -31,5 +31,4 @@ Gist token 提供“政策离线编译/缓存”的机制先例，也再次说�
 
 它更适合作为 policy compiler 的基线或初始化，不足以单独构成长政策图像 Guard 的 CVPR 贡献。
 
-关联：[[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md]]；[[LLM-Wiki/research/visual-token-pruning/research-plan.md]]。
-
+关联：[[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

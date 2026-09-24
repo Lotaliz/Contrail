@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, safety-guardrail, multimodal-safety, safety-evaluation, vision-language-model]
 status: active
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # PolicyShiftGuard：同图政策翻转与边界配对训练
@@ -113,4 +113,4 @@ PSS 先按 `(same image, same target category)` 分组，只保留 gold label �
 
 这篇更适合作为主任务定义：压缩 Guard 必须保持同图 policy flip，而不仅是平均 F1。其可执行条款和属性 schema 可作为 policy compiler 的教师信号；BP-Adapt 可直接改造成“full policy vs compressed policy”边界保持损失。但论文明确不覆盖长用户政策，因此不能用其结果证明长政策压缩已经解决。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-piao-safeguard-vl.md|SafeGuard-VL]]；[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|两篇比较]]；[[LLM-Wiki/research/visual-token-pruning/research-plan.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-piao-safeguard-vl.md|SafeGuard-VL]]；[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|两篇比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

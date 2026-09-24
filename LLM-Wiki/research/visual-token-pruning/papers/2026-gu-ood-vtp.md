@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Visual Token Compression Enhances Robustness of MLLMs
@@ -22,5 +22,4 @@ updated: 2026-09-08
 “远离语言空间”是作者的 OOD 代理，不能等同于无关或危险。减少危险内容对生成模型的诱导，不保证检测器仍看到危险证据。这是与 Security Pitfalls 结论方向不同的必要反证，须按威胁模型解释，不能概括剪枝必然更安全或更不安全。
 代码：[OOD-VTP](https://github.com/Eurek001/OOD-VTP)，未运行；下一步需在同批 Guard 样本比较召回与拒答的目标冲突。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

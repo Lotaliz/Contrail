@@ -7,7 +7,7 @@ project_id: visual-token-pruning
 sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-liu-2026-autoprune-ai4ai, code-autoprune-2026-release, paper-zhang-2025-cdpruner, paper-cao-2023-pumer, code-pumer-2026-audit, code-cdpruner-2026-audit, paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-arxiv-2609-18279, paper-arxiv-2609-13804, paper-arxiv-2609-10346, paper-arxiv-2609-15131, paper-arxiv-2609-13745]
 status: active
 created: 2026-09-08
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # 检索范围
@@ -23,11 +23,11 @@ updated: 2026-09-22
 - PolicyShiftGuard/PolicyShiftBench（arXiv 2026）：由 skimmed 升级为 deep-read/source-checked；精读 §1–7、表 1–6 和附录 A–G。它把问题收紧为同图 policy flip，以显式属性—可执行规则构造标签、RP-SFT 去模板捷径、BP-Adapt pair margin 优化边界，并用 PSS 要求翻转两侧都正确；长用户自定义政策被作者明确列为未覆盖。
 - Gist Tokens（NeurIPS 2023）：skimmed/source-checked；支持政策编译/缓存机制，但其最高 40% FLOPs 降低只对应最高 4.2% wall-time 加速，强化真实计时门槛。
 
-综合结论写入 [[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md]] 和 [[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md]]。活动计划从 pure visual pruning 转为长政策编译、条款检索与 pre-ViT 视觉选择的协同预算；主任务采用 PolicyShiftGuard 式同图翻转定义，视觉剪枝提高精度只保留为需排除校准/类别不平衡解释的次要假设。
+2026-09-22 的综合结论曾写入现已清理的长政策转向评估；保留的论文比较见 [[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md]]。当时活动计划从 pure visual pruning 转为长政策编译、条款检索与 pre-ViT 视觉选择的协同预算；主任务采用 PolicyShiftGuard 式同图翻转定义，视觉剪枝提高精度只保留为需排除校准/类别不平衡解释的次要假设。
 
 ## 2026-09-21：研究计划收束为政策条件 ViT 前剪枝
 
-根据用户的新研究边界，本项目删除旧的“安全充分视觉前缀”总方案和“浅层联合早退出”评估，当前主线改为 `(image, policy)` 场景下、首个 ViT block 前的政策条件 patch 选择。既有论文笔记、专题综述、实验记录和负结果保留为证据。新计划见 [[LLM-Wiki/research/visual-token-pruning/research-plan.md]]；本日志下方旧条目按当时研究状态保留，不代表当前方案。
+根据用户的新研究边界，本项目删除旧的“安全充分视觉前缀”总方案和“浅层联合早退出”评估，当前主线改为 `(image, policy)` 场景下、首个 ViT block 前的政策条件 patch 选择。既有论文笔记、专题综述、实验记录和负结果保留为证据。当时的新计划已清理；现行计划见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|短政策视觉剪枝计划]]。本日志下方旧条目按当时研究状态保留，不代表当前方案。
 
 ## 2026-09-20：近期追踪选定论文精读
 
@@ -66,7 +66,7 @@ updated: 2026-09-22
 | Conformal Risk Control | discovered；只作为后续理论阅读候选，未核完整证明 | 不作本方案保证已成立的证据 |
 | CVPR 2026、OSDI 2026、IEEE S&P 2027 CFP | 核验官方范围；前三者分别作为已公开定位文本使用，不预测未来规则 | 会议适配解释；分数为主观判断 |
 
-综合判断当时单独保存为“浅层联合计算与早退出评估”；该旧评估已于 2026-09-21 删除，其历史结论由本日志保留。该分支不属于当前 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|政策条件 ViT 前剪枝计划]]。
+综合判断当时单独保存为“浅层联合计算与早退出评估”；该旧评估已于 2026-09-21 删除，其历史结论由本日志保留。该分支不属于现行的 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|短政策视觉剪枝计划]]。
 
 ## 2026-09-18：PuMer / CDPruner 双篇精读与关联成本比较
 
@@ -118,7 +118,7 @@ updated: 2026-09-22
 | Q13 | visual encoder early token pruning generative MLLM; METEOR; FiCoCo-V; iLLaVA; MustDrop; AdaptMerge; EvoPrune; FlowCut; QuietPrune; VScan; DeSAP; Skip-Vision | 2026-09-16 严格核验 ViT 出口之前真实减少序列且评测自回归文本生成；FlowCut、METEOR、QuietPrune 是剪枝核心，FiCoCo-V 混合；其余四项核心为合并；VScan 使用输出层特征，不按 intra-ViT 归类；综合见 [[LLM-Wiki/research/visual-token-pruning/early-encoder-pruning-and-interpretability.md]] |
 | Q14 | 2026-09-17：既有时延基线的 batch size / GPU / TTFT / total / generation latency 定向回查；SparseVILA fixed decode length；ZipVL maximum batch；V2Drop Table 5 | 核对 UniPruneBench v2、VisionZip 本地 CVPR 原件、SparseVILA ICCV 效率片段及后续 arXiv v1、其余原文效率段落；新增 10 篇定向 skimmed 来源笔记，修正可变最大 batch、LLM-only 与 TTFT 的 E2E 误读；未运行代码，未以未报告设置证明不支持 batch；审计回填既有 SOTA 页 |
 
-候选尚不构成 motivation；后续阅读结果、唯一来源 ID、版本和排除原因在本页更新。项目主文仍为 [[LLM-Wiki/research/visual-token-pruning/research-plan.md]]。
+候选尚不构成 motivation；后续阅读结果、唯一来源 ID、版本和排除原因在本页更新。当前项目主文为 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|短政策视觉剪枝计划]]。
 
 ## 阅读结果与版本边界
 

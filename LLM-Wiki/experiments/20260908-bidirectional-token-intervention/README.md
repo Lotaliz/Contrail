@@ -5,7 +5,7 @@ title: "多模态安全判别的双向视觉 Token 因果干预审计"
 tags: [experiment, visual-token-pruning, vision-language-model, multimodal-safety, safety-evaluation, representation-probing]
 status: draft
 created: 2026-09-08
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # 多模态安全判别的双向视觉 Token 因果干预审计
@@ -332,7 +332,7 @@ $D$ 优先使用 teacher-forced token-distribution 的对称 KL、人工事实/�
 
 ## 关联实体与来源
 
-- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|历史方案清理记录]]
 - [[LLM-Wiki/experiments/20260907-xguard-token-pruning-analysis/README.md|XGuard Token 剪枝实验复核]]
 - [DART / duplication-aware reduction](https://aclanthology.org/2025.emnlp-main.505/)
 - [CrisPrune](https://aclanthology.org/2026.findings-acl.663/)

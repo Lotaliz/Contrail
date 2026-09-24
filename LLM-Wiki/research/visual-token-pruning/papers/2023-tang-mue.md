@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-18
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # MuE
@@ -23,4 +23,4 @@ updated: 2026-09-21
 
 视觉/文本编码深度动态选择以及生成阶段多出口已有先例。但表示跨层相似不证明安全判别正确，停止 encoder 也不等于结束整个判别。不能把该 OFA 架构直接视作 Qwen-VL 的即插即用组件。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/research-plan.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

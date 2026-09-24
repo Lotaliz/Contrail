@@ -7,7 +7,7 @@ project_id: visual-token-pruning
 sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune]
 status: active
 created: 2026-09-08
-updated: 2026-09-09
+updated: 2026-09-24
 ---
 
 # 方法比较
@@ -65,4 +65,4 @@ updated: 2026-09-09
 | 单次 Guard 判定 | ResponseGuard | 同 backbone/数据下拆分视觉前缀、输出形式和训练目标；严格 FPR 而非只报加权 F1 |
 | 安全感知剪枝 | SAP；SafeWatch；Security Pitfalls | 独立检测 Guard、漏报威胁与训练泛化；不把生成拒答或 jailbreak ASR 当 recall |
 
-完整可执行对照矩阵见主文 §20；候选性质见 [[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
+历史方法比较见本页；现行实验基线与协议见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Fast-Slow Efficient Training for Multimodal Large Language Models via Visual Token Pruning
@@ -21,5 +21,4 @@ updated: 2026-09-08
 ## 边界与研究判断
 “剪后模型在 full-path 自动更可靠”不成立；回退分支也须训练与校准。mode isolator 不等于完全无输入协议变化。代码：[DualSpeed](https://github.com/dingkun-zhang/DualSpeed)，未复现。待升级：隔离 token 细节及跨预算参数共享干扰；作为完整路径回归基线，不作安全召回证据。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

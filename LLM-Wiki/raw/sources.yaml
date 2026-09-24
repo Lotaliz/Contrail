@@ -200,7 +200,7 @@ sources:
     venue: "arXiv"
     url: "https://arxiv.org/abs/2608.29098v1"
     accessed: 2026-09-18
-    local_path: "papers/2608.29098v1.pdf"
+    local_path: ""
     sha256: "c5e0a1499ea37a5a43b5baf34625e73985a856030d50181dd6162c3b81e717c5"
     license: "arXiv perpetual non-exclusive license"
     notes: "Targeted skimmed/source-checked dataset audit: official v1 HTML and45-page PDF, Sections2/3.1/4, AppendixA.5-A.7 andF; visually checked Figures1/3/4 and TablesA12-A14 on pages3/5/6/36-38. Full1,503,284-instance statistics distinguished from public1M release. No raw-record label counts or modality-ablation experiment. Poppler metadata syntax warnings retained; checked pages rendered legibly. Note: research/visual-token-pruning/papers/2026-wang-safeatlas-vl.md."
@@ -404,7 +404,7 @@ sources:
     venue: "EMNLP 2022"
     url: "https://aclanthology.org/2022.emnlp-main.273/"
     accessed: 2026-08-24
-    local_path: "papers/2022-jiang-trips.pdf"
+    local_path: ""
     sha256: "c793962302d88f12b58a58fe2737bae11a3df5ed1bfd3c9b3ec4a57e27958eb0"
     license: "unknown"
     notes: "Early text-guided progressive image-patch selection for discriminative and VQA-oriented vision-language pretraining."
@@ -428,7 +428,7 @@ sources:
     venue: "ECCV 2024"
     url: "https://eccv.ecva.net/virtual/2024/poster/2009"
     accessed: 2026-08-24
-    local_path: "papers/2024-chen-fastv.pdf"
+    local_path: ""
     sha256: "ec315d529c51ba2053795b46dab9b71459268d10ac78156d3714f5f6656dfb58"
     license: "unknown"
     notes: "Training-free attention-based pruning of visual tokens inside decoder-only LVLMs."
@@ -452,7 +452,7 @@ sources:
     venue: "arXiv"
     url: "https://arxiv.org/abs/2511.21631"
     accessed: 2026-08-31
-    local_path: "papers/2025-bai-qwen3-vl.pdf"
+    local_path: ""
     sha256: "ee075d08e67de1148d6437c6c1d481f7894183b8793905a2deb5f62664f49380"
     license: "unknown"
     notes: "Qwen3-VL architecture and ablation source. Its DeepStack variant projects three intermediate ViT feature levels with dedicated mergers and residually injects them into the first three LLM layers without increasing context length."
@@ -476,7 +476,7 @@ sources:
     venue: "CVPR 2025"
     url: "https://openaccess.thecvf.com/content/CVPR2025/html/Alvar_DivPrune_Diversity-based_Visual_Token_Pruning_for_Large_Multimodal_Models_CVPR_2025_paper.html"
     accessed: 2026-08-24
-    local_path: "papers/2025-alvar-divprune.pdf"
+    local_path: ""
     sha256: "771cae9c882b26b98cc40ffee9d8e6e5decb17e74f26105c2d2e5e42783d3999"
     license: "unknown"
     notes: "Training-free max-min diversity selection before the LLM, evaluated on image and video generation/understanding benchmarks."
@@ -488,7 +488,7 @@ sources:
     venue: "ICML 2025"
     url: "https://proceedings.mlr.press/v267/zhang25s.html"
     accessed: 2026-08-24
-    local_path: "papers/2025-zhang-sparsevlm.pdf"
+    local_path: ""
     sha256: "35366576b714a5da9c8a75f167b4c04d70420d0fb949ae3cba4efcd78083a219"
     license: "unknown"
     notes: "Training-free text-rater-guided progressive visual pruning with adaptive ratios and token recycling."
@@ -500,7 +500,7 @@ sources:
     venue: "Findings of ACL 2025"
     url: "https://aclanthology.org/2025.findings-acl.802/"
     accessed: 2026-08-24
-    local_path: "papers/2025-wen-right-problem.pdf"
+    local_path: ""
     sha256: "a171af3af3893b2c2930baa3de397407f3fac724872153f2ffec97e97f90f5fe"
     license: "unknown"
     notes: "Critical benchmark showing random/pooling baselines, spatial-uniformity effects, task-dependent language guidance, and latency/FLOPs mismatch."
@@ -548,7 +548,7 @@ sources:
     venue: "CVPR 2023"
     url: "https://openaccess.thecvf.com/content/CVPR2023/html/Chang_Making_Vision_Transformers_Efficient_From_a_Token_Sparsification_View_CVPR_2023_paper.html"
     accessed: 2026-08-24
-    local_path: "papers/2023-chang-stvit.pdf"
+    local_path: ""
     sha256: "a9a7c7d9ac8765223aa84319c036df01d0eb246522892bb653b6a34aa563a3e8"
     license: "unknown"
     notes: "CVF open-access accepted-version PDF. Semantic-token condensation for classification and dense tasks."
@@ -560,7 +560,7 @@ sources:
     venue: "CVPR 2023 Supplementary Materials"
     url: "https://openaccess.thecvf.com/content/CVPR2023/supplemental/Chang_Making_Vision_Transformers_CVPR_2023_supplemental.pdf"
     accessed: 2026-08-24
-    local_path: "papers/2023-chang-stvit-supplement.pdf"
+    local_path: ""
     sha256: "fa40d2f4b5bd78266e56df465f23c9fbfda037d903c347e818e7b71db3ddeddc"
     license: "unknown"
     notes: "Supplement to paper-chang-2023-stvit; includes detailed architectures, complexity analysis, semantic-segmentation failure analysis, ablations, visualizations, and cluster-center recovery theory."
@@ -572,7 +572,7 @@ sources:
     venue: "Local text derivative"
     url: "https://openaccess.thecvf.com/content/CVPR2023/papers/Chang_Making_Vision_Transformers_Efficient_From_a_Token_Sparsification_View_CVPR_2023_paper.pdf"
     accessed: 2026-08-24
-    local_path: "papers/2023-chang-stvit.txt"
+    local_path: ""
     sha256: "6165fe27d2d84bc950516e43983d005d68780a0dba29ce4e09559545637bbc32"
     license: "inherits-source"
     notes: "Layout-preserving pdftotext derivative of paper-chang-2023-stvit; created for source localization, not an independent source."
@@ -584,7 +584,7 @@ sources:
     venue: "Local text derivative"
     url: "https://openaccess.thecvf.com/content/CVPR2023/supplemental/Chang_Making_Vision_Transformers_CVPR_2023_supplemental.pdf"
     accessed: 2026-08-24
-    local_path: "papers/2023-chang-stvit-supplement.txt"
+    local_path: ""
     sha256: "a594e9234dfda8f67954f596c256b2790ecd5a8da580447ddd575098f7228804"
     license: "inherits-source"
     notes: "Layout-preserving pdftotext derivative of attachment-chang-2023-stvit-supplement; created for source localization, not an independent source."
@@ -876,7 +876,7 @@ sources:
     venue: "EMNLP 2020"
     url: "https://aclanthology.org/2020.emnlp-main.494/"
     accessed: 2026-08-25
-    local_path: "papers/2020-lin-autoregressive-kd.pdf"
+    local_path: ""
     sha256: "15d6d485818b88f5652a12270ad2bc8a9ea3c99249b9182c2d39569c1b72e162"
     license: "unknown"
     notes: "Imitation-learning formulation of autoregressive KD on student-visited states; historical lineage evidence."
@@ -900,7 +900,7 @@ sources:
     venue: "ICLR 2024"
     url: "https://openreview.net/forum?id=5h0qf7IBZZ"
     accessed: 2026-08-25
-    local_path: "papers/2024-gu-minillm.pdf"
+    local_path: ""
     sha256: "a96fbfb8fcb935aead8dd04d8e375bc12e149a48d5dd26c06e6f9e561c579fc6"
     license: "unknown"
     notes: "Reverse-KL on-policy LLM distillation with variance, sampling, and length-bias stabilization."
@@ -912,7 +912,7 @@ sources:
     venue: "ICML 2024"
     url: "https://proceedings.mlr.press/v235/ko24c.html"
     accessed: 2026-08-25
-    local_path: "papers/2024-ko-distillm.pdf"
+    local_path: ""
     sha256: "468a9faa0fc1521fe84e21b6b9b01844e58d1090aeb5ebedf32047e7d1135370"
     license: "unknown"
     notes: "Skew-KL and adaptive reuse/refresh of student-generated data for efficient LLM distillation."
@@ -924,7 +924,7 @@ sources:
     venue: "ICML 2025"
     url: "https://proceedings.mlr.press/v267/ko25a.html"
     accessed: 2026-08-25
-    local_path: "papers/2025-ko-distillm2.pdf"
+    local_path: ""
     sha256: "2cfede7f41dc6552034240f31fae6f8e558dbab148b70a15dbcfaae7a90dea0d"
     license: "unknown"
     notes: "Contrastive treatment of teacher-positive and student-negative sequences with data curriculum."
@@ -936,7 +936,7 @@ sources:
     venue: "Findings of ACL 2026"
     url: "https://aclanthology.org/2026.findings-acl.1276/"
     accessed: 2026-08-25
-    local_path: "papers/2026-zhang-prefix-opd.pdf"
+    local_path: ""
     sha256: "0676f58b1976bff93d2fe931ca2ce3b19131c416a7e3fa2e3359e8e3dba050f0"
     license: "unknown"
     notes: "Prefix-only OPD for reducing long-reasoning rollout and teacher-forward cost."
@@ -948,7 +948,7 @@ sources:
     venue: "Findings of ACL 2026"
     url: "https://aclanthology.org/2026.findings-acl.2094/"
     accessed: 2026-08-25
-    local_path: "papers/2026-jang-veto-opd.pdf"
+    local_path: ""
     sha256: "b28dba5bcc09ebb38d23af53da069374a11ed6d26ecd040454ebee7daf5f3e4b"
     license: "unknown"
     notes: "Adaptive geometric target distribution addressing forward-KL instability and reverse-KL collapse."
@@ -1311,7 +1311,7 @@ sources:
     venue: "OSDI 2024"
     url: "https://www.usenix.org/conference/osdi24/presentation/agrawal"
     accessed: 2026-08-26
-    local_path: "papers/2024-agrawal-sarathi-serve.pdf"
+    local_path: ""
     sha256: "2416e51f584230107739783e5995d3dea3efad93f189e2c3119434d62a31412c"
     license: "unknown"
     notes: "Chunked-prefill and stall-free scheduling for uniform batches under tail-latency constraints."
@@ -1371,7 +1371,7 @@ sources:
     venue: "OSDI 2025"
     url: "https://www.usenix.org/conference/osdi25/presentation/zhu-kan"
     accessed: 2026-08-27
-    local_path: "papers/2025-zhu-nanoflow.pdf"
+    local_path: ""
     sha256: "0b6a8d61e59bf808d9e5426364e6637095b2a22a2eced4fcba09b6eece145481"
     license: "unknown"
     notes: "Intra-device parallelism via nano-batching and interference-aware pipeline search for LLM serving throughput."
@@ -1383,7 +1383,7 @@ sources:
     venue: "OSDI 2026"
     url: "https://www.usenix.org/conference/osdi26/presentation/yu-shan"
     accessed: 2026-08-27
-    local_path: "papers/2026-yu-prism.pdf"
+    local_path: ""
     sha256: "b2af6f908a07adbb037c0dc14ccebfa51b7635c2ec614f1a0d39d8eea4017347"
     license: "unknown"
     notes: "Cross-model GPU memory ballooning and hierarchical SLO-aware scheduling for production multi-LLM serving."
@@ -1611,7 +1611,7 @@ sources:
     venue: "CVPR 2026"
     url: "https://arxiv.org/abs/2603.21701"
     accessed: 2026-09-02
-    local_path: "papers/2026-wang-metacompress.pdf"
+    local_path: ""
     sha256: "ef2e676cb3a27de47bc06ba4d2653d594fc0267d0fbb6f7cc21c4f05cb5ebe4a"
     license: "CC BY 4.0"
     notes: "Learning-based prompt-agnostic visual-token compression for multi-turn VQA; unifies pruning and merging as a learned compression projection and is not a safety-semantic or policy-conditioned pruning method."
@@ -1623,7 +1623,7 @@ sources:
     venue: "Local text derivative"
     url: "https://arxiv.org/pdf/2603.21701"
     accessed: 2026-09-02
-    local_path: "papers/2026-wang-metacompress.txt"
+    local_path: ""
     sha256: "c6524b49057efb465141ae5f948d83094888aa1fcf8d66710a0ee0fd0eeb9046"
     license: "inherits-source"
     notes: "Layout-preserving pdftotext derivative of paper-wang-2026-metacompress; created for source localization, not an independent source."
@@ -1635,7 +1635,7 @@ sources:
     venue: "ACL 2026"
     url: "https://aclanthology.org/2026.acl-long.195/"
     accessed: 2026-09-03
-    local_path: "papers/2026-liao-vtc-bench.pdf"
+    local_path: ""
     sha256: "dd6e16b612b16674e4ec6855ce193cbf302c8d30eb1d6a69bae822ec3cfd12bf"
     license: "CC BY 4.0"
     notes: "Evaluation study showing that direct input-image downsampling can outperform complex token compressors on common VQA benchmarks, while its advantage reverses on resolution-sensitive difficult subsets."
@@ -1647,7 +1647,7 @@ sources:
     venue: "arXiv preprint (v1, under review)"
     url: "https://arxiv.org/abs/2507.13348"
     accessed: 2026-09-03
-    local_path: "papers/2025-yang-visionthink.pdf"
+    local_path: ""
     sha256: "5b1ee2f191df1fc590d5a31b4317766f08d0e488e1a69d2a2ad30630f63b7961"
     license: "CC BY 4.0"
     notes: "Low-resolution-first VLM trained with multi-turn GRPO to request the original high-resolution image only when needed; includes vLLM inference-time evidence and OCR-dependent failure/cost analysis."
@@ -1659,7 +1659,7 @@ sources:
     venue: "arXiv"
     url: "https://arxiv.org/abs/2409.12191"
     accessed: 2026-09-03
-    local_path: "papers/2024-wang-qwen2-vl.pdf"
+    local_path: ""
     sha256: "30bb0f6c9babf910295d6b7cd34b6f54824236f68782664c3c93fbf4803275d0"
     license: "unknown"
     notes: "Introduces Naive Dynamic Resolution so input resolution maps to a variable number of visual tokens, enabling min/max-pixel inference profiles without resizing every input back to one fixed canvas."
@@ -1671,7 +1671,7 @@ sources:
     venue: "arXiv"
     url: "https://arxiv.org/abs/2405.17430"
     accessed: 2026-09-03
-    local_path: "papers/2024-cai-matryoshka-mm.pdf"
+    local_path: ""
     sha256: "bda93ef502635fdc9d0837229204dd07ca648a3873cbc40abb00b5471e39467f"
     license: "CC BY 4.0"
     notes: "Jointly trains nested post-encoder visual-token grids at 1, 9, 36, 144 and 576 tokens, exposing a controllable inference budget and a large oracle gap for per-sample scale selection."
@@ -1683,7 +1683,7 @@ sources:
     venue: "arXiv"
     url: "https://arxiv.org/abs/2405.20985"
     accessed: 2026-09-03
-    local_path: "papers/2024-yao-deco.pdf"
+    local_path: ""
     sha256: "8231d1777ff3c255e32e4bd12e64eb55eba97d89c3092e91a01a9baaac32ed1c"
     license: "unknown"
     notes: "Uses parameter-free 2D adaptive average pooling after the vision encoder to compress patch tokens while preserving spatial locality; it reduces LLM-side cost but not vision-tower cost."
@@ -1695,7 +1695,7 @@ sources:
     venue: "arXiv preprint (v1)"
     url: "https://arxiv.org/abs/2601.12042"
     accessed: 2026-09-04
-    local_path: "papers/2026-zhang-security-pitfalls-token-compression.pdf"
+    local_path: ""
     sha256: "1c32239d0f73b48f09ccae86460f373e2b47193830bb848febdf6c14eddff914"
     license: "unknown"
     notes: "Studies compression-specific adversarial robustness failures in FastV, PDrop and SparseVLM; targets token-ranking instability on POPE, TextVQA and MME rather than content-safety guard classification or input-resolution reduction."

@@ -26,5 +26,4 @@ status: active
 - PolicyShiftGuard/PolicyShiftBench（arXiv 2026）：公开 2,000 个评测实例、265 张图、28 个政策变体和同图 pass/block 翻转。
 - Gist Tokens（NeurIPS 2023）：政策编译/缓存机制先例，也显示 FLOPs 与墙钟收益可能显著不一致。
 
-新增四篇论文笔记与 [[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md|路线转向评估]]，覆盖更新路线二 plan、overview、motivation、gaps、reading-log、双路线总计划、联合图文压缩综述、研究索引和标签统计。未删除原始来源、实验输出或历史阅读记录。
-
+新增四篇论文笔记与 [[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|历史方案清理记录]]，覆盖更新路线二 plan、overview、motivation、gaps、reading-log、双路线总计划、联合图文压缩综述、研究索引和标签统计。未删除原始来源、实验输出或历史阅读记录。

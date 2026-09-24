@@ -8,13 +8,17 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+## 2026-09-24
+
+- [Removed] [raw/papers, research/visual-token-pruning] 清理未精读论文副本与过时方案，保留精读原件和最新短政策研究计划，并同步来源路径与链接（详情：[[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md]]）。
+
 ## 2026-09-23
 
 - [Changed] [research/visual-token-pruning] 将当前课题切换为模板短政策条件下的文本政策指导视觉 Token 剪枝，整理 v1–v3 数据构造、短政策证据边界和首轮同场景 baseline 协议，并将联合压缩方案标为历史路线（[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|新版方案]]）。
 
 ## 2026-09-22
 
-- [Changed] [research/visual-token-pruning] 将路线二定稿为视觉—政策文本相互指导的联合压缩，核对 PolicyShiftGuard-3B/7B、SafeGuard-VL-RL 及两套公开数据的可用性与许可，并以“零新增人工标注、零全量 Guard 重训、允许 selector/LoRA 适配”替代不可证的零训练前提（[[LLM-Wiki/research/visual-token-pruning/research-plan.md|计划]]）。
+- [Changed] [research/visual-token-pruning] 将路线二定稿为视觉—政策文本相互指导的联合压缩，核对 PolicyShiftGuard-3B/7B、SafeGuard-VL-RL 及两套公开数据的可用性与许可，并以“零新增人工标注、零全量 Guard 重训、允许 selector/LoRA 适配”替代不可证的零训练前提（[[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|历史方案清理记录]]）。
 - [Changed] [research/visual-token-pruning] 深读 SafeGuard-VL 与 PolicyShiftGuard，区分跨政策泛化和同图政策翻转两种任务定义，比较语义 SFT+RLVR 与属性规则+边界配对训练，并将 PSS、双重反事实和长政策未覆盖边界回填路线二计划（[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|比较]]）。
 - [Changed] [research/visual-token-pruning, research/safety-classifier-compression] 根据长政策 token 主导与 pure-visual 90% 剪枝仅 1.14× 的用户报告约束，将路线二转为政策编译/条款检索与 pre-ViT 视觉选择协同预算；补入 MADTP、SafeGuard-VL、PolicyShiftGuard 和 Gist Tokens 证据，并保留精度提升为待反证次要假设（详情：[[LLM-Wiki/changes/2026-09-22-long-policy-bottleneck-pivot.md]]）。
 - [Added] [research/visual-token-pruning/watch] 完成滚动 10 天 arXiv 收集，60 条命中合并为 39 个唯一 ID，登记 6 篇直接相关、6 篇相邻与 12 篇排除题录，复用 15 个既有来源并保留人工决定，记录完整 API 分页与筛查边界（详情：[[LLM-Wiki/changes/2026-09-22-arxiv-watch.md]]）。

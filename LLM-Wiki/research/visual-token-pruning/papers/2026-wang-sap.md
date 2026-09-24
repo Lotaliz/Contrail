@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Understanding and Mitigating Token-Pruning-Induced Vulnerabilities in VLMs
@@ -23,5 +23,4 @@ updated: 2026-09-08
 
 “安全感知 token 剪枝”与“压缩导致特有安全行为”已经有更直接先例，故安全分支不能只做一次攻击迁移或按危险性改 score。SAP 面向被保护生成模型的 jailbreak/拒答，且是推理期修复；本课题可保留的空白是独立 Guard 检测、输入分辨率与视觉深度共同压缩、固定 FPR 下的漏报，以及训练后跨未知压缩状态的泛化。会议状态暂仅依据作者官方仓库登记。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

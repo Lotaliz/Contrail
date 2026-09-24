@@ -1,1 +1,13 @@
 .obsidian
+
+# Keep experiment documentation, but ignore experiment artifacts.
+/LLM-Wiki/experiments/**
+!/LLM-Wiki/experiments/**/
+!/LLM-Wiki/experiments/**/README*
+
+# Keep local assistant configuration out of version control.
+/.claudian/
+/.codex/
+/.qoder/
+.codex**
+output/

@@ -7,10 +7,12 @@ project_id: visual-token-pruning
 sources: [paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, repository-safeguard-vl, model-safeguard-vl-rl, dataset-safeeditbench, repository-policyshiftguard, model-policyshiftguard-3b, dataset-policyshiftbench]
 status: active
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-24
 ---
 
 # SafeGuard-VL 与 PolicyShiftGuard：Policy-Adaptive Image Guardrail 定义、方法与边界
+
+> 本页保留 2026-09-22 的论文比较与当时长政策路线判断；现行短政策视觉剪枝方案见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
 
 ## 核心结论
 
@@ -143,4 +145,4 @@ SafeGuard-VL 的公开权重需要特别谨慎解释：模型卡明确说明它�
 
 两篇都没有研究政策 token 长度的系统成本、政策缓存/编译、条款选择、视觉—政策 token 协同预算，或压缩后的安全非劣。PolicyShiftGuard 甚至明确把 long user-defined policies 列为未来工作。因此，当前路线不应重复“再做一个 policy-adaptive Guard”，而应把贡献放在：**在更严格的同图 policy-flip 定义下，实现可审计的长政策压缩与视觉证据协同选择。**
 
-关联：[[LLM-Wiki/research/visual-token-pruning/research-plan.md]]；[[LLM-Wiki/research/visual-token-pruning/long-policy-bottleneck-pivot-assessment.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|历史方案清理记录]]。

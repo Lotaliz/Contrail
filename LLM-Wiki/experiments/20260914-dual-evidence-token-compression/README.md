@@ -5,7 +5,7 @@ title: "双证据视觉 Token 压缩与原生视觉尾部适配"
 tags: [experiment, visual-token-pruning, token-merging, vision-language-model, multimodal-safety, representation-probing, knowledge-distillation, efficient-inference]
 status: draft
 created: 2026-09-14
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # 双证据视觉 Token 压缩与原生视觉尾部适配
@@ -334,7 +334,7 @@ $$
 ## 关联实体与来源
 
 - [[LLM-Wiki/research/visual-token-pruning/overview.md|视觉 Token 剪枝研究项目]]
-- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全 Token 剪枝主方案]]
+- [[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|历史方案清理记录]]
 - [[LLM-Wiki/research/visual-token-pruning/token-merging-landscape.md|视觉 Token 合并路线与证据边界]]
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|ViT Token 剪枝与位置基础]]
 - [[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 注入]]

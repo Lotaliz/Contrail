@@ -7,7 +7,7 @@ project_id: visual-token-pruning
 sources: [paper-bai-2025-qwen3-vl, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, dataset-policyshiftbench, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-zhang-2025-cdpruner]
 status: active
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-24
 ---
 
 # 新版课题方案：短政策条件下的文本政策指导视觉 Token 剪枝
@@ -16,7 +16,7 @@ updated: 2026-09-23
 
 **当前主线**是让运行时文本政策指导图像安全审核中的视觉 Token 剪枝。在已有长政策数据上，通过**基于原政策的模板改写**形成较短、可读的政策输入；短写是构造目标工作负载的背景条件，**不是拟投稿方法的贡献**。论文方法应在同一短政策、同一图像和同一 Guard 下，与现有视觉剪枝方法比较，证明政策条件确实改善视觉计算的质量—时延权衡。
 
-本方案替代先前以“学习式政策软 Token 压缩＋视觉—政策联合预算”为主贡献的 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|2026-09-22 方案]]。原长政策、软前缀压缩和负面结果保留为背景证据与必要对照，不纳入首轮视觉 baseline 的待实现模块。
+本方案替代先前以“学习式政策软 Token 压缩＋视觉—政策联合预算”为主贡献的 2026-09-22 历史路线；其变更与清理记录见 [[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md|清理记录]]。原长政策、软前缀压缩和负面结果保留为背景证据与必要对照，不纳入首轮视觉 baseline 的待实现模块。
 
 **证据状态：** [[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|公开研究]]支持使用同图异策评估政策适应；本次对话中用户提供的实验记录记载了当前 v1–v3 数据与长政策实验。用户最新报告：模板改写得到的约 32-token 可读短政策经训练后，初步分类/召回接近约 882-token 原政策；完整逐项指标、PER/PSS、FPR、政策覆盖范围和训练产物路径**尚未归档**。加入位置编码及额外损失的软 Token 压缩训练仍在进行；过程中的 loss 接近旧方案，不能当作最终质量结论。
 

@@ -9,7 +9,7 @@ status: active
 related: [vision-transformer-token-pruning-basics, visual-token-pruning, deepstack-visual-token-injection]
 sources: [paper-jiang-2022-trips, paper-cao-2023-pumer, paper-chen-2024-fastv, paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl, paper-yang-2025-visionzip, paper-alvar-2025-divprune, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-ji-2026-vispco, paper-liao-2026-vtc-bench, paper-yang-2025-visionthink, paper-wang-2024-qwen2-vl, paper-cai-2024-matryoshka-mm, paper-yao-2024-deco, paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2024-smarttrim, paper-shi-2024-crossget, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-gao-2026-quietprune, paper-sun-2026-hi-lo-prune, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 created: 2026-08-24
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # 多模态 Token 剪枝
@@ -116,7 +116,7 @@ $$
 
 FastV 没有第二次视觉编码器前向，但可能因显式 attention map 失去 FlashAttention；SparseVLM 的 dual-flash 方案明确增加第二次 attention operation；DivPrune 不依赖 attention，但有 $O(N^2)$ 距离矩阵。对短标签安全判别，decode 很短，selector 更难摊销，应优先考虑 LLM 前一次性、低开销、可物理 compact 且适合固定少量 token profile 的方案。
 
-详细证据见 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
+详细证据见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
 
 ## 证据边界
 
@@ -128,5 +128,5 @@ FastV 没有第二次视觉编码器前向，但可能因显式 attention map �
 ## 关系与继续阅读
 
 - 纯视觉基础：[[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]。
-- 统一研究方案：[[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]。
+- 统一研究方案：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
 - 相邻概念：[[LLM-Wiki/concepts/methods/deepstack-visual-token-injection.md|DeepStack 视觉 Token 深度注入]]。

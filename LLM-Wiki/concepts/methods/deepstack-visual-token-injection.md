@@ -9,7 +9,7 @@ status: active
 related: [multimodal-token-pruning, vision-transformer-token-pruning-basics]
 sources: [paper-meng-2024-deepstack, paper-bai-2025-qwen3-vl]
 created: 2026-08-31
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # DeepStack 视觉 Token 深度注入
@@ -172,6 +172,6 @@ Qwen3-VL 变体进一步带来五点直接启发：
 
 ## 来源与继续阅读
 
-- [[LLM-Wiki/research/visual-token-pruning/research-plan.md|多模态安全判别 Token 剪枝研究方案]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]

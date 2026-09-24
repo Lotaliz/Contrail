@@ -63,40 +63,40 @@ status: active
 
 | 标签 | 论文数 | 适用范围 | 代表页面 |
 |---|---:|---|---|
-| `#vision-language-model` | 67 | CLIP、VLM、MLLM 等图文模型 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|长政策视觉—政策协同压缩]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md\|图文联合内容风险]] |
-| `#multimodal-pretraining` | 7 | 图文预训练、强化数据和跨模态表征学习 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-vasu-mobileclip.md\|MobileCLIP]] |
+| `#vision-language-model` | 67 | CLIP、VLM、MLLM 等图文模型 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md\|图文联合内容风险]] |
+| `#multimodal-pretraining` | 7 | 图文预训练、强化数据和跨模态表征学习 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-vasu-mobileclip.md\|MobileCLIP]] |
 | `#model-compression` | 29 | 以更小参数量、结构或训练成本派生模型，并覆盖压缩过程引入的部署风险 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/model-compression-privacy/papers/2026-li-compleak.md\|CompLeak]] |
 
 ## 压缩、蒸馏与自适应计算机制
 
 | 标签 | 论文数 | 适用范围 | 代表页面 |
 |---|---:|---|---|
-| `#visual-token-pruning` | 60 | 删除或选择视觉、视频及 VLM Token | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|长政策视觉—政策协同压缩]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md\|SafeWatch]] |
-| `#token-merging` | 4 | 通过聚合相似 Token 降低序列长度 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/visual-token-pruning/papers/2023-cao-pumer.md\|PuMer]] |
-| `#structured-pruning` | 17 | 层、头、宽度、FFN 或其他可执行结构剪枝 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
+| `#visual-token-pruning` | 60 | 删除或选择视觉、视频及 VLM Token | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md\|SafeWatch]] |
+| `#token-merging` | 4 | 通过聚合相似 Token 降低序列长度 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/papers/2023-cao-pumer.md\|PuMer]] |
+| `#structured-pruning` | 17 | 层、头、宽度、FFN 或其他可执行结构剪枝 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-muralidharan-minitron.md\|Minitron]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
 | `#unstructured-pruning` | 2 | 权重级非结构化或半结构化稀疏 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-sun-wanda.md\|Wanda]]；[[LLM-Wiki/research/model-compression-privacy/papers/2026-li-compleak.md\|CompLeak]] |
 | `#quantization` | 3 | 权重、激活或混合低比特近似 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-fedorov-llama-guard-int4.md\|Llama Guard INT4]]；[[LLM-Wiki/research/model-compression-privacy/papers/2026-li-compleak.md\|CompLeak]] |
 | `#knowledge-distillation` | 27 | 教师标签、Logit、特征、关系或轨迹蒸馏 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-harmaug.md\|HarmAug]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2023-wu-tinyclip.md\|TinyCLIP]] |
 | `#on-policy-distillation` | 8 | 在学生 rollout、前缀或生成状态上蒸馏 | [[LLM-Wiki/research/safety-classifier-compression/papers/2024-agarwal-gkd.md\|GKD]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2026-zhang-prefix-opd.md\|Prefix OPD]] |
 | `#hard-example-mining` | 2 | 通过困难样本、错误反馈或数据生成补足决策边界 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-harmaug.md\|HarmAug]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-palo-pgkd.md\|PGKD]] |
-| `#budget-optimization` | 2 | 搜索或学习计算、层级或 Token 预算配置 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
-| `#dynamic-inference` | 4 | 按样本动态选择 Token、模块或计算路径 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|长政策视觉—政策协同压缩]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]] |
-| `#dynamic-sparsity` | 1 | 根据当前输入动态选择激活、神经元、头或细粒度子网 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
+| `#budget-optimization` | 2 | 搜索或学习计算、层级或 Token 预算配置 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
+| `#dynamic-inference` | 4 | 按样本动态选择 Token、模块或计算路径 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]] |
+| `#dynamic-sparsity` | 1 | 根据当前输入动态选择激活、神经元、头或细粒度子网 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
 | `#early-exit` | 3 | 从中间层提前产生预测或结束主干执行 | [[LLM-Wiki/research/visual-token-pruning/papers/2026-singguard-team-singguard.md\|SingGuard]]；[[LLM-Wiki/research/visual-token-pruning/papers/2023-tang-mue.md\|MuE]] |
-| `#model-routing` | 3 | 在多个模型、Guard 或共享子网路径之间选择执行 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]]；[[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
-| `#training-free` | 12 | 无需额外训练或微调的部署期方法 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-an-flap.md\|FLAP]] |
-| `#test-time-adaptation` | 1 | 测试阶段利用当前输入进行无监督适应 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
-| `#hardware-aware-optimization` | 2 | 将设备时延、算子或端侧约束纳入优化 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
+| `#model-routing` | 3 | 在多个模型、Guard 或共享子网路径之间选择执行 | [[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
+| `#training-free` | 12 | 无需额外训练或微调的部署期方法 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2024-an-flap.md\|FLAP]] |
+| `#test-time-adaptation` | 1 | 测试阶段利用当前输入进行无监督适应 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
+| `#hardware-aware-optimization` | 2 | 将设备时延、算子或端侧约束纳入优化 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
 
 ## 运行时、安全机制与评测属性
 
 | 标签 | 论文数 | 适用范围 | 代表页面 |
 |---|---:|---|---|
-| `#efficient-inference` | 61 | 以真实时延、吞吐、内存或设备部署为主要目标 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|长政策视觉—政策协同压缩]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md\|SafeWatch]] |
-| `#model-serving` | 6 | 面向在线推理服务的执行、调度、资源或反馈机制 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]] |
-| `#continuous-batching` | 4 | 在运行中重组请求或按迭代/分块组织批执行 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/variable-length-llm-serving/overview.md\|变长 LLM Serving]] |
-| `#slo-aware-serving` | 1 | 以 deadline、尾时延或 SLO attainment/goodput 驱动在线调度 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]] |
-| `#efficiency-evaluation` | 2 | 系统复核 FLOPs、近似与真实效率或安全之间的差异 | [[LLM-Wiki/research/visual-token-pruning/research-plan.md\|多模态安全 Token 剪枝]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-activation-approximations.md\|Activation Approximations]] |
+| `#efficient-inference` | 61 | 以真实时延、吞吐、内存或设备部署为主要目标 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md\|SafeWatch]] |
+| `#model-serving` | 6 | 面向在线推理服务的执行、调度、资源或反馈机制 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/papers/2025-lee-saferoute.md\|SafeRoute]] |
+| `#continuous-batching` | 4 | 在运行中重组请求或按迭代/分块组织批执行 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/variable-length-llm-serving/overview.md\|变长 LLM Serving]] |
+| `#slo-aware-serving` | 1 | 以 deadline、尾时延或 SLO attainment/goodput 驱动在线调度 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]] |
+| `#efficiency-evaluation` | 2 | 系统复核 FLOPs、近似与真实效率或安全之间的差异 | [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-activation-approximations.md\|Activation Approximations]] |
 | `#representation-probing` | 8 | 从隐藏表示、跨层信号或共享表征进行检测与分析 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-liu-sentinel.md\|Sentinel]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-jbshield.md\|JBShield]] |
 | `#activation-steering` | 2 | 在中间表示或生成过程中操控安全相关方向 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-zhang-jbshield.md\|JBShield]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2026-zhong-rennervate.md\|Rennervate]] |
 | `#runtime-monitoring` | 4 | 在线输入、输出、隐藏状态或生成轨迹监控 | [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-wang-selfdefend.md\|SelfDefend]]；[[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2024-wu-legilimens.md\|Legilimens]] |
@@ -106,4 +106,4 @@ status: active
 
 ## 2026-09-09 训练参与调研入口
 
-新增论文复用既有标签，不扩展词表；阅读层级与待核来源见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md]]，候选动机见 [[LLM-Wiki/research/visual-token-pruning/motivation.md]]。计数已按当前全部 76 篇 paper-note 重新核算，而非仅做增量相加。
+新增论文复用既有标签，不扩展词表；阅读层级与待核来源见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md]]，候选动机见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md\|当前研究计划]]。计数已按当前全部 76 篇 paper-note 重新核算，而非仅做增量相加。

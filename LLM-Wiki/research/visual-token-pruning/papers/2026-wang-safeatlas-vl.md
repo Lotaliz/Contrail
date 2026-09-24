@@ -14,12 +14,12 @@ priority: high
 tags: [paper-note, research, multimodal-safety, safety-guardrail, safety-evaluation, vision-language-model]
 status: active
 created: 2026-09-18
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # 来源与核验范围
 
-正式标题为 *SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models*，用户输入的 SafeAtlus-VL 按该资源理解。[官方 v1 HTML](https://arxiv.org/html/2608.29098v1)及 [[LLM-Wiki/raw/papers/2608.29098v1.pdf|45 页 PDF 原件]]；定向 skimmed 数据构造、标签、目标定义和相关实验，未作完整 Guard 方法精读或模型复现。已读摘要、引言、总览图、主要结果与结论；视觉核验 PDF pp.3/5/6 的 Figures1/3/4 及 pp.36–38 的 TablesA12–A14。原件元数据触发 Poppler 语法警告，所查页面可读，原件未修复/重导出。
+正式标题为 *SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models*，用户输入的 SafeAtlus-VL 按该资源理解。[官方 v1 HTML](https://arxiv.org/html/2608.29098v1)及 [arXiv v1 PDF](https://arxiv.org/pdf/2608.29098v1)（本地副本已于 2026-09-24 清理）；定向 skimmed 数据构造、标签、目标定义和相关实验，未作完整 Guard 方法精读或模型复现。已读摘要、引言、总览图、主要结果与结论；视觉核验 PDF pp.3/5/6 的 Figures1/3/4 及 pp.36–38 的 TablesA12–A14。原件元数据触发 Poppler 语法警告，所查页面可读，原件未修复/重导出。
 
 ## 研究问题与方法家族
 
@@ -62,7 +62,7 @@ $$
 - 相同数据划分分别训练/校准 text-only 与 full multimodal；response 的 text-only 输入至少包括请求和回复。image-only 用同一图片猜 request/response 标签只能作为捷径基线，因为目标不同于图片安全。
 - 随机打乱图片而保持原标签只诊断对视觉输入的依赖，不是新构造的有效安全测试。可信的联合判别评测需人工确认并重新标注的匹配反事实图文对，检查换图片/换文本是否真的改变政策标签。
 - 同图片多条交互按图片或近重复图片组隔离训练/测试，避免同一图泄漏；元数据中的 category 和 teacher_head 只作监督或事后审计，不能作为预测输入。
-- 对比 [[LLM-Wiki/research/visual-token-pruning/papers/2025-palaskar-vlsu.md|VLSU]] 的独立模态/组合标注与 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|当前政策条件剪枝路线]]：仅在本集获得快且准的结果，不能证明图文联合机制必要。若文本级联足够好，它应成为必要基线。
+- 对比 [[LLM-Wiki/research/visual-token-pruning/papers/2025-palaskar-vlsu.md|VLSU]] 的独立模态/组合标注与当时的联合压缩路线：仅在本集获得快且准的结果，不能证明图文联合机制必要。若文本级联足够好，它应成为必要基线。
 
 ## 未完成与收尾记录
 

@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # InternVL3.5: Advancing Open-Source Multimodal Models in Versatility, Reasoning, and Efficiency
@@ -22,5 +22,4 @@ updated: 2026-09-08
 视觉 token 网格压缩不等于在视觉塔之前降低原图分辨率；ViR 是额外组件。固定预算复用一致性训练可作无 router 基线，但这是本项目改编。论文直接阻止“首次跨预算一致性学习与质量损失驱动路由”的主张。
 待升级：复现 ViCO 数据规模、投影/像素重排和视觉塔耗时。代码入口以论文/InternVL 官方项目为准，本轮未运行。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

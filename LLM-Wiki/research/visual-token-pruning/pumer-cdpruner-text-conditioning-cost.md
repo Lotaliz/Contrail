@@ -7,7 +7,7 @@ status: active
 project_id: visual-token-pruning
 sources: [paper-cao-2023-pumer, paper-zhang-2025-cdpruner, code-pumer-2026-audit, code-cdpruner-2026-audit]
 created: 2026-09-18
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # 图文条件剪枝并不只有一种成本结构
@@ -62,4 +62,4 @@ CDPruner 表 1–4：LLaVA / 32 保留作者聚合性能 94.3%，NeXT / 160 为 
 4. **固定少量政策可缓存表示是优化候选，不是论文已实现功能。** 若 query 由可变用户文本决定，仍需在线表示；更重要的是测 shallow 特征与政策 embedding 的实际对齐，不能把同维度 cosine 当语义证明。
 5. **先测净收益，再优化复杂 selector。** 固定 batch、设备、图像尺寸和回答长度，分项记录 vision/text/scoring/kernel/select/compact/prefill/decode/E2E；在固定 FNR/召回约束下比较相同预算。短输出 Guard 不能依赖长 decode 来摊薄额外成本。
 
-本轮只新增证据与候选启发，未修改 [[LLM-Wiki/research/visual-token-pruning/research-plan.md|主方案]]、正式 Motivation、gap 或已有实验输出。
+本轮（2026-09-18）只新增证据与候选启发，未修改当时的主方案、Motivation、gap 或已有实验输出；上述历史方案现已清理。

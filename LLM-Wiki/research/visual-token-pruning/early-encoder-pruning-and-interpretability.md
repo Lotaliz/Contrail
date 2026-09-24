@@ -7,7 +7,7 @@ project_id: visual-token-pruning
 sources: [paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-tong-2025-flowcut, paper-liu-2025-meteor, paper-han-2026-ficoco, paper-hu-2026-illava, paper-liu-2024-mustdrop, paper-islam-2025-adaptmerge, paper-chen-2026-evoprune, paper-zhang-2026-vscan]
 status: active
 created: 2026-09-10
-updated: 2026-09-16
+updated: 2026-09-24
 ---
 
 # 结论
@@ -73,4 +73,4 @@ updated: 2026-09-16
 - 浅层重要性可能随后续层发生反转；不可逆 early drop 应与 token bypass、保底全局覆盖或恢复机制比较。
 - 动态 token 数只有在张量真实缩短且 kernel/batching 支持时才会转化为时延收益。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。

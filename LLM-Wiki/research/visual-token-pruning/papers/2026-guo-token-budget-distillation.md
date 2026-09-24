@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Token-Budget Distillation: Transferring Full-Token Semantics to Compressed Video Vision-Language Models
@@ -25,5 +25,4 @@ updated: 2026-09-08
 §5 承认完整教师训练成本和不可逆信息损失。图 4 单例 attention 不能证明因果 grounding。稿件未提供本项目所需的固定 FPR、长尾召回和 verdict P99 证据；不得把原模型称为理论准确率上界。可靠教师过滤、margin 蒸馏已有直接先例；候选差异必须涉及学生证据是否可见，而不只是教师是否正确。
 代码：本次未核实可用官方实现；复现实参仍需补齐。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # VisCo: Leveraging Large Language Models as Intrinsic Encoders for Visual Token Compression
@@ -21,5 +21,4 @@ updated: 2026-09-08
 ## 边界与研究判断
 “主干不变”不等于“完整执行图不变”：记忆 token、双阶段编码和 KV 注入仍要计费。它与 ViCO（InternVL 一致性学习）是不同工作，不要混用名称。其价值是压缩前先编码语义的反例，但不能据此宣称零成本单 token Guard。待升级：编码阶段是否吞掉短标签加速、与原生多图/DeepStack 对齐；代码未核验和运行。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

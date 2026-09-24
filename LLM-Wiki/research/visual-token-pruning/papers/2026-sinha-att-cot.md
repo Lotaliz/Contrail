@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-24
 ---
 
 # Attention-guided Fine-tuning of Multimodal Large Language Models Improves Chain-of-Thought Reasoning
@@ -21,5 +21,4 @@ updated: 2026-09-08
 ## 边界与研究判断
 “过早承诺”和训练纠正并非新的通用发现；它仍研究 CoT 输出，不保证短标签 Guard 的时延。我们可将 reasoning 教师作为训练期监督，但必须实测压缩学生的 first-verdict 能力，不能假设 CoT 蒸馏就能把额外计算无损消除。未复现；完整超参与推理长度待专项复核。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/gaps.md]]。来源事实与“研究判断”分开；未通过本地实验验证。
-
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。
