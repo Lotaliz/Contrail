@@ -8,7 +8,21 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+
+## 2026-10-03
+
+- [Added] [research/visual-token-pruning/watch, raw/sources] Collected the complete rolling ten-day arXiv window, screened 93 new title/abstract records (21 direct, 26 adjacent, 46 out-of-scope), retained user decisions, and recorded query coverage and deduplication in the batch log.
+- [Fixed] [research/visual-token-pruning/watch, metadata/workflows/arxiv-watch] 将本批 93 条候选及排除理由改为中文，并明确后续索引理由的中文书写与写入前检查要求。
+- [Changed] [research/visual-token-pruning/watch, raw/sources] 按用户筛选边界将 5 篇以在线策略自蒸馏为主的论文移至仅查重排除表，并在后续标题摘要筛查中排除同类论文，同时保留已选择的精读候选。
+
+## 2026-09-25
+
+- [Added] [research/visual-token-pruning/watch, raw/sources] 完成 2026-09-25 的 10 天 arXiv 检索，登记 4 篇直接相关、1 篇相邻及 10 篇去重排除论文，复用 26 个既有候选并保留人工决定。
+- [Added] [research/visual-token-pruning/papers, raw/papers] 精读用户新选定的 Riemannian Metrics、CoRePrune 与 STD，保存三份 arXiv v1 原件并更新来源、阅读日志和候选状态。
+
 ## 2026-09-24
+
+- [Changed] [research/visual-token-pruning/watch] 精读索引中选定的 SLICEChat、ME-VLM、VPRune、CounterCredit 与 QCPruner，保存五份当前版本原件并升级来源；排除表删除 `pending` 决策列，out-of-scope 条目改为仅查重记录（详情：[[LLM-Wiki/changes/2026-09-24-selected-watch-deep-read-and-exclusion-policy.md]]）。
 
 - [Removed] [raw/papers, research/visual-token-pruning] 清理未精读论文副本与过时方案，保留精读原件和最新短政策研究计划，并同步来源路径与链接（详情：[[LLM-Wiki/changes/2026-09-24-cleanup-unread-raw-and-superseded-plans.md]]）。
 

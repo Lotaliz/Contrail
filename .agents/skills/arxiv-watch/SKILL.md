@@ -16,14 +16,14 @@ Choose the mode from the user's request; scheduled runs always use **collect**.
 - Use the repository literature-review skill in discovered-only mode and follow the arxiv-watch workflow. Freeze the run cutoff, apply the configured rolling 10-day first-submission window, and obey the query/pagination/screening budget.
 - Verify primary arXiv metadata, read titles and abstracts, and label relevance as the agent's screening judgment. This remains discovered / unverified, even if the abstract sounds persuasive.
 - Deduplicate across query groups, all project candidates, the global source registry, and existing paper notes/logs. Reuse stable source IDs and existing notes. A changed arXiv version is the same paper.
-- Register verified new sources and maintain one persistent candidate row per base arXiv ID. Retain out-of-scope and user-skipped/deferred records. Newly discovered candidates default to pending.
+- Register verified new sources and maintain one persistent candidate row per base arXiv ID. Retain out-of-scope and user-skipped/deferred records. Newly discovered direct/adjacent/uncertain candidates default to pending; out-of-scope rows are dedupe-only and carry no human decision state.
 - Preserve the user's decisions. Do not create papers notes, execute selected-paper reading, download PDFs, or update synthesis/evidence merely because a scheduled run found candidates.
 - Save the actual requests, coverage and unresolved IDs in a new batch log, including zero-new, partial and failed runs. Re-read affected files before writing so intervening user edits survive.
 - Notify only for new direct/adjacent/uncertain candidates, important failures or necessary human judgment; keep unchanged/non-actionable runs quiet while retaining logs.
 
 ## Decide
 
-Apply only decisions explicitly supplied by the user to identified existing candidate rows. Record the decision date and user basis. Do not infer selected from an agent relevance ranking. Keep every row; selection alone does not create a paper note or upgrade its reading level.
+Apply only decisions explicitly supplied by the user to identified direct/adjacent/uncertain candidate rows. Record the decision date and user basis. Do not infer selected from an agent relevance ranking. Out-of-scope rows have no decision state; move one into the active candidate table only when the user requests reconsideration. Keep every row; selection alone does not create a paper note or upgrade its reading level.
 
 ## Read selected papers
 
