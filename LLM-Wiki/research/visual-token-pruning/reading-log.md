@@ -4,13 +4,93 @@ type: synthesis
 title: "训练参与的视觉 Token 压缩：检索与证据日志"
 tags: [research, visual-token-pruning, knowledge-distillation, multimodal-safety]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-liu-2026-autoprune-ai4ai, code-autoprune-2026-release, paper-zhang-2025-cdpruner, paper-cao-2023-pumer, code-pumer-2026-audit, code-cdpruner-2026-audit, paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-arxiv-2609-18279, paper-arxiv-2609-13804, paper-arxiv-2609-10346, paper-arxiv-2609-15131, paper-arxiv-2609-13745, paper-arxiv-2609-24894, paper-arxiv-2609-24526, paper-arxiv-2609-24485, paper-arxiv-2609-22910, paper-arxiv-2609-19990, paper-arxiv-2609-27988, paper-arxiv-2609-26484, paper-arxiv-2609-25635]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-liu-2026-autoprune-ai4ai, code-autoprune-2026-release, paper-zhang-2025-cdpruner, paper-cao-2023-pumer, code-pumer-2026-audit, code-cdpruner-2026-audit, paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-arxiv-2609-18279, paper-arxiv-2609-13804, paper-arxiv-2609-10346, paper-arxiv-2609-15131, paper-arxiv-2609-13745, paper-arxiv-2609-24894, paper-arxiv-2609-24526, paper-arxiv-2609-24485, paper-arxiv-2609-22910, paper-arxiv-2609-19990, paper-arxiv-2609-27988, paper-arxiv-2609-26484, paper-arxiv-2609-25635, paper-zhu-2026-gapsight, paper-ramachandram-2026-pf-cbm, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-chen-2025-safewatch, code-hf-2026-qwen3-vl-modeling]
 status: active
 created: 2026-09-08
-updated: 2026-09-25
+updated: 2026-10-10
 ---
 
 # 检索范围
+
+## 2026-10-10：安全激活指导视觉证据保留
+
+范围：独立政策 Guard 的早期视觉激活/梯度/探针，及其与当前 Cx 预算规划的关系。时间截点2026-10-10；检索官方 arXiv/会议论文、作者工作入口及 Transformers 源码。关键词含 `visual token pruning safety activation`、`safety-aware token pruning`、`VLM safety linear probing`，并按 SAHs/SASA/ShiftDC/SafePTR 标题追索原文。只将与内部安全信号、政策审核或任务敏感性选择有关的工作用于比较；排除差分隐私梯度更新剪枝等不同问题。
+
+去重后新增 SAHs、SASA、ShiftDC 三篇 skimmed/source-checked，阅读摘要、引言、方法总览、主表和结论；未完整精读附录、下载原件或复现。复用 SafeWatch、SafePTR、SAP、Task-Induced Metrics、When Text Matters；未重复登记 SafePTR。读取 Transformers main 的原生 Qwen3-VL 视觉/语言接口，未固定 revision 或核验本地修改。
+
+[[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md|综合]]区分拒答与审核、语言早层与视觉早层、可读出信息与空间贡献、离线监督与在线成本。SAHs 的 ViT 探针在 VLGuard 为50%是迁移反证；现有先例阻止声称首次安全/政策剪枝。安全专属收益仍是候选假设，未更新正式 motivation。未全面覆盖所有安全表征论文或截至截点的全部新作。
+
+用户报告新的自适应预算实验正在运行；未接入日志或得到新增数字，方法记录仅更新报告状态。本页此前同日“未运行”指方案提出时状态。
+
+## 2026-10-10：第二批七篇 selected 精读
+
+用户完成全部 pending 筛选，本轮只读取当前七篇 selected。六篇新建 paper-note，SAP 沿用既有笔记/来源 ID，由仓库略读升级为全文 deep-read；七项均 source-checked，完整 v1 HTML 与哈希已登记。完整 PDF 单独登记，未完成的下载不进入 raw。未运行代码或实验，作者结果与当前 Cx 的迁移假设分开。
+
+| 论文 | 本次最重要的证据与限制 |
+|---|---|
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-jiang-vcola.md|V-CoLA]] | LLM 第1层后做状态重建/独特性合并，第24层退出；跨层平均预算不能当入口保留率；6.15×为prefill，Jetson E2E最高1.733× |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-sap.md|SAP]] | 定长背景交换＋decode attention重分配；“62%”来自图文扩展单任务的61.7个百分点，非视觉SAP平均效果；没有policy Guard/FPR保证 |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-shi-small-objects-safe-zoom.md|小目标与安全放大]] | 分开原像素信息、token几何和call内容；召回单调性有条件且有实测反例，不能保证单框Guard安全 |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-jeong-refit.md|ReFIT]] | 多尺度编码→窗口重塑→裁图重编码→区域内token筛选；只有FLOPs，训练/阈值/成本归属细节不足 |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-feng-visionweave.md|VisionWeave]] | 完整ViT后两粒度全覆盖；off-policy训练且更新LLM；固定样本预算打乱位置和SGLang服务证据强，但长视频并发收益不外推小图 |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-han-foveated-compression.md|Foveated Compression]] | 九路单高清区干预＋并列赢家监督；learned仍弱于整图缩放，问题内容无显著收益；prefill-free失败probe弱于后验entropy |
+| [[LLM-Wiki/research/visual-token-pruning/papers/2026-zhu-flashgaze.md|FlashGaze]] | pixel cost＋quadtree DP在ViT前执行；TTFT包含前端，第一帧全保留；13×来自长视频/SDPA/batch1，无policy选择 |
+
+**项目判断：** 当前方案仍是 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx全局/条件局部双收益]]，不锚定5%，小图与至多一个局部框。优先参考Foveated的强缩放/随机框/oracle对照和VisionWeave的固定预算位置打乱；小目标论文支持将同pixels变token与native crop控制分开。没有把本轮通用VQA、生成模型拒答或工程图枚举结论写成政策安全收益，也未新建concept或更新正式motivation。
+
+晋升与原件获取记录见 [[LLM-Wiki/changes/2026-10-10-selected-watch-second-batch-deep-read.md]]；其他人工决定和排除查重记录保持。检索每批新增pending≤10的规定未变，本轮没有新检索或自动推荐。
+
+
+## 2026-10-10：当前方法命名更新
+
+按用户请求，当前逐样本自适应视觉预算方法称为 Cx。主方案和当前方法记录的文件/目录已同步更名，历史 C5 结果保留原名，稳定 ID 保留。命名与路径映射见 [[LLM-Wiki/changes/2026-10-10-cx-method-rename.md]]。
+
+## 2026-10-10：小图裁剪预算的源码核对
+
+在现有研究计划中找到 LlavaGuard/SMID/外部 URL、UnsafeBench crosswalk、政策变体及独立 PolicyShiftBench 体系的数据构造记录；未重新检查外部图像或处理脚本。结合用户最新报告的全图平均约 400 Token，修正当前方案的局部绝对档位示例，并加入相对裁图参考网格的三档表达，不规定数据使用规模或执行步骤。
+
+本次只核对 Qwen 官方 README 和 main 的图像 resize 代码，新增 [[LLM-Wiki/research/visual-token-pruning/qwen3-vl-resolution-budget-notes.md|源码说明]]及 code 来源。确认存在上采样分支，区分原图信息分辨率与编码 Token 容量。未检索新的高分辨率数据集、下载图像或复测 C5；扩大框和扩大数据的作用均为场景判断。
+
+## 2026-10-10：双重要性指标的方案推导与来源复核
+
+复用已登记的 VIP-Router、ResAdapt、CounterCredit、When Text Matters 和 Task-Induced Riemannian Metrics；回看关键方法/证据笔记，并核对原文关于效用回归、输入侧分配及 attention 与区域干预的机制。没有新增来源或自动提升阅读层级。
+
+[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|双重要性方法方案]]与 [[LLM-Wiki/experiments/20261010-cx-global-local-importance/README.md|方法记录]]已按用户最新要求更新为 v2：移除数据规模/范围、执行步骤、门禁和失败处置；审核代价仅含 NLL 与标签不一致，每个视图三档。补充条件局部增量价值、局部-only 独立充分性和像素依赖的用途区别。两支 head 和预算曲线仍为研究假设，未运行新实验。
+
+## 2026-10-10：近期追踪六篇 selected 精读
+
+用户本次启动时的六篇 selected 已复用来源并完成 deep-read / source-checked。保存六份 v1 完整 HTML 和六份完整 PDF，登记各自哈希，按方法、训练/推理、主表、消融和附录核查。未执行代码、GPU 模型或实验；原文结果与项目迁移假设分开。
+
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-zhao-scaling-stops.md|Scaling Stops]]：可分离误差模型和离散配置 direct selection 有参考价值，但成本主要为语言侧 FLOPs，有限范围的 fitted ceiling 不是不可改善性证明。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-guan-video-evidence-indexing.md|Video Evidence Indexing]]：低清预览→目标级时间戳→高清证据的两次调用；强压缩需要自蒸馏，context width 不能换算为已测端到端加速。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-yan-fata.md|FATA]]：保留 full 正确而压缩后出错的条件评测；LLaVA 主协议回填完整槽位，跨模型强结果使用不同白盒适配。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-trevs.md|TReVS]]：完整视觉编码后引入文本 embedding 的 saliency/diversity 两阶段选择，32 平均 token 在 POPE 为 1.4× total-time；没有 pre-ViT 计算节省。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-niu-evivit.md|EviViT]]：人类 trace 学习位置及预算，固定 crop 大小/预算的平移和 selector question shuffle 支持证据选择价值，但少 token 在部分档位更慢。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-kang-when-text-matters.md|When Text Matters]]：保留 expanded reserve 到 decoder midpoint 后由文本重选；表中 End-to-end 实为 GPU-ready 到首 token，且 task evaluation 禁用 KV cache。
+
+六项从 selected 晋升为 ingested，其他用户决定保留。本轮不新增 concept 或正式 motivation；当前 Cx 主线仍是[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md|不锚定 5% 的全局/单局部逐样本预算]]。机制比较补入 [[LLM-Wiki/research/visual-token-pruning/comparison.md]]。原失败批次重试与每批至多十篇 pending 是独立的标题摘要收集步骤，未用本次全文阅读为新候选排序。
+
+## 2026-10-10：逐样本视觉预算与输入分辨率的定向补检
+
+截至 2026-10-10，范围为静态单图、政策条件、编码前预算选择、全局＋至多一个局部框；不要求维持平均 5%，暂不研究 batch 调度。优先 arXiv 原文和官方项目页，查询包括 `adaptive image resolution selection vision language models per sample budget router`、`Matryoshka Multimodal Models token budget allocation dynamic M3`、`VisionThink dynamic resolution policy high resolution 2025 paper` 和 `adaptive visual token budgeting per image singular value energy allocation`。纳入机制可迁移的输入分辨率、多尺度适配与候选配置监督；排除仅在完整视觉编码后按无政策复杂度确定 K、且不能解释 C5 输入成本的机制作为主推荐。定向覆盖，不宣称穷尽。
+
+- 新登记 [[LLM-Wiki/research/visual-token-pruning/papers/2026-liao-resadapt.md|ResAdapt]]，快读方法图、主表、运行开销、结论和图像边界实验，skimmed / source-checked；仅将输入侧 allocator 作为近邻，保留图像迁移失败。
+- 复用既有 M3 和 VisionThink source_id，创建 [[LLM-Wiki/research/visual-token-pruning/papers/2024-cai-m3.md|M3]]与 [[LLM-Wiki/research/visual-token-pruning/papers/2025-yang-visionthink.md|VisionThink]]快读笔记；核查最小正确尺度 oracle、高清必要样本筛选与多轮时延边界，skimmed / source-checked。未下载新原件或复现；按 primary HTML 修正 VisionThink 来源许可。
+- [[LLM-Wiki/research/visual-token-pruning/adaalloc-project-screening.md|AdaAlloc]]仅官方项目页，discovered；网页 arXiv 编号不完整，不登记虚构论文编号或提升阅读层级。
+- VIP-Router、StepPrune、ET-Prune 复用已有笔记；E-AdaPrune 沿用已登记候选，不在本轮提升阅读层级。
+- 更新 [[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md|Cx 逐样本预算的前版设计]]：少量全局/局部实际 Token 配置、最小充分配置监督、共享多预算 Guard 支持及单样本 E2E 对照。全部效果待验证，未启动实验或修改正式 motivation。
+
+## 2026-10-08：C5 单局部框的政策解释性定向补检
+
+范围：在保持全局＋至多一个局部框、原 33 路线与 5% 预算的场景中，查找条款级 grounding、路线收益监督、像素使用干预与解释通道捷径；截至 2026-10-08。检索站点为 arXiv 原文、CVF、官方项目页；发现时先按机制筛选，随后复用既有来源或创建快读笔记。查询包括 `policy visual token pruning safety`、`concept bottleneck local grounded vision language`、`CounterCredit When Should a VLM Look`、`CROP Token Pruning`。
+
+候选及处置：GapSight（2608.21762v1）为单框 teacher 收益路由的直接近邻；PF-CBM（2606.04364v1）为显式命名中间量与空间证据的相邻机制。二者查重后登记新来源，快读摘要、引言、方法、图注、主表和结论/限制，标为 skimmed / source-checked，未下载 PDF 或运行实验。CounterCredit、VIP-Router、SafeWatch、QuietPrune、Evidence-RL、PolicyShiftGuard 与区域监督综述复用已有 Wiki 笔记，未自动提升阅读层级。检索同时命中 LT-OPD（2609.32353），沿用既有 out-of-scope 决定，不把在线自蒸馏纳入本次方法路线。
+
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-zhu-gapsight.md|GapSight]]：结果反馈训练单框 route 已有先例；迁移目标是相对效用监督，不引入额外在线 Guard 路径。
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-ramachandram-pf-cbm.md|PF-CBM]]：命名中间量需要实际进入选择图，并单独检验语义与捷径；鸟类前景/空间先验不直接迁移。
+- [[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md|C5 后续建议]]：结合用户报告，提出 policy-pair gain 与匹配布局的像素监督，全部性能改善为待验证假设。
+
+仅进行定向补检，不能支持不存在其他近邻的主张。用户原始报告已实际存入 [[LLM-Wiki/experiments/20261008-c5-policy-grounding/README.md|实验记录]]；报告列出的外部代码、checkpoint 和逐样本缓存未检查。
 
 ## 2026-09-25：近期追踪新选定三篇论文精读
 

@@ -4,13 +4,19 @@ type: synthesis
 title: "背景：从推理删 Token 到训练可压缩的安全判别"
 tags: [research, visual-token-pruning, multimodal-safety, knowledge-distillation]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-guo-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-guo-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-arxiv-2609-27988, paper-arxiv-2609-34861, code-hf-2026-qwen3-vl-modeling]
 status: active
 created: 2026-09-08
-updated: 2026-09-09
+updated: 2026-10-10
 ---
 
 # 机制背景
+
+## 2026-10-10 补充：内部安全读出与视觉证据选择
+
+内部激活读出、生成安全干预、政策 Guard 剪枝是相邻而不同的机制。SAHs/SASA/ShiftDC 多在语言主干检测或校正安全表征；SafePTR/SAP 抑制不安全生成相关影响；SafeWatch 按政策选择审核视频特征。对独立 Guard，危险依据和允许/例外语境都可能需要保留。
+
+当前 Cx 的安全表征假设是将完整判别贡献离线转为便宜的政策条件空间信号，再结合已有预算分配。原生 Qwen3-VL 视觉塔不读政策；完整教师可读性不能保证低清预览可观察性。证据与比较见 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md]]；未据此改变正式 motivation 或当前预算方法。
 
 ## 1. 将训练位置与压缩位置分开
 

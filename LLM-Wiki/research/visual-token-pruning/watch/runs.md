@@ -5,7 +5,7 @@ title: "视觉 Token 剪枝：近期检索批次"
 tags: [index, research, visual-token-pruning]
 status: active
 created: 2026-09-16
-updated: 2026-10-08
+updated: 2026-10-10
 ---
 
 # 批次导航
@@ -14,6 +14,9 @@ updated: 2026-10-08
 
 | 批次日志 | UTC 窗口 | 覆盖状态 | 新相关 / 相邻 / 待判 / 不相关 | 已知重复 | 待补检与失败 |
 |---|---|---|---|---|---|
+| [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-09-020526Z-retry1.md\|2026-10-09-020526Z-retry1]] | 09-29 02:05:26 至 10-09 02:05:26 UTC | complete（原窗口重试） | 3 / 2 / 0 / 9 | 81 个既有候选；66 条跨查询重复 | 五页完整；新增 pending 5 / 上限 10；备查 0 |
+| [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-09-020526Z.md\|2026-10-09-020526Z]] | 09-29 02:05:26 至 10-09 02:05:26 UTC | failed | 未确认 / 未确认 / 未确认 / 未确认 | unknown | q1 超时后 HTTP 429；网页回退不可核验；q1–q4 待补检 |
+| [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-08-020043Z-retry1.md\|2026-10-08-020043Z-retry1]] | 09-28 02:00:43 至 10-08 02:00:43 UTC | complete（原窗口重试） | 11 / 12 / 0 / 16 | 65 个既有候选；82 条跨查询重复 | 无；五页全部取完，原 HTTP 429 失败日志保留 |
 | [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-08-020043Z.md\|2026-10-08-020043Z]] | 09-28 02:00:43 至 10-08 02:00:43 UTC | failed | 未确认 / 未确认 / 未确认 / 未确认 | unknown | arXiv API HTTP 429；q1–q4 均无完整覆盖 |
 | [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-03-074539Z.md\|2026-10-03-074539Z]] | 09-23 07:45:39 to 10-03 07:45:39 UTC | complete | 21 / 26 / 0 / 46 | 9 project candidates; 75 cross-query repeats | None; five pages complete |
 | [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-09-25-115723Z.md\|2026-09-25-115723Z]] | 09-15 11:57:23 至 09-25 11:57:23 UTC | complete | 4 / 1 / 0 / 10 | 26（另合并跨查询重复 21 条） | 无；四组均在一页内完成 |

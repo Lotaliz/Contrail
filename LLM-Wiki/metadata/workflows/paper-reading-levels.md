@@ -4,6 +4,7 @@ type: metadata
 title: 三级论文阅读
 tags: [metadata, workflow, source]
 status: active
+updated: 2026-10-10
 ---
 
 # 三级论文阅读
@@ -39,6 +40,7 @@ status: active
 
 必须完成：
 
+- 按 [[LLM-Wiki/metadata/workflows/paper-ingestion.md|精读笔记的表达原则]]，先说明论文场景、问题和主要概念的含义，再用通俗中文展开方法与证据。
 - 问题、假设、方法、训练或推理流程。
 - 数据集、基线、指标、消融和主要结果。
 - 局限、失败条件、作者主张与实际证据的差异。

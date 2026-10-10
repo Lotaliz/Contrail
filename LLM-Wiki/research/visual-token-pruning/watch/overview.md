@@ -1,11 +1,11 @@
----
+﻿---
 id: visual-token-pruning-watch-overview
 type: index
 title: "视觉 Token 剪枝：近期论文追踪"
 tags: [index, research, visual-token-pruning]
 status: active
 created: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-10
 ---
 
 # 近期论文入口
@@ -25,7 +25,15 @@ updated: 2026-10-03
 
 同日用户从本次候选中选定并完成 [[LLM-Wiki/research/visual-token-pruning/papers/2026-bond-task-induced-metrics.md|Riemannian Metrics]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-he-coreprune.md|CoRePrune]] 与 [[LLM-Wiki/research/visual-token-pruning/papers/2026-zhang-std.md|STD]] 精读；三项已标记 ingested。用户将另外两篇新候选标记为 skipped，当前没有 pending；精读结论见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md|阅读日志]]。
 
-2026-10-03 收集批次 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-03-074539Z.md|2026-10-03-074539Z]] 完整覆盖十天窗口：177 条原始命中合并为 102 个唯一 ID，其中 9 个既有候选、93 个新来源。当次初筛新增 21 篇 direct、26 篇 adjacent、46 篇 out-of-scope；批次结束时相关候选为 83 篇，其中 47 篇 pending。原有用户决定未被覆盖，也未自动精读。此后用户完成部分筛选，并要求将以在线策略蒸馏为主要贡献的论文排除；当前相关候选为 78 篇（其中 3 篇 selected、30 篇 pending），另有 92 篇排除命中仅用于查重。批次日志保留当时的筛查快照，不追改历史结果。
+2026-10-03 收集批次 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-03-074539Z.md|2026-10-03-074539Z]] 完整覆盖十天窗口：177 条原始命中合并为 102 个唯一 ID，其中 9 个既有候选、93 个新来源。当次初筛新增 21 篇 direct、26 篇 adjacent、46 篇 out-of-scope；批次结束时相关候选为 83 篇，其中 47 篇 pending。原有用户决定未被覆盖，也未自动精读。此后用户完成部分筛选，并要求将以在线策略蒸馏为主要贡献的论文排除；当时相关候选为 78 篇（其中 3 篇 selected、30 篇 pending），另有 92 篇排除命中仅用于查重。批次日志保留当时的筛查快照，不追改历史结果。
+
+2026-10-08 原定时窗口第一次检索遇到 HTTP 429，见[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-08-020043Z.md|失败日志]]；随后按同一冻结窗口[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-08-020043Z-retry1.md|重试]]并完成五页覆盖。186 条原始命中合并为 104 个唯一 ID，65 个既有候选保留决定；新增 11 篇 direct、12 篇 adjacent、16 篇 out-of-scope，其中 SAP 复用既有来源，另新增 38 条全库来源。当时相关候选 101 篇，其中 35 篇 pending、6 篇 selected；108 篇排除命中仅用于查重。本次只完成标题和摘要筛查，未自动精读。
+
+2026-10-10 按[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-09-020526Z-retry1.md|原失败窗口重试]]取回全部五页：161 条命中、95 个唯一 ID、81 篇既有候选与 14 篇新来源；标题摘要初筛新增 3 篇 direct、2 篇 adjacent 的 pending 和 9 篇排除。符合主题仅 5 篇，未触及每批 10 篇的新增上限。
+
+同日第一轮完成当时六篇 selected 的精读，见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md|阅读日志]]；该轮结束时索引为 40 篇 pending、20 篇 ingested，相关备查 0 篇。这是当时快照，后续决定以候选索引为准。
+
+2026-10-10 第二轮：用户完成全部 pending 筛选后，精读 V-CoLA、SAP、小目标与安全放大、ReFIT、VisionWeave、Foveated Compression、FlashGaze 七项 selected。六篇新建笔记、SAP升级既有略读；七项均 deep-read / source-checked，并在首次校验通过后晋升 ingested。当前 pending 0、selected 0、skipped 78、deferred 1、ingested 27，相关备查 0；223 个基础ID仍完整保留，排除表不设决定状态。本轮不执行新检索或修改推荐规则。见 [[LLM-Wiki/research/visual-token-pruning/reading-log.md|阅读日志]]与[[LLM-Wiki/changes/2026-10-10-selected-watch-second-batch-deep-read.md|原件与校验记录]]。
 
 ## 固定配置
 
@@ -34,14 +42,17 @@ updated: 2026-10-03
 | project | visual-token-pruning |
 | 主要来源 | arXiv API；失败时可用 arXiv 页面辅助发现并标 partial |
 | 时间窗 | 每次启动 UTC 时刻向前滚动 10 天，按首次提交日期 |
-| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近执行批次 2026-10-03 |
+| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近完整执行批次 2026-10-10（重试 10-09 原窗口） |
 | 阅读深度 | discovered；标题与摘要相关性确认 |
 | 分页预算 | 每组 50 条/页，最多 2 页；达到上限且未取完则 partial |
 | 筛查预算 | 每次最多 100 篇此前未筛查的唯一命中；不足覆盖时记录剩余 ID |
+| pending 新增上限 | 每批最多 10 篇；超过时只用标题与摘要按潜在影响力、方法设计和项目价值排序，未入选相关论文保留在备查表 |
 | 索引语言 | 相关候选与排除条目的一句话理由使用中文；论文原标题、方法名和固定分类值保留原文 |
 | 通知 | 新 direct / adjacent / uncertain 候选、重要失败或待用户判断时通知；无变化保持安静 |
 
-预算控制的是搜索和筛查成本，不是“最多推荐几篇”。预算内已筛查的相关候选全部列出；不能为了凑数量丢弃或填充结果。
+搜索和筛查预算控制检索成本；pending 新增上限控制每批交给用户筛选的推荐数量。预算内已筛查的命中全部保留查重记录，其中符合主题的前十篇进入 pending，其余相关论文进入无人工决定字段的备查表，范围外论文进入排除表。不得为凑满十篇放宽主题，也不回溯清理原有 pending。
+
+2026-10-10 起执行用户指定的新规：排序只依据标题和摘要中的方法新意、可迁移范围、部署价值、证据具体程度及对当前政策条件视觉选择的启发，不为初筛精读全文，不根据作者名气或最大加速数字决定。日志保存推荐顺序和中文理由；潜在影响力均标为 agent 初筛判断。具体执行与备查条目的查重规则见 [[LLM-Wiki/metadata/workflows/arxiv-watch.md]]。
 
 ## 主题边界
 

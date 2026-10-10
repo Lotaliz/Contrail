@@ -1,4 +1,4 @@
-# 修改记录
+﻿# 修改记录
 
 本文件按实际发生的 Wiki 内容、结构和流程变化记录，与 Git 状态、暂存或提交无关。日期按新到旧排列。
 
@@ -8,6 +8,45 @@
 
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
+
+## 2026-10-10
+
+- [Added] [research/visual-token-pruning, experiments, raw/sources] 调研政策条件安全表征指导视觉证据保留，新增 SAHs/SASA/ShiftDC 三篇略读与 Qwen3-VL 接口来源，比较语言拒答、视觉早层与区域贡献并区分其与 Cx 预算的分工，同步项目导航及用户报告的自适应实验运行状态，未新增结果或正式 motivation（[[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md|综合]]）。
+
+- [Changed] [metadata/workflows, .agents/skills/paper-ingestion] 固化后续精读先讲场景、问题和概念、使用通俗中文解释方法与结果的原则，并同步三级阅读规范及技能入口，保留技术证据要求，既有论文笔记未改动（[[LLM-Wiki/metadata/workflows/paper-ingestion.md|精读表达原则]]）。
+
+- [Changed] [research/visual-token-pruning, raw/sources] 按用户最新筛选完成第二批七篇 selected 全文精读，新建六篇并升级 SAP 既有笔记，登记完整原件与获取缺口、同步方法比较和阅读入口，并在校验后晋升候选（[[LLM-Wiki/changes/2026-10-10-selected-watch-second-batch-deep-read.md|详情]]）。
+
+- [Changed] [research/visual-token-pruning, experiments] 按用户要求将当前自适应视觉预算方法更名为 Cx，同步主方案文件、方法记录目录、配置及关联链接，保留 C5 历史结果和稳定 ID（[[LLM-Wiki/changes/2026-10-10-cx-method-rename.md|详情]]）。
+
+- [Changed] [research/visual-token-pruning, experiments, raw/sources] 结合用户报告的小图条件将双重要性方案的局部绝对档位示例修正为 0/8/16，补充裁图相对参考网格及框面积的独立作用，并核对登记 Qwen 官方 resize 源码以区分信息分辨率和编码容量，未规定数据使用或执行协议（[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|方案]]）。
+
+- [Changed] [research/visual-token-pruning, experiments] 按用户要求将双重要性文档收敛为 v2 方法方案，移除数据规模/范围、具体执行步骤、门禁及失败处置，将代价简化为 NLL 与标签不一致、两路预算各三档，补充条件局部收益与局部独立充分性的区别，并同步配置及记录入口（[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|方案]]）。
+
+- [Added] [research/visual-token-pruning, experiments] 将用户的双重要性预算规划细化为全局升级/条件局部收益曲线，创建可执行算法、默认配置和待执行实验记录，明确共同监督尺度、合法预算映射、辅助中间量、政策控制及解释审计，并同步项目和实验入口（[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|方案]]）。
+
+- [Changed] [research/visual-token-pruning, metadata/workflows, raw/sources] 完成最近失败窗口重试并新增 5 篇 pending 与 9 篇查重排除题录，精读六篇 selected、保存完整原件并晋升 ingested，同时将每批新增 pending 限为十篇、其余相关记录单列备查（[[LLM-Wiki/changes/2026-10-10-arxiv-watch-cap-retry-selected-read.md|详情]]）。
+
+- [Fixed] [raw/sources] 补齐六篇既有来源对应的十个 HTML/PDF 原件路径、SHA256 和本地许可登记，在同一来源内保留补充格式，修复 wiki-finalize 的原件未登记错误，原始文件保持不变。
+
+- [Changed] [research/visual-token-pruning, raw/sources] 按用户最新决策将 C5 主线更新为不锚定 5% 的逐样本全局/单局部预算分配，补充最小充分配置监督与相关机制比较，新增 ResAdapt/M3/VisionThink 快读及 AdaAlloc 项目页筛查，复用既有来源并修正 VisionThink 许可，同步方案、项目和阅读入口（[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md|当前方案]]）。
+
+## 2026-10-09
+
+- [Changed] [experiments, research/visual-token-pruning] 记录 NLL 收益 router 的定性负结果，提出复用 C5 的单次执行高清升级门与预算—路线联合评分，明确共同收益基准、多预算 Guard 适配及平均预算/时延约束，并同步项目和实验入口（[[LLM-Wiki/research/visual-token-pruning/c5-adaptive-total-budget-plan.md|方案]]）。
+
+## 2026-10-08
+
+- [Added] [experiments, research/visual-token-pruning, raw/sources] 归档并分析 C5 原始报告，给出单局部框下政策配对收益、匹配像素干预和条款级路由建议，补入 GapSight/PF-CBM 快读与来源；结合后续错误分析补充尺度/宽高比单框候选、预算清晰度边界和政策入评分的具体例子，并更新项目和实验入口（[[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md|建议]]）。
+
+- [Fixed] [experiments, research/visual-token-pruning] 根据用户补充明确 C5 Guard 恢复训练已包含政策翻转且使用 CE，将收益/政策差分目标限定为 router 监督，并说明相对 Global100 的代价平移不改变 teacher 排序及直接奖励 Guard 相对收益的退化风险。
+
+- [Changed] [experiments, research/visual-token-pruning] 记录 C5 router 的四项实际目标，补充统一完整路线收益、纯回归和回归＋联合 KL 的替换方案，明确层次 KL 合并的等价条件、收益零点、风险权重与选路 regret 门禁。
+
+- [Fixed] [research/visual-token-pruning] 明确条款 MLP 的训练标签应来自合法单条款变更的路线收益差与匹配像素干预，区分条件边际效应和不可唯一识别的绝对贡献；补充单样本 teacher 代价/NLL 的收益定义、任务与时延收益分离、缺失配对 mask、可选 grounding 先验及非可加边界。
+
+- [Fixed] [research/visual-token-pruning/watch] 补回被旧版覆盖的候选索引条目，并以当前索引为准保留用户筛选决定。
+- [Added] [research/visual-token-pruning/watch, raw/sources] 重试完成原十天窗口的四组 arXiv 检索，新增 23 篇相关或相邻候选与 16 篇查重排除题录，复用 65 个既有候选及 SAP 来源，并保留原限流失败日志与人工决定。
 
 ## 2026-10-03
 

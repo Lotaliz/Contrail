@@ -16,6 +16,12 @@ YYYYMMDD-short-name/
 
 ## 已登记的实验
 
+- [[LLM-Wiki/experiments/20261010-cx-global-local-importance/README.md]]：用户报告新的自适应预算实验运行中；配置及结果尚未核验。
+
+- [[LLM-Wiki/experiments/20261009-c5-nll-router-analysis/README.md]]
+
+- [[LLM-Wiki/experiments/20261008-c5-policy-grounding/README.md]]
+
 - [[LLM-Wiki/experiments/20260914-dual-evidence-token-compression/README.md]]
 - [[LLM-Wiki/experiments/20260908-bidirectional-token-intervention/README.md]]
 - [[LLM-Wiki/experiments/20260907-xguard-token-pruning-analysis/README.md]]

@@ -12,6 +12,7 @@ Use the repository as the system of record.
 3. Read and follow LLM-Wiki/metadata/workflows/paper-ingestion.md.
 4. Inspect the current project, source registry, existing paper notes, concepts, and templates before writing.
 5. Select the reading level from the user's wording. Default “read/analyze/summarize” to deep-read; do not claim a deeper level than the inspected material supports.
+   For deep-read notes, follow the readability principles in LLM-Wiki/metadata/workflows/paper-ingestion.md: establish the scenario, problem, and meaning of core concepts before technical details; explain methods and results in plain Chinese while preserving evidence and conditions. Apply this to future reading tasks across projects; do not rewrite earlier notes unless requested.
 6. Preserve source files and existing notes. Deduplicate before creating anything.
 7. Distinguish source claims, direct evidence, synthesis, and hypotheses in the note.
 8. Render transcribed mathematics with the Wiki-supported `$...$` and `$$...$$` delimiters; do not carry `\(...\)` or `\[...\]` delimiters from paper LaTeX into Markdown.
