@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference, knowledge-distillation]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # VisionWeave：全覆盖的粗细粒度路由与实际服务整合
 
 ## 原件与阅读范围
 
-[arXiv 2610.07987v1](https://arxiv.org/abs/2610.07987v1)，CC BY 4.0；完整原件见 [[LLM-Wiki/raw/papers/2610.07987v1.html]]。精读 §1–4、式 1–12、算法 1、表 1–8、附录 A/E。用户明确选择本文；其主要贡献是新的视觉表示/路由和服务适配，采用 **off-policy** 蒸馏，符合当前排除“仅以在线策略蒸馏为主要贡献”而保留新视觉机制的边界。未运行训练或服务测试。
+[arXiv 2610.07987v1](https://arxiv.org/abs/2610.07987v1)，CC BY 4.0；完整原件见 [HTML 原文](https://arxiv.org/html/2610.07987v1)。精读 §1–4、式 1–12、算法 1、表 1–8、附录 A/E。用户明确选择本文；其主要贡献是新的视觉表示/路由和服务适配，采用 **off-policy** 蒸馏，符合当前排除“仅以在线策略蒸馏为主要贡献”而保留新视觉机制的边界。未运行训练或服务测试。
 
 ## 表示、选择器和位置
 

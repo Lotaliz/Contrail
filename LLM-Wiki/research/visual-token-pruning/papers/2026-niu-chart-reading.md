@@ -14,14 +14,14 @@ priority: medium
 tags: [paper-note, research, mechanistic-interpretability, activation-patching, visual-evidence, chart-understanding]
 status: active
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # VLM 图表读数：视觉证据的空间与深度因果定位
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.13745v1](https://arxiv.org/abs/2609.13745)，首次提交于 2026-09-12。精读 33 页 PDF 的正文 §3–8、关键统计定义与数据审计附录。本地原件：[[LLM-Wiki/raw/papers/2609.13745v1.pdf]]。论文不是剪枝方法；纳入原因是它提供“哪些局部视觉状态在何时仍可影响输出”的反事实测量工具。未运行模型或重建数据，以下数字均为作者报告。
+来源：[arXiv 2609.13745v1](https://arxiv.org/abs/2609.13745)，首次提交于 2026-09-12。精读 33 页 PDF 的正文 §3–8、关键统计定义与数据审计附录。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.13745v1)。论文不是剪枝方法；纳入原因是它提供“哪些局部视觉状态在何时仍可影响输出”的反事实测量工具。未运行模型或重建数据，以下数字均为作者报告。
 
 ## 研究问题与实验对象
 

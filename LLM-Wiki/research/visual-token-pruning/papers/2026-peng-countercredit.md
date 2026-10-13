@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, vision-language-model, multimodal-agent, visual-evidence]
 status: active
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # CounterCredit：为真正必要且被使用的视觉调用计价
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.22910v1](https://arxiv.org/abs/2609.22910)，首次提交于 2026-09-19，许可为 CC BY 4.0。精读 30 页 PDF 的正文、算法与证明边界、主表 1–4、附录中的奖励审计、敏感性和完整表格；本地原件：[[LLM-Wiki/raw/papers/2609.22910v1.pdf]]。未运行 RL、模型或工具环境；结果均为作者报告。
+来源：[arXiv 2609.22910v1](https://arxiv.org/abs/2609.22910)，首次提交于 2026-09-19，许可为 CC BY 4.0。精读 30 页 PDF 的正文、算法与证明边界、主表 1–4、附录中的奖励审计、敏感性和完整表格；阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.22910v1)。未运行 RL、模型或工具环境；结果均为作者报告。
 
 本文不做内部视觉 token 剪枝，而是训练会 crop/zoom 的 VLM agent 只在视觉调用“确有必要且返回像素确被使用”时获得奖励，因此属于视觉证据预算与因果核验的 adjacent 工作。用户从近期索引选中后，复用 `paper-arxiv-2609-22910` 完成精读。
 

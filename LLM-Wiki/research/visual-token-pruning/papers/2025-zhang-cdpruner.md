@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, vision-language-model, visual-token-pruning, training-free, efficient-inference]
 status: active
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-10-13
 ---
 
 # CDPruner：条件多样性子集选择
 
 ## 书目信息与阅读边界
 
-正式身份已由 [NeurIPS 2025 Main Conference proceedings](https://proceedings.neurips.cc/paper_files/paper/2025/hash/2433fec2144ccf5fea1c9c5ebdbc3924-Abstract-Conference.html) 核实；DOI `10.52202/085713-0855`。31 页官方原件：[[LLM-Wiki/raw/papers/2025-zhang-cdpruner-neurips.pdf]]。对应 arXiv ID 2506.10967；本轮采用会议定稿，不推定 arXiv 当前版本。官方代码链接见原文，未运行。
+正式身份已由 [NeurIPS 2025 Main Conference proceedings](https://proceedings.neurips.cc/paper_files/paper/2025/hash/2433fec2144ccf5fea1c9c5ebdbc3924-Abstract-Conference.html) 核实；DOI `10.52202/085713-0855`。31 页官方原件：[原文来源](https://proceedings.neurips.cc/paper_files/paper/2025/hash/2433fec2144ccf5fea1c9c5ebdbc3924-Abstract-Conference.html)。对应 arXiv ID 2506.10967；本轮采用会议定稿，不推定 arXiv 当前版本。官方代码链接见原文，未运行。
 
 首次定向阅读为 skimmed。2026-09-18 应用户要求升级为 deep-read / source-checked：核对正文 §1–5、图 1–4、表 1–6、附录 A–F、算法 1、表 7–11、额外可视化及 checklist 的相关声明；重点审查表示获取、DPP 增量计算、计时条件与性能消融。视觉核对 PDF 第 4–5、9–10、23 页。未运行模型、不标 reproduced，也未独立证明近似比保证。
 

@@ -1,4 +1,6 @@
-﻿schema_version: 1
+﻿# PDF/HTML/HTM originals are local-only and excluded by .gitignore.
+# local_path/local_artifacts and hashes identify local copies; use url for published access.
+schema_version: 1
 sources:
   - id: paper-zheng-2025-safety-attention-heads
     kind: paper

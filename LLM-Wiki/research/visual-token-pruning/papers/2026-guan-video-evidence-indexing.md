@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, knowledge-distillation, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # VEI：低清预览引导高分辨率证据预算
 
 ## 原件与阅读边界
 
-用户显式选择本文精读。原文为 [arXiv 2610.00757v1](https://arxiv.org/abs/2610.00757v1)，CC BY 4.0；完整 HTML 原件见 [[LLM-Wiki/raw/papers/2610.00757v1.html]]。核对 §3–5、表 1–6/9–10、附录 A/C–H 的选择、训练、成本及失败分析。未执行代码或训练，所有结果为作者报告。本文含 on-policy 自蒸馏，但还设计了推理期证据索引与目标级预算机制；此次阅读由用户 selected 决定直接授权。
+用户显式选择本文精读。原文为 [arXiv 2610.00757v1](https://arxiv.org/abs/2610.00757v1)，CC BY 4.0；完整 HTML 原件见 [HTML 原文](https://arxiv.org/html/2610.00757v1)。核对 §3–5、表 1–6/9–10、附录 A/C–H 的选择、训练、成本及失败分析。未执行代码或训练，所有结果为作者报告。本文含 on-policy 自蒸馏，但还设计了推理期证据索引与目标级预算机制；此次阅读由用户 selected 决定直接授权。
 
-PDF 原件另见 [[LLM-Wiki/raw/papers/2610.00757v1.pdf]]（21 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
+PDF 原件另见 [PDF 原文](https://arxiv.org/pdf/2610.00757v1)（21 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
 
 ## 推理和训练流程
 

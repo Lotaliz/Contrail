@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, training-free, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # When Text Matters：保留候选、延迟文字重选
 
 ## 原件与阅读范围
 
-用户在候选索引选中本文。原文为 [arXiv 2609.34861v1](https://arxiv.org/abs/2609.34861v1)，arXiv non-exclusive distribution license；完整 HTML 原件见 [[LLM-Wiki/raw/papers/2609.34861v1.html]]。核对 §3–5、图 2–8、表 1–7 和附录 A–D 的选择、预算、kernel 和计时口径。未运行代码或模型，全部实验数值为作者报告。
+用户在候选索引选中本文。原文为 [arXiv 2609.34861v1](https://arxiv.org/abs/2609.34861v1)，arXiv non-exclusive distribution license；完整 HTML 原件见 [HTML 原文](https://arxiv.org/html/2609.34861v1)。核对 §3–5、图 2–8、表 1–7 和附录 A–D 的选择、预算、kernel 和计时口径。未运行代码或模型，全部实验数值为作者报告。
 
-PDF 原件另见 [[LLM-Wiki/raw/papers/2609.34861v1.pdf]]（23 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
+PDF 原件另见 [PDF 原文](https://arxiv.org/pdf/2609.34861v1)（23 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
 
 ## 文字何时有效的诊断
 

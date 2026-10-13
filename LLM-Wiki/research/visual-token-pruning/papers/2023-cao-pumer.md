@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, vision-language-model, visual-token-pruning, token-merging, knowledge-distillation, efficient-inference]
 status: active
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-10-13
 ---
 
 # PuMer：图文条件剪枝、同模态合并与训练适应
 
 ## 书目信息与精读范围
 
-[ACL 2023 官方页](https://aclanthology.org/2023.acl-long.721/)，DOI `10.18653/v1/2023.acl-long.721`，会议页码 12890–12903；既有 14 页原件 [[LLM-Wiki/raw/papers/2023-cao-pumer.pdf]]，本轮只读复用并核对 SHA256。ACL 官方页明确 2016 年及以后材料为 CC BY 4.0；代码 MIT。
+[ACL 2023 官方页](https://aclanthology.org/2023.acl-long.721/)，DOI `10.18653/v1/2023.acl-long.721`，会议页码 12890–12903；既有 14 页原件 [原文来源](https://aclanthology.org/2023.acl-long.721/)，本轮只读复用并核对 SHA256。ACL 官方页明确 2016 年及以后材料为 CC BY 4.0；代码 MIT。
 
 精读正文 §1–8、算法 1、式 (1)、图 1–5、表 1–4、附录 A.1–A.2 表 5–7；责任清单不作为算法证据。视觉核对 PDF 第 4–5、7、12 页，保留表头、脚注与吞吐量 batch 协议。官方代码固定观测版本 `8a00d85314175a4635d074fb003ae39da171ddc7`，来源 `code-pumer-2026-audit`：核对宿主 attention/合并路径、`reducer.py` 二分图函数、任务 KL 蒸馏与配置；未运行训练、模型或 benchmark。登记 deep-read / source-checked，不标 reproduced。
 

@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, training-free, efficient-inference]
 status: active
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # VPRune：视觉多样性、信息回灌与位置保持
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.24485v2](https://arxiv.org/abs/2609.24485)，v1 首次提交于 2026-09-21，v2 更新于 2026-09-22；许可为 CC BY 4.0。精读 5 页全文、表 1、图 1–4、组件消融与端侧效率；本地原件：[[LLM-Wiki/raw/papers/2609.24485v2.pdf]]。未运行代码、模型或设备测试，结果均为作者报告。
+来源：[arXiv 2609.24485v2](https://arxiv.org/abs/2609.24485)，v1 首次提交于 2026-09-21，v2 更新于 2026-09-22；许可为 CC BY 4.0。精读 5 页全文、表 1、图 1–4、组件消融与端侧效率；阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.24485v2)。未运行代码、模型或设备测试，结果均为作者报告。
 
 ## 方法定位
 

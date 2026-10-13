@@ -15,7 +15,7 @@ tags: [paper-note, research, method, jailbreak-defense, representation-probing, 
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-10-13
 ---
 
 # Quantifying Large Language Model Attacks Through the Lens of Model Cognition
@@ -23,7 +23,7 @@ updated: 2026-08-26
 ## 书目信息与精读范围
 
 - 会议：USENIX Security 2026。
-- 原文：[[LLM-Wiki/raw/papers/2026-liu-quantifying-llm-attacks-model-cognition.pdf]]。
+- 原文：[原文来源](https://www.usenix.org/conference/usenixsecurity26/presentation/liu-xiuming)。
 - 精读范围：摘要、引言、方法、全部核心实验、讨论、局限及附录中的池化和层选择说明。
 - 术语边界：论文把逐层隐藏表示的变化称为“model cognition”，但其探针只能证明**与有害提示标签相关的特征可分**，不能证明模型具有人的认知、意图理解，也不能证明这些特征因果地控制生成；作者在 §3.1 和 §5 也明确限定了这一点。
 

@@ -187,8 +187,8 @@ $$
 ## 来源、原件与精读范围
 
 - [arXiv 2610.13263v1](https://arxiv.org/abs/2610.13263v1)，2026-10-09 09:15:08 UTC首次提交；作者Xiaoyang Ma、Chi Wang、Hong Sun。PDF页眉写“Published as a conference paper at ICLR 2027”，但本轮未获得独立会议题录确认；来源身份仍记arXiv预印本，不根据作者页眉或仓库名推定会议录用。许可为CC BY 4.0。
-- 完整官方HTML：[[LLM-Wiki/raw/papers/2610.13263v1.html]]；保持原件不改写，SHA256登记于同一来源。全文阅读§1–5、算法1/2、图1–5的说明、表1–13及附录A–S，关键数值回看原表。
-- 完整官方PDF：[[LLM-Wiki/raw/papers/2610.13263v1.pdf]]，30页、10,367,186字节，全页解析。先有3次60秒传输超时，再延长到300秒仍只取得7,962,572字节；随后HTTP206续传补齐剩余2,404,614字节，检查文件尾、解析完整性并登记SHA256。失败残件没有收入raw，完整原件不改写。
+- 完整官方HTML：[HTML 原文](https://arxiv.org/html/2610.13263v1)；保持原件不改写，SHA256登记于同一来源。全文阅读§1–5、算法1/2、图1–5的说明、表1–13及附录A–S，关键数值回看原表。
+- 完整官方PDF：[PDF 原文](https://arxiv.org/pdf/2610.13263v1)，30页、10,367,186字节，全页解析。先有3次60秒传输超时，再延长到300秒仍只取得7,962,572字节；随后HTTP206续传补齐剩余2,404,614字节，检查文件尾、解析完整性并登记SHA256。失败残件没有收入raw，完整原件不改写。
 - 按PDF技能渲染并视觉核查第4、7、8、9、24、25、28、29页：方法图2、主表1、固定消融表2/10、图4、调参声明、效率表9的LLaVA-NeXT行与覆盖表13，与HTML对应核心数字一致。PDF第29页附录Q正文一处写 $p=0.1$，但表13及§4.3明确为90%剪枝，HTML对应处为 $\rho=0.1$；本笔记按表头解释，保留这项记号不一致，不修改原件。
 - 2026-10-13依用户唯一selected决定精读；复用来源 `paper-arxiv-2610-13263`。未运行作者代码或模型，未独立复现实验，全部效果为作者报告。本笔记为deep-read / source-checked，不是reproduced。
 - 导航：[[LLM-Wiki/research/visual-token-pruning/reading-log.md]]、[[LLM-Wiki/research/visual-token-pruning/watch/candidates.md]]、[[LLM-Wiki/research/visual-token-pruning/overview.md]]。

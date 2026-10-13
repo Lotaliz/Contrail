@@ -4,7 +4,7 @@ type: metadata
 tags: [metadata, workflow, source]
 title: "论文阅读与收录流程"
 status: active
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 论文阅读与收录流程
@@ -26,9 +26,9 @@ updated: 2026-10-10
 ## 流程
 
 1. 检查 sources.yaml 和已有 source-note，按 DOI、arXiv ID、标题和文件哈希去重。
-2. 合法获得原件时放入 raw/papers；否则只登记稳定 URL。
-3. 登记来源，保留正式标题、作者、年份、URL、获取日期、本地路径、许可和哈希。
-4. 从 templates/source.md 创建或更新 source-note。
+2. 合法获得原件时放入 raw/papers，PDF、HTML、HTM 仅作为 .gitignore 忽略的本地阅读副本；否则只登记稳定 URL。
+3. 登记来源，保留正式标题、作者、年份、URL、获取日期、本地路径、许可和哈希；local_path 与 local_artifacts 不代表原件随仓库发布。
+4. 从 templates/source.md 创建或更新 source-note，原文入口使用官方来源 URL；不创建指向本地 PDF/HTML/HTM 的 WikiLink。
 5. 按三级阅读规范完成相应内容，明确作者主张、直接证据、个人批注和待验证项。
 6. 链接已有概念。只有内容能跨论文复用且边界清楚时，才创建或更新 concept。
 7. 更新项目 reading-log、论文比较或研究地图；discovered 论文不得直接改变正式 motivation。

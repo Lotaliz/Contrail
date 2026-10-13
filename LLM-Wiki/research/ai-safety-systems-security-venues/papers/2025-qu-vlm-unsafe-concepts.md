@@ -15,7 +15,7 @@ tags: [paper-note, research, method, data, multimodal-safety, safety-alignment, 
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-10-13
 ---
 
 # Bridging the Gap in Vision Language Models in Identifying Unsafe Concepts Across Modalities
@@ -23,7 +23,7 @@ updated: 2026-08-26
 ## 书目信息与精读范围
 
 - 会议：USENIX Security 2025，pp. 957–976。
-- 原文：[[LLM-Wiki/raw/papers/2025-qu-vlm-unsafe-concepts.pdf]]。
+- 原文：[原文来源](https://www.usenix.org/conference/usenixsecurity25/presentation/qu-yiting)。
 - 精读范围：数据集构建、感知/对齐测量、情境分析、PPO 方法、全部主表、消融、局限与伦理说明。
 
 ## 研究问题与场景

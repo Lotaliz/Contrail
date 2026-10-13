@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, efficient-inference, training-free]
 status: active
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-10-13
 ---
 
 # STD：按视觉编码器阶段角色调整 token 剪枝
 
 ## 来源与阅读边界
 
-来源：[arXiv 2609.25635v1](https://arxiv.org/abs/2609.25635)，2026-09-22 首次提交；arXiv 页面作者备注为“Accepted to EMNLP 2026”，尚以本版预印本为阅读原件：[[LLM-Wiki/raw/papers/2609.25635v1.pdf]]，17 页。已核对正文 §1–6、表 1–10、图 2–7 及附录 A–C/Limitations；未运行代码、模型或 4090D 测试。数值均为作者报告。
+来源：[arXiv 2609.25635v1](https://arxiv.org/abs/2609.25635)，2026-09-22 首次提交；arXiv 页面作者备注为“Accepted to EMNLP 2026”，尚以本版预印本为阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.25635v1)，17 页。已核对正文 §1–6、表 1–10、图 2–7 及附录 A–C/Limitations；未运行代码、模型或 4090D 测试。数值均为作者报告。
 
 ## 问题、阶段假设与机制
 

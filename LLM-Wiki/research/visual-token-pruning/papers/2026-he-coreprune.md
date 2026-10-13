@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, efficient-inference, training-free]
 status: active
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-10-13
 ---
 
 # CoRePrune：深度与删除集合条件下的视觉 token 可移除性
 
 ## 来源与阅读边界
 
-来源：[arXiv 2609.26484v1](https://arxiv.org/abs/2609.26484)，2026-09-22 首次提交；本地原件 [[LLM-Wiki/raw/papers/2609.26484v1.pdf]]，24 页。已核对正文 §I–VIII、表 I–VII 与附录 A、C–E 的配置、消融及反事实诊断。未运行代码、模型或时延实验；数值均为作者报告。与作者早前 [[LLM-Wiki/research/visual-token-pruning/papers/2026-he-qcpruner.md|QCPruner]] 的比较须按本论文各表注明的同一设置读取。
+来源：[arXiv 2609.26484v1](https://arxiv.org/abs/2609.26484)，2026-09-22 首次提交；阅读原件 [PDF 原文](https://arxiv.org/pdf/2609.26484v1)，24 页。已核对正文 §I–VIII、表 I–VII 与附录 A、C–E 的配置、消融及反事实诊断。未运行代码、模型或时延实验；数值均为作者报告。与作者早前 [[LLM-Wiki/research/visual-token-pruning/papers/2026-he-qcpruner.md|QCPruner]] 的比较须按本论文各表注明的同一设置读取。
 
 ## 研究问题与可移除性定义
 

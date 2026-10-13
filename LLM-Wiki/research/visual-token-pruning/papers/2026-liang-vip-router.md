@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, adaptive-routing, multimodal-llm, cost-aware-inference]
 status: active
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # VIP-Router：按样本选择视觉剪枝策略
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.10346v1](https://arxiv.org/abs/2609.10346)，首次提交于 2026-09-09，许可为 CC BY 4.0。精读 26 页 PDF 的方法、主实验、限制、算法与数据/训练附录。本地原件：[[LLM-Wiki/raw/papers/2609.10346v1.pdf]]。论文代码标为“will be released soon”，本轮没有可固定的代码 revision，也未运行模型。
+来源：[arXiv 2609.10346v1](https://arxiv.org/abs/2609.10346)，首次提交于 2026-09-09，许可为 CC BY 4.0。精读 26 页 PDF 的方法、主实验、限制、算法与数据/训练附录。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.10346v1)。论文代码标为“will be released soon”，本轮没有可固定的代码 revision，也未运行模型。
 
 ## 问题设定
 

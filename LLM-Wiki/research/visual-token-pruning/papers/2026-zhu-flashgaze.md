@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # FlashGaze：像素代价驱动的 ViT 前时空剪枝
 
 ## 原件与阅读范围
 
-[arXiv 2610.04225v1](https://arxiv.org/abs/2610.04225v1)，CC BY 4.0；完整原件见 [[LLM-Wiki/raw/papers/2610.04225v1.html]]。精读 §1–5、算法1–2、表1–5、附录A–E。未运行代码、视频解码或模型；证据核验到论文原文，未标reproduced。
+[arXiv 2610.04225v1](https://arxiv.org/abs/2610.04225v1)，CC BY 4.0；完整原件见 [HTML 原文](https://arxiv.org/html/2610.04225v1)。精读 §1–5、算法1–2、表1–5、附录A–E。未运行代码、视频解码或模型；证据核验到论文原文，未标reproduced。
 
 ## 无训练的像素代价与预算求解
 

@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, training-free, vision-language-model, efficient-inference]
 status: active
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # QCPruner：查询条件的视觉群体覆盖
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.19990v1](https://arxiv.org/abs/2609.19990)，首次提交于 2026-09-17，许可为 arXiv non-exclusive distribution license。精读 22 页 PDF 的方法、四 backbone 主结果、成本、全部关键消融和附录校准；本地原件：[[LLM-Wiki/raw/papers/2609.19990v1.pdf]]。未运行代码或模型，数字均为作者报告。
+来源：[arXiv 2609.19990v1](https://arxiv.org/abs/2609.19990)，首次提交于 2026-09-17，许可为 arXiv non-exclusive distribution license。精读 22 页 PDF 的方法、四 backbone 主结果、成本、全部关键消融和附录校准；阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.19990v1)。未运行代码或模型，数字均为作者报告。
 
 用户从近期索引选中本文；本笔记复用 `paper-arxiv-2609-19990`，将 discovered / unverified 升为 deep-read / source-checked。
 

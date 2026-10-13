@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # V-CoLA：混合线性注意力的状态读出、合并与深层退出
 
 ## 原件与阅读范围
 
-用户选择精读。[arXiv 2610.11251v1](https://arxiv.org/abs/2610.11251v1)，论文许可为 arXiv perpetual non-exclusive license；完整 HTML 原件见 [[LLM-Wiki/raw/papers/2610.11251v1.html]]。精读 §1–4、§7，图 2–8、表 1–10，附录 A 的并行实现、C 的成本分析、D 的长回答/小目标/端到端计时。未运行模型或代码，所有效果是作者报告。
+用户选择精读。[arXiv 2610.11251v1](https://arxiv.org/abs/2610.11251v1)，论文许可为 arXiv perpetual non-exclusive license；完整 HTML 原件见 [HTML 原文](https://arxiv.org/html/2610.11251v1)。精读 §1–4、§7，图 2–8、表 1–10，附录 A 的并行实现、C 的成本分析、D 的长回答/小目标/端到端计时。未运行模型或代码，所有效果是作者报告。
 
-另保存 [[LLM-Wiki/raw/papers/2610.11251v1.pdf|完整 PDF]]（16页），全页解析；视觉核查第16页表8–10，与HTML的预算和E2E数字一致，PDF哈希登记于同一来源。
+另保存 [完整 PDF](https://arxiv.org/pdf/2610.11251v1)（16页），全页解析；视觉核查第16页表8–10，与HTML的预算和E2E数字一致，PDF哈希登记于同一来源。
 
 ## 问题、信号与执行位置
 

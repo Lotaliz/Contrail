@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # ReFIT：指令相关窗口重塑与裁图内 token 细化
 
 ## 原件与阅读范围
 
-[arXiv 2610.09252v1](https://arxiv.org/abs/2610.09252v1)，arXiv perpetual non-exclusive license；完整原件见 [[LLM-Wiki/raw/papers/2610.09252v1.html]]。精读完整 §1–4、式 1–6、图 1–2、表 1–4。全文可访问，但公开稿的训练/预算细节不足；这里的 deep-read 表示完成全文分析，不表示可以据此完整复现。未运行实验。
+[arXiv 2610.09252v1](https://arxiv.org/abs/2610.09252v1)，arXiv perpetual non-exclusive license；完整原件见 [HTML 原文](https://arxiv.org/html/2610.09252v1)。精读完整 §1–4、式 1–6、图 1–2、表 1–4。全文可访问，但公开稿的训练/预算细节不足；这里的 deep-read 表示完成全文分析，不表示可以据此完整复现。未运行实验。
 
-另保存 [[LLM-Wiki/raw/papers/2610.09252v1.pdf|完整 PDF]]（5页），全页解析并视觉核查第3页表1及RWR/ITR说明。HTML/PDF的主要结果一致；参考文献编号不同，笔记使用稳定章节/表号定位。
+另保存 [完整 PDF](https://arxiv.org/pdf/2610.09252v1)（5页），全页解析并视觉核查第3页表1及RWR/ITR说明。HTML/PDF的主要结果一致；参考文献编号不同，笔记使用稳定章节/表号定位。
 
 ## 方法和训练边界
 

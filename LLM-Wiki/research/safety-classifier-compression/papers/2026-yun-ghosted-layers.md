@@ -15,7 +15,7 @@ tags: [paper-note, research, model-compression, structured-pruning, training-fre
 status: active
 related: [paper-note-men-2025-shortgpt, paper-note-zhong-2025-blockpruner]
 created: 2026-08-31
-updated: 2026-08-31
+updated: 2026-10-13
 ---
 
 # Ghosted Layers
@@ -27,7 +27,7 @@ updated: 2026-08-31
 ## 书目信息与材料
 
 - arXiv: 2605.15491v2；2026-05-15 首次提交，2026-06-07 修订；正文标注 `Under Review`。
-- 本地原件：[[LLM-Wiki/raw/papers/2026-yun-ghosted-layers.pdf]]；25 页，CC BY 4.0。
+- 阅读原件：[原文来源](https://arxiv.org/abs/2605.15491)；25 页，CC BY 4.0。
 - 官方代码：https://github.com/daniel-eai/ghosted_layers_official_repository/ 。代码仓库是基于 LinearPatch 的最小复现，不等同于本地复现实验。
 
 ## 研究问题与核心假设

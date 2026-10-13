@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, vision-language-model, visual-token-pruning, budget-optimization, training-free, efficient-inference]
 status: active
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-10-13
 ---
 
 # StackTok
@@ -23,7 +23,7 @@ updated: 2026-09-16
 
 来源：[arXiv 2609.16841v1](https://arxiv.org/abs/2609.16841)，首次提交于 2026-09-15；四川大学作者团队。当前仅核实 arXiv 预印本身份，未确认会议录用。[官方代码](https://github.com/wongzbb/StackToK)已公开，代码为 Apache-2.0，论文为 CC BY 4.0。
 
-精读范围：正文问题设定、§Method 全部子节、§Experiments、主表 1–3、附录 A 的覆盖性质与参考曲线证明，以及附录 B 的评测协议、表 A1–A5。本地原件：[[LLM-Wiki/raw/papers/2609.16841v1.pdf]]，11 页。PDF 部分文本存在重叠/重复，正文结合官方 HTML 核对，附录表格核对 PDF。未运行代码、模型或复现实验；以下数字均为作者报告。
+精读范围：正文问题设定、§Method 全部子节、§Experiments、主表 1–3、附录 A 的覆盖性质与参考曲线证明，以及附录 B 的评测协议、表 A1–A5。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.16841v1)，11 页。PDF 部分文本存在重叠/重复，正文结合官方 HTML 核对，附录表格核对 PDF。未运行代码、模型或复现实验；以下数字均为作者报告。
 
 用户于 2026-09-16 指定精读，将已有近期候选升级为 deep-read / source-checked，沿用原 source_id，不重复登记。
 

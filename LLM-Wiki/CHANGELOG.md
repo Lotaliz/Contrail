@@ -11,6 +11,8 @@
 
 ## 2026-10-13
 
+- [Removed] [raw, metadata/workflows] 将论文 PDF/HTML 原文改为不发布的本地阅读副本，保留来源和哈希并将原文链接改为官方地址，当前版本及后续提交不再包含原件（详情：[[LLM-Wiki/changes/2026-10-13-untrack-paper-originals.md]]）。
+
 - [Added] [research/visual-token-pruning, raw/sources] 按用户唯一选择完成SheafPrune全文精读，保存并登记完整原件，通俗说明场景、图排序、预算条件与训练部署，核对最优超参数上沿和固定配置消融、区分prefill与完整回答时延，同步比较及阅读导航，校验后晋升候选（[[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]]）。
 
 - [Added] [research/visual-token-pruning/watch, raw/sources] 完成2026-10-13失败窗口的四组检索重试，登记10篇新题录，其中4篇直接相关和1篇相邻进入pending、5篇排除仅作查重，保留人工决定并记录1篇既有来源的实际v2版本（[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z-retry1.md|批次日志]]）。

@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, vision-language-model, visual-token-pruning, training-free, efficient-inference]
 status: active
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-10-13
 ---
 
 # An AI4AI Framework for Visual Token Pruning
 
 ## 书目信息与精读边界
 
-原文：[arXiv 2608.07193v2](https://arxiv.org/abs/2608.07193v2)，2026-08-07 首次提交，2026-09-06 修订；本地原件 [[LLM-Wiki/raw/papers/2608.07193v2.pdf]]，17 页。当前仅核实 arXiv 预印本身份，未确认正式会议录用。论文采用 arXiv perpetual non-exclusive license；作者代码采用 PolyForm Noncommercial 1.0.0，不应误记为 Apache/MIT。
+原文：[arXiv 2608.07193v2](https://arxiv.org/abs/2608.07193v2)，2026-08-07 首次提交，2026-09-06 修订；阅读原件 [PDF 原文](https://arxiv.org/pdf/2608.07193v2)，17 页。当前仅核实 arXiv 预印本身份，未确认正式会议录用。论文采用 arXiv perpetual non-exclusive license；作者代码采用 PolyForm Noncommercial 1.0.0，不应误记为 Apache/MIT。
 
 精读范围：正文 Introduction、Related Work、Method、Experiments and Results、Conclusion；图 1–3、算法 1–2、表 1–14、附录 A–C。正文和附录结合官方 HTML 与 PDF 核对；关键表 1–3、6–9 和聚合指标公式核对 PDF 页 5–7、11–12。
 

@@ -30,13 +30,13 @@ status: active
 
 | arXiv v1 | 完整 HTML | 完整 PDF |
 |---|---|---|
-| 2610.11251 | [[LLM-Wiki/raw/papers/2610.11251v1.html|完整原件]] | [[LLM-Wiki/raw/papers/2610.11251v1.pdf|完整原件]] |
-| 2610.09703 | [[LLM-Wiki/raw/papers/2610.09703v1.html|完整原件]] | 本次未取得完整 PDF；HTML 全文已读取 |
-| 2610.09313 | [[LLM-Wiki/raw/papers/2610.09313v1.html|完整原件]] | [[LLM-Wiki/raw/papers/2610.09313v1.pdf|完整原件]] |
-| 2610.09252 | [[LLM-Wiki/raw/papers/2610.09252v1.html|完整原件]] | [[LLM-Wiki/raw/papers/2610.09252v1.pdf|完整原件]] |
-| 2610.07987 | [[LLM-Wiki/raw/papers/2610.07987v1.html|完整原件]] | 本次未取得完整 PDF；HTML 全文已读取 |
-| 2610.07729 | [[LLM-Wiki/raw/papers/2610.07729v1.html|完整原件]] | 本次未取得完整 PDF；HTML 全文已读取 |
-| 2610.04225 | [[LLM-Wiki/raw/papers/2610.04225v1.html|完整原件]] | 本次未取得完整 PDF；HTML 全文已读取 |
+| 2610.11251 | [完整原件](https://arxiv.org/html/2610.11251v1) | [完整原件](https://arxiv.org/pdf/2610.11251v1) |
+| 2610.09703 | [完整原件](https://arxiv.org/html/2610.09703v1) | 本次未取得完整 PDF；HTML 全文已读取 |
+| 2610.09313 | [完整原件](https://arxiv.org/html/2610.09313v1) | [完整原件](https://arxiv.org/pdf/2610.09313v1) |
+| 2610.09252 | [完整原件](https://arxiv.org/html/2610.09252v1) | [完整原件](https://arxiv.org/pdf/2610.09252v1) |
+| 2610.07987 | [完整原件](https://arxiv.org/html/2610.07987v1) | 本次未取得完整 PDF；HTML 全文已读取 |
+| 2610.07729 | [完整原件](https://arxiv.org/html/2610.07729v1) | 本次未取得完整 PDF；HTML 全文已读取 |
+| 2610.04225 | [完整原件](https://arxiv.org/html/2610.04225v1) | 本次未取得完整 PDF；HTML 全文已读取 |
 
 七份 HTML 均含完整 article.ltx_document，方法、表格与相关附录可访问。完整 PDF 须同时通过下载退出码、PDF 文件头/EOF 与全页解析；关键页另行视觉核查。PDF 传输超时不会使已读完整 HTML 变成摘要阅读。SAP PDF 三次120秒传输超时；VisionWeave PDF 大小约36 MB，多次超时后停止可选补充下载；未完成缓存不收入 raw。Foveated/FlashGaze 的 PDF 补充各限定一次60秒请求。具体实际结果如下，不伪造未获得的页码。
 

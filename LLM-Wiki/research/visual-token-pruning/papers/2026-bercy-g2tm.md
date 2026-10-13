@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, token-merging, vision-transformer, semantic-segmentation]
 status: active
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # G2TM：解码器无关的 ViT 早期 Token 合并
@@ -23,7 +23,7 @@ updated: 2026-09-24
 
 来源：[arXiv 2609.18279v1](https://arxiv.org/abs/2609.18279)，首次提交于 2026-09-16。arXiv 页面将其标为早期 G2TM 工作的扩展版本，并列出 related-resource DOI `10.5220/0014267600004084`；该 DOI 不作为本预印本的身份 DOI。页面备注“to be published in CCIS”，本轮未独立核验正式出版状态，venue 仍记为 arXiv。
 
-精读范围：27 页 PDF 的 §3–6、图 1–6、表 1–11；重点核对模块插入位置、训练/推理差异、解码器适配、ADE20K/ImageNet-1k/Cityscapes 结果及预训练敏感性。本地原件：[[LLM-Wiki/raw/papers/2609.18279v1.pdf]]。没有运行代码、训练模型或复现实验；以下结果均为作者报告。
+精读范围：27 页 PDF 的 §3–6、图 1–6、表 1–11；重点核对模块插入位置、训练/推理差异、解码器适配、ADE20K/ImageNet-1k/Cityscapes 结果及预训练敏感性。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.18279v1)。没有运行代码、训练模型或复现实验；以下结果均为作者报告。
 
 ## 问题与核心假设
 

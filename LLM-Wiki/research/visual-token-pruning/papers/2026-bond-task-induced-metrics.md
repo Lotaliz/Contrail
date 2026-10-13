@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, efficient-inference]
 status: active
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-10-13
 ---
 
 # Task-Induced Riemannian Metrics：按下游任务敏感性衡量视觉 token
 
 ## 来源与阅读边界
 
-来源：[arXiv 2609.27988v1](https://arxiv.org/abs/2609.27988)，2026-09-23 首次提交；本地原件 [[LLM-Wiki/raw/papers/2609.27988v1.pdf]]，31 页。已阅读正文 §1–8、表 1–2 与附录 D–H、M 的方法、数据、消融和局限；未运行代码、训练 importance head 或复测时延。下述数值均为作者报告；本笔记中的“项目判断”不是原文结论。
+来源：[arXiv 2609.27988v1](https://arxiv.org/abs/2609.27988)，2026-09-23 首次提交；阅读原件 [PDF 原文](https://arxiv.org/pdf/2609.27988v1)，31 页。已阅读正文 §1–8、表 1–2 与附录 D–H、M 的方法、数据、消融和局限；未运行代码、训练 importance head 或复测时延。下述数值均为作者报告；本笔记中的“项目判断”不是原文结论。
 
 ## 问题、假设与方法
 

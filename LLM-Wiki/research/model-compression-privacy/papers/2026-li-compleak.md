@@ -15,7 +15,7 @@ tags: [paper-note, research, membership-inference, model-compression, unstructur
 status: active
 related: [model-compression-privacy]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-10-13
 ---
 
 # CompLeak: Deep Learning Model Compression Exacerbates Privacy Leakage
@@ -25,7 +25,7 @@ updated: 2026-09-15
 - 作者：Na Li、Yansong Gao、Hongsheng Hu、Boyu Kuang、Anmin Fu。
 - 会议：35th USENIX Security Symposium，2026，pp. 6545–6564。
 - 官方页面：[USENIX Security 2026](https://www.usenix.org/conference/usenixsecurity26/presentation/li-na)。
-- 原始论文：[[LLM-Wiki/raw/papers/2026-li-compleak.pdf|USENIX 正式版 PDF]]。
+- 原始论文：[USENIX 正式版来源](https://www.usenix.org/conference/usenixsecurity26/presentation/li-na)。
 - 开放科学：官方记录为 Distinguished Artifact Award；USENIX Security 2026 Artifact Evaluation 页面标记 Artifact Available、Functional、Results Reproduced。论文笔记本身未执行本地复现，因此 verification 仍为 `source-checked`。
 
 ## 一句话结论

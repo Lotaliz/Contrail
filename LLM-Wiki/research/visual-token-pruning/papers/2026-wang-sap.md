@@ -8,14 +8,14 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # Understanding and Mitigating Token-Pruning-Induced Vulnerabilities in VLMs
 
 ## 2026-10-10：原文精读与证据升级
 
-用户再次将本文选为 selected。本次获得 [arXiv 2610.09703v1](https://arxiv.org/abs/2610.09703v1) 完整正文，原件见 [[LLM-Wiki/raw/papers/2610.09703v1.html]]，论文为 CC BY 4.0；作者仓库 MIT 仅适用于代码。复用 `paper-wang-2026-sap`，保留下面的早期仓库略读记录，本文升级为 deep-read / source-checked。精读 §3–6、图3–7、表1–15、附录A–G/I；未运行模型或攻击，也未独立核验会议接收状态。
+用户再次将本文选为 selected。本次获得 [arXiv 2610.09703v1](https://arxiv.org/abs/2610.09703v1) 完整正文，原件见 [HTML 原文](https://arxiv.org/html/2610.09703v1)，论文为 CC BY 4.0；作者仓库 MIT 仅适用于代码。复用 `paper-wang-2026-sap`，保留下面的早期仓库略读记录，本文升级为 deep-read / source-checked。精读 §3–6、图3–7、表1–15、附录A–G/I；未运行模型或攻击，也未独立核验会议接收状态。
 
 ### 机制、威胁模型与干预
 

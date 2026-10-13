@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, adaptive-budget, sequential-selection, efficient-inference]
 status: active
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # StepPrune：顺序视觉 Token 选择与自适应 STOP
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.13804v1](https://arxiv.org/abs/2609.13804)，首次提交于 2026-09-12，许可为 CC BY-NC-ND 4.0。精读 17 页 PDF 的方法、算法 1、四个 backbone 主表、效率/消融/敏感性与限制。本地原件：[[LLM-Wiki/raw/papers/2609.13804v1.pdf]]。未运行代码或模型；结果均为作者报告。
+来源：[arXiv 2609.13804v1](https://arxiv.org/abs/2609.13804)，首次提交于 2026-09-12，许可为 CC BY-NC-ND 4.0。精读 17 页 PDF 的方法、算法 1、四个 backbone 主表、效率/消融/敏感性与限制。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.13804v1)。未运行代码或模型；结果均为作者报告。
 
 ## 问题与方法定位
 

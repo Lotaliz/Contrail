@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 小目标与安全放大：信息、token几何和单次枚举容量
 
 ## 原件与阅读范围
 
-[arXiv 2610.09313v1](https://arxiv.org/abs/2610.09313v1)，arXiv perpetual non-exclusive license；完整原件见 [[LLM-Wiki/raw/papers/2610.09313v1.html]]。精读 §1、§3–6、Limitations，主要表1–4，附录A的接口界/crop dominance/覆盖证明，B的预注册偏离、C的几何、H/I/K的错误与成本。本轮未逐行验证全部信息论和自适应搜索证明，也未调用商业模型，结论依作者测量与明确假设；不标reproduced。
+[arXiv 2610.09313v1](https://arxiv.org/abs/2610.09313v1)，arXiv perpetual non-exclusive license；完整原件见 [HTML 原文](https://arxiv.org/html/2610.09313v1)。精读 §1、§3–6、Limitations，主要表1–4，附录A的接口界/crop dominance/覆盖证明，B的预注册偏离、C的几何、H/I/K的错误与成本。本轮未逐行验证全部信息论和自适应搜索证明，也未调用商业模型，结论依作者测量与明确假设；不标reproduced。
 
-另保存 [[LLM-Wiki/raw/papers/2610.09313v1.pdf|完整 PDF]]（44页），全页解析并视觉核查第20页表3和图6；预算、召回和native/插值crop控制与HTML一致，PDF哈希登记于同一来源。
+另保存 [完整 PDF](https://arxiv.org/pdf/2610.09313v1)（44页），全页解析并视觉核查第20页表3和图6；预算、召回和native/插值crop控制与HTML一致，PDF哈希登记于同一来源。
 
 ## 两类瓶颈与假设
 

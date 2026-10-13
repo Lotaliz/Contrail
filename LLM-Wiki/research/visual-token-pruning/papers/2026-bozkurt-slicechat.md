@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # SLICEChat：病理全切片图像的编码器内渐进剪枝
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.24894v1](https://arxiv.org/abs/2609.24894)，首次提交于 2026-09-21，许可为 CC BY 4.0。精读 15 页 PDF 的方法、三阶段训练、主表 1–8 与计算比较；本地原件：[[LLM-Wiki/raw/papers/2609.24894v1.pdf]]。未运行代码或模型，所有结果均为作者报告。
+来源：[arXiv 2609.24894v1](https://arxiv.org/abs/2609.24894)，首次提交于 2026-09-21，许可为 CC BY 4.0。精读 15 页 PDF 的方法、三阶段训练、主表 1–8 与计算比较；阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.24894v1)。未运行代码或模型，所有结果均为作者报告。
 
 用户从近期索引选中本文；本笔记复用既有 `paper-arxiv-2609-24894`，将 discovered / unverified 升为 deep-read / source-checked。
 

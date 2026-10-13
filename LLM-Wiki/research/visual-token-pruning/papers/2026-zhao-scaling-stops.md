@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # Scaling Stops：视觉预算与主干容量的可分离响应
 
 ## 原件与阅读范围
 
-用户在候选索引选中本文。精读 [arXiv 2610.01640v1](https://arxiv.org/abs/2610.01640v1) 的正文方法、结果，以及附录 A 的计数/解码协议、B 的拟合/留出/有界性/参数不确定性、E 的成本与配置选择。完整 HTML 原件见 [[LLM-Wiki/raw/papers/2610.01640v1.html]]；图表和公式以原文定位。未运行模型、拟合器或 Lean 证明，以下数字均为作者报告。
+用户在候选索引选中本文。精读 [arXiv 2610.01640v1](https://arxiv.org/abs/2610.01640v1) 的正文方法、结果，以及附录 A 的计数/解码协议、B 的拟合/留出/有界性/参数不确定性、E 的成本与配置选择。完整 HTML 原件见 [HTML 原文](https://arxiv.org/html/2610.01640v1)；图表和公式以原文定位。未运行模型、拟合器或 Lean 证明，以下数字均为作者报告。
 
-PDF 原件另见 [[LLM-Wiki/raw/papers/2610.01640v1.pdf]]（53 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
+PDF 原件另见 [PDF 原文](https://arxiv.org/pdf/2610.01640v1)（53 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
 
 ## 问题、模型与拟合
 

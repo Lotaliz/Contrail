@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # ME-VLM：具身 VLM 的端侧视觉 Token 压缩
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.24526v2](https://arxiv.org/abs/2609.24526)，v1 首次提交于 2026-09-21，v2 更新于 2026-09-22；许可为 arXiv non-exclusive distribution license。精读 30 页 PDF，重点核对 §5 的压缩与 M100 部署，同时阅读统一训练、主表 1–4、案例与结论。本地原件：[[LLM-Wiki/raw/papers/2609.24526v2.pdf]]。未运行模型、代码或硬件测量；数字均为作者报告。
+来源：[arXiv 2609.24526v2](https://arxiv.org/abs/2609.24526)，v1 首次提交于 2026-09-21，v2 更新于 2026-09-22；许可为 arXiv non-exclusive distribution license。精读 30 页 PDF，重点核对 §5 的压缩与 M100 部署，同时阅读统一训练、主表 1–4、案例与结论。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.24526v2)。未运行模型、代码或硬件测量；数字均为作者报告。
 
 本文主体是具身/agent 基础模型，视觉 token 压缩是端侧部署子模块，故与项目关系为 adjacent。用户从近期索引选中后，复用 `paper-arxiv-2609-24526` 完成精读。
 

@@ -4,6 +4,7 @@ type: metadata
 tags: [metadata, workflow]
 title: "研究工作流共同契约"
 status: active
+updated: 2026-10-13
 ---
 
 # 研究工作流共同契约
@@ -27,6 +28,7 @@ status: active
 - 调研比较、研究缺口和 motivation 放在 research 项目中。
 - 实验原始输出与解释分离。
 - 大文件不在库中重复保存；记录路径、版本和校验值。
+- 论文 PDF、HTML、HTM 原文只作为 raw 下的本地副本，由根目录 .gitignore 忽略；来源表保留 URL、版本、路径和校验值，发布笔记使用官方来源 URL，不依赖未发布的原文文件。
 
 ## 通用完成条件
 

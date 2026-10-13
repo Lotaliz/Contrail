@@ -14,16 +14,16 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # EviViT：人类搜索监督的局部重读与稀疏融合
 
 ## 原件与阅读范围
 
-用户显式选择本文。原文为 [arXiv 2609.37123v1](https://arxiv.org/abs/2609.37123v1)，CC BY 4.0；完整 HTML 原件见 [[LLM-Wiki/raw/papers/2609.37123v1.html]]。精读 §3–5、表 1–5、附录 A 的模块与四阶段训练、表 6–10，以及 C 的位置/面积/监督控制。未运行代码或访问训练数据、权重，数字均为作者报告。
+用户显式选择本文。原文为 [arXiv 2609.37123v1](https://arxiv.org/abs/2609.37123v1)，CC BY 4.0；完整 HTML 原件见 [HTML 原文](https://arxiv.org/html/2609.37123v1)。精读 §3–5、表 1–5、附录 A 的模块与四阶段训练、表 6–10，以及 C 的位置/面积/监督控制。未运行代码或访问训练数据、权重，数字均为作者报告。
 
-PDF 原件另见 [[LLM-Wiki/raw/papers/2609.37123v1.pdf]]（23 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
+PDF 原件另见 [PDF 原文](https://arxiv.org/pdf/2609.37123v1)（23 页）；完整文件已解析，关键图表与 HTML 数字交叉核查，SHA256 登记在同一 source_id 的 local_artifacts。
 
 ## 从空间监督到实际执行
 

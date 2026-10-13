@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference, knowledge-distillation]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # Foveated Compression：单高清区域的干预监督与选择失败
 
 ## 原件与阅读范围
 
-[arXiv 2610.07729v1](https://arxiv.org/abs/2610.07729v1)，CC BY-NC-ND 4.0；完整原件见 [[LLM-Wiki/raw/papers/2610.07729v1.html]]。精读 §1–5、式 1–6、表 1–2、附录 A–D 的训练/预算/统计/失败分析。未执行训练或本地复现，以下数字均为作者报告。
+[arXiv 2610.07729v1](https://arxiv.org/abs/2610.07729v1)，CC BY-NC-ND 4.0；完整原件见 [HTML 原文](https://arxiv.org/html/2610.07729v1)。精读 §1–5、式 1–6、表 1–2、附录 A–D 的训练/预算/统计/失败分析。未执行训练或本地复现，以下数字均为作者报告。
 
 ## 一次完整编码后的粗细替换
 

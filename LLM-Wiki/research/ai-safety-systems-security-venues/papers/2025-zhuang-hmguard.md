@@ -15,7 +15,7 @@ tags: [paper-note, research, safety-guardrail, multimodal-safety, content-modera
 status: active
 related: [ai-safety-systems-security-venues]
 created: 2026-08-25
-updated: 2026-09-08
+updated: 2026-10-13
 ---
 
 # I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models
@@ -24,7 +24,7 @@ updated: 2026-09-08
 
 - 论文：Yong Zhuang et al., *I know what you MEME! Understanding and Detecting Harmful Memes with Multimodal Large Language Models*, NDSS 2025。
 - DOI：`10.14722/ndss.2025.240415`。
-- 原文：[[LLM-Wiki/raw/papers/2025-zhuang-hmguard.pdf]]；来源登记为 `paper-zhuang-2025-hmguard`。
+- 原文：[原文来源](https://www.ndss-symposium.org/ndss-paper/i-know-what-you-meme-understanding-and-detecting-harmful-memes-with-multimodal-large-language-models/)；来源登记为 `paper-zhuang-2025-hmguard`。
 - 本次阅读层级：`deep-read`。已核对正文、图 4–6、表 I–XI 与附录中的提示流程、标注手册和字符扰动实验；未执行代码或复现实验。
 
 ## 一句话结论

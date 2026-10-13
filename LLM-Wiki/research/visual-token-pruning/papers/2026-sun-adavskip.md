@@ -14,14 +14,14 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, layer-skipping, adaptive-routing, efficient-inference]
 status: active
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-13
 ---
 
 # AdaVSkip：跨层视觉计算的自适应跳过
 
 ## 书目信息与阅读边界
 
-来源：[arXiv 2609.15131v1](https://arxiv.org/abs/2609.15131)，首次提交于 2026-09-14，许可为 CC BY 4.0。精读 12 页 PDF 的 §3–5、图 2–4、表 1–6。本地原件：[[LLM-Wiki/raw/papers/2609.15131v1.pdf]]。当前 PDF 在参考文献后结束，正文声称“附录”给出加速 profiling，但下载版本未包含对应附录；训练超参数与硬件也未完整报告。没有本地复现，以下数字均为作者报告。
+来源：[arXiv 2609.15131v1](https://arxiv.org/abs/2609.15131)，首次提交于 2026-09-14，许可为 CC BY 4.0。精读 12 页 PDF 的 §3–5、图 2–4、表 1–6。阅读原件：[PDF 原文](https://arxiv.org/pdf/2609.15131v1)。当前 PDF 在参考文献后结束，正文声称“附录”给出加速 profiling，但下载版本未包含对应附录；训练超参数与硬件也未完整报告。没有本地复现，以下数字均为作者报告。
 
 ## 方法定位
 
