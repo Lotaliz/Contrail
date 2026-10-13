@@ -5,7 +5,7 @@ title: "视觉 Token 剪枝：近期论文追踪"
 tags: [index, research, visual-token-pruning]
 status: active
 created: 2026-09-16
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 近期论文入口
@@ -14,6 +14,12 @@ updated: 2026-10-10
 - [[LLM-Wiki/research/visual-token-pruning/watch/runs.md|检索批次与覆盖情况]]
 - [[LLM-Wiki/research/visual-token-pruning/overview.md|研究项目与当前主线]]
 - [[LLM-Wiki/metadata/workflows/arxiv-watch.md|去重、人工筛选和晋升规则]]
+
+## 2026-10-13：最近运行
+
+已沿用2026-10-03T02:01:29Z至2026-10-13T02:01:29Z的冻结窗口重试。四组API均首次请求成功（HTTP200），每组唯一结果页已完整读取；92条命中合并为55个唯一ID，其中45篇既有候选保留人工决定，新增4篇direct、1篇adjacent进入pending，另5篇范围外命中仅作查重记录。全库新增10条来源；既有排除记录2610.11205实际观测版本更新为v2，不改筛查决定。符合主题共5篇，未触及每批10篇上限，相关备查0。覆盖complete，补足此前partial批次；未精读、未下载PDF。见 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z-retry1.md|成功重试日志]]；[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z.md|原限流与回退日志]]保留。
+
+同日用户完成本批筛选，仅选SheafPrune，其余四篇skipped；现已按明确请求完成[[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]]，核验正文与附录、登记原件并在校验后晋升ingested。当前pending 0、selected 0、skipped 82、deferred 1、ingested 28；所有233个候选ID和原始批次日志保留，本轮不检索新论文。
 
 首轮论文收集已于 2026-09-16 执行，窗口为 2026-09-06 08:47:38 至 2026-09-16 08:47:38 UTC：10 篇直接相关、7 篇相邻、1 篇待核验、14 篇排除命中，收集时均为 discovered 候选。用户同日指定的 [[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|StackTok]] 已完成精读晋升；后续人工决定与精读晋升以候选索引为准。首轮结果见 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-09-16-084738Z.md|日志]]。已有论文、笔记和专题综合保持原结构，继续按全库来源去重，不批量迁移历史论文。
 
@@ -42,7 +48,7 @@ updated: 2026-10-10
 | project | visual-token-pruning |
 | 主要来源 | arXiv API；失败时可用 arXiv 页面辅助发现并标 partial |
 | 时间窗 | 每次启动 UTC 时刻向前滚动 10 天，按首次提交日期 |
-| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近完整执行批次 2026-10-10（重试 10-09 原窗口） |
+| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近完整执行批次 2026-10-13（重试当日原窗口） |
 | 阅读深度 | discovered；标题与摘要相关性确认 |
 | 分页预算 | 每组 50 条/页，最多 2 页；达到上限且未取完则 partial |
 | 筛查预算 | 每次最多 100 篇此前未筛查的唯一命中；不足覆盖时记录剩余 ID |

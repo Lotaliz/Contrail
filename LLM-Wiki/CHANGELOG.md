@@ -9,6 +9,12 @@
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
 
+## 2026-10-13
+
+- [Added] [research/visual-token-pruning, raw/sources] 按用户唯一选择完成SheafPrune全文精读，保存并登记完整原件，通俗说明场景、图排序、预算条件与训练部署，核对最优超参数上沿和固定配置消融、区分prefill与完整回答时延，同步比较及阅读导航，校验后晋升候选（[[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]]）。
+
+- [Added] [research/visual-token-pruning/watch, raw/sources] 完成2026-10-13失败窗口的四组检索重试，登记10篇新题录，其中4篇直接相关和1篇相邻进入pending、5篇排除仅作查重，保留人工决定并记录1篇既有来源的实际v2版本（[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z-retry1.md|批次日志]]）。
+
 ## 2026-10-10
 
 - [Added] [research/visual-token-pruning, experiments, raw/sources] 调研政策条件安全表征指导视觉证据保留，新增 SAHs/SASA/ShiftDC 三篇略读与 Qwen3-VL 接口来源，比较语言拒答、视觉早层与区域贡献并区分其与 Cx 预算的分工，同步项目导航及用户报告的自适应实验运行状态，未新增结果或正式 motivation（[[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md|综合]]）。

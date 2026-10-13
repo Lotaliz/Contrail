@@ -1,13 +1,13 @@
----
+﻿---
 id: visual-token-pruning-overview
 type: research-overview
 title: "短政策条件下的文本政策指导视觉 Token 剪枝"
 tags: [research, visual-token-pruning, multimodal-safety, efficient-inference, vision-language-model]
 status: active
 related: [multimodal-compositional-safety, safety-classifier-compression]
-sources: [paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-gao-2026-quietprune, paper-rubab-2026-dyna-vit, paper-chen-2025-safewatch, webpage-cvpr-2027-cfp, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-wang-2026-sap, paper-arxiv-2609-27988, paper-arxiv-2609-34861, code-hf-2026-qwen3-vl-modeling]
+sources: [paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-gao-2026-quietprune, paper-rubab-2026-dyna-vit, paper-chen-2025-safewatch, webpage-cvpr-2027-cfp, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-wang-2026-sap, paper-arxiv-2609-27988, paper-arxiv-2609-34861, code-hf-2026-qwen3-vl-modeling, paper-arxiv-2610-13263]
 created: 2026-09-08
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 短政策条件下的文本政策指导视觉 Token 剪枝
@@ -48,6 +48,8 @@ updated: 2026-10-10
 - 当前候选贡献来自交叉处：**可变政策下的视觉证据选择、安全质量保持和真实端到端加速**；短政策改写仅为场景构造。
 
 ## 研究入口
+
+- [[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]]：图传播与度修正、固定配置消融、预算条件和prefill口径（2026-10-13）。
 
 - [[LLM-Wiki/research/visual-token-pruning/reading-log.md|2026-10-10：两批 selected 精读（六篇＋七篇）与证据边界]]
 - [[LLM-Wiki/research/visual-token-pruning/c5-adaptive-total-budget-plan.md|C5 自适应总预算：高清救回门与共同尺度候选评分]]

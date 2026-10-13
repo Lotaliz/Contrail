@@ -1,16 +1,26 @@
----
+﻿---
 id: visual-token-pruning-training-reading-log
 type: synthesis
 title: "训练参与的视觉 Token 压缩：检索与证据日志"
 tags: [research, visual-token-pruning, knowledge-distillation, multimodal-safety]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-liu-2026-autoprune-ai4ai, code-autoprune-2026-release, paper-zhang-2025-cdpruner, paper-cao-2023-pumer, code-pumer-2026-audit, code-cdpruner-2026-audit, paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-arxiv-2609-18279, paper-arxiv-2609-13804, paper-arxiv-2609-10346, paper-arxiv-2609-15131, paper-arxiv-2609-13745, paper-arxiv-2609-24894, paper-arxiv-2609-24526, paper-arxiv-2609-24485, paper-arxiv-2609-22910, paper-arxiv-2609-19990, paper-arxiv-2609-27988, paper-arxiv-2609-26484, paper-arxiv-2609-25635, paper-zhu-2026-gapsight, paper-ramachandram-2026-pf-cbm, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-chen-2025-safewatch, code-hf-2026-qwen3-vl-modeling]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-chen-2024-llavolta, paper-xing-2024-pyramiddrop, paper-wang-2026-loreal, paper-2026-covipal, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-yu-2023-x-pruner, paper-fan-2026-visual-token-semantics, paper-wang-2026-information-horizon, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-burns-2018-women-snowboard, paper-selvaraju-2019-hint, paper-tang-2020-gaic, paper-fu-2024-laps, paper-chen-2025-vltp, paper-guo-2025-crop, paper-anonymous-2026-mvp-token, paper-liu-2026-autoprune-ai4ai, code-autoprune-2026-release, paper-zhang-2025-cdpruner, paper-cao-2023-pumer, code-pumer-2026-audit, code-cdpruner-2026-audit, paper-cao-2024-madtp, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, paper-mu-2023-gist-tokens, paper-arxiv-2609-18279, paper-arxiv-2609-13804, paper-arxiv-2609-10346, paper-arxiv-2609-15131, paper-arxiv-2609-13745, paper-arxiv-2609-24894, paper-arxiv-2609-24526, paper-arxiv-2609-24485, paper-arxiv-2609-22910, paper-arxiv-2609-19990, paper-arxiv-2609-27988, paper-arxiv-2609-26484, paper-arxiv-2609-25635, paper-zhu-2026-gapsight, paper-ramachandram-2026-pf-cbm, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-chen-2025-safewatch, code-hf-2026-qwen3-vl-modeling, paper-arxiv-2610-13263]
 status: active
 created: 2026-09-08
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 检索范围
+
+## 2026-10-13：唯一 selected 的 SheafPrune 精读
+
+用户已筛完最新五篇推荐，只选SheafPrune，其余四篇skipped。本轮仅读取这一篇，复用来源ID，不重启检索或修改用户排除决定。[[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]] 按后续精读表达规范，先讲图片问答场景、问题、预算和图传播概念，再说明方法、训练、部署与实验条件。完整HTML及实际取得的PDF登记于同一来源；获取和图表核查记录见笔记。所有效果为作者报告，未运行代码或模型。
+
+关键核验：主表22/28领先是逐点评测best-delta上沿，独立验证集的选择规则未交代；固定默认配置在10%保留率下RA89.39%，均匀初始化88.19%，去度修正72.80%，所以图结构是更强的直接证据，不能把主要收益归给问题指导或断言训练无用。LLaVA-NeXT的5.15×是含选择器的prefill，decode只从66.5变为67.3 token/s，84%是FLOPs减少，未给完整答案墙钟时延。
+
+对Cx的判断：该方法在完整视觉编码后、给定预算内选token，不预测全局/条件局部预算、不直接产生单局部框或保证政策安全。参考预算条件与均匀初始化对照；400-token小图、政策改变的有效证据保留和真实E2E收益均待验证。作者公开README显示代码、权重和复现说明仍为Coming soon，未执行实现审计。比较已同步，不新建concept、不更新正式motivation或Cx方案。
+
+精读笔记为deep-read / source-checked；首次Wiki校验通过后已晋升ingested。首次及晋升后校验均PASS，0错误、2项既有警告：旧实验README断链、2026-08-25修改记录未被CHANGELOG链接；本轮未新增警告。另核对原件哈希、来源唯一、ingested笔记层级及人工决定。当前pending 0、selected 0、skipped 82、deferred 1、ingested 28；233个基础ID完整保留。
 
 ## 2026-10-10：安全激活指导视觉证据保留
 

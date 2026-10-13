@@ -1,16 +1,31 @@
----
+﻿---
 id: visual-token-pruning-comparison
 type: synthesis
 title: "训练参与视觉压缩：统一比较与最近邻审查"
 tags: [research, visual-token-pruning, multimodal-safety, knowledge-distillation]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-arxiv-2609-27988, code-hf-2026-qwen3-vl-modeling]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-arxiv-2609-27988, code-hf-2026-qwen3-vl-modeling, paper-arxiv-2610-13263]
 status: active
 created: 2026-09-08
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # 方法比较
+
+## 2026-10-13：SheafPrune的图排序、预算条件与部署边界
+
+来源：[[LLM-Wiki/research/visual-token-pruning/papers/2026-ma-sheafprune.md|SheafPrune精读笔记]]（v1全文，含附录A–S；作者结果，未复现）。本文的场景是图片问答；先完成视觉编码，再在语言模型入口按指定预算删除token。预算条件让同一选择器支持多种保留数量，尚不负责判断每张图需要多少预算，也不产生一个局部框。
+
+| 比较轴 | 原文证据 | 对当前Cx的含义／本项目判断 |
+|---|---|---|
+| 分数来自哪里 | 文字—视觉关系与视觉先验经图传播、邻居数修正后排序；均匀初始分数RA88.19%，完整89.39%（表2/10，10%保留） | 图结构贡献更明确；“政策进入模型”与“政策改变了有效证据”仍要分开验证 |
+| 预算是谁决定 | 外部给定保留率，选择器接收该条件；同一训练权重覆盖七种预算（附录C/M） | 可参考预算条件，不能代替全局/条件局部收益预测 |
+| 执行成本 | 完整ViT和投影后一次物理删除；仍需完整两两相似度矩阵（附录G/J） | 不节省视觉塔；小图和单框Cx的成本结构不同 |
+| 质量与调参 | 主表逐点选择delta；验证集选择规则未明确，未提供固定delta的全网格部署曲线（附录M/O） | 对照应预先固定或用明确验证集选择参数，不能把性能上沿当无需调参结果 |
+| 效率 | LLaVA-NeXT保留10%时prefill5.15×，decode66.5→67.3 token/s；没有完整答案E2E时延（表9、附录K） | 需分开选择器、视觉塔、prefill和decode，不能直接外推政策Guard收益 |
+| 证据分布 | 10%保留时GQA网格覆盖0.417，随机0.500；无显式覆盖约束（表13） | 图分数不能保证空间覆盖或安全证据，也不天然给出可解释单框 |
+
+与已有CDPruner的关系是问题相关性与冗余的共同主题，但子集选择机制不同，本文没有实测CDPruner；与QuietPrune相比，剪枝位置更晚且不省视觉塔。只增加有出处的比较，不改变Cx方法、实验状态、概念或正式motivation。
 
 ## 2026-10-10：安全内部表征与政策预算的分工
 

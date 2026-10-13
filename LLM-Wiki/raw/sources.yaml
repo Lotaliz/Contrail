@@ -5921,11 +5921,11 @@ sources:
     year: 2026
     venue: "arXiv"
     url: "https://arxiv.org/abs/2610.11205"
-    accessed: 2026-10-10
+    accessed: 2026-10-13
     local_path: ""
     sha256: ""
     license: "unknown"
-    notes: "仅完成标题和摘要筛查，discovered / unverified。2026-10-10 经 arXiv 官方 API 核对题录；观测版本 2610.11205v1，首次提交 2026-10-08T04:06:50Z，本版更新 2026-10-08T04:06:50Z。摘要筛查判断：out-of-scope；分析 ViT 表征和架构泛化代理，摘要未提出输入视觉 token 的筛选或压缩机制。 未下载 PDF，未精读。"
+    notes: "仅完成标题和摘要筛查，discovered / unverified。2026-10-10 经 arXiv 官方 API 核对题录；观测版本 2610.11205v1，首次提交 2026-10-08T04:06:50Z，本版更新 2026-10-08T04:06:50Z。摘要筛查判断：out-of-scope；分析 ViT 表征和架构泛化代理，摘要未提出输入视觉 token 的筛选或压缩机制。 未下载 PDF，未精读。 2026-10-13 经 arXiv API 观测 2610.11205v2，本版更新 2026-10-09T15:22:48Z；首次提交未变，保留原摘要判断与排除状态，未阅读新版本正文。"
   - id: paper-arxiv-2610-12427
     kind: "paper"
     title: "FastBench: Can Streaming VLMs Perceive High-Dynamic Real-World Streams?"
@@ -6052,3 +6052,181 @@ sources:
     sha256: ""
     license: "unknown"
     notes: "仅完成标题和摘要筛查，discovered / unverified。2026-10-10 经 arXiv 官方 API 核对题录；观测版本 2610.10990v1，首次提交 2026-10-07T23:24:16Z，本版更新 2026-10-07T23:24:16Z。摘要筛查判断：out-of-scope；蒸馏减少多模态扩散解码步数，主要贡献不是视觉 token 筛选或预算分配。 未下载 PDF，未精读。"
+  - id: paper-arxiv-2610-13858
+    kind: paper
+    title: 'LapMerge: Differentiable Exact-Budget Token Merging in Linear Time'
+    authors:
+    - Magdalena Trędowicz
+    - Aleksandra Nowak
+    - Tomasz Steifer
+    - Łukasz Struski
+    - Szymon Płotka
+    - Jacek Tabor
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13858
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13858v1，首次提交 2026-10-09T17:07:17Z，本版更新 2026-10-09T17:07:17Z。摘要筛查判断：direct；用可学习的质量分布将有序 token 合并为精确数量的片段，支持可变预算和线性计算。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13600
+    kind: paper
+    title: 'AudioTETRIS: Token Elimination via Transitional Importance Signals for Efficient Audio LLMs'
+    authors:
+    - Shreya Sajid
+    - Anna Vettoruzzo
+    - Joaquin Vanschoren
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13600
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13600v1，首次提交 2026-10-09T13:49:22Z，本版更新 2026-10-09T13:49:22Z。摘要筛查判断：out-of-scope；方法剪枝的是音频 token，摘要未提出或评测图像 patch、视觉编码器的选择机制。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13465
+    kind: paper
+    title: 'When MLLMs miss what humans read: diagnosing and learning to read squint text'
+    authors:
+    - Chen Peng
+    - Shan Huang
+    - Jianbo Huang
+    - Linrui Qin
+    - Qibo Sun
+    - Mengwei Xu
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13465
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13465v1，首次提交 2026-10-09T12:02:22Z，本版更新 2026-10-09T12:02:22Z。摘要筛查判断：out-of-scope；主要改进来自 Squint OPSD 在线策略蒸馏；摘要中的区域与预算诊断未形成新的推理期视觉选择机制。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13453
+    kind: paper
+    title: 'Reflect-VLA: Internalizing Reflective Guidance via Dual-Path On-Policy Self-Distillation for Autonomous Driving'
+    authors:
+    - Yuechen Luo
+    - He Chong
+    - Fang Li
+    - Shaoqing Xu
+    - Hexin Zhang
+    - Ruiqi Zhang
+    - Ziying Song
+    - Lei Yang
+    - Zhi-Xin Yang
+    - Fuxi Wen
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13453
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13453v1，首次提交 2026-10-09T11:52:17Z，本版更新 2026-10-09T11:52:17Z。摘要筛查判断：out-of-scope；主要贡献是将驾驶反思指导内化的在线策略自蒸馏，未提出视觉 token 的剪枝或预算分配机制。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13299
+    kind: paper
+    title: Decoding Register Tokens Preserves Global Scene Details
+    authors:
+    - David Jacob Drexlin
+    - Julius Hense
+    - Jonas Dippel
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13299
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13299v1，首次提交 2026-10-09T09:46:53Z，本版更新 2026-10-09T09:46:53Z。摘要筛查判断：out-of-scope；保留全部图像 patch 并增加 register token 改善重建和生成，未研究视觉理解的 token 剪枝或压缩。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13263
+    kind: paper
+    title: 'SheafPrune: Sheaf-Guided Graph Propagation for Visual Token Pruning'
+    authors:
+    - Xiaoyang Ma
+    - Chi Wang
+    - Hong Sun
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13263v1
+    accessed: 2026-10-13
+    local_path: papers/2610.13263v1.html
+    sha256: e171584ffbb0be90318415acaa2d35af54d5534e81046e8b57a8046a453dfded
+    license: CC BY 4.0
+    notes: 2026-10-13 依用户唯一selected决定完成全文精读，deep-read / source-checked；核验v1正文§1–5、算法1/2、表1–13及附录A–S，区分逐点评测best-delta上沿、固定配置消融与prefill计时，不复现实验。笔记 research/visual-token-pruning/papers/2026-ma-sheafprune.md。作者仓库README https://github.com/Bob0817912/SheafPrune_ICLR_2027 同日显示代码、权重与复现说明Coming soon；只核验发布状态，未审计实现。此前发现记录（历史）：仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13263v1，首次提交 2026-10-09T09:15:08Z，本版更新 2026-10-09T09:15:08Z。摘要筛查判断：direct；在语言模型入口前用指令相关的图传播选择视觉 token，并让同一选择器支持多种保留预算。 未下载 PDF，未精读。 完整PDF单独登记，图表核查位置见笔记；传输超时的残件不进入raw。
+    local_artifacts:
+    - format: pdf
+      local_path: papers/2610.13263v1.pdf
+      sha256: a78e209b07c04ceb62ae54b64eadd4f9d1120d275fc13414a705dde0b8c1b72e
+  - id: paper-arxiv-2610-13262
+    kind: paper
+    title: Dual-Stream Memory for Vision-Language-Action Policies
+    authors:
+    - Yang Wang
+    - Ping Liu
+    - Ruiyu Wang
+    - Xuhua Chen
+    - Lingfeng Zhang
+    - Tao Zhang
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13262
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13262v1，首次提交 2026-10-09T09:14:59Z，本版更新 2026-10-09T09:14:59Z。摘要筛查判断：adjacent；将执行历史压成时间 token，并按任务相关性保留帧、压缩空间 token，可作记忆与证据预算机制近邻。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-13035
+    kind: paper
+    title: 'GeoGR: Spatial-Semantic Token Compression and Group Routing for Efficient 3D VLMs'
+    authors:
+    - Yongxin Zheng
+    - Hao Wu
+    - Fang Li
+    - Hu Fu
+    - Peiran Yin
+    - Xudong Wang
+    - Haozhe Hu
+    - Xinghao Chen
+    - Yunpu Ma
+    - Wei Zhang
+    - Xiaoyu Shen
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.13035
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.13035v1，首次提交 2026-10-09T05:46:54Z，本版更新 2026-10-09T05:46:54Z。摘要筛查判断：direct；结合跨视角体素压缩与可恢复的视觉 token 分层跳过，减少三维场景的 prefill 计算。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-12959
+    kind: paper
+    title: Video Codec-Guided Training-Free Token Compression for Video Large Language Models
+    authors:
+    - Xihua Sheng
+    - Ruijie Liu
+    - Chang Wen Chen
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.12959
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.12959v1，首次提交 2026-10-09T03:56:58Z，本版更新 2026-10-09T03:56:58Z。摘要筛查判断：direct；用视频编码中的运动与残差信息缩小 token 保护和跨帧合并的搜索范围，减少压缩器自身开销。 未下载 PDF，未精读。
+  - id: paper-arxiv-2610-12673
+    kind: paper
+    title: 'MindVLM: Neural-Grounded Visual Captioning via Subject-Aware Semantic Evidence Selection'
+    authors:
+    - Zixiang Yin
+    - Yu-Ping Wang
+    - Zhengming Ding
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2610.12673
+    accessed: 2026-10-13
+    local_path: ''
+    sha256: ''
+    license: unknown
+    notes: 仅完成标题和摘要筛查，discovered / unverified。2026-10-13 经 arXiv 官方 API 核对题录；观测版本 2610.12673v1，首次提交 2026-10-08T19:54:09Z，本版更新 2026-10-08T19:54:09Z。摘要筛查判断：out-of-scope；将脑活动映射为视觉 token 以生成描述，摘要未给出图像 token 的剪枝、合并或预算机制。 未下载 PDF，未精读。
