@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # Efficient Multi-modal Large Language Models via Progressive Consistency Distillation
@@ -25,4 +25,4 @@ updated: 2026-09-24
 附录 E 仅讨论指令微调，预训练扩展留待未来；附录 F 明确未继续人类偏好对齐。其平均任务表现不能证明固定 FPR 的安全召回。它直接排除“首次无结构修改的多预算压缩蒸馏”；本课题须检验安全证据可见性与政策关系约束的额外作用。
 代码：[作者仓库](https://github.com/ZichenWen1/EPIC)。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

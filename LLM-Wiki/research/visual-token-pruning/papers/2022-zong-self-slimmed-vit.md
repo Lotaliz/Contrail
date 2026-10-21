@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-09
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # Self-Slimmed Vision Transformer
@@ -23,4 +23,4 @@ SiT 用可学习矩阵把 $N$ 枚 token 软聚合为 $\hat N$ 枚 token：$\hat 
 
 这是“少 token 先恢复成稠密表征，再做中间层语义对齐”的直接先例；因此 training-only decoder、全 token MSE 与逐层 feature reconstruction 都不能单独作为创新。RTSM 是学习到的非线性恢复器，不是闭式最小二乘校准；实验集中于 ImageNet 分类，也没有文本/政策条件、危险证据召回或学生可观察性约束。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

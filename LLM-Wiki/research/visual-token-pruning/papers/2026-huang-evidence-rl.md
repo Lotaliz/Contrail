@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # Evidence-RL: Towards Evidence-intensive Visual Reasoning
@@ -21,4 +21,4 @@ updated: 2026-09-24
 ## 边界与研究判断
 训练期局部反事实监督、无需推理期审计已有直接先例。本文不研究 Guard 的压缩预算或固定 FPR；其 grounding 定义也不是任意政策关系的因果证明。候选贡献必须进一步处理压缩前后证据可见性、图文关系和过度蒸馏，不能只加 occlusion loss。未复现；后续需核对弱区域提案对 OCR/关系证据的覆盖。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, adaptive-routing, multimodal-llm, cost-aware-inference]
 status: active
 created: 2026-09-20
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # VIP-Router：按样本选择视觉剪枝策略
@@ -82,7 +82,7 @@ VIP-Router 提供了重要的系统层视角：不存在对每个样本都最优
 
 但直接迁移会有三处根本变化：Group A 的“full 一定正确”必须改成真实安全标签；普通 accuracy 要替换为对 unsafe 漏报更敏感的风险函数；preview 本身的视觉计算必须计入端到端成本。该路由器更适合作为策略选择基线或实验上界，不证明浅层安全出口可行。本轮不修改正式 motivation。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md|方法比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|固定方法内的预算适配]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md|方法比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|固定方法内的预算适配]]。
 
 ## 证据定位与待验证项
 

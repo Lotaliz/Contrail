@@ -6,7 +6,7 @@ tags: [research, visual-token-pruning, efficient-inference]
 source_id: code-qwen3-vl-vision-process
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # Qwen3-VL 图像网格与小裁图
@@ -19,4 +19,4 @@ updated: 2026-10-10
 
 用户报告全图平均约 400 Token；面积近似下 1/16 和 1/9 裁图分别约 25、44 Token。此估算忽略取整、补边及处理器已有缩放，不能代替逐图实际网格。更大框在相同预算下减少采样密度；裁图相对参考预算的三档可以表达尺度差异，同时维持原单框结构。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md]]。
+关联：[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-global-local-importance-plan（历史方案，已删除）]]。

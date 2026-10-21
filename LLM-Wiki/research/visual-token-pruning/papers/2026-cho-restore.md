@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-09
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # RESTORE
@@ -23,4 +23,4 @@ RESTORE 指出缩短视觉序列会同时扭曲位置关系与 LLM 内部视觉�
 
 RESTORE 对齐的是压缩前后的**位置与注意力行为**，不是用教师监督恢复视觉 hidden states。它说明即使 token 内容相近，位置和注意力质量也可能导致下游偏差；安全小字/OCR 路线必须把它作为实现基线。其校准不能恢复已被平均掉的像素证据。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/landscape.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

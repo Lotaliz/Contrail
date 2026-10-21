@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # Patch Slimming for Efficient Vision Transformers
@@ -23,4 +23,4 @@ updated: 2026-09-24
 
 “用深层结果监督更早 patch 选择”已有直接先例，不能作为安全视觉前缀的新颖性。它研究纯视觉分类，不含文本/政策条件、Guard 误报率、压缩状态攻击或学生可观察性；作者 FLOPs 结果不能代替端到端判定时延。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

@@ -15,7 +15,7 @@ tags: [paper-note, research, method, visual-token-pruning, vision-language-model
 status: active
 related: [multimodal-token-pruning, visual-token-pruning]
 created: 2026-08-24
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # VisionZip: Longer is Better but Not Necessary in Vision Language Models
@@ -64,4 +64,4 @@ CLIP 有 `[CLS]` 时，以第二末层 `[CLS]` 对 patch 的注意力挑 dominan
 ## 关联
 
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
-- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]

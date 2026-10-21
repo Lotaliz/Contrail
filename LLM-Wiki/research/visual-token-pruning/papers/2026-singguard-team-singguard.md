@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-18
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # SingGuard
@@ -27,4 +27,4 @@ updated: 2026-09-24
 
 对组合式安全课题，该文也是目前最直接的定向防御证据，但结果来自 2026 年 arXiv v1 和自建合成 benchmark；strict 子集数量、生成器独立划分与外部复验仍缺失，不应把 0.9164 F1 解释成问题已经解决。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/multimodal-compositional-safety/overview.md]]。

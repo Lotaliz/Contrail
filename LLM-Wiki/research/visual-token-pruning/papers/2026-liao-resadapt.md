@@ -11,7 +11,7 @@ verification: source-checked
 tags: [paper-note, research, visual-token-pruning, adaptive-budget, dynamic-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # ResAdapt
@@ -24,4 +24,4 @@ updated: 2026-10-10
 
 **项目判断：** 与 C5 的低成本图文预览＋输入网格选择结构接近；建议先采用离散监督 allocator，视频时间正则不适用静态单图，连续 RL 留作后续。迁移仅为待验证假设。若准备复现，须升级 deep-read 并固定代码/成本口径。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md]]。
+关联：[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-per-sample-visual-allocation（历史方案，已删除）]]。

@@ -8,7 +8,7 @@ status: active
 related: []
 sources: [paper-yu-2022-orca, paper-kwon-2023-vllm, paper-agrawal-2024-sarathi-serve, paper-zhong-2024-distserve, paper-zhu-2025-nanoflow]
 created: 2026-08-27
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # 变长自回归 LLM 的批推理与流水线调度
@@ -64,7 +64,7 @@ updated: 2026-09-24
 
 - [[LLM-Wiki/research/variable-length-llm-serving/reading-log.md|检索与阅读日志]]
 - [[LLM-Wiki/research/variable-length-llm-serving/comparison.md|机制比较]]
-- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]
 
 ## 官方实现页面
 

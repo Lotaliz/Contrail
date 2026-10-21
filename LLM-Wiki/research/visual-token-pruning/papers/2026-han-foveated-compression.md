@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference, knowledge-distillation]
 status: active
 created: 2026-10-10
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # Foveated Compression：单高清区域的干预监督与选择失败
@@ -53,7 +53,7 @@ merger冻结后对每训练样本执行九个同预算动作，按实际答案�
 
 ## 对当前 Cx 的作用
 
-关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-liang-vip-router.md|VIP-Router]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-niu-evivit.md|EviViT]] 与 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx双重要性方案]]。
+关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-liang-vip-router.md|VIP-Router]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-niu-evivit.md|EviViT]] 与 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|Cx双重要性方案（历史方案，已删除）]]。
 
 **本项目判断：** 这是单高清区+全局粗表示的直接近邻，可借鉴真实动作干预、并列标签和same-row probe，但它是post-ViT feature替换、固定九cell/21%预算，不等于小图、pre-ViT、至多单裁框的Cx。Cx的全局/条件局部NLL与标签收益仍需单独验证。优先保留整图缩放、随机/固定框、oracle gap、selector-only政策置换和匹配像素/预算对照；不能凭“有cross-attention”认定政策指导有效。
 

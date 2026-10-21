@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # QuietPrune
@@ -100,4 +100,4 @@ $$
 
 对安全 Guard，QuietPrune 是“policy/query 前移到 ViT”的直接强基线。仅将 query 替换为安全政策不足以构成新意；可研究的增量是样本级风险预算、OCR/小目标/关系覆盖、被删证据充分性、unsafe-to-safe flip 与低置信回退。
 
-关联：[[LLM-Wiki/research/safety-classifier-compression/text-guided-visual-token-pruning.md]]；[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/safety-classifier-compression/text-guided-visual-token-pruning.md]]；[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

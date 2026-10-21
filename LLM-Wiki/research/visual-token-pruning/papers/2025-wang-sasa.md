@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # SASA：让安全检测利用更充分的语义
@@ -27,4 +27,4 @@ updated: 2026-10-10
 
 ## 对 Cx 的判断
 
-提供“安全信号与充分语义出现的位置可能不同”的证据；文中的早层是语言层，不是 pre-ViT。投影的因果执行与实现成本尚未在本轮精读，不能照搬为低时延剪枝。关联 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md]]；作为实现依据前需升级阅读。
+提供“安全信号与充分语义出现的位置可能不同”的证据；文中的早层是语言层，不是 pre-ViT。投影的因果执行与实现成本尚未在本轮精读，不能照搬为低时延剪枝。关联 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-policy-safety-representation-pruning（历史方案，已删除）]]；作为实现依据前需升级阅读。

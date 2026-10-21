@@ -4,13 +4,56 @@ type: synthesis
 title: "训练参与视觉压缩：统一比较与最近邻审查"
 tags: [research, visual-token-pruning, multimodal-safety, knowledge-distillation]
 project_id: visual-token-pruning
-sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-arxiv-2609-27988, code-hf-2026-qwen3-vl-modeling, paper-arxiv-2610-13263]
+sources: [paper-wen-2025-epic, paper-guo-2026-token-budget-distillation, paper-wang-2025-internvl35, paper-gao-2026-etc, paper-zhang-2026-dualspeed, paper-gu-2026-ood-vtp, paper-ding-2026-et-prune, paper-zheng-2026-visco, paper-huang-2026-evidence-rl, paper-sinha-2026-att-cot, paper-liao-2026-vtc-bench, paper-cai-2024-matryoshka-mm, paper-yang-2025-visionthink, paper-zhang-2026-security-pitfalls-token-compression, paper-chen-2025-safewatch, paper-liu-2025-guardreasoner-vl, paper-wang-2022-efficientvlm, paper-tang-2022-patch-slimming, paper-liu-2024-metr, paper-vasu-2025-fastvlm, paper-rubab-2026-dyna-vit, paper-gao-2026-quietprune, paper-na-2026-responseguard, paper-wang-2026-sap, paper-zong-2022-self-slimmed-vit, paper-feng-2026-em-kd, paper-cho-2026-restore, paper-chen-2026-otprune, paper-liao-2026-resadapt, webpage-an-2026-adaalloc, paper-arxiv-2610-01640, paper-arxiv-2610-00757, paper-arxiv-2609-39134, paper-arxiv-2609-37581, paper-arxiv-2609-37123, paper-arxiv-2609-34861, paper-arxiv-2610-11251, paper-arxiv-2610-09313, paper-arxiv-2610-09252, paper-arxiv-2610-07987, paper-arxiv-2610-07729, paper-arxiv-2610-04225, paper-zheng-2025-safety-attention-heads, paper-wang-2025-sasa, paper-zou-2025-shiftdc, paper-chen-2025-safeptr, paper-arxiv-2609-27988, code-hf-2026-qwen3-vl-modeling, paper-arxiv-2610-13263, paper-helff-2024-llavaguard, paper-qu-2024-unsafebench, paper-bao-2025-vmoda, paper-hang-2025-malicious-image-localization, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard, report-user-20261013-visual-budget, report-user-20261013-cx-lambda-scan, paper-arxiv-2610-16615, paper-arxiv-2610-17530, paper-arxiv-2610-22957, paper-arxiv-2610-24740, paper-arxiv-2610-24968]
 status: active
 created: 2026-09-08
-updated: 2026-10-13
+updated: 2026-10-21
 ---
 
 # 方法比较
+
+## 2026-10-21：预算充分性、原有正确性与行为保留的区别
+
+本轮三篇均已精读v1正文与附录、核对主图表，source-checked而非reproduced。当前比较对象仍为政策条件审核的整图分辨率选择；下表用于文献定位，不自动改写正式方案或把通用问答证据当成安全效果。
+
+| 维度 | [[LLM-Wiki/research/visual-token-pruning/papers/2026-balaji-qart.md|QART]] | [[LLM-Wiki/research/visual-token-pruning/papers/2026-li-paa-bench.md|PAA-Bench]] | [[LLM-Wiki/research/visual-token-pruning/papers/2026-li-visual-sufficiency-landscapes.md|Visual Sufficiency Landscapes]] |
+|---|---|---|---|
+| 研究对象 | 完整视觉编码后构造问题条件slot，并自适应数量与轮数 | 视觉剪枝的质量和真实效率评测协议 | 固定层与预算下成功子集的占比及失败预测 |
+| “足够”的标准 | 已选相关位置的投影特征重建误差/覆盖率 | 真实标签下原本正确的答案保留比例 | 同时保留完整模型答案、参考答案NLL与输出分布 |
+| 是否直接决定在线预算 | 是，但需多轮选择/重建，不省前置视觉塔 | 否；随机分层和PCS是离线评测 | 否；需参考答案、128次干预，便宜估计器待开发 |
+| 关键实测 | 约29token；batch1整体0.87×、batch8整体1.53×，prefill2.54×（图4） | 同95%保留，POPE上CDPruner16token/1.98×，DivPrune52/2.08×（表10） | 新图像的受控选择失败预测log loss相对降9.0/13.0/14.1%，不是答题准确率增益（表7） |
+| 重要限制 | 稠密区域监督、下游投影适配、计时披露及政策迁移 | 分组随模型/预算变化；不能忽略错→对；图2预算与E.3文表有不一致 | 可以保留完整模型错误；中间前缀已含视觉信息；小队列、参考答案和测量成本 |
+
+对当前任务的启发是将表示形成、真实正确性和行为稳定分别测量；同图换政策时，不能仅凭attention、重建或输出一致就证明决策需要某个分辨率。PAA的共同质量比较可参考，但政策审核仍需允许/拦截两侧与真实标签；充分性景观和QART均未证明编码前整图分辨率的便宜预算信号。没有新增实验、方法性concept或正式研究缺口。
+
+## 2026-10-20：当前比较目标
+
+当前主线见 [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|整图分辨率研究方案]]：从信息读取、表征保留和决策作用研究政策条件审核的整图分辨率需求，再验证轻量选择器是否优于强静态上限。比较保留允许/拦截两侧、同图政策对、实际端到端成本，以及低预算比完整输入更好的样本。FastV、VisionZip、CDPruner等既有比较与四项待补基线继续保留；本次未新增模型结果。
+
+下方带日期的C5/Cx、全局/局部及数据扩充判断按当时语境保留，均不代表当前执行方案，见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|六份旧方案清理记录]]。
+
+## 2026-10-16：SAVER 的选择偏好与 TwinPrune 的两阶段评测
+
+来源为用户本次选定的两篇公开全文，均source-checked、未复现。TwinPrune作者主动省略附录，下面只使用可核验正文与主表；补充结果仅在笔记中标为作者陈述。
+
+| 比较轴 | [[LLM-Wiki/research/visual-token-pruning/papers/2026-huang-saver.md|SAVER]] | [[LLM-Wiki/research/visual-token-pruning/papers/2026-liu-twinprune.md|TwinPrune]] |
+|---|---|---|
+| 任务与执行位置 | 图片问答；完整视觉编码后，在LLM早期层选token，具体层未明（§4） | 图片问答；LLM指定层减少prefill序列，边界再淘汰视觉KV（§4） |
+| 按样本改变什么 | 用问题相关位置的空间分散程度调节相关性/多样性权重；K外部给定 | 按邻近特征差异及最远点选择位置；两阶段比例外部给定 |
+| 训练与校准 | 不更新模型权重；需要校准范围及超参数 | 基础选择器无需训练；主表另有LoRA适配行，不能混称未训练 |
+| 可核验质量证据 | 64/576 token，七任务平均相对性能96.5%；三任务动态比静态高1.0pp（表1/5） | decode留12.5%时TextVQA 0.648，高于H2O 0.552，但低于不淘汰0.733；MMVet/DocVQA损失更大（表3） |
+| 真实成本边界 | 两两相似度与贪心选择；表4单位、硬件和计时边界不足 | A6000/batch8/3072 token，487.7→150.8ms的prefill；依赖融合内核/图缓存，非完整答案E2E（§4.2） |
+| 核心缺口 | 确切层位、校准配置、选择器耗时及政策安全 | 附录省略、完整合并实现/证明/联合网格未核验；正文复杂度与基线口径需澄清 |
+
+对Cx的判断：两者都在完整视觉编码之后工作，既不直接产生输入分辨率预算，也不证明单局部框充分。SAVER的空间分散与TwinPrune的局部变化可作候选信号，政策作用及小图成本仍需验证。首输出评测能否反映KV淘汰取决于实际注入与评分时序；prefill剪枝仍可改变首输出。一般VQA与POPE结果不等于固定FPR下的安全证据。与CDPruner/SheafPrune没有本轮统一复测，不横排最大加速，不更新正式motivation。
+
+## 2026-10-14 补充：非零λ扫描的比较口径
+
+[[LLM-Wiki/experiments/20261014-cx-lambda-scan-review/README.md]] 转录401条dev上四个非零λ的质量/真实时延，并计算描述性差值。0.002→0.01减少57.07%token、9.92%均值、25.10%P95，宏召回/unsafe recall点估计低0.47/0.65pp，尚未确认质量非劣。需要同恢复Guard/SDPA/dev的固定16、64、Resolution10、仅全局Router及完整Adaptive控制；历史原B0/FA2不是同算法条件，test固定16与dev Adaptive时延不能直接推算开销。局部与full全局同时变化，扫描未分离局部贡献；NLL高不单独证明概率校准差。
+
+## 2026-10-14：数据证据结构与政策边界
+
+[[LLM-Wiki/research/visual-token-pruning/dataset-local-evidence-policy-expansion.md]] 给出统一比较与样本审计。SafeEditBench改变局部图像事实；PolicyShiftBench改变同图可执行规则；VModA把整图、ROI和OCR按规则审核；Malicious Image Analysis提供元素mask的邻近监督。前两项是数据/政策反事实基础，后两项主要是多模型区域分析，并非低成本单框预算算法。当前Cx应在同一恢复Guard、同实际token或成本下核验global与global+local，另分离固定global下追加crop的增量；不以局部使用率证明收益。原数据主类别与新条件政策不保证标签等价，数据合并需重新核验事实/多类违规。
 
 ## 2026-10-13：SheafPrune的图排序、预算条件与部署边界
 
@@ -29,7 +72,7 @@ updated: 2026-10-13
 
 ## 2026-10-10：安全内部表征与政策预算的分工
 
-新增 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md|安全表征分支调研]]，用任务、输入、信号、层位置、预算、训练、基线、指标、成本和边界比较两种思路。SAHs/SASA/ShiftDC 是安全/危险内部表征的近邻；SafePTR/SAP 已做生成安全相关 token 干预；SafeWatch 已做政策 Guard 剪枝。新增三篇仅略读，未运行代码或声称已证实 Cx 效果。
+新增 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|安全表征分支调研（历史方案，已删除）]]，用任务、输入、信号、层位置、预算、训练、基线、指标、成本和边界比较两种思路。SAHs/SASA/ShiftDC 是安全/危险内部表征的近邻；SafePTR/SAP 已做生成安全相关 token 干预；SafeWatch 已做政策 Guard 剪枝。新增三篇仅略读，未运行代码或声称已证实 Cx 效果。
 
 综合判断：当前 Cx 与分辨率动作对应更直接，政策条件证据保留更可能形成安全专属解释，但原生早期 ViT 不读政策，探针分类信息也不等于 token 因果贡献。离线完整 Guard 贡献→在线便宜政策读出可作为选择器假设，收益组成仍为 NLL＋标签不一致。新增方法不规定数据规模/范围、执行步骤或门控。
 
@@ -51,14 +94,14 @@ updated: 2026-10-13
 
 **本轮综合判断：** Foveated直接说明“有单高清区oracle headroom”和“轻量selector能兑现收益”需要分别证明；保留整图缩放与随机/固定框，不能只比均匀强压缩。VisionWeave的shuffled routing固定每样本预算，适合隔离“选在哪里”；其大规模后训练又不能当轻量路由效果。小目标论文区分原像素与token容量，但保证依任务/分布单调性和覆盖，不能自动用于政策Guard。SAP面向拒答，若迁移抑制危险证据到检测模型可能增加漏报，这仍是待验证假设。
 
-对 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx]] 的新增比较轴是强缩放、实际配置的oracle regret、并列监督、selector-only政策干预、匹配预算的位置控制和像素来源控制；本轮不修改当前方案、concept或正式motivation。
+对 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|Cx（历史方案，已删除）]] 的新增比较轴是强缩放、实际配置的oracle regret、并列监督、selector-only政策干预、匹配预算的位置控制和像素来源控制；本轮不修改当前方案、concept或正式motivation。
 
 
 ## 2026-10-10：双重要性规划的结构对照
 
 当前自适应方法称为 Cx。v2 仅保留方法结构：代价由 NLL＋标签不一致组成，全局/局部各三档，局部包含零档；不规定数据使用或执行协议。条件局部收益用于表达 Cx mixed 路线的增量价值，局部-only 效用表达独立充分性，两者不直接互换。
 
-用户最新假设见 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md]]，未运行实验。固定同一 Guard、实际配置库、预览与单框，对比配置 CE 分类器、单总收益 MLP，以及两个有独立监督的收益 head。两个量按“先升级全局、再加入局部”定义；局部 head 依赖全局预算和语境，总和等于相对参考的路线收益。该可追溯分解是项目设计，不是唯一对称因果贡献。
+用户最新假设见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-global-local-importance-plan（历史方案，已删除）]]，未运行实验。固定同一 Guard、实际配置库、预览与单框，对比配置 CE 分类器、单总收益 MLP，以及两个有独立监督的收益 head。两个量按“先升级全局、再加入局部”定义；局部 head 依赖全局预算和语境，总和等于相对参考的路线收益。该可追溯分解是项目设计，不是唯一对称因果贡献。
 
 已有 VIP-Router 支持离线效用回归方向，When Text Matters 支持 attention 对照实际区域干预的审计方向；它们没有验证本页全局/条件局部收益曲线的政策 Guard 效果。原始 attention/激活与真实预算收益、像素使用分别评估，不能用归一化 attention 比例直接确定总预算。
 
@@ -79,7 +122,7 @@ updated: 2026-10-13
 
 ## 2026-10-10：Cx 逐样本预算模块的近邻
 
-当前用户不锚定 5%，先考虑 batch=1、全局＋至多一个局部框。详细机制和待验证协议见 [[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md|逐样本分配方案]]。
+当前用户不锚定 5%，先考虑 batch=1、全局＋至多一个局部框。详细机制和待验证协议见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|逐样本分配方案（历史方案，已删除）]]。
 
 | 机制 | 可迁移设计 | 需要保留的边界 |
 |---|---|---|
@@ -144,4 +187,4 @@ updated: 2026-10-13
 | 单次 Guard 判定 | ResponseGuard | 同 backbone/数据下拆分视觉前缀、输出形式和训练目标；严格 FPR 而非只报加权 F1 |
 | 安全感知剪枝 | SAP；SafeWatch；Security Pitfalls | 独立检测 Guard、漏报威胁与训练泛化；不把生成拒答或 jailbreak ASR 当 recall |
 
-历史方法比较见本页；现行实验基线与协议见 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+历史方法比较见本页；现行实验基线与协议见 [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

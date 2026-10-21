@@ -14,7 +14,7 @@ status: active
 
 文件调整：
 
-- 主方案从 `c5-global-local-importance-plan.md` 更名为 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md]]。
+- 主方案从 `c5-global-local-importance-plan.md` 更名为 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-global-local-importance-plan（历史方案，已删除）]]。
 - 当前方法记录目录从 `20261010-c5-global-local-importance` 更名为 `20261010-cx-global-local-importance`，内容见 [[LLM-Wiki/experiments/20261010-cx-global-local-importance/README.md]]与 [[LLM-Wiki/experiments/20261010-cx-global-local-importance/defaults.yaml]]。
 - 同步项目、对照、阅读日志、实验索引和既有链接。前版逐样本方案改用 Cx 展示标题，其历史文件路径保持稳定。
 

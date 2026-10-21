@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # 小目标与安全放大：信息、token几何和单次枚举容量
@@ -56,6 +56,6 @@ Theorem3将coverage缺口、R/M缺陷、merge漏失分开，给出 $\mathcal R_d
 
 Limitations：R/M分布迁移需重测；hard threshold和token量化观察者并不普遍成立；crop FP不单调；商业版本漂移与坐标偏离影响结果。REDP-10不公开，label audit由原标注者执行，只查遗漏，不提供独立语义一致性验证。
 
-关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-niu-evivit.md|EviViT]]、[[LLM-Wiki/research/visual-token-pruning/qwen3-vl-resolution-budget-notes.md|本地分辨率边界]] 与 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx]]。
+关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-niu-evivit.md|EviViT]]、[[LLM-Wiki/research/visual-token-pruning/qwen3-vl-resolution-budget-notes.md|本地分辨率边界]] 与 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|Cx（历史方案，已删除）]]。
 
 **本项目判断：** 可借鉴同pixels变token、同token几何变context、native crop对插值crop的分离控制。当前小图/至多一个局部框/0–8–16局部token并不覆盖全图，也不满足工程图枚举理论的前提；无法直接拿该定理保证政策Guard召回。局部预算应按原生网格、目标尺度、框context和真实路线收益核验，保留全局补充信息。TODO：政策相关目标的有效像素与S、crop边界证据、低清已不可见目标的selector漏失。暂不创建新concept或转写motivation。

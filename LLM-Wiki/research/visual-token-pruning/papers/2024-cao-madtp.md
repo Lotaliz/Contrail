@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, vision-language-model, visual-token-pruning, dynamic-inference, efficient-inference]
 status: active
 created: 2026-09-22
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # MADTP：图文双分支动态 Token 剪枝
@@ -31,4 +31,4 @@ MADTP 面向 CLIP/BLIP 一类视觉、语言双分支 VLT。它先用共享可�
 
 它是**会议范围与联合剪枝机制先例**，也是“首次联合剪图文 token”新颖性声明的直接反证。但其文本是普通短句、架构是 BERT/ViT 双分支，和“decoder-only Guard 中政策 token 超过视觉 token 四倍”的成本结构相反。当前贡献必须来自长政策、结构化政策压缩、同图异策安全约束和真实端到端计时，而不能只把 MADTP 移植到安全数据。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md]]。

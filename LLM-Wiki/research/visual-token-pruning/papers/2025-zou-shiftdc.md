@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # ShiftDC：对照激活中的安全方向
@@ -28,4 +28,4 @@ updated: 2026-10-10
 
 ## 对 Cx 的判断
 
-支持正反样本均值差作为诊断基线；跨模态分布变化和误报需分别解释。本文没有动态政策、单框预算或早期视觉证据保留评测。关联 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md]]；暂保持 skimmed。
+支持正反样本均值差作为诊断基线；跨模态分布变化和误报需分别解释。本文没有动态政策、单框预算或早期视觉证据保留评测。关联 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-policy-safety-representation-pruning（历史方案，已删除）]]；暂保持 skimmed。

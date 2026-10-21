@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # EviViT：人类搜索监督的局部重读与稀疏融合
@@ -60,6 +60,6 @@ planner 通过 residual suppression 保留一或两个非冗余 decisive 区域�
 
 与 [[LLM-Wiki/research/visual-token-pruning/papers/2026-guan-video-evidence-indexing.md|VEI]] 相比，它在视觉编码内部一次完成重读/融合，不需要反复 LLM crop 调用；与 [[LLM-Wiki/research/visual-token-pruning/papers/2026-gao-quietprune.md|QuietPrune]] 相比，它依赖人类搜索监督并付出局部重新编码成本。关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]。
 
-**本项目判断：** 对 C5 最有价值的是“只打乱 selector 政策”和“固定布局/面积/预算的像素位置控制”，以及焦点证据与补充 context 的区分。默认多框、约千 token 以上和通用 VQA 结果不能直接证明单局部框或安全 recall，也不能外推到旧 C5 的 5% 工作点。2026-10-10 的[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md|当前方案]]已不锚定 5%，应按实际全局/单局部 token 配置检验迁移。
+**本项目判断：** 对 C5 最有价值的是“只打乱 selector 政策”和“固定布局/面积/预算的像素位置控制”，以及焦点证据与补充 context 的区分。默认多框、约千 token 以上和通用 VQA 结果不能直接证明单局部框或安全 recall，也不能外推到旧 C5 的 5% 工作点。2026-10-10 的[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|当前方案（历史方案，已删除）]]已不锚定 5%，应按实际全局/单局部 token 配置检验迁移。
 
 作者公开说明代码含聚合结果和脚本，但不含模型权重、human-search traces、benchmark images 或 QA 训练数据；本轮未核验代码发布状态。TODO：替代人工 trace 的路线收益/像素监督、单框覆盖失败、small text 清晰度、policy flip 和真实部署开销。本轮不创建新 concept 或把单篇效果提升写入正式 motivation。

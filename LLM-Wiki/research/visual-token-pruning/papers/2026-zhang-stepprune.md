@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, adaptive-budget, sequential-selection, efficient-inference]
 status: active
 created: 2026-09-20
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # StepPrune：顺序视觉 Token 选择与自适应 STOP
@@ -86,7 +86,7 @@ StepPrune 是“动态保留数量 + STOP”的强近邻，可作为完整视觉
 
 当前项目若借鉴顺序决策，部署位置需前移到视觉塔浅层，并将普通 LM loss/精确答案奖励替换为政策条件的安全判别与漏报代价。是否能在浅层表示上稳定训练 STOP、是否值得支付多轮 selector 成本，均为研究假设。该笔记不把 StepPrune 的任务保持率外推为安全召回率，也不改变正式 motivation。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|StackTok]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/autoregressive-vlm-pruning-sota-baselines.md|自回归 VLM 时延基线]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-wang-stacktok.md|StackTok]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/autoregressive-vlm-pruning-sota-baselines.md|自回归 VLM 时延基线]]。
 
 ## 证据定位与待验证项
 

@@ -8,7 +8,7 @@ reading_level: discovered
 verification: unverified
 status: seed
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # PyramidDrop: Accelerating Your Large Vision-Language Models via Pyramid Visual Redundancy Reduction
@@ -18,4 +18,4 @@ updated: 2026-09-24
 ## 候选登记
 训练与推理共享渐进视觉压缩的早期候选，且被多篇新工作作为比较基线。本轮未完成原文主表阅读，不依赖该候选提出 motivation；需核对训练版与免训练版、深度预算以及现代主干实现。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

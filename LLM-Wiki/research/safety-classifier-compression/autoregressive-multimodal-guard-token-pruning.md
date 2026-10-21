@@ -6,7 +6,7 @@ project_id: safety-classifier-compression
 sources: [paper-chen-2025-safewatch, paper-chi-2024-llama-guard-vision, paper-yang-2025-visionzip, paper-zhang-2025-sparsevlm, paper-wen-2025-token-pruning-right-problem, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator]
 status: active
 created: 2026-08-24
-updated: 2026-09-24
+updated: 2026-10-20
 title: 可生成归因的多模态自回归 Guard：Token 剪枝可行性与设计边界
 synthesis_kind: literature-review
 ---
@@ -94,5 +94,5 @@ SafeWatch 明确发现直接启用 PAP 会引入分布变化，因此增加 adap
 
 - [[LLM-Wiki/research/safety-classifier-compression/papers/2025-chen-safewatch.md|SafeWatch 论文笔记]]
 - [[LLM-Wiki/research/safety-classifier-compression/overview.md|安全判别系统的剪枝与蒸馏]]
-- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝概念]]

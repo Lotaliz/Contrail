@@ -12,7 +12,7 @@ status: active
 
 依据用户指定的三项范围，删除以下 54 个文件。论文删除依据为 paper-note 的 `reading_level` 不含 `deep-read`；`paper-ji-2026-vispco` 虽无现存独立笔记，但 2026-08-25 的变更记录明确记载升级精读，因此保留。保留所有精读论文副本、原有论文笔记、实验记录与阅读日志。
 
-来源题录和 source ID 保留在 `raw/sources.yaml`，删除副本的 `local_path` 置空；既有 `sha256` 作为已删除原件的历史校验值保留。失效的 Wiki 链接改向现行方案或本清理记录。当前唯一研究方案为 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|短政策条件下的文本政策指导视觉 Token 剪枝]]。
+来源题录和 source ID 保留在 `raw/sources.yaml`，删除副本的 `local_path` 置空；既有 `sha256` 作为已删除原件的历史校验值保留。失效的 Wiki 链接改向现行方案或本清理记录。当前唯一研究方案为 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|短政策条件下的文本政策指导视觉 Token 剪枝（历史方案，已删除）]]。
 
 ## 临时文件（22）
 

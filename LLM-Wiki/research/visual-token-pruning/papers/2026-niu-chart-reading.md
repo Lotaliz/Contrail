@@ -14,7 +14,7 @@ priority: medium
 tags: [paper-note, research, mechanistic-interpretability, activation-patching, visual-evidence, chart-understanding]
 status: active
 created: 2026-09-20
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # VLM 图表读数：视觉证据的空间与深度因果定位
@@ -89,7 +89,7 @@ Qwen 的轴尺度相对 half-life 为归一化深度 0.815/0.852，而柱 ROI �
 
 可迁移的实验模板是：构造只改变安全相关局部因素的成对输入，在候选浅层 patch/删除该 ROI，观察 unsafe margin 的恢复或下降，并用非目标区域作 matched control。是否能从柱图读数迁移到开放世界安全内容是待验证假设；本论文不能直接证明政策因果充分视觉前缀存在，也不应把 restoration 当作 token importance 真值。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/region-rationale-guided-safety-token-pruning.md|区域理由引导安全剪枝]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/experiments/20260914-dual-evidence-token-compression/README.md|双证据压缩实验设计]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/region-rationale-guided-safety-token-pruning.md|区域理由引导安全剪枝]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/experiments/20260914-dual-evidence-token-compression/README.md|双证据压缩实验设计]]。
 
 ## 证据定位与待验证项
 

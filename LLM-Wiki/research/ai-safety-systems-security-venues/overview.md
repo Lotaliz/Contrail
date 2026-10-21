@@ -6,23 +6,24 @@ aliases: [AI 安全系统顶会调研, 安全顶会 AI Safety]
 tags: [research]
 status: active
 related: [safety-classifier-compression]
-sources: [paper-qu-2023-unsafe-diffusion, paper-he-2024-yopo, paper-wu-2024-legilimens, paper-li-2024-safegen, paper-wang-2024-moderator, paper-yang-2025-alignment-recovery, paper-wang-2025-selfdefend, paper-zhang-2025-jbshield, paper-qu-2025-vlm-unsafe-concepts, paper-zhang-2025-activation-approximations, paper-gao-2025-content-moderation-products, paper-zhuang-2025-hmguard, paper-qi-2025-safeguider, paper-wu-2026-enchtable, paper-li-2026-ace, paper-syros-2026-saga, paper-zhong-2026-rennervate, paper-zhang-2026-bleeding-pathways, paper-wei-2026-character-platforms, paper-liu-2026-sentinel]
+sources: [paper-qu-2023-unsafe-diffusion, paper-he-2024-yopo, paper-wu-2024-legilimens, paper-li-2024-safegen, paper-wang-2024-moderator, paper-yang-2025-alignment-recovery, paper-wang-2025-selfdefend, paper-zhang-2025-jbshield, paper-qu-2025-vlm-unsafe-concepts, paper-zhang-2025-activation-approximations, paper-gao-2025-content-moderation-products, paper-zhuang-2025-hmguard, paper-qi-2025-safeguider, paper-wu-2026-enchtable, paper-li-2026-ace, paper-syros-2026-saga, paper-zhong-2026-rennervate, paper-zhang-2026-bleeding-pathways, paper-wei-2026-character-platforms, paper-liu-2026-sentinel, paper-paudel-2024-contextual-soft-moderation, paper-paudel-2024-pixelmod, paper-guo-2024-ugcg-guard, paper-kireev-2025-telegram-propaganda, paper-luo-2025-unsafe-search, paper-pang-2026-dualsentinel, paper-he-2026-attriguard, paper-shen-2025-hatebench, paper-lipphardt-2026-global-moderation, paper-qu-2024-unsafebench]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-10-21
 ---
 
 # 安全四大顶会中的 AI 安全系统工作（2023—2026）
 
 ## 结论
 
-在 IEEE S&P、USENIX Security、ACM CCS 与 NDSS 的 2023—2026 主会中，直接面向内容安全、安全对齐、安全检测和 AI 应用治理的工作数量不大，但已从纯模型演进到独立 guard、生成中干预、并发 sidecar、策略化审核和可验证系统架构。真正同时报告安全召回、误拒、端到端时延、吞吐与部署成本的工作仍少。
+本项目核验的 IEEE S&P、USENIX Security、ACM CCS 与 NDSS 主会样本覆盖内容审核、模型级生成控制、独立Guard、生成中干预、并发sidecar和可验证Agent架构。2026-10-21另整理2024—2026年23篇阅读入口，明确区分直接审核/控制、相邻运行时防护和平台测量；这是精选样本而非会议全量计数，不能据此断言该领域论文总量或完整演进顺序。
 
 ## 范围
 
 - 纳入：内容安全、有害内容检测、安全对齐及保持、输入/输出 guard、运行时干预、产品审核、LLM app 与 agent 治理；允许纯模型或纯检测器。
 - 排除：主要贡献为 jailbreak、提示注入、投毒、后门、对抗样本或规避的新攻击；隐私、模型窃取、水印、深伪溯源、AI for cybersecurity、workshop/poster。
 - 混合论文：攻击方法若是主要创新，即使附带防御也不进入核心集合；防御论文可以用既有攻击评测，但不复述攻击构造。
-- 检索截止：2026-08-25。采用官方 accepted/program/proceedings 和论文页面，属于可复核的保守集合，不宣称绝对穷尽。
+- 检索更新至2026-10-21，采用官方accepted/program/proceedings、独立论文页和作者开放版本；历史2026-08-25核心集合与新23篇阅读清单边界不同，保留各自记录，不简单相加。CCS2025整页访问受限及其他覆盖不足见阅读清单，不宣称绝对穷尽。
+- 2026-10-21的阅读清单另列测量/攻击混合补充，不将HateBench等放入严格防护系统核心；普通检索/OCR辅助审核也不一律称为LLM方法。
 
 ## 核心判断
 
@@ -37,14 +38,17 @@ updated: 2026-08-25
 | 层级 | 代表工作 | 动作 |
 |---|---|---|
 | 纯模型/训练 | YOPO、SafeGen、对齐恢复、EnchTable | 提示学习、参数恢复、安全迁移 |
+| 政策模型管理 | Moderator | 将细粒度情境政策转成task vector和权重编辑 |
 | 检测器/guard | Legilimens、HMGUARD、Sentinel | 输入/输出或多模态判别 |
 | 生成时干预 | JBShield、Rennervate、DEEPALIGN | 隐状态操控、token 清洗、steering |
-| 运行时组合 | SelfDefend、Moderator、SafeGuider | sidecar、checkpoint、改写/过滤 |
+| 运行时组合 | SelfDefend、SafeGuider | sidecar、checkpoint、安全条件处理/过滤 |
 | app/agent 架构 | ACE、SAGA | 信任边界、访问控制、信息流 |
 | 产品审核 | Gao 等、AI Character Platforms | 政策与真实平台测量 |
 
 ## 项目文档
 
+- [[LLM-Wiki/research/ai-safety-systems-security-venues/moderation-reading-list-2024-2026.md|2024—2026年审核/防护阅读清单：23篇标题、会议与主题，区分系统和测量]]
+- [[LLM-Wiki/research/ai-safety-systems-security-venues/papers/2025-qu-vlm-unsafe-concepts.md|UnsafeConcepts 再精读：图像审核场景、感知/对齐区别与简化 PPO 的实际修改位置]]
 - [[LLM-Wiki/research/ai-safety-systems-security-venues/reading-log.md|检索与阅读日志]]
 - [[LLM-Wiki/research/ai-safety-systems-security-venues/landscape.md|技术路线图]]
 - [[LLM-Wiki/research/ai-safety-systems-security-venues/comparison.md|统一比较]]

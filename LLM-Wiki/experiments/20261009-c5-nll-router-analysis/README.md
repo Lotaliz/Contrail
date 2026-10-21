@@ -5,7 +5,7 @@ title: "C5 NLL 收益 router 的初步负结果与总预算假设"
 tags: [experiment, visual-token-pruning, multimodal-safety, adaptive-routing]
 status: active
 created: 2026-10-09
-updated: 2026-10-09
+updated: 2026-10-20
 ---
 
 # NLL 收益 router 初步分析
@@ -33,7 +33,7 @@ C5 固定约 5% 视觉预算，以文本政策＋128×128 预览路由 Global100
 
 先在 train 内独立验证/现有 dev 上测固定 5%、10%、20% 的单图 Global100 与原 C5 所选单框路线的质量—实测时延。保留成功和所有预算均失败的样本，检查高预算实际救回率与新增漏报；最终 test 不生成训练标签。
 
-最小改动是复用现有 preview/router，增加“当前 5% 路线 vs 20% 全局”升级收益门；在线只执行最终选定的一个 Guard 输入。完整设计、混合预算 Guard 适配、共同收益基准和平均预算边界见 [[LLM-Wiki/research/visual-token-pruning/c5-adaptive-total-budget-plan.md]]。
+最小改动是复用现有 preview/router，增加“当前 5% 路线 vs 20% 全局”升级收益门；在线只执行最终选定的一个 Guard 输入。完整设计、混合预算 Guard 适配、共同收益基准和平均预算边界见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-adaptive-total-budget-plan（历史方案，已删除）]]。
 
 ## 环境与证据缺口
 
@@ -41,4 +41,4 @@ C5 固定约 5% 视觉预算，以文本政策＋128×128 预览路由 Global100
 
 ## 关联
 
-项目：[[LLM-Wiki/research/visual-token-pruning/overview.md]]；既有固定预算设计：[[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md]]。
+项目：[[LLM-Wiki/research/visual-token-pruning/overview.md]]；既有固定预算设计：[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-single-region-policy-grounding-improvement（历史方案，已删除）]]。

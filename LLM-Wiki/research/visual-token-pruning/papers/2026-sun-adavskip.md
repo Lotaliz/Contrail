@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, layer-skipping, adaptive-routing, efficient-inference]
 status: active
 created: 2026-09-20
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # AdaVSkip：跨层视觉计算的自适应跳过
@@ -90,7 +90,7 @@ AdaVSkip 是当前“困难分支继续、简单分支少算”的纵向近邻�
 
 对安全 Guard 的迁移需要重新定义必要性和奖励：KL 接近 full teacher 不保证 unsafe 召回，精确答案 reward 也不能表达漏报代价。更直接的实验是将其作为 vertical-compute baseline，与真实 token 删除、固定浅层出口及 Full Guard 比较；安全证据的空间选择仍需另一机制。该笔记不把组合结果作为安全可行性已证实，也不修改正式 motivation。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-cdpruner.md|CDPruner]]；[[LLM-Wiki/research/visual-token-pruning/autoregressive-vlm-pruning-sota-baselines.md|时延口径审计]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]；[[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-cdpruner.md|CDPruner]]；[[LLM-Wiki/research/visual-token-pruning/autoregressive-vlm-pruning-sota-baselines.md|时延口径审计]]。
 
 ## 证据定位与待验证项
 

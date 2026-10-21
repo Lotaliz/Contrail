@@ -4,10 +4,10 @@ type: synthesis
 title: "多模态自回归模型视觉 Token 剪枝：时延与性能 SOTA 基线"
 tags: [research, visual-token-pruning, efficient-inference, multimodal-models]
 project_id: visual-token-pruning
-sources: [paper-peng-2025-uniprunebench, paper-chen-2024-fastv, paper-zhang-2025-sparsevlm, paper-alvar-2025-divprune, paper-yang-2025-visionzip, paper-khaki-2025-sparsevila, paper-he-2025-zipvl, paper-yang-2025-vflowopt, paper-zhang-2026-vscan, paper-gao-2026-quietprune, paper-zhu-2026-hawk, paper-sun-2026-if-prune, paper-li-2026-occamtoken, paper-chen-2026-v2drop, paper-chen-2026-evoprune, paper-wang-2026-stc, paper-ou-2026-sieve, paper-liu-2026-pace, paper-tong-2025-flowcut, paper-liu-2025-meteor, paper-hu-2026-illava]
+sources: [paper-peng-2025-uniprunebench, paper-chen-2024-fastv, paper-zhang-2025-sparsevlm, paper-alvar-2025-divprune, paper-yang-2025-visionzip, paper-khaki-2025-sparsevila, paper-he-2025-zipvl, paper-yang-2025-vflowopt, paper-zhang-2026-vscan, paper-gao-2026-quietprune, paper-zhu-2026-hawk, paper-sun-2026-if-prune, paper-li-2026-occamtoken, paper-chen-2026-v2drop, paper-chen-2026-evoprune, paper-wang-2026-stc, paper-ou-2026-sieve, paper-liu-2026-pace, paper-tong-2025-flowcut, paper-liu-2025-meteor, paper-hu-2026-illava, paper-yang-2025-visionthink, paper-lin-2026-adaptvision, paper-kim-2026-zoo-prune, paper-endo-2025-feather]
 status: active
 created: 2026-09-16
-updated: 2026-09-17
+updated: 2026-10-16
 ---
 
 # 多模态自回归模型视觉 Token 剪枝：时延与性能 SOTA 基线
@@ -17,6 +17,19 @@ updated: 2026-09-17
 主检索截止 2026-09-16，2026-09-17 定向复核以下基线的任务、batch 和计时边界。纳入图像/视频经视觉编码器产生连续视觉 token、再由自回归 LLM 解码的 VLM；排除纯 ViT 分类、扩散模型 token 剪枝、纯权重量化与仅报告 FLOPs 而无实测时延的工作。`SOTA` 只表示本轮从可访问原文核到的最好公开点，不表示在异构硬件、输入长度和任务之间存在单一全局冠军。
 
 时延必须区分：视觉编码器、LLM prefill、TTFT、decode throughput/generation latency 与 end-to-end/total runtime。性能保持率是论文定义的多任务归一化平均，不能与某个单独 VQA/OCR 分数直接横比。论文自报值与 UniPruneBench 统一复现值分开解释。
+
+## 2026-10-16：用户选定的四项待补比较
+
+用户明确选定 **VisionThink、AdaptVision、ZOO-Prune、FEATHER**，计划后续补充实验。本节只登记候选、正式来源、代码入口和比较边界；四项本地比较均待执行，不将论文自报结果写成当前 Guard 的实测结果。下方历史数值表仍保持原检索与计时审计范围。
+
+| 待补方法 | 原文与实现入口 | 对当前研究的比较作用（项目判断） | 证据与待办 |
+|---|---|---|---|
+| VisionThink，NeurIPS 2025 | [正式论文](https://proceedings.neurips.cc/paper_files/paper/2025/hash/88be023075a5a3ff3dc3b5d26623fa22-Abstract-Conference.html)；[作者代码](https://github.com/dvlab-research/VisionThink)；[[LLM-Wiki/research/visual-token-pruning/papers/2025-yang-visionthink.md]] | 低分辨率起步、按样本请求原高清图；用于比较全局分辨率升级与自适应预算 | 复用既有来源及 v1 skimmed / source-checked 笔记，补正正式 venue/作者；RL、二次推理及升级成本不能省略；Qwen3-VL-2B Guard 适配与实测待做 |
+| AdaptVision，CVPR 2026 | [论文](https://arxiv.org/abs/2512.03794)；[作者代码与模型](https://github.com/AdaptVision/AdaptVision) | 低清全局后按需裁剪局部；直接检验全局/局部获取路线的增量 | 新登记 discovered；仅核题录、摘要及代码入口，未精读。完整系统经过 RL 并含工具调用，不能把不同权重的效果算成同 Guard 选区收益；本地适配、质量与全流程成本待做 |
+| ZOO-Prune，CVPR 2026 | [作者项目与论文入口](https://aim-skku.github.io/ZOO-Prune/)；[作者代码](https://github.com/AIM-SKKU/ZOO-Prune) | 投影层零阶敏感度结合多样性，补充输出相关重要性选择 | 新登记 discovered；CVF 原文请求失败，未核全文。需核对敏感度代理、选择开销和 Qwen3-VL 适配；不能直接称为安全因果贡献；本地实验待做 |
+| FEATHER，ICCV 2025 | [论文](https://arxiv.org/abs/2412.13180)；[作者项目](https://web.stanford.edu/~markendo/projects/feather)；[作者代码](https://github.com/markendo/FEATHER) | 针对早层剪枝的空间偏差，用均匀覆盖及多阶段选择补充 FastV | 新登记 discovered；仅核作者项目、题录和 README，未精读。原实现基于 Prismatic/Llama2，需核对 Qwen3-VL 位置机制与剪枝规则；局部证据和安全召回待评测 |
+
+共同待办：在明确的权重/训练条件、同一测试划分及可比执行后端下评测，分报选择/裁图/视觉编码/prefill/最终输出的实际成本，并报告政策 Guard 的危险漏检、误报及压缩诱发翻转。相同保留 token 数不能替代端到端成本匹配；原方法与适配版本分别标识。本轮不运行模型、不修改 Cx 方法或正式 motivation，也不自动改变 watch 候选决定。
 
 ## 结果表
 

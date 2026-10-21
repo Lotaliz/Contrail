@@ -4,6 +4,7 @@ type: index
 title: Contrail 首页
 tags: [index]
 status: active
+updated: 2026-10-20
 ---
 
 # Contrail
@@ -18,7 +19,7 @@ status: active
 - [[LLM-Wiki/concepts/technology/vision-transformer-token-pruning-basics.md|视觉 Transformer 与 Token 剪枝基础]]
 - [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md|多模态 Token 剪枝]]
 - [[LLM-Wiki/research/multimodal-compositional-safety/research-plan.md|路线一：图文联合风险攻击、测量与防御]]
-- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|路线二：短政策条件下的文本政策指导视觉剪枝]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|路线二：政策条件审核与整图分辨率选择]]
 - concepts 按技术、方法、工程、写作和数据五类组织；现已建立首个技术基础概念。
 
 ## 管理入口

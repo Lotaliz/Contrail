@@ -6,7 +6,7 @@ tags: [research, visual-token-pruning, adaptive-budget]
 source_id: webpage-an-2026-adaalloc
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # AdaAlloc 项目页筛查
@@ -19,4 +19,4 @@ updated: 2026-10-10
 
 **项目判断：** 可引用其问题形式作近邻筛查，第一版不迁移多段视频证据和规划链。TODO：完整论文可访问后确认稳定 ID、阅读层级和部署代价。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md]]。
+关联：[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-per-sample-visual-allocation（历史方案，已删除）]]。

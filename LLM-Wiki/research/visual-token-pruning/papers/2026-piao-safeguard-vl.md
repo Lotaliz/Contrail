@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, safety-guardrail, multimodal-safety, safety-evaluation, vision-language-model]
 status: active
 created: 2026-09-22
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # SafeEditBench / SafeGuard-VL：跨政策泛化与能力保持
@@ -87,4 +87,4 @@ PolicyShiftGuard 后续在更严格的 PSS 上报告 SafeGuard-VL-RL-7B 的 Avg.
 
 SafeEditBench 适合作为外部近邻视觉证据测试；Stage 1 的“先感知、后政策判断”可迁移为 full-token teacher。主评测不能只采用其宏 F1，应加入 PolicyShiftGuard 式同图 policy flip、fixed-FPR unsafe recall 和完整政策/压缩政策判定一致性。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-song-policyshiftguard.md|PolicyShiftGuard]]；[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|两篇比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/papers/2026-song-policyshiftguard.md|PolicyShiftGuard]]；[[LLM-Wiki/research/visual-token-pruning/policy-adaptive-image-guardrail-comparison.md|两篇比较]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

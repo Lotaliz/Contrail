@@ -5,7 +5,7 @@ title: "C5 5% 预算结果分析：政策指导与单局部框的解释性"
 tags: [experiment, visual-token-pruning, multimodal-safety, adaptive-routing]
 status: active
 created: 2026-10-08
-updated: 2026-10-08
+updated: 2026-10-20
 ---
 
 # C5 结果分析
@@ -61,4 +61,4 @@ H1：同图异策的相对路线收益监督可比普通逐行 soft-target 更�
 
 固定 C5 恢复 Guard、预算和数据 split，先用训练集内部的基础图像分组 pilot。保留原 33 路线作对照，先比较加入横/竖/较大单框的候选 oracle，仍至多一个 local crop；政策损失/结构在同一候选库内逐项比较。官方 test 只留作方案冻结后确认，已公开的三个 test 实例只用于问题说明。保存失败和负结果。若降低 oracle regret 后仍不能改善独立安全指标，或解释通道可随意修改而路线不变，则不提升相应主张。
 
-完整干预协议、公式、消融顺序和论文边界见 [[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md|C5 单局部框改进建议]]；项目入口：[[LLM-Wiki/research/visual-token-pruning/overview.md]]。
+完整干预协议、公式、消融顺序和论文边界见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|C5 单局部框改进建议（历史方案，已删除）]]；项目入口：[[LLM-Wiki/research/visual-token-pruning/overview.md]]。

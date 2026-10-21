@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-09
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # OTPrune: Distribution-Aligned Visual Token Pruning via Optimal Transport
@@ -96,4 +96,4 @@ $$
 - TODO：验证早层特征上的 OT 子集是否与后层安全证据一致；现有论文只在 projector 后 token 上验证。
 - TODO：用非均匀安全质量时，与论文附录提出的 task-specific weighting 做清楚排重。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与研究判断分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与研究判断分开；未通过本地实验验证。

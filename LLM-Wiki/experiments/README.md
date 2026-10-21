@@ -16,7 +16,7 @@ YYYYMMDD-short-name/
 
 ## 已登记的实验
 
-- [[LLM-Wiki/experiments/20261010-cx-global-local-importance/README.md]]：用户报告新的自适应预算实验运行中；配置及结果尚未核验。
+- [[LLM-Wiki/experiments/20261010-cx-global-local-importance/README.md]]：历史双重要性方法记录；保留配置和用户报告关联，逐样本结果未复核，不作为当前整图方案。
 
 - [[LLM-Wiki/experiments/20261009-c5-nll-router-analysis/README.md]]
 

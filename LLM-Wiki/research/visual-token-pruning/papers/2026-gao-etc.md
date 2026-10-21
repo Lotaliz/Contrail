@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # ETC: Extreme Token Compression via Task-aware Visual Information Distillation in VLMs
@@ -106,4 +106,4 @@ $\sigma_d$ 是按通道学习、跨样本共享的方差。因此这里的“变
 - TODO：比较普通 MSE、ETC-VID、logit KD、关系/Gram 对齐和安全证据加权恢复。
 - TODO：分别测小目标、OCR、跨区域关系、图文冲突、隐喻/梗图及越狱提示的召回。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与研究判断分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与研究判断分开；未通过本地实验验证。

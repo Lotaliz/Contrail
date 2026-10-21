@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # V-CoLA：混合线性注意力的状态读出、合并与深层退出
@@ -51,6 +51,6 @@ updated: 2026-10-13
 
 关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-sun-adavskip.md|AdaVSkip]] 和 [[LLM-Wiki/research/visual-token-pruning/papers/2026-kang-when-text-matters.md|When Text Matters]]。V-CoLA 删除/合并序列，AdaVSkip 跳过模块计算；两者的 cache 与成本边界不同。
 
-**本项目判断：** 混合架构需要重新审计重要性信号和 token–layer 工作量；末状态重建与短期变化可作诊断，尚不能代替 Cx 的全局/条件局部真实收益标签。当前 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx]] 面向编码前预算与单框，本文既没有 policy flip/Guard 召回评测，也不节省视觉塔。§7 明确尚未覆盖纯 Mamba/全线性架构。
+**本项目判断：** 混合架构需要重新审计重要性信号和 token–layer 工作量；末状态重建与短期变化可作诊断，尚不能代替 Cx 的全局/条件局部真实收益标签。当前 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|Cx（历史方案，已删除）]] 面向编码前预算与单框，本文既没有 policy flip/Guard 召回评测，也不节省视觉塔。§7 明确尚未覆盖纯 Mamba/全线性架构。
 
 TODO：核验不同层视觉退出后的位置、每层 KV/递归状态和 decode 路径；对齐退出前 token 数与跨层平均成本；记录 TTFT、decode、选择器和短政策 Guard E2E。本轮不新建 concept、不更新正式 motivation。

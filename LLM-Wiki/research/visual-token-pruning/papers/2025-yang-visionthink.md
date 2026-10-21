@@ -2,19 +2,21 @@
 id: note-2025-yang-visionthink
 type: paper-note
 title: "VisionThink: Smart and Efficient Vision Language Model via Reinforcement Learning"
-authors: [Senqiao Yang, Junyi Li, Xin Lai, Bei Yu, Hengshuang Zhao, Jiaya Jia]
+authors: [Senqiao Yang, Junyi Li, Xin Lai, Jinming Wu, Wei Li, Zejun Ma, Bei Yu, Hengshuang Zhao, Jiaya Jia]
 year: 2025
-venue: arXiv
+venue: NeurIPS 2025
 source_id: paper-yang-2025-visionthink
 reading_level: skimmed
 verification: source-checked
 tags: [paper-note, research, visual-token-pruning, adaptive-budget, dynamic-inference]
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # VisionThink
+
+2026-10-16：按用户选择登记为待补实验基线；[NeurIPS 2025 正式题录](https://proceedings.neurips.cc/paper_files/paper/2025/hash/88be023075a5a3ff3dc3b5d26623fa22-Abstract-Conference.html)已核对会议和完整作者。下文仍为此前 v1 快读，不表示本轮重读全文、适配或复现；待补项目见 [[LLM-Wiki/research/visual-token-pruning/autoregressive-vlm-pruning-sota-baselines.md|基线清单]]。
 
 来源：[arXiv 2507.13348v1](https://arxiv.org/html/2507.13348v1)。复用已有 source_id，快读摘要、引言、总览图、§3、Table 2、Figure 4、结论/§6.2；未下载新 PDF、核验代码或复现。HTML 许可为 CC BY-SA 4.0，修正来源登记旧值。
 
@@ -26,4 +28,4 @@ updated: 2026-10-10
 
 **项目判断：** 可作逐样本升级基线，或借鉴“实际高清救回”标签构造。低预算分类熵不能保证发现证据遗漏，级联需独立计时。主线优先现有 C5 预览上的监督配置头；若复现 RL，须升级 deep-read。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/c5-per-sample-visual-allocation.md]]。
+关联：[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-per-sample-visual-allocation（历史方案，已删除）]]。

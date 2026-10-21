@@ -8,7 +8,7 @@ status: active
 related: [visual-token-pruning, on-policy-distillation]
 sources: [paper-fedorov-2024-llama-guard-int4, paper-lee-2025-harmaug, paper-lee-2025-saferoute, paper-verma-2025-multiguard, paper-chi-2024-llama-guard-vision, paper-palo-2024-pgkd, paper-wang-2024-p-pruning, paper-muralidharan-2024-minitron, paper-sun-2024-wanda, paper-xia-2024-sheared-llama, paper-wang-2024-smarttrim, paper-lin-2024-mope-clip, paper-wu-2023-tinyclip, paper-yang-2024-clip-kd, paper-vasu-2024-mobileclip, paper-yang-2025-visionzip, paper-chen-2025-safewatch, paper-ma-2023-llm-pruner, paper-an-2024-flap, paper-zhong-2025-blockpruner, paper-men-2025-shortgpt, paper-shi-2023-upop, paper-lin-2020-autoregressive-kd, paper-agarwal-2024-gkd, paper-gu-2024-minillm, paper-ko-2024-distillm, paper-ko-2025-distillm2, paper-zhang-2026-prefix-opd, paper-jang-2026-veto-opd, paper-fu-2026-opsa-safety, paper-michel-2019-sixteen-heads, paper-voita-2019-specialized-heads, paper-geva-2021-ffn-memory, paper-dai-2022-knowledge-neurons, paper-wang-2026-gisp, paper-cao-2023-pumer, paper-shi-2024-crossget, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-zhong-2025-aim, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency]
 created: 2026-08-24
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # 安全判别系统的剪枝与蒸馏
@@ -63,7 +63,7 @@ updated: 2026-09-24
 - [[LLM-Wiki/research/safety-classifier-compression/joint-visual-text-token-pruning.md|生成式多模态 Guard 中的视觉—文本 Token 压缩]]
 - [[LLM-Wiki/research/safety-classifier-compression/text-guided-visual-token-pruning.md|生成式多模态 Guard 的文本指导视觉 Token 剪枝]]
 - [[LLM-Wiki/research/safety-classifier-compression/comparison.md|统一维度比较：含任务对齐剪枝重要性指标]]
-- [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]
+- [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]
 
 ## 预注册实验设计（未执行）
 

@@ -1,4 +1,4 @@
-﻿---
+---
 id: note-2026-ma-sheafprune
 type: paper-note
 title: "SheafPrune: Sheaf-Guided Graph Propagation for Visual Token Pruning"
@@ -14,7 +14,7 @@ priority: high
 tags: [paper-note, research, visual-token-pruning, vision-language-model, efficient-inference]
 status: active
 created: 2026-10-13
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # SheafPrune：先看问题，再用图结构修正视觉 token 的保留顺序
@@ -170,7 +170,7 @@ $$
 
 **本项目判断／尚未验证的迁移假设：**
 
-- 可以参考“同一选择器接收预算条件”和“限制关系后再修正排名”。但SheafPrune在给定预算里选token，[[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|Cx]]要预测逐样本全局与单局部预算，职责不同；它没有预测追加局部视图的条件收益。
+- 可以参考“同一选择器接收预算条件”和“限制关系后再修正排名”。但SheafPrune在给定预算里选token，[[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|Cx（历史方案，已删除）]]要预测逐样本全局与单局部预算，职责不同；它没有预测追加局部视图的条件收益。
 - 当前政策指导方案需要证明政策改变后保留的证据也有效改变。本文图可视化和小幅初始化增益还不足以提供这一证明。均匀初始化、去文字、打乱文字、固定预算只改位置，是值得考虑的对照；这里只提出判断，不执行或规定新实验。
 - 可以把度修正理解为避免重复特征群挤占预算的一种启发，但它不识别安全证据，也不直接产生一个可解释局部框。政策Guard的漏报、误报和未见政策效果仍需独立证据。
 - 与 [[LLM-Wiki/research/visual-token-pruning/papers/2025-zhang-cdpruner.md|CDPruner]] 都有关问题相关性和冗余；机制分别为图传播排名与条件多样性子集选择。本文没有实测CDPruner，不能建立两者优劣。与 [[LLM-Wiki/research/visual-token-pruning/papers/2026-gao-quietprune.md|QuietPrune]] 的执行位置也不同：SheafPrune不减少视觉塔计算。既有两篇笔记用于定位比较，不代表本轮重新复现。

@@ -11,7 +11,7 @@ verification: source-checked
 tags: [paper-note, research, visual-token-pruning, adaptive-routing, visual-evidence]
 status: active
 created: 2026-10-08
-updated: 2026-10-08
+updated: 2026-10-20
 ---
 
 # GapSight
@@ -22,4 +22,4 @@ updated: 2026-10-08
 
 **证据边界：** §Method、Table 1/3/4/5 支持模型特定的裁剪收益及救回/新增错误分析；没有证明其空间解释的因果忠实性，也没有当前政策 Guard、固定 5% 总预算或 selector-inclusive wall-clock 证据。
 
-**项目判断：** 是 C5 的近邻，限制了“全局＋单框＋teacher 收益路由”的新颖性。可迁移相对收益、模糊标签降权、按目标 Guard 建 teacher；不需采用连续框或在线二次 Guard。建议迁移仅是待验证设计，见 [[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md]]。
+**项目判断：** 是 C5 的近邻，限制了“全局＋单框＋teacher 收益路由”的新颖性。可迁移相对收益、模糊标签降权、按目标 Guard 建 teacher；不需采用连续框或在线二次 Guard。建议迁移仅是待验证设计，见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-single-region-policy-grounding-improvement（历史方案，已删除）]]。

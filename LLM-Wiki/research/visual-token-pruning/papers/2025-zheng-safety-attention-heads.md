@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # SAHs：从内部激活识别危险输入
@@ -28,4 +28,4 @@ updated: 2026-10-10
 
 ## 对 Cx 的判断
 
-支持校准集探针；不证明 Qwen3-VL 早期视觉层具有政策判别方向，也不证明这些激活适合提前剪枝。首次生成前检测仍需主干计算。关联 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md]]；暂保持 skimmed，若作为实现依据需精读。
+支持校准集探针；不证明 Qwen3-VL 早期视觉层具有政策判别方向，也不证明这些激活适合提前剪枝。首次生成前检测仍需主干计算。关联 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-policy-safety-representation-pruning（历史方案，已删除）]]；暂保持 skimmed，若作为实现依据需精读。

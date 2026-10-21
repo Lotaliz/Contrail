@@ -5,7 +5,7 @@ title: "视觉 Token 剪枝：近期论文追踪"
 tags: [index, research, visual-token-pruning]
 status: active
 created: 2026-09-16
-updated: 2026-10-13
+updated: 2026-10-21
 ---
 
 # 近期论文入口
@@ -15,7 +15,31 @@ updated: 2026-10-13
 - [[LLM-Wiki/research/visual-token-pruning/overview.md|研究项目与当前主线]]
 - [[LLM-Wiki/metadata/workflows/arxiv-watch.md|去重、人工筛选和晋升规则]]
 
-## 2026-10-13：最近运行
+## 2026-10-21：用户选定三篇的精读
+
+用户已完成10篇推荐的筛选，实际为三篇selected、另外七篇skipped。本轮完成[[LLM-Wiki/research/visual-token-pruning/papers/2026-balaji-qart.md|QART]] / [[LLM-Wiki/research/visual-token-pruning/papers/2026-li-paa-bench.md|PAA-Bench]] / [[LLM-Wiki/research/visual-token-pruning/papers/2026-li-visual-sufficiency-landscapes.md|Visual Sufficiency Landscapes]]的公开正文及附录精读，复用来源ID并登记完整本地原件。理由与笔记使用通俗中文，方法证据、计时条件与当前整图分辨率方案的迁移假设分开；未执行新检索或自动推荐。
+
+首次Wiki校验PASS后，三篇已晋升ingested。当前pending0、selected0、skipped91、deferred1、ingested33；全部294个基础ID、28篇备查和141条排除保持。最近收集仍为2026-10-20的complete批次。
+
+## 2026-10-20：最近运行
+
+冻结窗口2026-10-10T02:05:17Z至2026-10-20T02:05:17Z。四组API均HTTP200，各一页全部取完；100条命中合并61个窗口内唯一ID，4篇既有候选保留人工决定。新题录57篇，其中20篇direct、18篇adjacent、19条排除；符合主题38篇，按标题摘要的潜在价值与方法设计推荐10篇pending，其余28篇放相关备查，不设人工决定、不会自动回流pending。理由均为中文，在线策略蒸馏排除规则与每批十篇上限保持。
+
+仅标题摘要筛查，均discovered / unverified，不执行精读。查询覆盖与批次状态complete，Wiki校验PASS（0错误、2项既有警告）；见 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-20-020517Z.md|本批日志与推荐顺序]]。当前pending10、selected0、skipped84、deferred1、ingested30；294个基础ID保留，备查28。无超过十天的窗口外缺口，历史partial日志不覆盖。
+
+## 2026-10-16：用户选定两篇的精读
+
+收集后用户只选SAVER与TwinPrune，另外两篇skipped。两篇公开正文已完成精读，见 [[LLM-Wiki/research/visual-token-pruning/papers/2026-huang-saver.md|SAVER]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-liu-twinprune.md|TwinPrune]]；TwinPrune官方源包确认附录被作者省略，相关证明与补充实验未核验。来源ID复用，完整原件仅本地保留。本次不重启检索，最近收集仍为partial。
+
+首次Wiki校验PASS后已将两篇晋升ingested。当前pending 0、selected 0、skipped 84、deferred 1、ingested 30；237个基础ID和其他人工决定保留。
+
+## 2026-10-16：最近运行
+
+冻结窗口为2026-10-06T02:01:21Z至2026-10-16T02:01:21Z。q1首个API请求返回HTTP429，正文为Rate exceeded.且未给Retry-After，已停止API请求。八条网页回退查询合并取得7个可见唯一ID，官方abs页核验后6篇在窗内，其中4篇新direct候选已加入pending、2篇为既有候选；另1篇首次提交在窗外，不改最近命中日期。新增来源4条、备查0，不执行精读。符合主题仅4篇，未触及每批10篇上限；理由均为中文，并保留既有人工决定。
+
+覆盖仍为partial，不能据此判断该窗口已查全。最近完整批次仍截止2026-10-13T02:01:29Z；本次窗口与其重叠，无停跑超过10天的窗口外缺口。详情见 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-16-020121Z.md|本批次日志]]。
+
+## 2026-10-13：前次完整检索与精读
 
 已沿用2026-10-03T02:01:29Z至2026-10-13T02:01:29Z的冻结窗口重试。四组API均首次请求成功（HTTP200），每组唯一结果页已完整读取；92条命中合并为55个唯一ID，其中45篇既有候选保留人工决定，新增4篇direct、1篇adjacent进入pending，另5篇范围外命中仅作查重记录。全库新增10条来源；既有排除记录2610.11205实际观测版本更新为v2，不改筛查决定。符合主题共5篇，未触及每批10篇上限，相关备查0。覆盖complete，补足此前partial批次；未精读、未下载PDF。见 [[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z-retry1.md|成功重试日志]]；[[LLM-Wiki/research/visual-token-pruning/watch/runs/2026-10-13-020129Z.md|原限流与回退日志]]保留。
 
@@ -48,7 +72,7 @@ updated: 2026-10-13
 | project | visual-token-pruning |
 | 主要来源 | arXiv API；失败时可用 arXiv 页面辅助发现并标 partial |
 | 时间窗 | 每次启动 UTC 时刻向前滚动 10 天，按首次提交日期 |
-| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近完整执行批次 2026-10-13（重试当日原窗口） |
+| 定时频率 | 每周二、周五 10:00，Asia/Shanghai；最近完整执行批次 2026-10-20（四组各一页） |
 | 阅读深度 | discovered；标题与摘要相关性确认 |
 | 分页预算 | 每组 50 条/页，最多 2 页；达到上限且未取完则 partial |
 | 筛查预算 | 每次最多 100 篇此前未筛查的唯一命中；不足覆盖时记录剩余 ID |

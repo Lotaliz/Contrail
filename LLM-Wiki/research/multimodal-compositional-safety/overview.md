@@ -8,7 +8,7 @@ status: active
 related: [visual-token-pruning, safety-classifier-compression]
 sources: [paper-wang-2024-siuo, paper-rottger-2025-msts, paper-palaskar-2025-vlsu, paper-zhou-2024-multimodal-situational-safety, paper-kiela-2020-hateful-memes, paper-singguard-team-2026-singguard, paper-zong-2024-vlguard, paper-zhang-2024-spa-vl, paper-chakraborty-2024-cross-modal-safety, paper-gou-2024-ecso, paper-liu-2025-guardreasoner-vl, paper-chi-2024-llama-guard-vision, paper-huang-2025-llavashield, paper-wang-2026-safeatlas-vl]
 created: 2026-09-20
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # 图文联合内容风险与组合式安全
@@ -19,7 +19,7 @@ AI 安全研究已经明确注意到“图像单独安全、文本单独安全�
 
 ## 当前研究路线
 
-本项目当前只保留一条主线：构造经过三标签和配对反事实审计的 strict 数据，系统测量专业多模态 Guard 的组合式规避，并以 compatibility-preserving 的组合风险残差模块修复漏洞。速度、视觉 Token 剪枝和早退出不再属于本项目的核心贡献；它们归入独立的 [[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+本项目当前只保留一条主线：构造经过三标签和配对反事实审计的 strict 数据，系统测量专业多模态 Guard 的组合式规避，并以 compatibility-preserving 的组合风险残差模块修复漏洞。速度、视觉 Token 剪枝和早退出不再属于本项目的核心贡献；它们归入独立的 [[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。
 
 完整研究问题、威胁模型、数据协议、防御和安全顶会写作建议见 [[LLM-Wiki/research/multimodal-compositional-safety/research-plan.md|路线一研究计划]]。
 

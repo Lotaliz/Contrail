@@ -8,7 +8,7 @@ reading_level: deep-read
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-10-13
+updated: 2026-10-20
 ---
 
 # Understanding and Mitigating Token-Pruning-Induced Vulnerabilities in VLMs
@@ -47,7 +47,7 @@ AR在每个decode step、所有层、逐head修改post-softmax attention：锚�
 
 表8，原始94.29ms/8.79T/14.66GB，TRIM55.90ms/2.22T/14.51GB，SAP57.19ms/2.22T/14.53GB；SAP相对TRIM增加1.29ms（约2.3%）。论文没有充分说明这些毫秒是否TTFT、固定输出长度、batch、同步与重复统计，不能据此直接认定E2E延迟或fused serving收益。表3的外部LLaVAGuard160.09ms是另一流程，不能用于本项目Guard自身速度排名。
 
-关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-yan-fata.md|FATA]]、[[LLM-Wiki/research/visual-token-pruning/comparison.md]] 和 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md|当前Cx方案]]。SAP修复生成模型在decode中的拒答，Cx分配政策条件视觉证据；对检测Guard，抑制危险证据可能反而漏报。此为项目假设，不能由本文ASR直接证实。早期记录中的“课题空白”只作当时判断，不由单篇全文证明当前新颖性。
+关联 [[LLM-Wiki/concepts/methods/multimodal-token-pruning.md]]、[[LLM-Wiki/research/visual-token-pruning/papers/2026-yan-fata.md|FATA]]、[[LLM-Wiki/research/visual-token-pruning/comparison.md]] 和 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|旧Cx方案（历史方案，已删除）]]。SAP修复生成模型在decode中的拒答，Cx分配政策条件视觉证据；对检测Guard，抑制危险证据可能反而漏报。此为项目假设，不能由本文ASR直接证实。早期记录中的“课题空白”只作当时判断，不由单篇全文证明当前新颖性。
 
 TODO：固定长度/预算的随机背景交换对照、clean refusal、跨政策selector干预、不同pruner的层级KV恢复、完整前处理/attention修改计时与adaptive攻击。本轮不新增concept、不更新正式motivation。
 
@@ -63,4 +63,4 @@ TODO：固定长度/预算的随机背景交换对照、clean refusal、跨政�
 
 “安全感知 token 剪枝”与“压缩导致特有安全行为”已经有更直接先例，故安全分支不能只做一次攻击迁移或按危险性改 score。SAP 面向被保护生成模型的 jailbreak/拒答，且是推理期修复；本课题可保留的空白是独立 Guard 检测、输入分辨率与视觉深度共同压缩、固定 FPR 下的漏报，以及训练后跨未知压缩状态的泛化。会议状态暂仅依据作者官方仓库登记。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

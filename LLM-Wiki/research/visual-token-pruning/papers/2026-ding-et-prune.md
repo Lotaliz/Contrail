@@ -8,7 +8,7 @@ reading_level: skimmed
 verification: source-checked
 status: active
 created: 2026-09-08
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # ET-Prune: Evidence-Aware Dynamic Budgeting for Visual Token Pruning in Text-Rich MLLMs
@@ -21,4 +21,4 @@ updated: 2026-09-24
 ## 边界与研究判断
 证据不确定性驱动预算已被直接研究；文中 risk-calibrated 不能自动解释成统计安全保证。中层剪枝保留早段完整计算，不直接解决短标签前向总成本。对原方案 evidence-budget 新颖性作降级，作为训练方法需要击败的推理基线。代码可复现性待核对；未复现。
 
-关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。
+关联：[[LLM-Wiki/research/visual-token-pruning/comparison.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。来源事实与“研究判断”分开；未通过本地实验验证。

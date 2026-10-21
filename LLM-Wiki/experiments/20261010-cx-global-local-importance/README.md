@@ -3,12 +3,14 @@ id: experiment-20261010-c5-global-local-importance
 type: experiment
 title: "Cx 双重要性指导的逐样本视觉预算：方法记录"
 tags: [experiment, visual-token-pruning, multimodal-safety, adaptive-budget]
-status: active
+status: archived
 created: 2026-10-10
-updated: 2026-10-10
+updated: 2026-10-20
 ---
 
 # Cx 全局/局部重要性方法记录
+
+> 历史方法记录（2026-10-20）：全局/局部双重要性方案已退出当前主线，见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|六份旧方案清理记录]]。本目录配置、用户报告和未核验项保留；不表示新整图方案已经运行，也不据此判定旧实验最终成功或失败。
 
 ## 目的与假设
 
@@ -20,7 +22,7 @@ updated: 2026-10-10
 
 ## 方法定义
 
-完整方法见 [[LLM-Wiki/research/visual-token-pruning/cx-global-local-importance-plan.md]]，方法配置见 [[LLM-Wiki/experiments/20261010-cx-global-local-importance/defaults.yaml]]。
+完整方法见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-global-local-importance-plan（历史方案，已删除）]]，方法配置见 [[LLM-Wiki/experiments/20261010-cx-global-local-importance/defaults.yaml]]。
 
 审核代价仅含 NLL 和标签不一致惩罚。全局和局部各三档，局部三档包含无局部的零档，单框最多九个逻辑配置。Cx 的两个轻量网络共享从原 C5 复用的图文预览，局部网络读取全局语境及预算。
 
@@ -34,8 +36,8 @@ updated: 2026-10-10
 
 ## 原始结果与结论
 
-暂无新增输出、checkpoint 或性能数字。运行状态来自用户报告，本 Wiki 未启动或监控训练。全局/局部收益预测的有效性、政策响应、同成本质量及解释准确性均待验证。
+2026-10-10方法提出时尚无新增输出或checkpoint核验。2026-10-14已获得用户的2026-10-13阶段总结与非零λ报告；本Wiki仅读取报告并派生描述性差值，未启动/监控训练或复核模型输出。四点dev的时延/质量分布、同Guard控制与证据边界见 [[LLM-Wiki/experiments/20261014-cx-lambda-scan-review/README.md]]。全局/局部的独立收益、政策响应、同成本质量及解释准确性仍待验证。
 
-并行研究假设：以政策条件的中间表征分析视觉判别证据，见 [[LLM-Wiki/research/visual-token-pruning/cx-policy-safety-representation-pruning.md]]；该分支尚未提供实验结果。
+并行研究假设：以政策条件的中间表征分析视觉判别证据，见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|cx-policy-safety-representation-pruning（历史方案，已删除）]]；该分支尚未提供实验结果。
 
 关联：[[LLM-Wiki/research/visual-token-pruning/overview.md]]；[[LLM-Wiki/experiments/20261008-c5-policy-grounding/README.md]]。

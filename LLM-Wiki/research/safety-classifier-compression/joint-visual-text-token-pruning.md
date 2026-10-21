@@ -7,7 +7,7 @@ project_id: safety-classifier-compression
 sources: [paper-zhong-2025-aim, paper-gao-2026-quietprune, paper-sun-2026-hi-lo-prune, paper-feng-2026-asymvlm, paper-zhou-2024-rethinking-visual-dependency, paper-chen-2025-safewatch, paper-chen-2025-safeptr, paper-zhang-2026-trimtokenator, paper-cao-2023-pumer, paper-wang-2024-smarttrim, paper-shi-2024-crossget, paper-cao-2024-madtp, paper-mu-2023-gist-tokens, paper-piao-2026-policy-adaptive-image-guardrail, paper-song-2026-policyshiftguard]
 status: active
 created: 2026-09-14
-updated: 2026-09-24
+updated: 2026-10-20
 ---
 
 # 生成式多模态 Guard 中的视觉—文本 Token 压缩
@@ -103,4 +103,4 @@ AIM 的文本消融来自 VideoMME，SafeWatch 来自视频 Guard，TrimTokenato
 
 当前最可信的论文问题不是“首次联合剪视觉和文本 token”，而是：**在长政策主导的 decoder-only 多模态 Guard 中，如何把政策编译为可审计条款表示，并让视觉证据与政策条款协同分配预算，在安全非劣下获得真实端到端收益。**
 
-关联：[[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md]]；[[LLM-Wiki/research/safety-classifier-compression/gaps.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-conditioned-visual-pruning-research-plan.md|当前研究计划]]。
+关联：[[LLM-Wiki/research/safety-classifier-compression/autoregressive-multimodal-guard-token-pruning.md]]；[[LLM-Wiki/research/safety-classifier-compression/gaps.md]]；[[LLM-Wiki/research/visual-token-pruning/policy-guided-resolution-selection-research-plan.md|当前研究计划]]。

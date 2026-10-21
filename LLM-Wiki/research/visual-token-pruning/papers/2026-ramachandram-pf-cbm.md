@@ -11,7 +11,7 @@ verification: source-checked
 tags: [paper-note, research, visual-evidence, representation-probing]
 status: active
 created: 2026-10-08
-updated: 2026-10-08
+updated: 2026-10-20
 ---
 
 # PF-CBM
@@ -20,4 +20,4 @@ updated: 2026-10-08
 
 **作者方法：** 在冻结 DINOv3 上用命名部位 query、前景门与空间先验形成 part tokens，把 CUB 属性硬路由到对应部位；分类器读取概念概率。Table 2 中空间先验条件 top-1 为 88.85%、pointing 为 52.57%。Table 3 顺序训练改善概念校准但降低分类精度，揭示软概念值携带额外类别信息的风险。
 
-**边界与项目判断：** 单对象/规范姿态假设限制了向任意安全场景迁移。借鉴命名中间量实际进入决策图、分别检查语义和干预效果；不能直接套用鸟类空间先验、压制背景或把条款 attention 当忠实解释。仅监督最终 verdict 不能保证“暴力”等命名头学到对应视觉事实。该建议见 [[LLM-Wiki/research/visual-token-pruning/c5-single-region-policy-grounding-improvement.md]]。
+**边界与项目判断：** 单对象/规范姿态假设限制了向任意安全场景迁移。借鉴命名中间量实际进入决策图、分别检查语义和干预效果；不能直接套用鸟类空间先验、压制背景或把条款 attention 当忠实解释。仅监督最终 verdict 不能保证“暴力”等命名头学到对应视觉事实。该建议见 [[LLM-Wiki/changes/2026-10-20-resolution-plan-and-superseded-ideas-cleanup.md|c5-single-region-policy-grounding-improvement（历史方案，已删除）]]。
