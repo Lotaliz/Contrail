@@ -12,7 +12,5 @@
 .codex**
 output/
 
-# Paper originals remain local; publish notes and source metadata only.
-/LLM-Wiki/raw/**/*.[pP][dD][fF]
-/LLM-Wiki/raw/**/*.[hH][tT][mM][lL]
-/LLM-Wiki/raw/**/*.[hH][tT][mM]
+# Keep the entire raw source library local, including its source registry.
+/LLM-Wiki/raw/

@@ -9,6 +9,10 @@
 允许的类型：Added、Changed、Fixed、Deprecated、Removed。
 
 
+## 2026-10-21
+
+- [Changed] [raw, metadata/workflows] 将整个 raw 资料库及来源登记表改为仅本地保存，统一目录级忽略规则并说明新克隆恢复来源表的要求（[[LLM-Wiki/changes/2026-10-21-raw-local-only.md|范围与清单]]）。
+
 ## 2026-10-13
 
 - [Removed] [raw, metadata/workflows] 将论文 PDF/HTML 原文改为不发布的本地阅读副本，保留来源和哈希并将原文链接改为官方地址，当前版本及后续提交不再包含原件（详情：[[LLM-Wiki/changes/2026-10-13-untrack-paper-originals.md]]）。

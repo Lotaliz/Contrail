@@ -4,7 +4,7 @@ type: metadata
 tags: [metadata, workflow]
 title: "研究工作流共同契约"
 status: active
-updated: 2026-10-13
+updated: 2026-10-21
 ---
 
 # 研究工作流共同契约
@@ -28,7 +28,7 @@ updated: 2026-10-13
 - 调研比较、研究缺口和 motivation 放在 research 项目中。
 - 实验原始输出与解释分离。
 - 大文件不在库中重复保存；记录路径、版本和校验值。
-- 论文 PDF、HTML、HTM 原文只作为 raw 下的本地副本，由根目录 .gitignore 忽略；来源表保留 URL、版本、路径和校验值，发布笔记使用官方来源 URL，不依赖未发布的原文文件。
+- 整个 raw 目录（包括 sources.yaml、图片和原文）仅保存在本地，由根目录 .gitignore 忽略；本地来源表保留 URL、版本、路径和校验值，发布笔记使用官方来源 URL。新克隆需另行恢复本地 raw/sources.yaml，才能执行依赖来源登记的工作流和完整校验。
 
 ## 通用完成条件
 
